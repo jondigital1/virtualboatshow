@@ -22,25 +22,17 @@ export function AnnouncementBar() {
     <div
       style={{
         background: "#050F1A",
-        color: "rgba(255,255,255,.82)",
+        color: "#fff",
         fontFamily: MONO,
-        fontSize: 12,
-        letterSpacing: ".13em",
+        fontSize: "clamp(13px,1.5vw,15px)",
+        fontWeight: 700,
+        letterSpacing: ".12em",
         textTransform: "uppercase",
         textAlign: "center",
-        padding: "9px 16px",
-        display: "flex",
-        gap: 12,
-        alignItems: "center",
-        justifyContent: "center",
-        flexWrap: "wrap",
+        padding: "12px 16px",
       }}
     >
-      <span style={{ color: "var(--accent)", fontWeight: 700 }}>Sept 10-13, 2026</span>
-      <span style={{ opacity: 0.35 }}>/</span>
-      <span>Atlantic City In-Water Boat Show</span>
-      <span style={{ opacity: 0.35 }}>/</span>
-      <span style={{ opacity: 0.75 }}>Ticket holders unlock live pricing 2 days early</span>
+      Ticket holders unlock live pricing <span style={{ color: "var(--accent)" }}>2 days early</span>
     </div>
   );
 }
