@@ -425,7 +425,10 @@ export default function Home() {
               <span style={{ fontSize: 14.5, color: "#fff" }}>Access unlocked. Live pricing is now visible across every dock. Scroll up to browse.</span>
             </div>
           ) : (
-            <div style={{ marginTop: 20, fontFamily: MONO, fontSize: 12, letterSpacing: ".05em", color: "rgba(255,255,255,.55)" }}>No ticket yet? Grab one at the box office, and access opens automatically.</div>
+            <div style={{ marginTop: 20, display: "flex", gap: 12, alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+              <span style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".05em", color: "rgba(255,255,255,.55)" }}>No ticket yet?</span>
+              <button onClick={() => openModal()} className="h-brighten" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 13, fontFamily: MONO, letterSpacing: ".04em", padding: "10px 18px", borderRadius: 999, border: "none", cursor: "pointer" }}>Get Boat Show Tickets →</button>
+            </div>
           )}
         </div>
       </section>
