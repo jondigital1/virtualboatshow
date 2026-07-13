@@ -142,7 +142,7 @@ export default function Vendors() {
         <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
           <Eyebrow style={{ letterSpacing: ".22em" }}>Thank you</Eyebrow>
           <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(36px,5.6vw,74px)", lineHeight: 1, letterSpacing: "-.03em", margin: "18px 0 0" }}>The show belongs<br />to our partners.</h1>
-          <p style={{ fontSize: "clamp(16px,1.4vw,20px)", lineHeight: 1.6, color: "rgba(255,255,255,.78)", margin: "24px auto 0", maxWidth: "60ch" }}>Every dock, every booth, every deal starts with the dealers and vendors who show up for boaters. Without their boats on the water and their brands in the aisles, there is no show. So before anything else: thank you.</p>
+          <p style={{ fontSize: "clamp(16px,1.4vw,20px)", lineHeight: 1.6, color: "rgba(255,255,255,.78)", margin: "24px auto 0", maxWidth: "60ch" }}>Every dock, every booth, every deal starts with the dealers and exhibitors who show up for boaters. Without their boats on the water and their brands in the aisles, there is no show. So before anything else: thank you.</p>
           <div style={{ display: "flex", gap: "14px 40px", flexWrap: "wrap", justifyContent: "center", marginTop: 40 }}>
             {STATS.map(([num, lab]) => (
               <div key={lab}>
@@ -185,7 +185,7 @@ export default function Vendors() {
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <Eyebrow>In the aisles</Eyebrow>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 20, flexWrap: "wrap", marginTop: 14 }}>
-            <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,4vw,52px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: 0, color: "#fff", maxWidth: "18ch" }}>Our show vendors</h2>
+            <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,4vw,52px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: 0, color: "#fff", maxWidth: "18ch" }}>Our show exhibitors</h2>
             <p style={{ fontSize: 15.5, color: "rgba(255,255,255,.7)", margin: 0, maxWidth: "44ch" }}>38 brands and services that keep boaters on the water all season, from engines and insurance to canvas and gear.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,232px),1fr))", gap: 14, marginTop: 36 }}>

@@ -76,7 +76,7 @@ export default function ShowMap() {
               <p style={{ fontSize: 15.5, color: "#4c6270", margin: "12px 0 0", maxWidth: "62ch" }}>Find every dock, dealer, and vendor before you arrive, plus where to eat, park, and catch a seminar. Tap any zone to see what’s there.</p>
             </div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", border: "1px solid rgba(11,34,56,.12)", borderRadius: 999, padding: "9px 16px" }}>
-              <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>Sept 10-13 · 20 dealers · 38 vendors</span>
+              <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>Sept 10-13 · 20 dealers · 38 exhibitors</span>
             </div>
           </div>
           <div style={{ marginTop: 24 }}>
@@ -157,10 +157,10 @@ export default function ShowMap() {
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
             <div>
               <Eyebrow>In the spotlight</Eyebrow>
-              <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(24px,3vw,40px)", lineHeight: 1.05, letterSpacing: "-.02em", margin: "12px 0 0" }}>Vendor spotlight</h2>
+              <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(24px,3vw,40px)", lineHeight: 1.05, letterSpacing: "-.02em", margin: "12px 0 0" }}>Exhibitor spotlight</h2>
             </div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: MONO, fontSize: 11, letterSpacing: ".06em", color: "#7c8b96" }}>
-              <span style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--accent)" }} />Auto-rotating · 8 vendors
+              <span style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--accent)" }} />Auto-rotating · 8 exhibitors
             </div>
           </div>
         </div>
@@ -181,7 +181,7 @@ export default function ShowMap() {
       {/* VENDOR STORY */}
       <section style={{ background: "#0A2138", color: "#fff", padding: "clamp(64px,8vw,116px) clamp(18px,3vw,44px)" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <Eyebrow>Meet the vendors</Eyebrow>
+          <Eyebrow>Meet the exhibitors</Eyebrow>
           <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", color: "#fff", maxWidth: "20ch" }}>It’s not just boats. It’s the whole boating life.</h2>
           <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px 0 44px", maxWidth: "64ch" }}>Beyond the docks, the show floor is packed with the marine businesses that keep you on the water: sails and canvas, engines and service, insurance and gear, all in one place. Our vendors aren’t just booths; they’re the crew that keeps you on the water all season.</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,250px),1fr))", gap: 16 }}>

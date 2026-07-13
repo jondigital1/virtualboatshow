@@ -125,19 +125,25 @@ export default function Home() {
                 <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(22px,2.2vw,30px)", color: "rgba(10,33,56,.4)", letterSpacing: "-.01em" }}>2026</span>
               </div>
               <div style={{ height: 1, background: "rgba(10,33,56,.12)", margin: "26px 0" }} />
-              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                {[
-                  ["Venue", "Golden Nugget Casino Hotel"],
-                  ["In-water docks", "Farley State Marina, Atlantic City"],
-                ].map(([k, val]) => (
-                  <div key={k} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-                    <span style={{ width: 8, height: 8, borderRadius: 2, background: "var(--accent)", marginTop: 6, flex: "0 0 auto" }} />
-                    <div>
-                      <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", color: "rgba(10,33,56,.5)" }}>{k}</div>
-                      <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 19, color: "#0A2138", marginTop: 3, letterSpacing: "-.01em" }}>{val}</div>
+              <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
+                <div style={{ flex: "1 1 200px", minWidth: 0, display: "flex", flexDirection: "column", gap: 16 }}>
+                  {[
+                    ["Venue", "Golden Nugget Casino Hotel"],
+                    ["In-water docks", "Farley State Marina, Atlantic City"],
+                  ].map(([k, val]) => (
+                    <div key={k} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                      <span style={{ width: 8, height: 8, borderRadius: 2, background: "var(--accent)", marginTop: 6, flex: "0 0 auto" }} />
+                      <div>
+                        <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", color: "rgba(10,33,56,.5)" }}>{k}</div>
+                        <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 19, color: "#0A2138", marginTop: 3, letterSpacing: "-.01em" }}>{val}</div>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+                <div style={{ flex: "1 1 150px", minWidth: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/golden-nugget-logo.png" alt="Golden Nugget Atlantic City" style={{ width: "80%", maxWidth: 210, height: "auto", display: "block", objectFit: "contain" }} />
+                </div>
               </div>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 30 }}>
                 <button onClick={() => openModal()} className="h-brighten" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: "14px 24px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Get Boat Show Tickets →</button>
