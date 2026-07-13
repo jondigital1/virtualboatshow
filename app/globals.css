@@ -68,6 +68,18 @@ input, textarea, button, select { font-family: inherit; }
   .nav-mobile-panel { display: none; }
 }
 
+/* Research dropdown (desktop hover) */
+.nav-dropdown {
+  opacity: 0; visibility: hidden; transform: translateY(6px); pointer-events: none;
+  transition: opacity .15s, transform .15s, visibility .15s;
+}
+.nav-research:hover .nav-dropdown,
+.nav-research:focus-within .nav-dropdown {
+  opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
+}
+.nav-drop-item { transition: background .15s, color .15s; }
+.nav-drop-item:hover { background: rgba(255,255,255,.08); color: #fff; }
+
 /* dark link on light bg -> accent */
 .link-ink { color: inherit; transition: color .15s; }
 .link-ink:hover { color: var(--accent); }

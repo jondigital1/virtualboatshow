@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useIframeModal } from "@/components/IframeModal";
 
 const DISPLAY = "var(--font-bricolage), sans-serif";
@@ -10,12 +10,19 @@ const MONO = "var(--font-space-mono), monospace";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Why the Show", href: "/why-the-show" },
+  { label: "View Inventory", href: "/inventory" },
   { label: "Sell Your Boat", href: "/sell" },
   { label: "Boat Show Map", href: "/map" },
-  { label: "Dealers", href: "/#dealers" },
-  { label: "Vendors", href: "/vendors" },
+  { label: "Exhibitors", href: "/vendors" },
 ];
+
+/** "Research" nav dropdown: content/guide pages grouped under one trigger. */
+const RESEARCH_TRIGGER = { label: "Research", href: "/research" };
+const RESEARCH_GROUPS = [
+  { section: "Buyer guides", items: [{ label: "Why the Show", href: "/why-the-show" }] },
+  { section: "Local market guides", items: [{ label: "Point Pleasant, NJ", href: "/point-pleasant" }] },
+];
+const RESEARCH_HREFS = [RESEARCH_TRIGGER.href, ...RESEARCH_GROUPS.flatMap((g) => g.items.map((i) => i.href))];
 
 export function AnnouncementBar() {
   return (
@@ -42,6 +49,7 @@ export function AnnouncementBar() {
 export function Nav({ active }: { active?: string }) {
   const [open, setOpen] = useState(false);
   const { open: openTickets } = useIframeModal();
+  const researchActive = active ? RESEARCH_HREFS.includes(active) : false;
 
   const ticketBtn = (extra?: React.CSSProperties) => (
     <button
@@ -75,6 +83,22 @@ export function Nav({ active }: { active?: string }) {
                 </Link>
               );
             })}
+            {/* Research dropdown */}
+            <div className="nav-research" style={{ position: "relative", paddingBottom: 14, marginBottom: -14 }}>
+              <Link href={RESEARCH_TRIGGER.href} className={researchActive ? undefined : "nav-link"} style={{ fontSize: 14.5, fontWeight: researchActive ? 600 : 500, color: researchActive ? "#fff" : undefined, display: "inline-flex", alignItems: "center", gap: 5, whiteSpace: "nowrap" }}>
+                Research <span style={{ fontSize: 9, opacity: 0.7 }}>▾</span>
+              </Link>
+              <div className="nav-dropdown" style={{ position: "absolute", top: "100%", right: 0, minWidth: 238, background: "#0A2138", border: "1px solid rgba(255,255,255,.12)", borderRadius: 14, padding: 8, boxShadow: "0 26px 54px -22px rgba(0,0,0,.7)", display: "flex", flexDirection: "column", gap: 2 }}>
+                {RESEARCH_GROUPS.map((g) => (
+                  <Fragment key={g.section}>
+                    <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", color: "rgba(255,255,255,.4)", padding: "6px 12px 3px" }}>{g.section}</div>
+                    {g.items.map((it) => (
+                      <Link key={it.href} href={it.href} className="nav-drop-item" style={{ display: "block", padding: "9px 12px", borderRadius: 9, color: "rgba(255,255,255,.82)", fontSize: 14, fontWeight: 500 }}>{it.label}</Link>
+                    ))}
+                  </Fragment>
+                ))}
+              </div>
+            </div>
           </div>
           {ticketBtn()}
         </div>
@@ -99,6 +123,18 @@ export function Nav({ active }: { active?: string }) {
             return (
               <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className={isActive ? undefined : "nav-link"} style={{ display: "block", padding: "13px 2px", fontSize: 16, fontWeight: isActive ? 700 : 500, color: isActive ? "#fff" : undefined, borderBottom: "1px solid rgba(255,255,255,.08)" }}>
                 {l.label}
+              </Link>
+            );
+          })}
+          {/* Research group */}
+          <Link href={RESEARCH_TRIGGER.href} onClick={() => setOpen(false)} className={active === RESEARCH_TRIGGER.href ? undefined : "nav-link"} style={{ display: "block", padding: "13px 2px", fontSize: 16, fontWeight: active === RESEARCH_TRIGGER.href ? 700 : 500, color: active === RESEARCH_TRIGGER.href ? "#fff" : undefined, borderBottom: "1px solid rgba(255,255,255,.08)" }}>
+            Research
+          </Link>
+          {RESEARCH_GROUPS.flatMap((g) => g.items).map((it) => {
+            const isActive = active === it.href;
+            return (
+              <Link key={it.href} href={it.href} onClick={() => setOpen(false)} className={isActive ? undefined : "nav-link"} style={{ display: "block", padding: "11px 2px 11px 18px", fontSize: 15, fontWeight: isActive ? 700 : 500, color: isActive ? "#fff" : undefined, borderBottom: "1px solid rgba(255,255,255,.06)" }}>
+                {it.label}
               </Link>
             );
           })}
