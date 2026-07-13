@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* ============================================================
+   AC In-Water Boat Show — design tokens & base
+   Palette and type ported from the original design canvas.
+   ============================================================ */
+
+:root {
+  --accent: #F26A3E;      /* brand orange (theme-swappable) */
+  --ink: #0A2138;         /* deep navy text */
+  --cream: #F4F1EA;       /* page background */
+  --mist: #E9EEEE;        /* alt section background */
+  --night: #050F1A;       /* darkest navy (footer / final CTA) */
+  --green: #178a5a;
+  --green-bright: #34C778;
+}
+
+@theme inline {
+  --font-display: var(--font-bricolage);
+  --font-body: var(--font-hanken);
+  --font-mono: var(--font-space-mono);
+  --color-accent: var(--accent);
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-hanken), system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--accent); text-decoration: none; }
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+::selection { background: #F26A3E; color: #0A2138; }
+input, textarea, button, select { font-family: inherit; }
+
+/* ---- animations ---- */
+@keyframes buoyFloat { 0%,100%{ transform: translateY(0) rotate(-4deg);} 50%{ transform: translateY(-3px) rotate(4deg);} }
+@keyframes livePulse { 0%{ box-shadow: 0 0 0 0 rgba(52,199,120,.55);} 70%{ box-shadow: 0 0 0 9px rgba(52,199,120,0);} 100%{ box-shadow: 0 0 0 0 rgba(52,199,120,0);} }
+@keyframes vmarquee { from { transform: translateX(0); } to { transform: translateX(-2256px); } }
+
+/* ---- hover utilities (inline styles can't express :hover) ---- */
+.h-brighten { transition: filter .15s, transform .15s; }
+.h-brighten:hover { filter: brightness(1.07); }
+.h-lift:hover { filter: brightness(1.07); transform: translateY(-1px); }
+
+/* nav links: translucent white -> solid white */
+.nav-link { color: rgba(255,255,255,.82); transition: color .15s; }
+.nav-link:hover { color: #fff; }
+
+/* dark link on light bg -> accent */
+.link-ink { color: inherit; transition: color .15s; }
+.link-ink:hover { color: var(--accent); }
+
+/* card hover lift */
+.card-lift { transition: transform .18s, box-shadow .18s; }
+.card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 42px -24px rgba(10,33,56,.5); }
+.card-lift-sm { transition: transform .18s, box-shadow .18s; }
+.card-lift-sm:hover { transform: translateY(-3px); box-shadow: 0 16px 34px -22px rgba(10,33,56,.4); }
+
+/* pill button that inverts to accent on hover */
+.btn-invert { transition: background .15s, color .15s, border-color .15s; }
+.btn-invert:hover { background: var(--accent) !important; color: #0A2138 !important; }
+
+/* mono footer/link muted -> white */
+.link-muted { transition: color .15s; }
+.link-muted:hover { color: #fff; }
+
+/* outline pill -> solid ink border */
+.btn-outline { transition: border-color .15s, background .15s; }
+.btn-outline:hover { border-color: #0A2138; }
+
+/* range slider (VDP finance calculator) */
+input[type=range] { -webkit-appearance: none; appearance: none; height: 5px; border-radius: 999px; background: rgba(255,255,255,.22); outline: none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 19px; height: 19px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid #fff; box-shadow: 0 1px 4px rgba(10,33,56,.4); }
+input[type=range]::-moz-range-thumb { width: 19px; height: 19px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid #fff; }
+
+/* native select arrow tidy-up */
+select { -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238595a0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; }
