@@ -107,9 +107,9 @@ export default function Home() {
               <em style={{ fontStyle: "normal", color: "#fff", fontWeight: 600, borderBottom: "2px solid var(--accent)" }}>Boat Show Prices</em>, all before your feet ever touch the deck.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 13, marginTop: 32 }}>
-              <Link href="#unlock" className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 26px", borderRadius: 999 }}>
+              <button onClick={() => openModal()} className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>
                 Unlock Boat Show Pricing →
-              </Link>
+              </button>
               <Link href="#trade" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,.07)", color: "#fff", fontWeight: 600, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "1.5px solid rgba(255,255,255,.32)" }}>
                 Value My Current Boat
               </Link>
@@ -296,7 +296,7 @@ export default function Home() {
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <Link href="/inventory" className="btn-outline" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: "14px 22px", borderRadius: 999, border: "1px solid rgba(11,34,56,.16)" }}>Browse full inventory →</Link>
-              <Link href="#unlock" className="btn-invert" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#0A2138", color: "#fff", fontWeight: 700, fontSize: 15, padding: "14px 22px", borderRadius: 999 }}>Unlock all Boat Show Prices →</Link>
+              <button onClick={() => openModal()} className="btn-invert" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#0A2138", color: "#fff", fontWeight: 700, fontSize: 15, padding: "14px 22px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Unlock all Boat Show Prices →</button>
             </div>
           </div>
         </div>
