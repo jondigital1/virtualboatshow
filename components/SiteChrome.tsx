@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { useTickets } from "@/components/TicketModal";
 
 const DISPLAY = "var(--font-bricolage), sans-serif";
 const MONO = "var(--font-space-mono), monospace";
@@ -48,16 +49,16 @@ export function AnnouncementBar() {
  *  `active` matches a NAV_LINKS href to bold it. */
 export function Nav({ active }: { active?: string }) {
   const [open, setOpen] = useState(false);
+  const { open: openTickets } = useTickets();
 
   const ticketBtn = (extra?: React.CSSProperties) => (
-    <Link
-      href="/#unlock"
-      onClick={() => setOpen(false)}
+    <button
+      onClick={() => { setOpen(false); openTickets(); }}
       className="h-brighten"
-      style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 13.5, padding: "11px 18px", borderRadius: 999, ...extra }}
+      style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 13.5, padding: "11px 18px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit", ...extra }}
     >
       Get Boat Show Tickets
-    </Link>
+    </button>
   );
 
   return (
