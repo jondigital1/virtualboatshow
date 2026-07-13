@@ -278,7 +278,7 @@ export default function Home() {
             <AdSlot label="Presenting sponsor banner · 970×90" />
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: 18 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,250px),1fr))", gap: 18 }}>
             {VESSELS.slice(0, 4).map((v) => (
               <VesselCard key={v.name} v={v} revealed={revealed} />
             ))}
