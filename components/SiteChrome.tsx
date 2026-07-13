@@ -10,7 +10,7 @@ const MONO = "var(--font-space-mono), monospace";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "How it works", href: "/#how" },
+  { label: "Why the Show", href: "/why-the-show" },
   { label: "Sell Your Boat", href: "/sell" },
   { label: "Boat Show Map", href: "/map" },
   { label: "Dealers", href: "/#dealers" },
