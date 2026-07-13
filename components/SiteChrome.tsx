@@ -40,7 +40,7 @@ export function AnnouncementBar() {
       <span style={{ opacity: 0.35 }}>/</span>
       <span>Atlantic City In-Water Boat Show</span>
       <span style={{ opacity: 0.35 }}>/</span>
-      <span style={{ opacity: 0.75 }}>Ticket holders unlock live pricing 5 days early</span>
+      <span style={{ opacity: 0.75 }}>Ticket holders unlock live pricing 2 days early</span>
     </div>
   );
 }
