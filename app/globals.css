@@ -56,6 +56,18 @@ input, textarea, button, select { font-family: inherit; }
 .nav-link { color: rgba(255,255,255,.82); transition: color .15s; }
 .nav-link:hover { color: #fff; }
 
+/* responsive nav: full links on desktop, hamburger under 960px */
+.nav-desktop { display: flex; }
+.nav-hamburger { display: none; }
+.nav-mobile-panel { display: flex; }
+@media (max-width: 960px) {
+  .nav-desktop { display: none; }
+  .nav-hamburger { display: inline-flex; }
+}
+@media (min-width: 961px) {
+  .nav-mobile-panel { display: none; }
+}
+
 /* dark link on light bg -> accent */
 .link-ink { color: inherit; transition: color .15s; }
 .link-ink:hover { color: var(--accent); }
