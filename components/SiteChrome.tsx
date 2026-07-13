@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { useTickets } from "@/components/TicketModal";
+import { useIframeModal } from "@/components/IframeModal";
 
 const DISPLAY = "var(--font-bricolage), sans-serif";
 const MONO = "var(--font-space-mono), monospace";
@@ -49,7 +49,7 @@ export function AnnouncementBar() {
  *  `active` matches a NAV_LINKS href to bold it. */
 export function Nav({ active }: { active?: string }) {
   const [open, setOpen] = useState(false);
-  const { open: openTickets } = useTickets();
+  const { open: openTickets } = useIframeModal();
 
   const ticketBtn = (extra?: React.CSSProperties) => (
     <button

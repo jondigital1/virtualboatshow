@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { VesselCard, AdSlot, type Vessel } from "@/components/VesselCard";
-import { useTickets } from "@/components/TicketModal";
+import { useIframeModal } from "@/components/IframeModal";
 
 const DISPLAY = "var(--font-bricolage), sans-serif";
 const MONO = "var(--font-space-mono), monospace";
@@ -65,7 +65,8 @@ export default function Home() {
   const [ticket, setTicket] = useState("");
   const [unlocked, setUnlocked] = useState(false);
   const [vesselCount, setVesselCount] = useState(3180);
-  const { open: openTickets } = useTickets();
+  const { open: openModal } = useIframeModal();
+  const openExhibit = () => openModal("https://acinwaterboatshow.com/exhibitors", "Exhibit at the Boat Show");
 
   useEffect(() => {
     const start = 3180, target = 3412, dur = 1100, t0 = performance.now();
@@ -139,8 +140,8 @@ export default function Home() {
                 ))}
               </div>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 30 }}>
-                <button onClick={openTickets} className="h-brighten" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: "14px 24px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Get Boat Show Tickets →</button>
-                <Link href="/vendors" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(10,33,56,.05)", color: "#0A2138", fontWeight: 600, fontSize: 15, padding: "14px 22px", borderRadius: 999, border: "1px solid rgba(10,33,56,.2)" }}>Exhibit</Link>
+                <button onClick={() => openModal()} className="h-brighten" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: "14px 24px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Get Boat Show Tickets →</button>
+                <button onClick={openExhibit} style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(10,33,56,.05)", color: "#0A2138", fontWeight: 600, fontSize: 15, padding: "14px 22px", borderRadius: 999, border: "1px solid rgba(10,33,56,.2)", cursor: "pointer", fontFamily: "inherit" }}>Exhibit</button>
               </div>
             </div>
           </div>

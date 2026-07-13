@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Hanken_Grotesk, Space_Mono } from "next/font/google";
-import { TicketProvider } from "@/components/TicketModal";
+import { IframeModalProvider } from "@/components/IframeModal";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -47,7 +47,7 @@ export default function RootLayout({
       className={`${bricolage.variable} ${hanken.variable} ${spaceMono.variable}`}
     >
       <body>
-        <TicketProvider>{children}</TicketProvider>
+        <IframeModalProvider>{children}</IframeModalProvider>
       </body>
     </html>
   );
