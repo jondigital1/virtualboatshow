@@ -165,7 +165,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,270px),1fr))", gap: 18, marginTop: 44 }}>
             {[
               ["01 · CONVENIENCE", "Every dealer, one place", "Browse the full lineup from every presenting dealer side by side: makes, models, and specs gathered into one easy, searchable index."],
-              ["02 · TRANSPARENCY", "Show pricing, up front", "Unlock exclusive Boat Show Pricing and value your trade before you arrive, so the numbers are clear from the very first handshake."],
+              ["02 · GREAT DEALS", "Boat Show Deals", "Set up your appointment to get your Boat Show Only Deal in person."],
               ["03 · A BETTER VISIT", "Arrive with a plan", "Shortlist your favorites and book dockside walkthroughs in advance, then spend the weekend enjoying the boats instead of hunting for them."],
             ].map(([tag, h, body]) => (
               <div key={tag} style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 18, padding: "26px 24px" }}>
@@ -192,7 +192,7 @@ export default function Home() {
           </div>
           <div style={{ display: "flex", alignItems: "flex-end", gap: "clamp(22px,4vw,48px)", flexWrap: "wrap" }}>
             <div>
-              <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(44px,6vw,72px)", lineHeight: 1, color: "rgba(255,255,255,.42)" }}>~200</div>
+              <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(44px,6vw,72px)", lineHeight: 1, color: "var(--accent)" }}>300<span style={{ fontSize: ".5em" }}>+</span></div>
               <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".06em", color: "rgba(255,255,255,.5)", marginTop: 8, maxWidth: "16ch" }}>boats you can walk in a weekend</div>
             </div>
             <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 32, color: "rgba(255,255,255,.3)", paddingBottom: 18 }}>→</div>

@@ -80,6 +80,19 @@ input, textarea, button, select { font-family: inherit; }
 .nav-drop-item { transition: background .15s, color .15s; }
 .nav-drop-item:hover { background: rgba(255,255,255,.08); color: #fff; }
 
+/* VDP mobile sticky CTA bar — shows the price + primary action on small screens */
+.vdp-mobile-bar { display: none; }
+.vdp-mobile-spacer { display: none; }
+@media (max-width: 900px) {
+  .vdp-mobile-bar {
+    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 80;
+    align-items: center; gap: 12px; padding: 10px clamp(14px,4vw,20px);
+    background: rgba(8,24,41,.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255,255,255,.12); box-shadow: 0 -8px 24px -12px rgba(0,0,0,.5);
+  }
+  .vdp-mobile-spacer { display: block; height: 78px; }
+}
+
 /* dark link on light bg -> accent */
 .link-ink { color: inherit; transition: color .15s; }
 .link-ink:hover { color: var(--accent); }
