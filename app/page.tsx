@@ -18,6 +18,7 @@ const BGS = [
 ];
 
 const RAW = [
+  { year: 2026, name: "Nor-Tech 390 Sport", length: "39'0\"", engine: "Quad Mercury 500R", condition: "New", hours: 0, dockLabel: "AT SLIPS · F DOCK", msrp: 1395000, show: 1312000 },
   { year: 2024, name: "Grady-White Canyon 336", length: "33'6\"", engine: "Twin Yamaha 300", condition: "New", hours: 0, dockLabel: "AT SLIPS · F DOCK", msrp: 725000, show: 679900 },
   { year: 2023, name: "Boston Whaler 250 Outrage", length: "25'0\"", engine: "Twin Mercury 250", condition: "Used", hours: 46, dockLabel: "AT SLIPS · E DOCK", msrp: 289000, show: 264500 },
   { year: 2024, name: "Sea Ray SLX 260", length: "26'0\"", engine: "MerCruiser 350", condition: "New", hours: 0, dockLabel: "AT SLIPS · C DOCK", msrp: 214900, show: 199900 },
@@ -40,7 +41,7 @@ const VESSELS: Vessel[] = RAW.map((v, i) => ({
   showFmt: "$" + fmt(v.show),
   saveFmt: "$" + fmt(v.msrp - v.show),
   bg: BGS[i % BGS.length],
-  href: "/inventory",
+  href: v.name.includes("Nor-Tech 390") ? "/inventory/nor-tech-390" : "/inventory",
 }));
 
 /* ---- small presentational helpers ---- */

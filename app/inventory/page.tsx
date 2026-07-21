@@ -9,6 +9,7 @@ import { DISPLAY, MONO, fmt, Eyebrow } from "@/components/ui";
 type V = { id: string; year: number; make: string; model: string; klass: string; len: number; lenLabel: string; condition: string; hours: number; dock: string; dealer: string; msrp: number; price: number; photos: number };
 
 const VESSELS: V[] = [
+  { id: "nor-tech-390", year: 2026, make: "Nor-Tech", model: "390 Sport", klass: "Center Console", len: 39, lenLabel: "39' 0\"", condition: "New", hours: 0, dock: "F Dock", dealer: "South Jersey Yacht Sales", msrp: 1395000, price: 1312000, photos: 81 },
   { id: "gw336", year: 2024, make: "Grady-White", model: "Canyon 336", klass: "Center Console", len: 33.5, lenLabel: "33' 6\"", condition: "New", hours: 0, dock: "F Dock", dealer: "Comstock Yacht Sales", msrp: 725000, price: 679900, photos: 24 },
   { id: "bw250", year: 2023, make: "Boston Whaler", model: "250 Outrage", klass: "Center Console", len: 25, lenLabel: "25' 0\"", condition: "Used", hours: 46, dock: "E Dock", dealer: "Coastal Boat Sales", msrp: 289000, price: 264500, photos: 31 },
   { id: "sr260", year: 2024, make: "Sea Ray", model: "SLX 260", klass: "Bowrider", len: 26, lenLabel: "26' 0\"", condition: "New", hours: 0, dock: "C Dock", dealer: "Clarks Landing Yacht Sales", msrp: 214900, price: 199900, photos: 18 },
