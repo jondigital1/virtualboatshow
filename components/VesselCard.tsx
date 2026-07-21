@@ -54,7 +54,7 @@ export function VesselCard({ v, revealed }: { v: Vessel; revealed: boolean }) {
           <span style={{ opacity: 0.4 }}>·</span>
           <span>{v.usage}</span>
         </div>
-        <div style={{ marginTop: "auto", paddingTop: 13, borderTop: "1px solid rgba(11,34,56,.08)", display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 10 }}>
+        <div style={{ marginTop: "auto", paddingTop: 13, borderTop: "1px solid rgba(11,34,56,.08)" }}>
           <div>
             <div style={{ fontFamily: MONO, fontSize: 11, color: "#9aa7b0", textDecoration: "line-through" }}>MSRP {v.msrpFmt}</div>
             {revealed ? (
@@ -78,11 +78,11 @@ export function VesselCard({ v, revealed }: { v: Vessel; revealed: boolean }) {
             )}
           </div>
           <Link
-            href={v.href ?? "/#unlock"}
+            href={v.href ?? "/inventory"}
             className="h-brighten"
-            style={{ width: 38, height: 38, flex: "0 0 auto", borderRadius: "50%", background: "#F1EEE6", color: "#0A2138", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17 }}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginTop: 12, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 13.5, padding: 11, borderRadius: 10 }}
           >
-            →
+            Vessel Details →
           </Link>
         </div>
       </div>

@@ -41,7 +41,7 @@ const VESSELS: Vessel[] = RAW.map((v, i) => ({
   showFmt: "$" + fmt(v.show),
   saveFmt: "$" + fmt(v.msrp - v.show),
   bg: BGS[i % BGS.length],
-  href: v.name.includes("Nor-Tech 390") ? "/inventory/nor-tech-390" : "/inventory",
+  href: v.name.includes("Nor-Tech 390") ? "/inventory/nor-tech-390" : "/inventory/" + v.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
 }));
 
 /* ---- small presentational helpers ---- */

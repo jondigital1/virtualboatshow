@@ -290,26 +290,32 @@ function FilterGroup({ title, children }: { title: string; children: React.React
 }
 
 function BoatCard({ v, bg, fav, onFav }: { v: V; bg: string; fav: boolean; onFav: () => void }) {
+  const href = `/inventory/${v.id}`;
   return (
     <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
-      <div style={{ position: "relative", aspectRatio: "16/11", background: bg, display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".14em", color: "rgba(10,33,56,.4)" }}>// VESSEL PHOTO</span>
-        <span style={{ position: "absolute", top: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(8,24,41,.9)", color: "#fff", padding: "4px 7px", borderRadius: 5 }}>{v.dock}</span>
-        <span style={{ position: "absolute", bottom: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(8,24,41,.78)", color: "#fff", padding: "3px 7px", borderRadius: 5 }}>{v.photos} photos</span>
-        <button onClick={onFav} style={{ position: "absolute", top: 7, right: 7, width: 30, height: 30, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.92)", color: fav ? "var(--accent)" : "#4c6270", cursor: "pointer", fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center" }}>{fav ? "♥" : "♡"}</button>
+      <div style={{ position: "relative", aspectRatio: "16/11", background: bg }}>
+        <Link href={href} aria-label={`${v.year} ${v.make} ${v.model} details`} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1 }}>
+          <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".14em", color: "rgba(10,33,56,.4)" }}>// VESSEL PHOTO</span>
+        </Link>
+        <span style={{ position: "absolute", top: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(8,24,41,.9)", color: "#fff", padding: "4px 7px", borderRadius: 5, pointerEvents: "none", zIndex: 2 }}>{v.dock}</span>
+        <span style={{ position: "absolute", bottom: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(8,24,41,.78)", color: "#fff", padding: "3px 7px", borderRadius: 5, pointerEvents: "none", zIndex: 2 }}>{v.photos} photos</span>
+        <button onClick={onFav} aria-label="Save" style={{ position: "absolute", top: 7, right: 7, width: 30, height: 30, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.92)", color: fav ? "var(--accent)" : "#4c6270", cursor: "pointer", fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3 }}>{fav ? "♥" : "♡"}</button>
       </div>
       <div style={{ padding: "13px 14px 15px", display: "flex", flexDirection: "column", gap: 7, flex: 1 }}>
         <h3 style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 15.5, margin: 0, lineHeight: 1.15, letterSpacing: "-.01em" }}>
-          <Link href={`/inventory/${v.id}`} className="link-ink" style={{ color: "inherit" }}>{v.year} {v.make} {v.model}</Link>
+          <Link href={href} className="link-ink" style={{ color: "inherit" }}>{v.year} {v.make} {v.model}</Link>
         </h3>
         <div style={{ fontFamily: MONO, fontSize: 10.5, color: "#5a6c78", display: "flex", flexWrap: "wrap", gap: "4px 7px" }}>
           <span>{v.lenLabel}</span><span style={{ opacity: 0.4 }}>·</span><span>{v.condition === "New" ? "New" : v.hours + " hrs"}</span>
         </div>
         <div style={{ fontFamily: MONO, fontSize: 10, color: "#8595a0" }}>{v.dealer}</div>
-        <div style={{ marginTop: "auto", paddingTop: 10, borderTop: "1px solid rgba(11,34,56,.08)" }}>
-          <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: ".06em", color: "#8595a0", textTransform: "uppercase" }}>MSRP</div>
-          <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 19, color: "#0A2138", lineHeight: 1.05 }}>${fmt(v.msrp)}</div>
-          <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: ".04em", color: "#178a5a", fontWeight: 700, marginTop: 4 }}>★ Far below at the show</div>
+        <div style={{ marginTop: "auto" }}>
+          <div style={{ paddingTop: 10, borderTop: "1px solid rgba(11,34,56,.08)" }}>
+            <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: ".06em", color: "#8595a0", textTransform: "uppercase" }}>MSRP</div>
+            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 19, color: "#0A2138", lineHeight: 1.05 }}>${fmt(v.msrp)}</div>
+            <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: ".04em", color: "#178a5a", fontWeight: 700, marginTop: 4 }}>★ Far below at the show</div>
+          </div>
+          <Link href={href} className="h-brighten" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginTop: 12, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 13.5, padding: 11, borderRadius: 10 }}>Vessel Details →</Link>
         </div>
       </div>
     </div>
