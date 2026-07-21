@@ -55,11 +55,20 @@ export default function SellYourBoat() {
   // "Value trade-in" modal on a VDP) or opened with ?embed.
   const [embedded, setEmbedded] = useState(false);
   useEffect(() => {
+    let isEmbed = true;
     try {
-      setEmbedded(new URLSearchParams(window.location.search).has("embed") || window.self !== window.top);
+      isEmbed = new URLSearchParams(window.location.search).has("embed") || window.self !== window.top;
     } catch {
-      setEmbedded(true);
+      isEmbed = true;
     }
+    // Trade form fills must originate from a VDP (embedded modal) so every lead
+    // is tied to a specific boat/dealer. A direct visit goes to the educational
+    // Sell/Trade section on the home page instead.
+    if (!isEmbed) {
+      window.location.replace("/#trade");
+      return;
+    }
+    setEmbedded(true);
   }, []);
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement>) => setF((s) => ({ ...s, [k]: e.target.value }));
 
