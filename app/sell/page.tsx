@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, MONO, fmt, Eyebrow } from "@/components/ui";
 import { submitLead } from "@/lib/leads";
@@ -52,6 +52,16 @@ export default function SellYourBoat() {
   const [step, setStep] = useState(1);
   const [f, setF] = useState({ year: "", make: "", model: "", length: "", engine: "", hours: "", condition: "Excellent", firstName: "", email: "", zip: "" });
   const [openFaq, setOpenFaq] = useState(0);
+  // Hide site chrome when this page is shown inside an iframe (e.g. the
+  // "Value trade-in" modal on a VDP) or opened with ?embed.
+  const [embedded, setEmbedded] = useState(false);
+  useEffect(() => {
+    try {
+      setEmbedded(new URLSearchParams(window.location.search).has("embed") || window.self !== window.top);
+    } catch {
+      setEmbedded(true);
+    }
+  }, []);
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement>) => setF((s) => ({ ...s, [k]: e.target.value }));
 
   const len = parseFloat(f.length) || 27;
@@ -80,8 +90,8 @@ export default function SellYourBoat() {
 
   return (
     <>
-      <AnnouncementBar />
-      <Nav active="/sell" />
+      {!embedded && <AnnouncementBar />}
+      {!embedded && <Nav active="/sell" />}
 
       {/* HERO + STEPPER */}
       <section style={{ position: "relative", background: "#0A2138", color: "#fff", overflow: "hidden" }}>
@@ -252,7 +262,7 @@ export default function SellYourBoat() {
         </div>
       </section>
 
-      <Footer />
+      {!embedded && <Footer />}
     </>
   );
 }

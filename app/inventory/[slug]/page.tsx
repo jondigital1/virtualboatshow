@@ -5,6 +5,7 @@ import { useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { AdSlot } from "@/components/VesselCard";
 import { DISPLAY, MONO, fmt } from "@/components/ui";
+import { useIframeModal } from "@/components/IframeModal";
 
 /* ── Boat data (sample; a real feed would key off the [slug]) ─────────── */
 const BOAT = {
@@ -62,6 +63,7 @@ const chip: React.CSSProperties = { background: "#fff", border: "1px solid rgba(
 const scrollToRequest = () => document.getElementById("request")?.scrollIntoView({ behavior: "smooth", block: "start" });
 
 export default function VDP() {
+  const { open: openModal } = useIframeModal();
   const [saved, setSaved] = useState(false);
   const [activeThumb, setActiveThumb] = useState(0);
   const [price, setPrice] = useState(BOAT.msrp);
@@ -256,7 +258,7 @@ export default function VDP() {
               <button onClick={scrollToRequest} className="h-brighten" style={{ width: "100%", background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15.5, padding: 15, borderRadius: 12, border: "none", cursor: "pointer" }}>Set Boat Show Appointment →</button>
               <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
                 <a href={phoneHref} className="btn-outline" style={{ flex: 1, textAlign: "center", background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 14, padding: "12px 8px", borderRadius: 12, border: "1px solid rgba(11,34,56,.18)" }}>Call dealer</a>
-                <Link href="/sell" className="btn-outline" style={{ flex: 1, textAlign: "center", background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 14, padding: "12px 8px", borderRadius: 12, border: "1px solid rgba(11,34,56,.18)" }}>Value trade-in</Link>
+                <button onClick={() => openModal("/sell?embed=1", "Value your trade-in")} className="btn-outline" style={{ flex: 1, textAlign: "center", background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 14, padding: "12px 8px", borderRadius: 12, border: "1px solid rgba(11,34,56,.18)", cursor: "pointer", fontFamily: "inherit" }}>Value trade-in</button>
               </div>
             </div>
 
