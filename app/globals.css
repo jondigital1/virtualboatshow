@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================
-   AC In-Water Boat Show — design tokens & base
+   AC In-Water Boat Show, design tokens & base
    Palette and type ported from the original design canvas.
    ============================================================ */
 
@@ -80,7 +80,7 @@ input, textarea, button, select { font-family: inherit; }
 .nav-drop-item { transition: background .15s, color .15s; }
 .nav-drop-item:hover { background: rgba(255,255,255,.08); color: #fff; }
 
-/* VDP mobile sticky CTA bar — shows the price + primary action on small screens */
+/* VDP mobile sticky CTA bar, shows the price + primary action on small screens */
 .vdp-mobile-bar { display: none; }
 .vdp-mobile-spacer { display: none; }
 @media (max-width: 900px) {

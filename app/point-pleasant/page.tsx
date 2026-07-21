@@ -11,7 +11,7 @@ import { useIframeModal } from "@/components/IframeModal";
 const DEALER = {
   name: "Clarks Landing Yacht Sales",
   shortName: "Clarks Landing",
-  tagline: "Family-run on the Manasquan River since 1981 — and still the friendliest way to buy a boat on the Jersey Shore.",
+  tagline: "Family-run on the Manasquan River since 1981, and still the friendliest way to buy a boat on the Jersey Shore.",
   rating: 4.7,
   reviews: 293,
   address: "847 Arnold Ave",
@@ -34,7 +34,7 @@ const LOCAL = {
   town: "Point Pleasant",
   region: "the Manasquan River",
   heroKicker: "Serving Point Pleasant, NJ",
-  intro: "If you grew up anywhere near the Manasquan, you already know the rule: summer starts the day the boat goes in. Point Pleasant sits right where the river meets the ocean, which makes it one of the best home ports on the Jersey Shore — five minutes to the inlet, a short run to the back bay, and flat-water cruising the whole way home.",
+  intro: "If you grew up anywhere near the Manasquan, you already know the rule: summer starts the day the boat goes in. Point Pleasant sits right where the river meets the ocean, which makes it one of the best home ports on the Jersey Shore, five minutes to the inlet, a short run to the back bay, and flat-water cruising the whole way home.",
   facts: [
     { label: "Did you know", text: "The Manasquan River is Mile 0 of the New Jersey Intracoastal Waterway. Your home dock is literally where the ICW begins." },
     { label: "Did you know", text: "The Manasquan Inlet “Wall” holds fish twelve months a year, connecting the river straight out to the Atlantic." },
@@ -45,7 +45,7 @@ const LOCAL = {
     { label: "Fishing & culture", title: "A serious fishing town", body: "Striped bass, fluke, tog and bluefish are the local currency, and one of the Shore’s biggest charter and party-boat fleets runs right out of the inlet." },
     { label: "On shore", title: "Landmarks you know", body: "Jenkinson’s Boardwalk, the historic Coast Guard station at the inlet, sunset over Treasure Island, and the freshwater Manasquan Reservoir just inland." },
   ],
-  season: "Prime season runs April through October, and the fall run is some of the best fishing all year. The smart time to buy is show season — before the spring rush prices everything back up.",
+  season: "Prime season runs April through October, and the fall run is some of the best fishing all year. The smart time to buy is show season, before the spring rush prices everything back up.",
   nearbyTowns: ["Point Pleasant Beach", "Brielle", "Manasquan", "Bay Head"],
   faqs: [
     { q: "Do I need a license to run a boat in Point Pleasant?", a: "To operate a powerboat on New Jersey tidal waters like the river, inlet and bay, you need a NJ Boating Safety Certificate and a boat license. It is a one-day course. Kids 12 and under have to wear a life jacket any time the boat is underway." },
@@ -100,7 +100,7 @@ export default function PointPleasant() {
           <div style={{ minWidth: 0 }}>
             <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--accent)" }}>{LOCAL.heroKicker}</div>
             <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(34px,5vw,68px)", lineHeight: 0.98, letterSpacing: "-.03em", margin: "16px 0 0" }}>The {LOCAL.town} boat show is <span style={{ color: "var(--accent)" }}>waiting at the docks.</span></h1>
-            <p style={{ maxWidth: 560, fontSize: "clamp(16px,1.3vw,19px)", lineHeight: 1.6, color: "#43596a", margin: "22px 0 0" }}>{DEALER.shortName} is bringing {LOCAL.town} to the Atlantic City In-Water Boat Show. Use the Virtual Boat Show to line up the boats you want to board and plan your visit — then come get the steal of the season in person, Sept 10-13 on the docks.</p>
+            <p style={{ maxWidth: 560, fontSize: "clamp(16px,1.3vw,19px)", lineHeight: 1.6, color: "#43596a", margin: "22px 0 0" }}>{DEALER.shortName} is bringing {LOCAL.town} to the Atlantic City In-Water Boat Show. Use the Virtual Boat Show to line up the boats you want to board and plan your visit, then come get the steal of the season in person, Sept 10-13 on the docks.</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 13, marginTop: 30 }}>
               <button onClick={() => openTickets()} className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Get Boat Show Tickets →</button>
               <Link href="/inventory" className="btn-outline" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#fff", color: "#0A2138", fontWeight: 600, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "1px solid rgba(11,34,56,.16)" }}>Browse {DEALER.shortName} inventory</Link>

@@ -33,7 +33,7 @@ const SPEC_TILES: [string, string][] = [
 const HIGHLIGHTS = ["2nd-Row Seating", "Cabin A/C", "FLIR Thermal", "Radar", "SureShade", "Carbon T-Top", "Joystick Piloting"];
 const THUMBS = ["Bow on plane", "Helm & dash", "Cockpit seating", "Cabin / berth", "Transom & quad 500R"];
 
-/* Value signals — addresses buyer skepticism where the decision happens. */
+/* Value signals, addresses buyer skepticism where the decision happens. */
 const TRUST: [string, string][] = [
   ["Boat Show Price", "Locked Sept 10-13 only"],
   ["Dockside sea trial", "Run it before you buy"],
@@ -247,13 +247,13 @@ export default function VDP() {
                 <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 30, color: "#0A2138", letterSpacing: "-.01em", lineHeight: 1.05, marginTop: 5 }}>Far below MSRP.</div>
                 <div style={{ display: "flex", alignItems: "center", gap: 7, marginTop: 10 }}>
                   <span style={{ color: "#178a5a", fontSize: 13 }}>★</span>
-                  <span style={{ fontFamily: MONO, fontSize: 11.5, color: "#178a5a", fontWeight: 700, lineHeight: 1.4 }}>The year&rsquo;s biggest savings — unlocked at the show</span>
+                  <span style={{ fontFamily: MONO, fontSize: 11.5, color: "#178a5a", fontWeight: 700, lineHeight: 1.4 }}>The year&rsquo;s biggest savings, unlocked at the show</span>
                 </div>
                 <button onClick={() => document.getElementById("calc")?.scrollIntoView({ behavior: "smooth", block: "start" })} style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260", marginTop: 12, background: "none", border: "none", cursor: "pointer", padding: 0, textDecorationLine: "underline", textUnderlineOffset: 2 }}>Estimate your monthly payment →</button>
               </div>
               {/* urgency */}
               <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#FBF1EC", border: "1px solid rgba(242,106,62,.3)", borderRadius: 10, padding: "9px 12px", marginBottom: 14 }}>
-                <span>⏳</span><span style={{ fontFamily: MONO, fontSize: 11, color: "#b3521f", lineHeight: 1.4 }}>Boat Show pricing — Sept 10-13 only</span>
+                <span>⏳</span><span style={{ fontFamily: MONO, fontSize: 11, color: "#b3521f", lineHeight: 1.4 }}>Boat Show pricing, Sept 10-13 only</span>
               </div>
               <button onClick={scrollToRequest} className="h-brighten" style={{ width: "100%", background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15.5, padding: 15, borderRadius: 12, border: "none", cursor: "pointer" }}>Get Your Boat Show Deal →</button>
               <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
@@ -335,7 +335,7 @@ function RequestForm() {
         <div style={{ textAlign: "center", padding: "12px 0" }}>
           <div style={{ width: 56, height: 56, borderRadius: "50%", background: "rgba(23,138,90,.12)", color: "#178a5a", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, margin: "0 auto 16px" }}>✓</div>
           <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 24, margin: "0 0 10px", letterSpacing: "-.01em" }}>You&rsquo;re on the list.</h2>
-          <p style={{ fontSize: 15.5, lineHeight: 1.6, color: "#4c6270", margin: "0 auto", maxWidth: "42ch" }}>{BOAT.dealer} will confirm your dockside time and lock in your Boat Show Price. No spam, no phone tag — one dealer, one appointment.</p>
+          <p style={{ fontSize: 15.5, lineHeight: 1.6, color: "#4c6270", margin: "0 auto", maxWidth: "42ch" }}>{BOAT.dealer} will confirm your dockside time and lock in your Boat Show Price. No spam, no phone tag. One dealer, one appointment.</p>
           <button onClick={() => setStatus("idle")} className="btn-outline" style={{ marginTop: 20, background: "none", border: "1px solid rgba(11,34,56,.18)", color: "#0A2138", fontWeight: 600, fontSize: 14, padding: "11px 20px", borderRadius: 999, cursor: "pointer" }}>Send another request</button>
         </div>
       ) : (
@@ -356,7 +356,7 @@ function RequestForm() {
           <button type="submit" disabled={status === "sending"} className="h-brighten" style={{ width: "100%", marginTop: 18, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: 16, borderRadius: 12, border: "none", cursor: status === "sending" ? "default" : "pointer", opacity: status === "sending" ? 0.7 : 1 }}>
             {status === "sending" ? "Sending…" : "Request my dockside appointment →"}
           </button>
-          {status === "error" && <p style={{ fontSize: 13, color: "#b3261e", margin: "12px 0 0", textAlign: "center" }}>Something went wrong — please try again, or call {BOAT.phone}.</p>}
+          {status === "error" && <p style={{ fontSize: 13, color: "#b3261e", margin: "12px 0 0", textAlign: "center" }}>Something went wrong. Please try again, or call {BOAT.phone}.</p>}
           <p style={{ fontFamily: MONO, fontSize: 10.5, color: "#9aa7b0", textAlign: "center", margin: "14px 0 0", lineHeight: 1.5 }}>Free & no obligation. We only use this to set your appointment.</p>
         </form>
       )}

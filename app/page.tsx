@@ -80,7 +80,7 @@ export default function Home() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Prices are never published online — the deal lives at the docks.
+  // Prices are never published online, the deal lives at the docks.
   const revealed = false;
 
   return (
@@ -155,7 +155,7 @@ export default function Home() {
           <Eyebrow>The easiest way to do show day</Eyebrow>
           <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", maxWidth: "20ch" }}>Start online. Make the most of every dock.</h2>
           <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "#4c6270", margin: "20px 0 0", maxWidth: "64ch" }}>
-            You&rsquo;ve got your ticket. Now get a head start. Your VIP preview shows you the whole event before you arrive — every presenting dealer&rsquo;s lineup, the full inventory, the vendors and where to find them — so you walk in with a plan and head straight for your Boat Show Deal.
+            You&rsquo;ve got your ticket. Now get a head start. Your VIP preview shows you the whole event before you arrive, every presenting dealer&rsquo;s lineup, the full inventory, the vendors and where to find them, so you walk in with a plan and head straight for your Boat Show Deal.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,270px),1fr))", gap: 18, marginTop: 44 }}>
             {[
@@ -182,7 +182,7 @@ export default function Home() {
               A few hundred boats fit the docks.<br />Scout thousands before you go.
             </h2>
             <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px 0 0", maxWidth: "52ch" }}>
-              There&rsquo;s only so much room at the slips. Online, you scout every presenting dealer&rsquo;s full lineup, on-site and off, and build your shortlist before you go — so you spend show day boarding the boats worth your time and closing the deal in person.
+              There&rsquo;s only so much room at the slips. Online, you scout every presenting dealer&rsquo;s full lineup, on-site and off, and build your shortlist before you go, so you spend show day boarding the boats worth your time and closing the deal in person.
             </p>
           </div>
           <div style={{ display: "flex", alignItems: "flex-end", gap: "clamp(22px,4vw,48px)", flexWrap: "wrap" }}>
@@ -408,7 +408,7 @@ export default function Home() {
         <div style={{ position: "absolute", top: -120, left: "50%", transform: "translateX(-50%)", width: 520, height: 520, borderRadius: "50%", background: "radial-gradient(circle, rgba(242,106,62,.16), transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
           <Eyebrow>The steal of the year</Eyebrow>
-          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(32px,5vw,64px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: "16px 0 0", color: "#fff" }}>Boat Show Deals, where<br />they belong — at the docks.</h2>
+          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(32px,5vw,64px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: "16px 0 0", color: "#fff" }}>Boat Show Deals, where<br />they belong, at the docks.</h2>
           <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px auto 32px", maxWidth: "54ch" }}>The best boat deals of the year don&rsquo;t happen in a showroom. They happen for four days on the water, when every dealer at the show is competing slip to slip. Reserve your ticket and come get the steal of the season.</p>
           <div style={{ display: "flex", gap: 13, flexWrap: "wrap", justifyContent: "center" }}>
             <button onClick={() => openModal()} className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 28px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Get Boat Show Tickets →</button>

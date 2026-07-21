@@ -152,7 +152,7 @@ export default function WhyTheShow() {
         </div>
       </section>
 
-      {/* EASY PART — ticket to title */}
+      {/* EASY PART, ticket to title */}
       <section style={{ background: "#F4F1EA", padding: PAD }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <Eyebrow>The easy part</Eyebrow>
