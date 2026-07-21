@@ -8,6 +8,9 @@ import { DISPLAY, MONO, fmt, Eyebrow } from "@/components/ui";
 
 type V = { id: string; year: number; make: string; model: string; klass: string; len: number; lenLabel: string; condition: string; hours: number; dock: string; dealer: string; msrp: number; price: number; photos: number };
 
+/** Demo: this boat stays pinned first on the SRP regardless of sort. */
+const FEATURED_ID = "nor-tech-390";
+
 const VESSELS: V[] = [
   { id: "nor-tech-390", year: 2026, make: "Nor-Tech", model: "390 Sport", klass: "Center Console", len: 39, lenLabel: "39' 0\"", condition: "New", hours: 0, dock: "F Dock", dealer: "South Jersey Yacht Sales", msrp: 1395000, price: 1312000, photos: 81 },
   { id: "gw336", year: 2024, make: "Grady-White", model: "Canyon 336", klass: "Center Console", len: 33.5, lenLabel: "33' 6\"", condition: "New", hours: 0, dock: "F Dock", dealer: "Comstock Yacht Sales", msrp: 725000, price: 679900, photos: 24 },
@@ -110,6 +113,9 @@ export default function Inventory() {
     else if (sort === "price-desc") l = [...l].sort((a, b) => b.price - a.price);
     else if (sort === "year") l = [...l].sort((a, b) => b.year - a.year || b.price - a.price);
     else if (sort === "length") l = [...l].sort((a, b) => b.len - a.len);
+    // Demo: keep the featured boat pinned to the top regardless of sort
+    // (stable sort preserves the order of everything else).
+    l = [...l].sort((a, b) => (b.id === FEATURED_ID ? 1 : 0) - (a.id === FEATURED_ID ? 1 : 0));
     return l;
   }, [q, condition, price, lenBand, klass, make, dock, sort]);
 
