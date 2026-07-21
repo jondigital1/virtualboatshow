@@ -39,7 +39,7 @@ export function AnnouncementBar() {
         padding: "12px 16px",
       }}
     >
-      Ticket holders unlock live pricing <span style={{ color: "var(--accent)" }}>2 days early</span>
+      Boat Show deals live on the docks <span style={{ color: "var(--accent)" }}>· Sept 10-13</span>
     </div>
   );
 }
