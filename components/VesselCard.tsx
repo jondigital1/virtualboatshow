@@ -72,7 +72,7 @@ export function VesselCard({ v, revealed }: { v: Vessel; revealed: boolean }) {
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 5, marginTop: 2 }}>
                   <span style={{ width: 6, height: 6, borderRadius: 1, background: "var(--accent)" }} />
-                  <span style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: ".08em", color: "var(--accent)" }}>SHOW PRICE · LOCKED</span>
+                  <span style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: ".08em", color: "var(--accent)" }}>DEAL AT THE DOCKS</span>
                 </div>
               </>
             )}

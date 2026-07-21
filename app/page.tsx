@@ -63,8 +63,6 @@ function Check({ bg = "#178a5a", size = 24 }: { bg?: string; size?: number }) {
 const SECTION_PAD = "clamp(70px,9vw,124px) clamp(18px,5vw,56px)";
 
 export default function Home() {
-  const [ticket, setTicket] = useState("");
-  const [unlocked, setUnlocked] = useState(false);
   const [vesselCount, setVesselCount] = useState(3180);
   const { open: openModal } = useIframeModal();
   const openExhibit = () => openModal("https://acinwaterboatshow.com/exhibitors", "Exhibit at the Boat Show");
@@ -82,12 +80,8 @@ export default function Home() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  const onUnlock = () => {
-    if (ticket.trim().length >= 2) setUnlocked(true);
-    else { setTicket("ACBS-4192"); setUnlocked(true); }
-  };
-
-  const revealed = unlocked; // prices gated by default
+  // Prices are never published online — the deal lives at the docks.
+  const revealed = false;
 
   return (
     <>
@@ -299,7 +293,7 @@ export default function Home() {
 
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 18, flexWrap: "wrap", marginTop: 30 }}>
             <p style={{ fontFamily: MONO, fontSize: 12, color: "#7c8b96", margin: 0, maxWidth: "52ch", lineHeight: 1.5 }}>
-              Pricing is gated until you verify your show ticket. Off-site units are dynamically paired from each dealer&rsquo;s brick-and-mortar showroom.
+              The steal-of-the-year pricing happens live on the docks Sept 10-13. Off-site units are dynamically paired from each dealer&rsquo;s brick-and-mortar showroom.
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <Link href="/inventory" className="btn-outline" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: "14px 22px", borderRadius: 999, border: "1px solid rgba(11,34,56,.16)" }}>Browse full inventory →</Link>
@@ -413,30 +407,13 @@ export default function Home() {
       <section id="unlock" style={{ scrollMarginTop: 82, background: "#050F1A", color: "#fff", padding: "clamp(74px,10vw,132px) clamp(18px,5vw,56px)", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: -120, left: "50%", transform: "translateX(-50%)", width: 520, height: 520, borderRadius: "50%", background: "radial-gradient(circle, rgba(242,106,62,.16), transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
-          <Eyebrow>Unlock the show</Eyebrow>
-          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(32px,5vw,64px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: "16px 0 0", color: "#fff" }}>Enter your ticket.<br />Unlock every price.</h2>
-          <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px auto 32px", maxWidth: "52ch" }}>Ticket holders get live Boat Show Pricing and appointment booking 5-7 days before doors open. Drop in your confirmation number to light up the docks.</p>
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center", maxWidth: 540, margin: "0 auto" }}>
-            <input
-              value={ticket}
-              onChange={(e) => setTicket(e.target.value)}
-              onKeyDown={(e) => { if (e.key === "Enter") onUnlock(); }}
-              placeholder="Ticket confirmation #  ·  e.g. ACBS-4192"
-              style={{ flex: "1 1 260px", minWidth: 0, background: "rgba(255,255,255,.08)", border: "1.5px solid rgba(255,255,255,.24)", borderRadius: 999, padding: "16px 22px", fontSize: 15, color: "#fff", outline: "none" }}
-            />
-            <button onClick={onUnlock} className="h-lift" style={{ flex: "0 0 auto", background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15.5, padding: "16px 28px", borderRadius: 999, border: "none", cursor: "pointer" }}>Unlock Boat Show Pricing</button>
+          <Eyebrow>The steal of the year</Eyebrow>
+          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(32px,5vw,64px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: "16px 0 0", color: "#fff" }}>Boat Show Deals, where<br />they belong — at the docks.</h2>
+          <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px auto 32px", maxWidth: "54ch" }}>The best boat deals of the year don&rsquo;t happen in a showroom. They happen for four days on the water, when every dealer at the show is competing slip to slip. Reserve your ticket and come get the steal of the season.</p>
+          <div style={{ display: "flex", gap: 13, flexWrap: "wrap", justifyContent: "center" }}>
+            <button onClick={() => openModal()} className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 28px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Get Boat Show Tickets →</button>
+            <Link href="/inventory" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,.08)", color: "#fff", fontWeight: 600, fontSize: 16, padding: "16px 28px", borderRadius: 999, border: "1.5px solid rgba(255,255,255,.32)" }}>Browse the fleet</Link>
           </div>
-          {unlocked ? (
-            <div style={{ marginTop: 20, display: "inline-flex", alignItems: "center", gap: 10, background: "rgba(52,199,120,.14)", border: "1px solid rgba(52,199,120,.4)", borderRadius: 999, padding: "10px 18px" }}>
-              <span style={{ width: 18, height: 18, borderRadius: "50%", background: "#34C778", color: "#0A2138", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12 }}>✓</span>
-              <span style={{ fontSize: 14.5, color: "#fff" }}>Access unlocked. Live pricing is now visible across every dock. Scroll up to browse.</span>
-            </div>
-          ) : (
-            <div style={{ marginTop: 20, display: "flex", gap: 12, alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
-              <span style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".05em", color: "rgba(255,255,255,.55)" }}>No ticket yet?</span>
-              <button onClick={() => openModal()} className="h-brighten" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 13, fontFamily: MONO, letterSpacing: ".04em", padding: "10px 18px", borderRadius: 999, border: "none", cursor: "pointer" }}>Get Boat Show Tickets →</button>
-            </div>
-          )}
         </div>
       </section>
 
