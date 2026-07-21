@@ -93,7 +93,7 @@ export default function Home() {
         <div style={{ position: "absolute", top: "-25%", right: "-8%", width: "62%", height: "150%", background: "radial-gradient(circle at 68% 34%, rgba(242,106,62,.15), transparent 60%)", pointerEvents: "none", zIndex: 0 }} />
         <div style={{ position: "relative", zIndex: 2, maxWidth: 1300, margin: "0 auto", padding: "clamp(48px,6vw,96px) clamp(18px,5vw,56px) clamp(52px,7vw,88px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,360px),1fr))", gap: "clamp(28px,4vw,60px)", alignItems: "center" }}>
           <div style={{ minWidth: 0 }}>
-            <Eyebrow>Atlantic City In-Water Boat Show · Powered by Buoy</Eyebrow>
+            <Eyebrow>AC In-Water Boat Show · Your VIP Preview</Eyebrow>
             <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(40px,6vw,86px)", lineHeight: 0.95, letterSpacing: "-.03em", margin: "18px 0 0" }}>
               Every Dock.<br />Every Dealer.<br /><span style={{ color: "var(--accent)" }}>Every Deal.</span>
             </h1>
@@ -103,7 +103,7 @@ export default function Home() {
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 13, marginTop: 32 }}>
               <button onClick={() => openModal()} className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>
-                Unlock Boat Show Pricing →
+                Get Your Boat Show Deal →
               </button>
               <Link href="#trade" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,.07)", color: "#fff", fontWeight: 600, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "1.5px solid rgba(255,255,255,.32)" }}>
                 Value My Current Boat
@@ -155,7 +155,7 @@ export default function Home() {
           <Eyebrow>The easiest way to do show day</Eyebrow>
           <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", maxWidth: "20ch" }}>Start online. Make the most of every dock.</h2>
           <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "#4c6270", margin: "20px 0 0", maxWidth: "64ch" }}>
-            You&rsquo;ve got your ticket. Now get a head start. Preview the whole show online and you&rsquo;ll arrive with a plan: every presenting dealer&rsquo;s lineup in one place, exclusive Boat Show Pricing in hand, and your dockside appointments already booked.
+            You&rsquo;ve got your ticket. Now get a head start. Your VIP preview shows you the whole event before you arrive — every presenting dealer&rsquo;s lineup, the full inventory, the vendors and where to find them — so you walk in with a plan and head straight for your Boat Show Deal.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,270px),1fr))", gap: 18, marginTop: 44 }}>
             {[
@@ -297,7 +297,7 @@ export default function Home() {
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <Link href="/inventory" className="btn-outline" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: "14px 22px", borderRadius: 999, border: "1px solid rgba(11,34,56,.16)" }}>Browse full inventory →</Link>
-              <button onClick={() => openModal()} className="btn-invert" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#0A2138", color: "#fff", fontWeight: 700, fontSize: 15, padding: "14px 22px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Unlock all Boat Show Prices →</button>
+              <button onClick={() => openModal()} className="btn-invert" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#0A2138", color: "#fff", fontWeight: 700, fontSize: 15, padding: "14px 22px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Get Your Boat Show Deal →</button>
             </div>
           </div>
         </div>

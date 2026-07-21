@@ -214,7 +214,7 @@ export default function VDP() {
             </div>
 
             {/* INLINE LEAD FORM */}
-            <RequestForm monthly={showMonthly} />
+            <RequestForm />
 
             {/* SIMILAR */}
             <div style={{ marginTop: 32 }}>
@@ -255,7 +255,7 @@ export default function VDP() {
               <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#FBF1EC", border: "1px solid rgba(242,106,62,.3)", borderRadius: 10, padding: "9px 12px", marginBottom: 14 }}>
                 <span>⏳</span><span style={{ fontFamily: MONO, fontSize: 11, color: "#b3521f", lineHeight: 1.4 }}>Boat Show pricing — Sept 10-13 only</span>
               </div>
-              <button onClick={scrollToRequest} className="h-brighten" style={{ width: "100%", background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15.5, padding: 15, borderRadius: 12, border: "none", cursor: "pointer" }}>Set Boat Show Appointment →</button>
+              <button onClick={scrollToRequest} className="h-brighten" style={{ width: "100%", background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15.5, padding: 15, borderRadius: 12, border: "none", cursor: "pointer" }}>Get Your Boat Show Deal →</button>
               <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
                 <a href={phoneHref} className="btn-outline" style={{ flex: 1, textAlign: "center", background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 14, padding: "12px 8px", borderRadius: 12, border: "1px solid rgba(11,34,56,.18)" }}>Call dealer</a>
                 <button onClick={() => openModal("/sell?embed=1", "Value your trade-in")} className="btn-outline" style={{ flex: 1, textAlign: "center", background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 14, padding: "12px 8px", borderRadius: 12, border: "1px solid rgba(11,34,56,.18)", cursor: "pointer", fontFamily: "inherit" }}>Value My Vessel</button>
@@ -296,7 +296,7 @@ export default function VDP() {
           <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 17, color: "#fff", lineHeight: 1.1 }}>Far below MSRP <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 400, color: "rgba(255,255,255,.55)" }}>${fmt(BOAT.msrp)}</span></div>
         </div>
         <a href={phoneHref} aria-label="Call dealer" style={{ flex: "0 0 auto", width: 46, height: 46, borderRadius: 12, background: "rgba(255,255,255,.1)", border: "1px solid rgba(255,255,255,.2)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>✆</a>
-        <button onClick={scrollToRequest} className="h-brighten" style={{ flex: "0 0 auto", background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 14.5, padding: "13px 18px", borderRadius: 12, border: "none", cursor: "pointer" }}>Set Appointment</button>
+        <button onClick={scrollToRequest} className="h-brighten" style={{ flex: "0 0 auto", background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 14.5, padding: "13px 18px", borderRadius: 12, border: "none", cursor: "pointer" }}>Get Your Deal</button>
       </div>
       <div className="vdp-mobile-spacer" />
 
@@ -306,7 +306,7 @@ export default function VDP() {
 }
 
 /* ── Inline lead-capture: the primary conversion form ─────────────────── */
-function RequestForm({ monthly }: { monthly: string }) {
+function RequestForm() {
   const [form, setForm] = useState({ firstName: "", email: "", phone: "", day: "Sat · Sept 12" });
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -340,9 +340,9 @@ function RequestForm({ monthly }: { monthly: string }) {
         </div>
       ) : (
         <form onSubmit={submit}>
-          <div style={{ fontFamily: MONO, fontSize: 11.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--accent)" }}>Lock in the Boat Show Price</div>
+          <div style={{ fontFamily: MONO, fontSize: 11.5, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--accent)" }}>Claim your Boat Show Deal</div>
           <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(22px,2.4vw,28px)", margin: "10px 0 6px", letterSpacing: "-.01em" }}>Book a dockside walkthrough of this boat</h2>
-          <p style={{ fontSize: 15, lineHeight: 1.55, color: "#5a6c78", margin: "0 0 20px", maxWidth: "52ch" }}>Reserve a private time to step aboard the {BOAT.short} at the show. We&rsquo;ll confirm your slot and hold your show price — est. {monthly}/mo.</p>
+          <p style={{ fontSize: 15, lineHeight: 1.55, color: "#5a6c78", margin: "0 0 20px", maxWidth: "52ch" }}>Reserve a private time to step aboard the {BOAT.short} at the show. We&rsquo;ll confirm your slot and have your Boat Show Deal waiting when you step on the docks.</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,200px),1fr))", gap: 14 }}>
             <div><label style={lab}>First name</label><input style={input} value={form.firstName} onChange={set("firstName")} placeholder="Alex" required /></div>
             <div><label style={lab}>Email</label><input style={input} type="email" value={form.email} onChange={set("email")} placeholder="you@email.com" required /></div>
