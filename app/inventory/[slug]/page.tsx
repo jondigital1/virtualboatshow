@@ -258,7 +258,7 @@ export default function VDP() {
               <button onClick={scrollToRequest} className="h-brighten" style={{ width: "100%", background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15.5, padding: 15, borderRadius: 12, border: "none", cursor: "pointer" }}>Set Boat Show Appointment →</button>
               <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
                 <a href={phoneHref} className="btn-outline" style={{ flex: 1, textAlign: "center", background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 14, padding: "12px 8px", borderRadius: 12, border: "1px solid rgba(11,34,56,.18)" }}>Call dealer</a>
-                <button onClick={() => openModal("/sell?embed=1", "Value your trade-in")} className="btn-outline" style={{ flex: 1, textAlign: "center", background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 14, padding: "12px 8px", borderRadius: 12, border: "1px solid rgba(11,34,56,.18)", cursor: "pointer", fontFamily: "inherit" }}>Value trade-in</button>
+                <button onClick={() => openModal("/sell?embed=1", "Value your trade-in")} className="btn-outline" style={{ flex: 1, textAlign: "center", background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 14, padding: "12px 8px", borderRadius: 12, border: "1px solid rgba(11,34,56,.18)", cursor: "pointer", fontFamily: "inherit" }}>Value My Vessel</button>
               </div>
             </div>
 
