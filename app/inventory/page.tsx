@@ -307,12 +307,9 @@ function BoatCard({ v, bg, fav, onFav }: { v: V; bg: string; fav: boolean; onFav
         </div>
         <div style={{ fontFamily: MONO, fontSize: 10, color: "#8595a0" }}>{v.dealer}</div>
         <div style={{ marginTop: "auto", paddingTop: 10, borderTop: "1px solid rgba(11,34,56,.08)" }}>
-          <div style={{ fontFamily: MONO, fontSize: 10, color: "#9aa7b0", textDecoration: "line-through" }}>MSRP ${fmt(v.msrp)}</div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginTop: 2, flexWrap: "wrap" }}>
-            <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 19, color: "#0A2138" }}>${fmt(v.price)}</span>
-            <span style={{ fontFamily: MONO, fontSize: 9.5, color: "#178a5a", fontWeight: 700 }}>SAVE ${fmt(v.msrp - v.price)}</span>
-          </div>
-          <div style={{ fontFamily: MONO, fontSize: 9.5, color: "#7c8b96", marginTop: 2 }}>est. ${fmt(Math.round(v.price * 0.0072))}/mo</div>
+          <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: ".06em", color: "#8595a0", textTransform: "uppercase" }}>MSRP</div>
+          <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 19, color: "#0A2138", lineHeight: 1.05 }}>${fmt(v.msrp)}</div>
+          <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: ".04em", color: "#178a5a", fontWeight: 700, marginTop: 4 }}>★ Far below at the show</div>
         </div>
       </div>
     </div>

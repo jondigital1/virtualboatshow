@@ -64,7 +64,7 @@ const scrollToRequest = () => document.getElementById("request")?.scrollIntoView
 export default function VDP() {
   const [saved, setSaved] = useState(false);
   const [activeThumb, setActiveThumb] = useState(0);
-  const [price, setPrice] = useState(BOAT.price);
+  const [price, setPrice] = useState(BOAT.msrp);
   const [downPct, setDownPct] = useState(10);
   const [apr, setApr] = useState(7.49);
   const [term, setTerm] = useState(240);
@@ -235,17 +235,19 @@ export default function VDP() {
           {/* RIGHT: BUY BOX */}
           <div style={{ flex: "0 1 366px", minWidth: 280, position: "sticky", top: 80, display: "flex", flexDirection: "column", gap: 16 }}>
             <div style={{ background: "#fff", border: "1px solid rgba(11,34,56,.12)", borderRadius: 18, padding: 22, boxShadow: "0 20px 46px -30px rgba(10,33,56,.4)" }}>
-              {/* price breakdown */}
-              <div style={{ display: "flex", justifyContent: "space-between", fontFamily: MONO, fontSize: 12, color: "#7c8b96" }}>
-                <span>MSRP</span><span style={{ textDecoration: "line-through" }}>${fmt(BOAT.msrp)}</span>
+              {/* MSRP shown; the Boat Show discount is teased, never quantified */}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".08em", color: "#8595a0", textTransform: "uppercase" }}>MSRP</span>
+                <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 23, color: "#0A2138", letterSpacing: "-.01em" }}>${fmt(BOAT.msrp)}</span>
               </div>
-              <div style={{ display: "flex", justifyContent: "space-between", fontFamily: MONO, fontSize: 12, color: "#178a5a", fontWeight: 700, marginTop: 6 }}>
-                <span>Boat Show savings</span><span>− ${fmt(BOAT.msrp - BOAT.price)}</span>
-              </div>
-              <div style={{ borderTop: "1px solid rgba(11,34,56,.1)", margin: "12px 0", paddingTop: 12 }}>
+              <div style={{ borderTop: "1px solid rgba(11,34,56,.1)", margin: "14px 0", paddingTop: 14 }}>
                 <div style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".1em", color: "var(--accent)" }}>BOAT SHOW PRICE</div>
-                <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 34, color: "#0A2138", letterSpacing: "-.01em", lineHeight: 1, marginTop: 4 }}>${fmt(BOAT.price)}</div>
-                <button onClick={() => document.getElementById("calc")?.scrollIntoView({ behavior: "smooth", block: "start" })} style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260", marginTop: 8, background: "none", border: "none", cursor: "pointer", padding: 0, textDecorationLine: "underline", textUnderlineOffset: 2 }}>est. {showMonthly}/mo · calculate</button>
+                <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 30, color: "#0A2138", letterSpacing: "-.01em", lineHeight: 1.05, marginTop: 5 }}>Far below MSRP.</div>
+                <div style={{ display: "flex", alignItems: "center", gap: 7, marginTop: 10 }}>
+                  <span style={{ color: "#178a5a", fontSize: 13 }}>★</span>
+                  <span style={{ fontFamily: MONO, fontSize: 11.5, color: "#178a5a", fontWeight: 700, lineHeight: 1.4 }}>The year&rsquo;s biggest savings — unlocked at the show</span>
+                </div>
+                <button onClick={() => document.getElementById("calc")?.scrollIntoView({ behavior: "smooth", block: "start" })} style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260", marginTop: 12, background: "none", border: "none", cursor: "pointer", padding: 0, textDecorationLine: "underline", textUnderlineOffset: 2 }}>Estimate your monthly payment →</button>
               </div>
               {/* urgency */}
               <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#FBF1EC", border: "1px solid rgba(242,106,62,.3)", borderRadius: 10, padding: "9px 12px", marginBottom: 14 }}>
@@ -289,7 +291,7 @@ export default function VDP() {
       <div className="vdp-mobile-bar">
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: ".1em", color: "var(--accent)" }}>BOAT SHOW PRICE</div>
-          <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 19, color: "#fff", lineHeight: 1.1 }}>${fmt(BOAT.price)} <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 400, color: "rgba(255,255,255,.6)" }}>· {showMonthly}/mo</span></div>
+          <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 17, color: "#fff", lineHeight: 1.1 }}>Far below MSRP <span style={{ fontFamily: MONO, fontSize: 10, fontWeight: 400, color: "rgba(255,255,255,.55)" }}>${fmt(BOAT.msrp)}</span></div>
         </div>
         <a href={phoneHref} aria-label="Call dealer" style={{ flex: "0 0 auto", width: 46, height: 46, borderRadius: 12, background: "rgba(255,255,255,.1)", border: "1px solid rgba(255,255,255,.2)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>✆</a>
         <button onClick={scrollToRequest} className="h-brighten" style={{ flex: "0 0 auto", background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 14.5, padding: "13px 18px", borderRadius: 12, border: "none", cursor: "pointer" }}>Set Appointment</button>
