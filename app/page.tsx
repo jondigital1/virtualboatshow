@@ -98,8 +98,8 @@ export default function Home() {
               Every Dock.<br />Every Dealer.<br /><span style={{ color: "var(--accent)" }}>Every Deal.</span>
             </h1>
             <p style={{ maxWidth: 540, fontSize: "clamp(16px,1.3vw,19px)", lineHeight: 1.55, color: "rgba(255,255,255,.82)", margin: "24px 0 0" }}>
-              Get a head start on the show. Browse live inventory from every presenting dealer, value your current vessel, and lock in exclusive{" "}
-              <em style={{ fontStyle: "normal", color: "#fff", fontWeight: 600, borderBottom: "2px solid var(--accent)" }}>Boat Show Prices</em>, all before your feet ever touch the deck.
+              Get a head start on the show. Browse the fleet from every presenting dealer, value your vessel, and build your dockside game plan online, so you show up ready to grab the deal of the year{" "}
+              <em style={{ fontStyle: "normal", color: "#fff", fontWeight: 600, borderBottom: "2px solid var(--accent)" }}>in person, on the docks</em>.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 13, marginTop: 32 }}>
               <button onClick={() => openModal()} className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>
@@ -177,12 +177,12 @@ export default function Home() {
       <section style={{ background: "#0A2138", color: "#fff", padding: "clamp(66px,8vw,116px) clamp(18px,5vw,56px)" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,340px),1fr))", gap: "clamp(32px,5vw,72px)", alignItems: "center" }}>
           <div>
-            <Eyebrow>See more, walk less</Eyebrow>
+            <Eyebrow>Come with a plan</Eyebrow>
             <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,3.8vw,48px)", lineHeight: 1.04, letterSpacing: "-.02em", margin: "14px 0 0", color: "#fff" }}>
-              A few hundred boats fit the docks.<br />You can browse thousands.
+              A few hundred boats fit the docks.<br />Scout thousands before you go.
             </h2>
             <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px 0 0", maxWidth: "52ch" }}>
-              There&rsquo;s only so much room at the slips. Online, you explore every presenting dealer&rsquo;s full lineup, on-site and off, weighing thousands of options from your couch, then spending show day only on the boats worth boarding.
+              There&rsquo;s only so much room at the slips. Online, you scout every presenting dealer&rsquo;s full lineup, on-site and off, and build your shortlist before you go — so you spend show day boarding the boats worth your time and closing the deal in person.
             </p>
           </div>
           <div style={{ display: "flex", alignItems: "flex-end", gap: "clamp(22px,4vw,48px)", flexWrap: "wrap" }}>
