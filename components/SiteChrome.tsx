@@ -11,7 +11,7 @@ const MONO = "var(--font-space-mono), monospace";
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "View Inventory", href: "/inventory" },
-  { label: "Sell Your Boat", href: "/sell" },
+  { label: "Sell Your Boat", href: "/#trade" },
   { label: "Boat Show Map", href: "/map" },
   { label: "Exhibitors", href: "/vendors" },
 ];

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
-import { DISPLAY, MONO, fmt, Eyebrow } from "@/components/ui";
+import { DISPLAY, MONO, Eyebrow } from "@/components/ui";
 import { submitLead } from "@/lib/leads";
 
 const inputStyle: React.CSSProperties = {
@@ -17,24 +17,23 @@ const inputStyle: React.CSSProperties = {
 const fieldLabel: React.CSSProperties = { fontFamily: MONO, fontSize: 10.5, letterSpacing: ".06em", color: "#7c8b96" };
 
 const CONDITIONS = ["New", "Excellent", "Good", "Fair"];
-const COND_MULT: Record<string, number> = { New: 1.18, Excellent: 1.0, Good: 0.86, Fair: 0.72 };
 
 const FAQ_DATA: [string, string][] = [
-  ["Can I sell without buying a boat?", "Absolutely. Your Boat Show offer stands whether or not you buy from a dealer at the show. No strings attached."],
-  ["Is this a real offer or just an estimate?", "You get a real, competitive range up front. The final number is confirmed at your dockside appointment once a brand-expert dealer verifies the boat."],
+  ["Can I sell without buying a boat?", "Absolutely. Dealers want your boat whether or not you buy one at the show. No strings attached."],
+  ["When do I find out what it’s worth?", "There are no online estimates, and for good reason: boat values vary too much to promise a fair number online. You get a real offer in person once a brand-expert dealer sees the boat at your dockside appraisal."],
   ["Can I put it toward a boat at the show?", "Yes. Apply your offer as a trade toward any boat on the docks and lock in Boat Show Pricing on both sides of the deal."],
   ["Will dealers blow up my phone?", "Never. We set one appointment for you at the show. No cold calls, no spam. Dealers are busy selling boats on the docks."],
-  ["How long is my offer good for?", "Through the entire show weekend, so you can shop the docks with your number already in hand."],
+  ["When will a dealer reach out?", "Quickly. Once you start the conversation, a brand-expert dealer follows up to set your dockside appraisal during the show weekend."],
 ];
 
 const HOW = [
-  ["01", "Get your offer", "Tell us about your boat and get a real, competitive offer range in minutes. We’ll take yours even if you don’t buy one at the show."],
+  ["01", "Start the conversation", "Tell us about your boat and a brand-expert dealer reaches out. We’ll take yours even if you don’t buy one at the show."],
   ["02", "Set your appointment", "Pick a dockside time during the show. One appointment, one brand-expert dealer, no cold calls, no phone tag."],
   ["03", "Get paid or trade", "We verify the boat and finalize your number at the slip. Walk away with a check, or roll it into Boat Show Pricing on your next boat."],
 ];
 
 const WHY = [
-  ["Real offers, not estimates", "A firm range up front, confirmed at your appointment, with no lowball surprises."],
+  ["A real offer, in person", "Made by a brand-expert dealer at your dockside appraisal, with no lowball surprises."],
   ["Dealers compete", "Every presenting dealer sees your boat and bids, and the best offer comes to you."],
   ["Sell without buying", "Cash out clean, or apply it as a trade toward a show boat. Your call."],
   ["No phone blowing up", "One dockside appointment, so dealers stay focused on the docks, not dialing you."],
@@ -64,27 +63,20 @@ export default function SellYourBoat() {
   }, []);
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement>) => setF((s) => ({ ...s, [k]: e.target.value }));
 
-  const len = parseFloat(f.length) || 27;
-  const hrs = parseFloat(f.hours) || 0;
-  const base = Math.max(15000, len * 7200 * (COND_MULT[f.condition] || 1) - hrs * 18);
-  const low = Math.round((base * 0.94) / 500) * 500;
-  const high = Math.round((base * 1.07) / 500) * 500;
-  const offerRange = "$" + fmt(low) + " - $" + fmt(high);
-
   const next = () => {
-    if (step === 3) submitLead({ type: "sell-boat", ...f, offerLow: low, offerHigh: high });
+    if (step === 3) submitLead({ type: "sell-boat", ...f });
     setStep((s) => Math.min(4, s + 1));
   };
   const back = () => setStep((s) => Math.max(1, s - 1));
 
   const badge = { 1: "Step 1 of 3", 2: "Step 2 of 3", 3: "Step 3 of 3", 4: "Done" }[step];
-  const cardTitle = { 1: "Get a real offer in minutes", 2: "A few more details", 3: "Where to send your offer", 4: "Your offer is ready" }[step];
-  const nextLabel = { 1: "Next →", 2: "Next →", 3: "Get my offer →" }[step] || "Next";
+  const cardTitle = { 1: "Tell us about your boat", 2: "A few more details", 3: "Where to reach you", 4: "You’re all set" }[step];
+  const nextLabel = { 1: "Next →", 2: "Next →", 3: "Start the conversation →" }[step] || "Next";
   const footHint = {
-    1: "Most boats qualify. No obligation, ever.",
-    2: "Engine hours have the biggest impact on value.",
-    3: "We only use this to send your appointment, never spam calls.",
-    4: "Final offer confirmed at your dockside appointment.",
+    1: "No obligation, ever. This just starts the conversation.",
+    2: "Engine hours and condition help the dealer prep your appraisal.",
+    3: "We only use this to connect you with a brand-expert dealer, never spam calls.",
+    4: "A dealer will reach out to set your dockside appraisal.",
   }[step];
   const progressPct = (Math.min(step, 3) / 3) * 100 + "%";
 
@@ -98,11 +90,11 @@ export default function SellYourBoat() {
         <div style={{ position: "absolute", top: "-25%", right: "-8%", width: "60%", height: "150%", background: "radial-gradient(circle at 68% 34%, rgba(242,106,62,.14), transparent 60%)", pointerEvents: "none", zIndex: 0 }} />
         <div style={{ position: "relative", zIndex: 2, maxWidth: 1300, margin: "0 auto", padding: "clamp(40px,5vw,72px) clamp(18px,4vw,48px) clamp(48px,6vw,80px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,380px),1fr))", gap: "clamp(30px,4vw,56px)", alignItems: "center" }}>
           <div style={{ minWidth: 0 }}>
-            <Eyebrow>Sell / Trade · WeBuyAnyBoat</Eyebrow>
+            <Eyebrow>Sell or Trade · The Boater&rsquo;s Advantage</Eyebrow>
             <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(38px,5.5vw,72px)", lineHeight: 0.98, letterSpacing: "-.03em", margin: "16px 0 0" }}>Sell your boat,<br />on your terms.</h1>
-            <p style={{ maxWidth: 500, fontSize: "clamp(16px,1.3vw,19px)", lineHeight: 1.55, color: "rgba(255,255,255,.82)", margin: "22px 0 0" }}>Get a real Boat Show offer in minutes. Every presenting dealer competes for your boat. Trade it toward a show boat or cash out. One appointment, no sales calls.</p>
+            <p style={{ maxWidth: 500, fontSize: "clamp(16px,1.3vw,19px)", lineHeight: 1.55, color: "rgba(255,255,255,.82)", margin: "22px 0 0" }}>Every presenting dealer at the show competes for your boat. Tell us a few details and a brand-expert dealer reaches out to start the conversation. Trade it toward a show boat or cash out. No online estimates, no sales calls.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 28 }}>
-              {["A real offer, not a vague estimate", "Every show dealer competes for the best price", "Appointment only, so we won’t blow up your phone"].map((t) => (
+              {["Every show dealer competes for your boat", "A real offer in person, never an online guess", "Appointment only, so we won’t blow up your phone"].map((t) => (
                 <div key={t} style={{ display: "flex", alignItems: "center", gap: 11 }}>
                   <span style={{ width: 22, height: 22, flex: "0 0 auto", borderRadius: "50%", background: "rgba(52,199,120,.18)", color: "#34C778", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13 }}>✓</span>
                   <span style={{ fontSize: 15.5, color: "rgba(255,255,255,.9)" }}>{t}</span>
@@ -159,14 +151,10 @@ export default function SellYourBoat() {
             )}
 
             {step === 4 && (
-              <div style={{ textAlign: "center", padding: "6px 0 2px" }}>
-                <div style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: ".12em", color: "#178a5a" }}>YOUR BOAT SHOW OFFER</div>
-                <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4vw,40px)", color: "#0A2138", margin: "8px 0 4px", letterSpacing: "-.01em" }}>{offerRange}</div>
-                <div style={{ fontFamily: MONO, fontSize: 11.5, color: "#7c8b96" }}>Good through the show weekend · Sept 10-13</div>
-                <div style={{ background: "#EDF6F0", border: "1px solid rgba(23,138,90,.3)", borderRadius: 12, padding: "14px 16px", marginTop: 18, textAlign: "left", display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <span style={{ width: 24, height: 24, flex: "0 0 auto", borderRadius: "50%", background: "#178a5a", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14 }}>✓</span>
-                  <div style={{ fontSize: 13.5, lineHeight: 1.5, color: "#33454f" }}>Bring it to your dockside appointment and a brand-expert dealer will confirm your final number, then cash out or roll it into a show boat.</div>
-                </div>
+              <div style={{ textAlign: "center", padding: "10px 0 2px" }}>
+                <div style={{ width: 54, height: 54, borderRadius: "50%", background: "rgba(23,138,90,.12)", color: "#178a5a", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, margin: "0 auto 14px" }}>✓</div>
+                <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(22px,3vw,28px)", color: "#0A2138", letterSpacing: "-.01em" }}>Thanks, {f.firstName || "you"}!</div>
+                <p style={{ fontSize: 14.5, lineHeight: 1.55, color: "#5a6c78", margin: "10px auto 0", maxWidth: "34ch" }}>A brand-expert dealer will reach out to start the conversation and set your dockside appraisal at the show. No online guesses, no obligation.</p>
               </div>
             )}
 
@@ -175,7 +163,7 @@ export default function SellYourBoat() {
                 <button onClick={back} className="btn-outline" style={{ flex: "0 0 auto", background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: "14px 20px", borderRadius: 12, border: "1px solid rgba(11,34,56,.2)", cursor: "pointer" }}>Back</button>
               )}
               {step === 4 ? (
-                <Link href="/inventory" className="h-brighten" style={{ flex: 1, textAlign: "center", background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: 15, borderRadius: 12 }}>Set my appointment →</Link>
+                <Link href="/inventory" className="h-brighten" style={{ flex: 1, textAlign: "center", background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: 15, borderRadius: 12 }}>Browse the fleet →</Link>
               ) : (
                 <button onClick={next} className="h-brighten" style={{ flex: 1, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: 15, borderRadius: 12, border: "none", cursor: "pointer" }}>{nextLabel}</button>
               )}
@@ -256,9 +244,9 @@ export default function SellYourBoat() {
       <section style={{ background: "#050F1A", color: "#fff", padding: "clamp(60px,7vw,104px) clamp(18px,4vw,48px)", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: -120, left: "50%", transform: "translateX(-50%)", width: 520, height: 520, borderRadius: "50%", background: "radial-gradient(circle, rgba(242,106,62,.16), transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", maxWidth: 640, margin: "0 auto" }}>
-          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.6vw,56px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: 0, color: "#fff" }}>Know what your boat is worth.</h2>
-          <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "18px auto 30px", maxWidth: "46ch" }}>Get your Boat Show offer in minutes. Free, no obligation, good all weekend.</p>
-          <button onClick={() => { setStep(1); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 28px", borderRadius: 999, border: "none", cursor: "pointer" }}>Get my offer →</button>
+          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.6vw,56px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: 0, color: "#fff" }}>Let dealers compete for your boat.</h2>
+          <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "18px auto 30px", maxWidth: "46ch" }}>Start the conversation in a couple of minutes. Free, no obligation, no online guesswork.</p>
+          <button onClick={() => { setStep(1); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 28px", borderRadius: 999, border: "none", cursor: "pointer" }}>Start the conversation →</button>
         </div>
       </section>
 

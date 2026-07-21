@@ -106,7 +106,7 @@ export default function Home() {
                 Get Your Boat Show Deal →
               </button>
               <Link href="#trade" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,.07)", color: "#fff", fontWeight: 600, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "1.5px solid rgba(255,255,255,.32)" }}>
-                Value My Current Boat
+                Selling or Trading?
               </Link>
             </div>
           </div>
@@ -232,7 +232,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,240px),1fr))", gap: 18 }}>
             {[
               ["01", "Pre-purchase your tickets", "Grab your in-water show tickets right now and unlock a 48-hour sneak peek at every vessel headed to the docks.", "Get tickets →", "#unlock"],
-              ["02", "Value your current boat", "Submit your boat to our valuation engine and get quotes from every show dealer. Trade it or sell it. We want them all.", "Value my boat →", "/sell"],
+              ["02", "Line up your trade", "Selling or trading? Every dealer at the show competes for your boat, so the best offer comes to you. Trade it toward a show boat or cash out.", "How it works →", "#trade"],
               ["03", "Book your Boat Show Only Deal", "Set your appointment and lock in pricing you’ll only find at the show. The best deals happen here, so don’t be the one who missed out.", "Book my appointment →", "#unlock"],
             ].map(([n, h, body, cta, href]) => (
               <div key={n} className="card-lift" style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 20, padding: "28px 26px", display: "flex", flexDirection: "column" }}>
@@ -307,14 +307,14 @@ export default function Home() {
       <section id="trade" style={{ scrollMarginTop: 82, background: "#0A2138", color: "#fff", padding: SECTION_PAD }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,320px),1fr))", gap: "clamp(32px,5vw,64px)", alignItems: "start" }}>
           <div>
-            <Eyebrow>Sell / Trade · WeBuyAnyBoat</Eyebrow>
-            <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,4vw,50px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", color: "#fff", maxWidth: "16ch" }}>Know your boat&rsquo;s worth before you walk the docks.</h2>
-            <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px 0 34px", maxWidth: "52ch" }}>Our low-friction trade path takes three quick steps, then hands you a real market range and a dockside appraisal slot with the local brand expert.</p>
+            <Eyebrow>Sell or Trade · The Boater&rsquo;s Advantage</Eyebrow>
+            <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,4vw,50px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", color: "#fff", maxWidth: "16ch" }}>Bring your boat to the show and let dealers compete for it.</h2>
+            <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px 0 34px", maxWidth: "52ch" }}>Selling or trading at the show is the boater&rsquo;s edge. Every presenting dealer is in one place, all hungry for good inventory, so your boat gets shopped to the whole marina instead of one lowball desk. No online guesswork, just a real offer in person.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
               {[
-                ["01", "Tell us the basics", "Year, make, model & length."],
-                ["02", "Add the details", "Condition, features, and the engine hours that move the needle most."],
-                ["03", "Lock your value", "Get a market range plus a Boat Show Trade-In Bonus and appraisal time slot."],
+                ["01", "Find your next boat", "Browse the fleet and open the boat you love. Your trade starts right from its page."],
+                ["02", "Start the conversation", "Tell the dealer about your boat: year, make, engine hours, condition. They take it from there, no pressure."],
+                ["03", "Get your real number at the docks", "A brand-expert dealer appraises your boat in person and makes a genuine offer. No guesses online, no surprises at the slip."],
               ].map(([n, h, body], i) => (
                 <div key={n} style={{ display: "flex", gap: 16, padding: "16px 0", borderTop: "1px solid rgba(255,255,255,.14)", borderBottom: i === 2 ? "1px solid rgba(255,255,255,.14)" : undefined }}>
                   <span style={{ fontFamily: MONO, fontSize: 13, color: "var(--accent)", fontWeight: 700, flex: "0 0 auto" }}>{n}</span>
@@ -327,33 +327,18 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{ background: "#fff", color: "#0A2138", borderRadius: 22, padding: "clamp(24px,3vw,34px)", boxShadow: "0 30px 70px -30px rgba(0,0,0,.5)" }}>
-            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 19, letterSpacing: "-.01em", lineHeight: 1.1 }}>Dealers Compete For Your Boat</div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 20 }}>
-              {[["YEAR / MAKE / MODEL", "2019 Sea Ray SLX 250"], ["ENGINE HOURS", "210"]].map(([lab, val]) => (
-                <label key={lab} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <span style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: ".08em", color: "#7c8b96" }}>{lab}</span>
-                  <input defaultValue={val} style={{ border: "1px solid rgba(11,34,56,.18)", borderRadius: 10, padding: "11px 12px", fontSize: 14, color: "#0A2138", background: "#F8F6F1" }} />
-                </label>
+          <div style={{ background: "rgba(255,255,255,.04)", border: "1px solid rgba(255,255,255,.14)", borderRadius: 22, padding: "clamp(26px,3vw,36px)" }}>
+            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 20, letterSpacing: "-.01em", lineHeight: 1.1, color: "#fff" }}>Why sell or trade at the show</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 20 }}>
+              {["Every presenting dealer competes for your boat", "The best offer comes to you, not one desk’s lowball", "Trade it toward a show boat, or simply cash out", "Appraised in person by a brand expert, never an online guess"].map((t) => (
+                <div key={t} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                  <Check size={22} />
+                  <span style={{ fontSize: 15.5, lineHeight: 1.45, color: "rgba(255,255,255,.9)" }}>{t}</span>
+                </div>
               ))}
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 12 }}>
-              {[["LENGTH", "25 ft"], ["CONDITION", "Excellent"]].map(([lab, val]) => (
-                <label key={lab} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <span style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: ".08em", color: "#7c8b96" }}>{lab}</span>
-                  <input defaultValue={val} style={{ border: "1px solid rgba(11,34,56,.18)", borderRadius: 10, padding: "11px 12px", fontSize: 14, color: "#0A2138", background: "#F8F6F1" }} />
-                </label>
-              ))}
-            </div>
-            <div style={{ marginTop: 16, background: "#EDF6F0", border: "1px solid rgba(23,138,90,.3)", borderRadius: 12, padding: 16 }}>
-              <div style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: ".1em", color: "#178a5a" }}>ESTIMATED SHOW VALUE</div>
-              <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 28, color: "#0A2138", marginTop: 4 }}>$58,400-$64,900</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 8 }}>
-                <Check size={20} />
-                <span style={{ fontFamily: MONO, fontSize: 11, color: "#3d5260" }}>Boat Show Trade-In Bonus active · dockside appraisal ready</span>
-              </div>
-            </div>
-            <Link href="/sell" className="h-brighten" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 12, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: 14, borderRadius: 12 }}>Value My Current Boat →</Link>
+            <Link href="/inventory" className="h-brighten" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 26, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: 14, borderRadius: 12 }}>Browse the fleet to start →</Link>
+            <div style={{ fontFamily: MONO, fontSize: 11, color: "rgba(255,255,255,.5)", textAlign: "center", marginTop: 12, lineHeight: 1.5 }}>Open any boat and tap &ldquo;Value My Vessel&rdquo; to start your trade with that dealer.</div>
           </div>
         </div>
       </section>
@@ -364,9 +349,9 @@ export default function Home() {
           <div>
             <Eyebrow>SB7 · The payoff</Eyebrow>
             <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", maxWidth: "15ch" }}>Walk past the lines. Straight to the deck.</h2>
-            <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "#4c6270", margin: "20px 0 28px", maxWidth: "52ch" }}>This is show day, handled: your trade-in is already appraised, your pricing incentives are unlocked, and a dedicated captain is waiting at the slip for your private walkthrough.</p>
+            <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "#4c6270", margin: "20px 0 28px", maxWidth: "52ch" }}>This is show day, handled: your trade conversation is already started, your dockside appointments are booked, and a dedicated captain is waiting at the slip for your private walkthrough.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              {["Skip the ticket-line chaos", "Trade-in value locked in advance", "Exclusive Boat Show Pricing revealed", "VIP dockside walkthrough booked"].map((t) => (
+              {["Skip the ticket-line chaos", "Your trade conversation already started", "Your Boat Show Deal waiting at the dock", "VIP dockside walkthrough booked"].map((t) => (
                 <div key={t} style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <Check /><span style={{ fontSize: 16.5, fontWeight: 500 }}>{t}</span>
                 </div>
