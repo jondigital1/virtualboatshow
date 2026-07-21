@@ -232,7 +232,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,240px),1fr))", gap: 18 }}>
             {[
               ["01", "Pre-purchase your tickets", "Grab your in-water show tickets right now and unlock a 48-hour sneak peek at every vessel headed to the docks.", "Get tickets →", "#unlock"],
-              ["02", "Line up your trade", "Selling or trading? Every dealer at the show competes for your boat, so the best offer comes to you. Trade it toward a show boat or cash out.", "How it works →", "#trade"],
+              ["02", "Line up your trade", "Selling or trading? Lock in your Boat Show Trade-In Special with the dealer for the boat you want, before you even arrive. Trade it toward a show boat or keep it simple.", "How it works →", "#trade"],
               ["03", "Book your Boat Show Only Deal", "Set your appointment and lock in pricing you’ll only find at the show. The best deals happen here, so don’t be the one who missed out.", "Book my appointment →", "#unlock"],
             ].map(([n, h, body, cta, href]) => (
               <div key={n} className="card-lift" style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 20, padding: "28px 26px", display: "flex", flexDirection: "column" }}>
@@ -307,14 +307,14 @@ export default function Home() {
       <section id="trade" style={{ scrollMarginTop: 82, background: "#0A2138", color: "#fff", padding: SECTION_PAD }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,320px),1fr))", gap: "clamp(32px,5vw,64px)", alignItems: "start" }}>
           <div>
-            <Eyebrow>Sell or Trade · The Boater&rsquo;s Advantage</Eyebrow>
-            <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,4vw,50px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", color: "#fff", maxWidth: "16ch" }}>Bring your boat to the show and let dealers compete for it.</h2>
-            <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px 0 34px", maxWidth: "52ch" }}>Selling or trading at the show is the boater&rsquo;s edge. Every presenting dealer is in one place, all hungry for good inventory, so your boat gets shopped to the whole marina instead of one lowball desk. No online guesswork, just a real offer in person.</p>
+            <Eyebrow>Sell or Trade · Boat Show Special</Eyebrow>
+            <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,4vw,50px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", color: "#fff", maxWidth: "18ch" }}>Get your Boat Show Trade-In Special before you arrive.</h2>
+            <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px 0 34px", maxWidth: "52ch" }}>Found the boat you want? Start your trade right from its page. The dealer for that boat prepares your Boat Show Trade-In Special ahead of time, so it&rsquo;s ready and waiting when you get to the docks. One dealer, no runaround, no obligation.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
               {[
                 ["01", "Find your next boat", "Browse the fleet and open the boat you love. Your trade starts right from its page."],
-                ["02", "Start the conversation", "Tell the dealer about your boat: year, make, engine hours, condition. They take it from there, no pressure."],
-                ["03", "Get your real number at the docks", "A brand-expert dealer appraises your boat in person and makes a genuine offer. No guesses online, no surprises at the slip."],
+                ["02", "Start your trade", "Tell the dealer about your boat: year, make, engine hours, condition. It goes straight to them."],
+                ["03", "Get your special before you arrive", "That dealer prepares your Boat Show Trade-In Special and reaches out ahead of the show, so it’s ready when you hit the docks."],
               ].map(([n, h, body], i) => (
                 <div key={n} style={{ display: "flex", gap: 16, padding: "16px 0", borderTop: "1px solid rgba(255,255,255,.14)", borderBottom: i === 2 ? "1px solid rgba(255,255,255,.14)" : undefined }}>
                   <span style={{ fontFamily: MONO, fontSize: 13, color: "var(--accent)", fontWeight: 700, flex: "0 0 auto" }}>{n}</span>
@@ -328,9 +328,9 @@ export default function Home() {
           </div>
 
           <div style={{ background: "rgba(255,255,255,.04)", border: "1px solid rgba(255,255,255,.14)", borderRadius: 22, padding: "clamp(26px,3vw,36px)" }}>
-            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 20, letterSpacing: "-.01em", lineHeight: 1.1, color: "#fff" }}>Why sell or trade at the show</div>
+            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 20, letterSpacing: "-.01em", lineHeight: 1.1, color: "#fff" }}>Why start your trade here</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 20 }}>
-              {["Every presenting dealer competes for your boat", "The best offer comes to you, not one desk’s lowball", "Trade it toward a show boat, or simply cash out", "Appraised in person by a brand expert, never an online guess"].map((t) => (
+              {["It goes to the dealer for the boat you want, not a lead pool", "Your Boat Show Trade-In Special, locked in before you arrive", "Trade it toward your show boat, or keep it simple", "No online guesswork, the dealer handles it"].map((t) => (
                 <div key={t} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
                   <Check size={22} />
                   <span style={{ fontSize: 15.5, lineHeight: 1.45, color: "rgba(255,255,255,.9)" }}>{t}</span>
