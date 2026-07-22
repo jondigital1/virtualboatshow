@@ -174,7 +174,7 @@ export default function Vendors() {
           <div style={{ maxWidth: "56ch" }}>
             <Eyebrow style={{ letterSpacing: ".18em", fontSize: 11.5 }}>For dealers</Eyebrow>
             <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(26px,3.4vw,44px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: "12px 0", color: "#fff" }}>Show your boats here.</h2>
-            <p style={{ fontSize: 16, lineHeight: 1.6, color: "rgba(255,255,255,.78)", margin: 0 }}>Reserve your slips for next season and get your full lineup, on-site and off, in front of pre-qualified buyers who researched you on Buoy before they ever hit the docks.</p>
+            <p style={{ fontSize: 16, lineHeight: 1.6, color: "rgba(255,255,255,.78)", margin: 0 }}>Reserve your slips for next season and get your show lineup in front of pre-qualified buyers who researched you on Buoy before they ever hit the docks.</p>
           </div>
           <Link href="#inquiry" className="h-lift" style={{ flex: "0 0 auto", display: "inline-flex", alignItems: "center", gap: 9, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 28px", borderRadius: 999 }}>Become a presenting dealer →</Link>
         </div>

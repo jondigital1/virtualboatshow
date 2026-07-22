@@ -143,11 +143,11 @@ export default function Inventory() {
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 20, flexWrap: "wrap", marginTop: 12 }}>
             <div>
               <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4vw,52px)", lineHeight: 1, letterSpacing: "-.025em", margin: 0 }}>Boat Show Inventory</h1>
-              <p style={{ fontSize: 15.5, color: "#4c6270", margin: "11px 0 0", maxWidth: "64ch" }}>The full show floor, browsable and open: every hull from all 20 presenting dealers, on-site and off. No ticket required to look around.</p>
+              <p style={{ fontSize: 15.5, color: "#4c6270", margin: "11px 0 0", maxWidth: "64ch" }}>The full show floor, browsable and open: every boat in the water from all 20 presenting dealers, restocked all weekend as they sell. No ticket required to look around.</p>
             </div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", border: "1px solid rgba(11,34,56,.12)", borderRadius: 999, padding: "9px 16px" }}>
               <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#34C778", animation: "livePulse 2.4s infinite" }} />
-              <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>3,412 listings · updates hourly</span>
+              <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>300+ boats in the water · updates hourly</span>
             </div>
           </div>
           <div style={{ marginTop: 24 }}><AdSlot label="Presenting sponsor banner · 970×90" height={110} /></div>
@@ -203,7 +203,7 @@ export default function Inventory() {
           {/* RESULTS */}
           <div style={{ flex: "5 1 620px", minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14, flexWrap: "wrap", marginBottom: 18 }}>
-              <div style={{ fontFamily: MONO, fontSize: 13, color: "#3d5260" }}>Showing <strong style={{ color: "#0A2138" }}>{total}</strong> of 3,412 listings</div>
+              <div style={{ fontFamily: MONO, fontSize: 13, color: "#3d5260" }}>Showing <strong style={{ color: "#0A2138" }}>{total}</strong> of 312 at the show</div>
               <label style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".08em", color: "#8595a0" }}>SORT</span>
                 <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ background: "#fff", border: "1px solid rgba(11,34,56,.16)", borderRadius: 10, padding: "10px 30px 10px 13px", fontSize: 13.5, color: "#0A2138", cursor: "pointer" }}>
@@ -232,7 +232,7 @@ export default function Inventory() {
             {total === 0 && (
               <div style={{ textAlign: "center", padding: "60px 20px", border: "1px dashed rgba(11,34,56,.2)", borderRadius: 18 }}>
                 <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 21 }}>No boats match those filters.</div>
-                <p style={{ color: "#5a6c78", margin: "10px 0 18px" }}>Try widening your search. There are 3,412 more waiting.</p>
+                <p style={{ color: "#5a6c78", margin: "10px 0 18px" }}>Try widening your search. The docks restock all weekend as boats sell.</p>
                 <button onClick={clearFilters} className="btn-invert" style={{ background: "#0A2138", color: "#fff", fontWeight: 700, fontSize: 14, padding: "12px 20px", borderRadius: 999, border: "none", cursor: "pointer" }}>Clear all filters</button>
               </div>
             )}
@@ -242,7 +242,7 @@ export default function Inventory() {
               {vis < total ? (
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 9 }}><span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", animation: "livePulse 1.6s infinite" }} />Loading more listings…</span>
               ) : total > 0 ? (
-                <span>End of this sample set. Refine filters to explore more of 3,412.</span>
+                <span>End of this sample set. Refine filters to explore more of the show fleet.</span>
               ) : null}
             </div>
           </div>

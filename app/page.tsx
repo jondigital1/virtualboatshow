@@ -63,12 +63,12 @@ function Check({ bg = "#178a5a", size = 24 }: { bg?: string; size?: number }) {
 const SECTION_PAD = "clamp(70px,9vw,124px) clamp(18px,5vw,56px)";
 
 export default function Home() {
-  const [vesselCount, setVesselCount] = useState(3180);
+  const [vesselCount, setVesselCount] = useState(286);
   const { open: openModal } = useIframeModal();
   const openExhibit = () => openModal("https://acinwaterboatshow.com/exhibitors", "Exhibit at the Boat Show");
 
   useEffect(() => {
-    const start = 3180, target = 3412, dur = 1100, t0 = performance.now();
+    const start = 286, target = 312, dur = 1100, t0 = performance.now();
     let raf = 0;
     const tick = (now: number) => {
       const p = Math.min(1, (now - t0) / dur);
@@ -177,23 +177,23 @@ export default function Home() {
       <section style={{ background: "#0A2138", color: "#fff", padding: "clamp(66px,8vw,116px) clamp(18px,5vw,56px)" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,340px),1fr))", gap: "clamp(32px,5vw,72px)", alignItems: "center" }}>
           <div>
-            <Eyebrow>Come with a plan</Eyebrow>
+            <Eyebrow>The docks never go empty</Eyebrow>
             <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,3.8vw,48px)", lineHeight: 1.04, letterSpacing: "-.02em", margin: "14px 0 0", color: "#fff" }}>
-              A few hundred boats fit the docks.<br />Scout thousands before you go.
+              A few hundred boats float the docks.<br />But they never sit empty.
             </h2>
             <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px 0 0", maxWidth: "52ch" }}>
-              There&rsquo;s only so much room at the slips. Online, you scout every presenting dealer&rsquo;s full lineup, on-site and off, and build your shortlist before you go, so you spend show day boarding the boats worth your time and closing the deal in person.
+              The show floats 300+ boats at a time, and it runs like a living showroom: the moment one sells, its dealer walks another into the open slip. With thousands more in dealer inventory ready to restock, there&rsquo;s always something fresh tied up. Come early, come back, the docks stay full right through Sunday.
             </p>
           </div>
           <div style={{ display: "flex", alignItems: "flex-end", gap: "clamp(22px,4vw,48px)", flexWrap: "wrap" }}>
             <div>
               <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(44px,6vw,72px)", lineHeight: 1, color: "var(--accent)" }}>300<span style={{ fontSize: ".5em" }}>+</span></div>
-              <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".06em", color: "rgba(255,255,255,.5)", marginTop: 8, maxWidth: "16ch" }}>boats you can walk in a weekend</div>
+              <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".06em", color: "rgba(255,255,255,.5)", marginTop: 8, maxWidth: "16ch" }}>boats in the water at the show</div>
             </div>
             <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 32, color: "rgba(255,255,255,.3)", paddingBottom: 18 }}>→</div>
             <div>
               <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(64px,9vw,116px)", lineHeight: 1, color: "var(--accent)" }}>3,400<span style={{ fontSize: ".5em" }}>+</span></div>
-              <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".06em", color: "#fff", marginTop: 8, maxWidth: "18ch" }}>vessels to browse before you go</div>
+              <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".06em", color: "#fff", marginTop: 8, maxWidth: "20ch" }}>in dealer inventory, ready to restock the docks</div>
             </div>
           </div>
         </div>
@@ -205,13 +205,13 @@ export default function Home() {
           <Eyebrow>Your guide on the water</Eyebrow>
           <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", maxWidth: "20ch" }}>The whole show, in one clean dashboard.</h2>
           <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "#4c6270", margin: "20px 0 0", maxWidth: "62ch" }}>
-            Buoy brings the In-Water Boat Show online, gathering every dock, dealer, and off-site lot into a single, searchable index, so you can compare every boat at the show in one place, long before you set foot on the dock.
+            Buoy brings the In-Water Boat Show online, gathering every dock and dealer into a single, searchable index, so you can compare every boat at the show in one place, long before you set foot on the dock.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,280px),1fr))", gap: 18, marginTop: 44 }}>
             {[
               ["01", "Feet on the Deck", "The best call you’ll make is standing on the boat, so do your homework online, then step aboard only the ones worth your time. No pressure, no hard sell, just your shortlist waiting at the slip."],
               ["02", "Always-live availability", "Every listing updates live and hourly, so what you see online is exactly what’s floating at the dock, with no calling around, no stale listings, no wasted trips."],
-              ["03", "More than fits the docks", "Can’t find your exact layout at the slips? You’re instantly matched with the same boat at the dealer’s other locations, so your choices are never capped by dock space."],
+              ["03", "The docks restock themselves", "As boats sell, dealers walk fresh inventory into the open slips, so the fleet on the water stays full all weekend. Come back Sunday and there’s new metal tied up."],
             ].map(([n, h, body]) => (
               <div key={n} style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 20, padding: "30px 26px" }}>
                 <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 40, color: "var(--accent)", lineHeight: 1 }}>{n}</div>
@@ -265,7 +265,7 @@ export default function Home() {
             </div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", border: "1px solid rgba(11,34,56,.12)", borderRadius: 999, padding: "9px 16px" }}>
               <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#34C778", animation: "livePulse 2.4s infinite" }} />
-              <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>{fmt(vesselCount)} synced · updates hourly</span>
+              <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>{fmt(vesselCount)} boats in the water · updates hourly</span>
             </div>
           </div>
 
@@ -407,7 +407,7 @@ export default function Home() {
         <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
           <Eyebrow>The whole network, on your side</Eyebrow>
           <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(26px,3.6vw,44px)", lineHeight: 1.06, letterSpacing: "-.02em", margin: "14px auto 0", maxWidth: "22ch" }}>Every dealer at the show, competing for your business.</h2>
-          <p style={{ fontSize: "clamp(16px,1.2vw,18px)", lineHeight: 1.6, color: "#4c6270", margin: "18px auto 28px", maxWidth: "60ch" }}>One marketplace brings all 20 presenting dealers together, with full lineups on-site and off, so you compare freely and the best offer comes to you. No driving lot to lot, no haggling in the dark. Just the whole show working in your favor.</p>
+          <p style={{ fontSize: "clamp(16px,1.2vw,18px)", lineHeight: 1.6, color: "#4c6270", margin: "18px auto 28px", maxWidth: "60ch" }}>One marketplace brings all 20 presenting dealers together, with every boat they floated at the show in one place, so you compare freely and the best offer comes to you. No driving lot to lot, no haggling in the dark. Just the whole show working in your favor.</p>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}>
             <Link href="#docks" className="btn-invert" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#0A2138", color: "#fff", fontWeight: 700, fontSize: 15, padding: "14px 24px", borderRadius: 999 }}>Browse the marketplace →</Link>
             <Link href="/vendors" className="link-ink" style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".05em", color: "#7c8b96" }}>Run a dealership? Join the lineup →</Link>
