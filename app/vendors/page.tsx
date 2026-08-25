@@ -22,7 +22,7 @@ const DECK = [
 ];
 
 const INTERESTS = ["Presenting dealer", "Vendor booth", "Sponsorship", "Advertising"];
-const STATS: [string, string][] = [["20", "BOAT DEALERS"], ["38", "VENDORS & EXHIBITORS"], ["58", "EXHIBITING COMPANIES"], ["8", "STATES REPRESENTED"]];
+const STATS: [string, string][] = [["22", "BOAT DEALERS"], ["51", "VENDORS & EXHIBITORS"], ["73", "EXHIBITING COMPANIES"], ["11", "STATES REPRESENTED"]];
 
 const formInput: React.CSSProperties = { width: "100%", background: "#f7f6f1", border: "1px solid rgba(20,46,81,.14)", borderRadius: 11, padding: "13px 15px", fontSize: 15, color: "#142E51" };
 const formLabel: React.CSSProperties = { display: "block", fontSize: 12.5, fontWeight: 600, color: "#3d5260", marginBottom: 7, fontFamily: MONO, letterSpacing: ".04em" };
