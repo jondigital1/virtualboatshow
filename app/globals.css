@@ -139,6 +139,13 @@ input, textarea, button, select { font-family: inherit; }
   .map-grid { grid-template-columns: 1fr !important; }
 }
 
+/* Featured rail: fixed column counts (3/2/1) so the 6 cards always fill
+   complete rows at every width; an auto-fill grid packs 4-up on wide
+   screens and strands 2 cards on a second row. */
+.featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 1000px) { .featured-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .featured-grid { grid-template-columns: 1fr; } }
+
 /* range slider (VDP finance calculator) */
 input[type=range] { -webkit-appearance: none; appearance: none; height: 5px; border-radius: 999px; background: rgba(255,255,255,.22); outline: none; }
 input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 19px; height: 19px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid #fff; box-shadow: 0 1px 4px rgba(10,33,56,.4); }

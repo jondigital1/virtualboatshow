@@ -161,20 +161,20 @@ export default function Home() {
                 See All Boats <span aria-hidden>→</span>
               </Link>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,250px),1fr))", gap: 18, marginTop: 30 }}>
+            <div className="featured-grid" style={{ marginTop: 30 }}>
               {featured.map((b) => (
                 <Link key={b.slug} href={"/boats/" + b.slug} className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "block" }}>
                   <div style={{ position: "relative", aspectRatio: "16/10" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={b.photos[0]} alt={boatTitle(b)} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
                     {b.notes && (
-                      <span style={{ position: "absolute", top: 9, left: 9, fontFamily: FONT, fontWeight: 700, fontSize: 10, letterSpacing: ".06em", textTransform: "uppercase", background: "var(--gold)", color: "#142E51", padding: "5px 9px", borderRadius: 6, maxWidth: "85%" }}>{b.notes}</span>
+                      <span style={{ position: "absolute", top: 11, left: 11, fontFamily: FONT, fontWeight: 700, fontSize: 10.5, letterSpacing: ".06em", textTransform: "uppercase", background: "var(--gold)", color: "#142E51", padding: "5px 10px", borderRadius: 6, maxWidth: "85%" }}>{b.notes}</span>
                     )}
                   </div>
-                  <div style={{ padding: "13px 15px 15px" }}>
-                    <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "rgba(20,46,81,.55)" }}>{b.brand}{b.year ? ` · ${b.year}` : ""}</div>
-                    <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 17, color: "var(--navy)", marginTop: 3, lineHeight: 1.15 }}>{b.model}</div>
-                    <div style={{ fontSize: 12.5, color: "#5a6c78", marginTop: 5 }}>{b.dealers.map((d) => d.name).join(" · ")}</div>
+                  <div style={{ padding: "16px 18px 18px" }}>
+                    <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: "rgba(20,46,81,.55)" }}>{b.brand}{b.year ? ` · ${b.year}` : ""}</div>
+                    <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 20, color: "var(--navy)", marginTop: 3, lineHeight: 1.15 }}>{b.model}</div>
+                    <div style={{ fontSize: 13.5, color: "#5a6c78", marginTop: 6 }}>{b.dealers.map((d) => d.name).join(" · ")}</div>
                   </div>
                 </Link>
               ))}

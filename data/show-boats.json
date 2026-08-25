@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T14:19:04.198Z",
+  "generatedAt": "2026-08-25T14:24:15.637Z",
   "boatCount": 86,
   "boats": [
     {
@@ -32,8 +32,8 @@
         "/boats/albemarle-45-carolinian-fisharound-express-10.jpg",
         "/boats/albemarle-45-carolinian-fisharound-express-11.jpg"
       ],
-      "blurb": "Your trusted Albemarle Boat dealer in NJ. Discover high-performance sportfishing boats with expert sales and service at South Jersey Yacht Sales.",
-      "lengthFt": 58
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "barletta-pontoons-l25uc",
@@ -66,8 +66,8 @@
         "/boats/barletta-pontoons-l25uc-11.jpg",
         "/boats/barletta-pontoons-l25uc-12.jpg"
       ],
-      "blurb": "New Jersey's #1 rated full-service marina located in Tuckerton. New and Used boat sales, service, gas, and more. Regal, SeaFox, Barletta, Sylvan, Bentley, Kawasaki, Yamaha, and full-service brokerage service.",
-      "lengthFt": 29
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "beneteau-dayboats-antares-9",
@@ -100,8 +100,8 @@
         "/boats/beneteau-dayboats-antares-9-11.jpg",
         "/boats/beneteau-dayboats-antares-9-12.jpg"
       ],
-      "blurb": "2026 BENETEAU CLEARANCE EVENT Take advantage of the biggest savings of the year on our\nremaining 2026 Beneteau inventory before the 2027 models arrive. BENETEAU SPECIAL: 2.99% financing -contact us for details&nbsp; ADDITIONAL OFFERS INCLUDE:\n• Free seasonal slip at our full-service marina on the Ma",
-      "lengthFt": 29
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "boston-whaler-325-conquest",
@@ -152,7 +152,7 @@
       "photos": [
         "/boats/boston-whaler-330-outrage-1.jpg"
       ],
-      "blurb": "Meet the Boston Whaler 330 Outrage. This offshore center console boat offers beautiful handling, comfort-minded amenities and advanced fishing features.",
+      "blurb": "",
       "lengthFt": null
     },
     {
@@ -186,8 +186,8 @@
         "/boats/cobia-245-cc-11.jpg",
         "/boats/cobia-245-cc-12.jpg"
       ],
-      "blurb": "Explore our selection of new boats for sale in Stone Harbor, NJ at Stone Harbor Marina.",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "crownline-318-xss",
@@ -210,8 +210,8 @@
         "/boats/crownline-318-xss-1.jpg",
         "/boats/crownline-318-xss-2.jpg"
       ],
-      "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
-      "lengthFt": 42
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "cruisers-yachts-42-gls",
@@ -242,8 +242,8 @@
         "/boats/cruisers-yachts-42-gls-9.jpg",
         "/boats/cruisers-yachts-42-gls-10.jpg"
       ],
-      "blurb": "Navigate waters with ease in the 2026 Crusiers Yachts 42 GLS. Powered by Mercury engines reach speeds up to 48 mph. With dual beach doors, a full galley, comfortable seating, and spacious bow - the 42 GLS is the yacht for you. The lower cabin features an aft stateroom and U-shaped dinette that conve",
-      "lengthFt": 12
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "cutwater-288",
@@ -276,8 +276,8 @@
         "/boats/cutwater-288-11.jpg",
         "/boats/cutwater-288-12.jpg"
       ],
-      "blurb": "Factory Direct Pricing Starting At: $344,937*This model starts at the above base price from the factory.The vessel shown/listed may include additional factory-installed options, electronics,&nbsp; freight, commissioning, and dealer-added equipment that affect final pricing.Please contact us for a de",
-      "lengthFt": 33
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "de-antonio-yachts-de-antonio-d42",
@@ -310,8 +310,8 @@
         "/boats/de-antonio-yachts-de-antonio-d42-11.jpg",
         "/boats/de-antonio-yachts-de-antonio-d42-12.jpg"
       ],
-      "blurb": "Sandy Hook Yacht Sales is pleased to offer this 2026 De Antonio Yachts D42 located in Sea Bright, New Jersey. This yacht is offered at $0. Whether buying or selling, the yacht sales professionals at Sandy Hook Yacht Sales can make your boating dreams a reality.",
-      "lengthFt": 57
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "everglades-375-cc",
@@ -344,8 +344,8 @@
         "/boats/everglades-375-cc-11.jpg",
         "/boats/everglades-375-cc-12.jpg"
       ],
-      "blurb": "Explore our selection of new boats for sale in Stone Harbor, NJ at Stone Harbor Marina.",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "finseeker-260-dual-console",
@@ -368,8 +368,8 @@
         "/boats/finseeker-260-dual-console-1.jpg",
         "/boats/finseeker-260-dual-console-2.jpg"
       ],
-      "blurb": "Crownline",
-      "lengthFt": 22
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "formula-360-cbr",
@@ -403,7 +403,7 @@
         "/boats/formula-360-cbr-12.jpg"
       ],
       "blurb": "",
-      "lengthFt": 92
+      "lengthFt": null
     },
     {
       "slug": "galeon-yachts-335-gto",
@@ -436,8 +436,8 @@
         "/boats/galeon-yachts-335-gto-11.jpg",
         "/boats/galeon-yachts-335-gto-12.jpg"
       ],
-      "blurb": "2026 Galeon 335 GTO Experience the ultimate in luxury with the 2026 Galeon 335 GTO, where performance meets sophistication. This stunning vessel is powered by two Mercury Verado 350 engines, boasting a total power of 700 hp, ensuring an exhilarating ride for you and your guests. Unmatched Performanc",
-      "lengthFt": 12
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "grady-white-321-coastal-explorer",
@@ -470,8 +470,8 @@
         "/boats/grady-white-321-coastal-explorer-11.jpg",
         "/boats/grady-white-321-coastal-explorer-12.jpg"
       ],
-      "blurb": "Meet versatility redefined – the 321 Coastal Explorer. The largest, most advanced CE yet, it’s the best center console for those who love inshore/offshore…",
-      "lengthFt": 58
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "grady-white-canyon-266",
@@ -504,8 +504,8 @@
         "/boats/grady-white-canyon-266-11.jpg",
         "/boats/grady-white-canyon-266-12.jpg"
       ],
-      "blurb": "Grady-White Boats builds ruggedly elegant outboard powerboats ranging from 18' to 45': center console, dual console, walkaround cabin and express cabin…",
-      "lengthFt": 58
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "hurricane-deck-sundeck-2690",
@@ -538,8 +538,8 @@
         "/boats/hurricane-deck-sundeck-2690-11.jpg",
         "/boats/hurricane-deck-sundeck-2690-12.jpg"
       ],
-      "blurb": "New Jersey Outboards is a Sea Hunt, Hurricane, Sweetwater, AquaPatio, SanPan, Yamaha marine dealership in Bayville, New Jersey and near Berkeley Township, Ocean Gate, Pine Beach and Beachwood. It features new and used boats, as well as parts, services and financing ",
-      "lengthFt": 84
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "key-west-249-fs",
@@ -595,8 +595,8 @@
         "/boats/marex-marex-440-11.jpg",
         "/boats/marex-marex-440-12.jpg"
       ],
-      "blurb": "Sandy Hook Yacht Sales is pleased to offer this 2026 Marex 440 located in Sea Bright, New Jersey. This yacht is offered at $0. Whether buying or selling, the yacht sales professionals at Sandy Hook Yacht Sales can make your boating dreams a reality.",
-      "lengthFt": 57
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "monterey-34-elite",
@@ -621,8 +621,8 @@
         "/boats/monterey-34-elite-3.jpg",
         "/boats/monterey-34-elite-4.jpg"
       ],
-      "blurb": "Discover Monterey Boats, premium boat manufacturers. Boats made for family cruising, watersports, day trips, and refined performance on the water.",
-      "lengthFt": 2
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "navan-t-30-center-console",
@@ -679,8 +679,8 @@
         "/boats/nimbus-t8-11.jpg",
         "/boats/nimbus-t8-12.jpg"
       ],
-      "blurb": "2026 NIMBUS CLEARANCE EVENTTake advantage of the biggest savings of the year on our\nremaining 2026 Nimbus inventory before the 2027 models arrive.OFFERS INCLUDE:\n• Free seasonal slip at our full-service marina on the Manasquan River\n• Free fuel program — receive a check after closing\n• Free winter l",
-      "lengthFt": 26
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "parker-227-explorer",
@@ -713,8 +713,8 @@
         "/boats/parker-227-explorer-11.jpg",
         "/boats/parker-227-explorer-12.jpg"
       ],
-      "blurb": "New Jersey Outboards is a Sea Hunt, Hurricane, Sweetwater, AquaPatio, SanPan, Yamaha marine dealership in Bayville, New Jersey and near Berkeley Township, Ocean Gate, Pine Beach and Beachwood. It features new and used boats, as well as parts, services and financing ",
-      "lengthFt": 84
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "pursuit-s-288",
@@ -747,8 +747,8 @@
         "/boats/pursuit-s-288-11.jpg",
         "/boats/pursuit-s-288-12.jpg"
       ],
-      "blurb": "Explore our selection of new boats for sale in Stone Harbor, NJ at Stone Harbor Marina.",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "pursuit-s-358",
@@ -781,8 +781,8 @@
         "/boats/pursuit-s-358-11.jpg",
         "/boats/pursuit-s-358-12.jpg"
       ],
-      "blurb": "Explore the 2026 Pursuit S 358 Center Console at Stone Harbor Marina. Features 35 length, Designed to catch your eye and make it easy to haul in the perfect catch, the S 358 is our first-eve.... Contact us for pricing",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "regal-36xo",
@@ -815,8 +815,8 @@
         "/boats/regal-36xo-11.jpg",
         "/boats/regal-36xo-12.jpg"
       ],
-      "blurb": "New Jersey's #1 rated full-service marina located in Tuckerton. New and Used boat sales, service, gas, and more. Regal, SeaFox, Barletta, Sylvan, Bentley, Kawasaki, Yamaha, and full-service brokerage service.",
-      "lengthFt": 29
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "regulator-31",
@@ -849,8 +849,8 @@
         "/boats/regulator-31-11.jpg",
         "/boats/regulator-31-12.jpg"
       ],
-      "blurb": "Shop 2027 Regulator 31 at Comstock Yacht Sales & Marina | Brick in Brick, NJ. View price, specs, photos & schedule a test ride today!",
-      "lengthFt": 86
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "regulator-35",
@@ -898,8 +898,8 @@
         "/boats/robalo-277-dual-console-1.jpg",
         "/boats/robalo-277-dual-console-2.jpg"
       ],
-      "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
-      "lengthFt": 42
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "saxdor-yachts-400-gtc",
@@ -932,8 +932,8 @@
         "/boats/saxdor-yachts-400-gtc-11.jpg",
         "/boats/saxdor-yachts-400-gtc-12.jpg"
       ],
-      "blurb": "The Saxdor 400 GTC is engineered for twin outboard rigs with their unique naval architecture, guaranteeing an unforgettable journey every time. Featuring an innovative main deck design, the GTC, like its sibling, the GTO, maximizes its internal living space with a wheelhouse that extends to the full",
-      "lengthFt": 12
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "scout-260-lxf",
@@ -966,8 +966,8 @@
         "/boats/scout-260-lxf-11.jpg",
         "/boats/scout-260-lxf-12.jpg"
       ],
-      "blurb": "Introducing the 2025 Scout 260 LXF Step into luxury and adventure with the 2025 Scout 260 LXF, a masterpiece of craftsmanship and performance. Unmatched Performance Powered by a Mercury Verado V10 400 HP engine , this vessel delivers an exhilarating boating experience with unmatched power and effici",
-      "lengthFt": 12
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "sea-hunt-ultra-305-se",
@@ -1000,8 +1000,8 @@
         "/boats/sea-hunt-ultra-305-se-11.jpg",
         "/boats/sea-hunt-ultra-305-se-12.jpg"
       ],
-      "blurb": "New Jersey Outboards is a Sea Hunt, Hurricane, Sweetwater, AquaPatio, SanPan, Yamaha marine dealership in Bayville, New Jersey and near Berkeley Township, Ocean Gate, Pine Beach and Beachwood. It features new and used boats, as well as parts, services and financing ",
-      "lengthFt": 84
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "sea-pro-245-flxr",
@@ -1034,8 +1034,8 @@
         "/boats/sea-pro-245-flxr-11.jpg",
         "/boats/sea-pro-245-flxr-12.jpg"
       ],
-      "blurb": "Explore our selection of new boats for sale in Stone Harbor, NJ at Stone Harbor Marina.",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "sea-ray-360-slx-ob",
@@ -1068,8 +1068,8 @@
         "/boats/sea-ray-360-slx-ob-11.jpg",
         "/boats/sea-ray-360-slx-ob-12.jpg"
       ],
-      "blurb": "Introducing the 2026 Sea Ray SLX 360 Outboard. A celebration of excellence. A masterpiece of premium styling, cutting-edge technology, and unmistakable presence, the SLX 360 Outboard is built for those who have conquered life's summits and want the world to know. With triple Mercury engines and the ",
-      "lengthFt": 12
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "solace-35cs",
@@ -1102,8 +1102,8 @@
         "/boats/solace-35cs-11.jpg",
         "/boats/solace-35cs-12.jpg"
       ],
-      "blurb": "The latest addition to the SŌLACE Center Console line, the 35CS! This model embodies the perfect balance of cutting technology, timeless design, and unparalleled craftsmanship. SŌLACE Center Consoles feature a dual-step performance hull which provides a smooth dry ride with precision handling at exc",
-      "lengthFt": 58
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "solara-310-cw",
@@ -1136,8 +1136,8 @@
         "/boats/solara-310-cw-11.jpg",
         "/boats/solara-310-cw-12.jpg"
       ],
-      "blurb": "2026 SOLARA CLEARANCE EVENT Take advantage of factory-direct pricing and the biggest\nsavings of the year on our remaining 2026 Solara inventory before the 2027\nmodels arrive. SOLARA SPECIAL:\n• Factory-direct pricing\n• Two additional years of free factory warranty\n• Free five-year Yamaha engine warra",
-      "lengthFt": 30
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "starcraft-svx-230-dc-ob",
@@ -1168,8 +1168,8 @@
         "/boats/starcraft-svx-230-dc-ob-9.jpg",
         "/boats/starcraft-svx-230-dc-ob-10.jpg"
       ],
-      "blurb": "New Jersey's #1 rated full-service marina located in Tuckerton. New and Used boat sales, service, gas, and more. Regal, SeaFox, Barletta, Sylvan, Bentley, Kawasaki, Yamaha, and full-service brokerage service.",
-      "lengthFt": 29
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "steiger-craft-31-fisherman",
@@ -1192,8 +1192,8 @@
         "/boats/steiger-craft-31-fisherman-1.jpg",
         "/boats/steiger-craft-31-fisherman-2.jpg"
       ],
-      "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
-      "lengthFt": 42
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "tiara-yachts-39ls",
@@ -1226,8 +1226,8 @@
         "/boats/tiara-yachts-39ls-11.jpg",
         "/boats/tiara-yachts-39ls-12.jpg"
       ],
-      "blurb": "Shop 2027 Tiara 39 LS at Comstock Yacht Sales & Marina | Brick in Brick, NJ. View price, specs, photos & schedule a test ride today!",
-      "lengthFt": 86
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "tidewater-330-cc-adventure",
@@ -1256,8 +1256,8 @@
         "/boats/tidewater-330-cc-adventure-7.jpg",
         "/boats/tidewater-330-cc-adventure-8.jpg"
       ],
-      "blurb": "Coastal Boat Sales is a marine dealership located in Brick, NJ. We sell new and pre-owned Boats from Crest and Tidewater with excellent financing and pricing options. Coastal Boat Sales offers service and parts, and proudly serves the areas of Trenton, Toms River, Asbury Park and Freehold.",
-      "lengthFt": 0
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "valhalla-v-33",
@@ -1288,8 +1288,8 @@
         "/boats/valhalla-v-33-9.jpg",
         "/boats/valhalla-v-33-10.jpg"
       ],
-      "blurb": "Valhalla Boat Works: A new era of high-performance center consoles, blends Viking's legendary design with revolutionary fishing capabilities.",
-      "lengthFt": 58
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "viking-yachts-50-c",
@@ -1322,8 +1322,8 @@
         "/boats/viking-yachts-50-c-11.jpg",
         "/boats/viking-yachts-50-c-12.jpg"
       ],
-      "blurb": "“No one else in the industry can match our quality and versatility,” says Viking President and CEO Pat Healey. “We have the best team of designers, engineers and boatbuilders anywhere. The new 50 Convertible is an incredible achievement, and one we know our owners will be very pleased with.” The 50 ",
-      "lengthFt": 58
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "world-cat-280-center-console",
@@ -1346,8 +1346,8 @@
         "/boats/world-cat-280-center-console-1.jpg",
         "/boats/world-cat-280-center-console-2.jpg"
       ],
-      "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
-      "lengthFt": 42
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "albemarle-27-dual-console",
@@ -1380,8 +1380,8 @@
         "/boats/albemarle-27-dual-console-11.jpg",
         "/boats/albemarle-27-dual-console-12.jpg"
       ],
-      "blurb": "Family time on the water is priceless, and the Albemarle Boats 27 Dual Console is built to make every outing count. Designed for active boating families, this 27-foot Dual Console features Albemarle’s proven Deep-V hull and solid fiberglass construction, delivering the smooth, dry ride the brand is ",
-      "lengthFt": 58
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "albemarle-30-express",
@@ -1414,8 +1414,8 @@
         "/boats/albemarle-30-express-11.jpg",
         "/boats/albemarle-30-express-12.jpg"
       ],
-      "blurb": "Available To Order!!! The Albemarle 30 Express combines serious offshore fishing capability with the comfort and refinement expected from a premium Carolina-style sportfisherman. Introduced in 2021, this compact Express delivers exceptional handling in rough seas, impressive fuel efficiency, and the",
-      "lengthFt": 58
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "barletta-pontoons-a22uc",
@@ -1448,8 +1448,8 @@
         "/boats/barletta-pontoons-a22uc-11.jpg",
         "/boats/barletta-pontoons-a22uc-12.jpg"
       ],
-      "blurb": "New Jersey's #1 rated full-service marina located in Tuckerton. New and Used boat sales, service, gas, and more. Regal, SeaFox, Barletta, Sylvan, Bentley, Kawasaki, Yamaha, and full-service brokerage service.",
-      "lengthFt": 29
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "barletta-pontoons-c22qc",
@@ -1482,8 +1482,8 @@
         "/boats/barletta-pontoons-c22qc-11.jpg",
         "/boats/barletta-pontoons-c22qc-12.jpg"
       ],
-      "blurb": "New Jersey's #1 rated full-service marina located in Tuckerton. New and Used boat sales, service, gas, and more. Regal, SeaFox, Barletta, Sylvan, Bentley, Kawasaki, Yamaha, and full-service brokerage service.",
-      "lengthFt": 29
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "barletta-pontoons-c24m",
@@ -1516,8 +1516,8 @@
         "/boats/barletta-pontoons-c24m-11.jpg",
         "/boats/barletta-pontoons-c24m-12.jpg"
       ],
-      "blurb": "New Jersey's #1 rated full-service marina located in Tuckerton. New and Used boat sales, service, gas, and more. Regal, SeaFox, Barletta, Sylvan, Bentley, Kawasaki, Yamaha, and full-service brokerage service.",
-      "lengthFt": 29
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "boston-whaler-220-dauntless",
@@ -1563,8 +1563,8 @@
       "photos": [
         "/boats/boston-whaler-280-vantage-1.jpg"
       ],
-      "blurb": "Meet Boston Whaler's 280 Vantage. With stability, comfort, and amenities for a wide range of activities, this dual console is the Swiss Army knife of boats.",
-      "lengthFt": 2
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "cobia-285-cc",
@@ -1597,8 +1597,8 @@
         "/boats/cobia-285-cc-11.jpg",
         "/boats/cobia-285-cc-12.jpg"
       ],
-      "blurb": "Explore the 2026 Cobia 285 CC Center Console at Stone Harbor Marina. Features 28 length, Your Cobia crew will love finding new locales to explore aboard the all-new 285 CC. With an LOA of 2.... Contact us for pricing",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "cobia-320-cc",
@@ -1631,8 +1631,8 @@
         "/boats/cobia-320-cc-11.jpg",
         "/boats/cobia-320-cc-12.jpg"
       ],
-      "blurb": "Explore the 2026 Cobia 320 CC Center Console at Stone Harbor Marina. Features 32 length. Contact us for pricing",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "crownline-298-xss",
@@ -1655,8 +1655,8 @@
         "/boats/crownline-298-xss-1.jpg",
         "/boats/crownline-298-xss-2.jpg"
       ],
-      "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
-      "lengthFt": 42
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "cutwater-248",
@@ -1689,8 +1689,8 @@
         "/boats/cutwater-248-11.jpg",
         "/boats/cutwater-248-12.jpg"
       ],
-      "blurb": "Factory Direct Pricing Starting At: $169,937.00*This model starts at the above base price from the factory.The vessel shown/listed may include additional factory-installed options, electronics,&nbsp; freight, commissioning, and dealer-added equipment that affect final pricing.Please contact us for a",
-      "lengthFt": 30
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "de-antonio-yachts-de-antonio-d36",
@@ -1723,8 +1723,8 @@
         "/boats/de-antonio-yachts-de-antonio-d36-11.jpg",
         "/boats/de-antonio-yachts-de-antonio-d36-12.jpg"
       ],
-      "blurb": "Sandy Hook Yacht Sales is pleased to offer this 2026 De Antonio Yachts D36 located in Sea Bright, New Jersey. This yacht is offered at $0. Whether buying or selling, the yacht sales professionals at Sandy Hook Yacht Sales can make your boating dreams a reality.",
-      "lengthFt": 57
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "everglades-315-cc",
@@ -1757,8 +1757,8 @@
         "/boats/everglades-315-cc-11.jpg",
         "/boats/everglades-315-cc-12.jpg"
       ],
-      "blurb": "Explore our selection of new boats for sale in Stone Harbor, NJ at Stone Harbor Marina.",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "everglades-395-cc",
@@ -1791,8 +1791,8 @@
         "/boats/everglades-395-cc-11.jpg",
         "/boats/everglades-395-cc-12.jpg"
       ],
-      "blurb": "Explore the 2026 Everglades 395 CC Center Console at Stone Harbor Marina. Features 39 length, Introducing the 395cc. A ground-breaking progression of technology, power, fishability and yacht-lik.... Contact us for pricing",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "formula-310-br",
@@ -1825,8 +1825,8 @@
         "/boats/formula-310-br-11.jpg",
         "/boats/formula-310-br-12.jpg"
       ],
-      "blurb": "Formula Boats' 310 Bowrider offers a luxurious, roomy, and classic interior with top performance. Learn more today!",
-      "lengthFt": 31
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "formula-330-cbr",
@@ -1859,8 +1859,8 @@
         "/boats/formula-330-cbr-11.jpg",
         "/boats/formula-330-cbr-12.jpg"
       ],
-      "blurb": "Formula Boats' 330 Crossover Bowrider offers large, luxurious overnight capacities with a twin outboard. Learn more and contact us today!",
-      "lengthFt": 92
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "grady-white-freedom-345",
@@ -1893,8 +1893,8 @@
         "/boats/grady-white-freedom-345-11.jpg",
         "/boats/grady-white-freedom-345-12.jpg"
       ],
-      "blurb": "Grady-White Boats builds ruggedly elegant outboard powerboats ranging from 18' to 45': center console, dual console, walkaround cabin and express cabin…",
-      "lengthFt": 58
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "marex-marex-360",
@@ -1927,8 +1927,8 @@
         "/boats/marex-marex-360-11.jpg",
         "/boats/marex-marex-360-12.jpg"
       ],
-      "blurb": "Sandy Hook Yacht Sales is pleased to offer this 2026 Marex 360 Cabriolet Cruiser located in Sea Bright, New Jersey. This yacht is offered at $0. Whether buying or selling, the yacht sales professionals at Sandy Hook Yacht Sales can make your boating dreams a reality.",
-      "lengthFt": 57
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "navan-c30",
@@ -1951,8 +1951,8 @@
         "/boats/navan-c30-1.jpg",
         "/boats/navan-c30-2.jpg"
       ],
-      "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
-      "lengthFt": 42
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "navan-s30",
@@ -1975,8 +1975,8 @@
         "/boats/navan-s30-1.jpg",
         "/boats/navan-s30-2.jpg"
       ],
-      "blurb": "For decades, D&R Boat World has been New Jersey&#8217;s go-to boat dealer in Green Brook and Toms River. Discover exciting brands and expert service today!",
-      "lengthFt": 42
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "parker-210-coastal",
@@ -2009,8 +2009,8 @@
         "/boats/parker-210-coastal-11.jpg",
         "/boats/parker-210-coastal-12.jpg"
       ],
-      "blurb": "New Jersey Outboards is a Sea Hunt, Hurricane, Sweetwater, AquaPatio, SanPan, Yamaha marine dealership in Bayville, New Jersey and near Berkeley Township, Ocean Gate, Pine Beach and Beachwood. It features new and used boats, as well as parts, services and financing ",
-      "lengthFt": 84
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "pursuit-dc-365",
@@ -2043,8 +2043,8 @@
         "/boats/pursuit-dc-365-11.jpg",
         "/boats/pursuit-dc-365-12.jpg"
       ],
-      "blurb": "Explore the 2026 Pursuit DC 365 Dual Console at Stone Harbor Marina. Features 36 length. Contact us for pricing",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "pursuit-os-355",
@@ -2077,8 +2077,8 @@
         "/boats/pursuit-os-355-11.jpg",
         "/boats/pursuit-os-355-12.jpg"
       ],
-      "blurb": "Explore the 2026 Pursuit OS 355 Cruiser at Stone Harbor Marina. Features 35 length. Contact us for pricing",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "regal-26xo",
@@ -2111,8 +2111,8 @@
         "/boats/regal-26xo-11.jpg",
         "/boats/regal-26xo-12.jpg"
       ],
-      "blurb": "New Jersey's #1 rated full-service marina located in Tuckerton. New and Used boat sales, service, gas, and more. Regal, SeaFox, Barletta, Sylvan, Bentley, Kawasaki, Yamaha, and full-service brokerage service.",
-      "lengthFt": 29
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "regulator-24xo",
@@ -2160,8 +2160,8 @@
         "/boats/robalo-230-center-console-1.jpg",
         "/boats/robalo-230-center-console-2.jpg"
       ],
-      "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
-      "lengthFt": 42
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "robalo-257-dual-console",
@@ -2184,8 +2184,8 @@
         "/boats/robalo-257-dual-console-1.jpg",
         "/boats/robalo-257-dual-console-2.jpg"
       ],
-      "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
-      "lengthFt": 42
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "sea-hunt-ultra-265-se",
@@ -2218,8 +2218,8 @@
         "/boats/sea-hunt-ultra-265-se-11.jpg",
         "/boats/sea-hunt-ultra-265-se-12.jpg"
       ],
-      "blurb": "New Jersey Outboards is a Sea Hunt, Hurricane, Sweetwater, AquaPatio, SanPan, Yamaha marine dealership in Bayville, New Jersey and near Berkeley Township, Ocean Gate, Pine Beach and Beachwood. It features new and used boats, as well as parts, services and financing ",
-      "lengthFt": 84
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "sea-hunt-ultra-275-se",
@@ -2252,8 +2252,8 @@
         "/boats/sea-hunt-ultra-275-se-11.jpg",
         "/boats/sea-hunt-ultra-275-se-12.jpg"
       ],
-      "blurb": "New Jersey Outboards is a Sea Hunt, Hurricane, Sweetwater, AquaPatio, SanPan, Yamaha marine dealership in Bayville, New Jersey and near Berkeley Township, Ocean Gate, Pine Beach and Beachwood. It features new and used boats, as well as parts, services and financing ",
-      "lengthFt": 84
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "sea-pro-262-dlx",
@@ -2286,8 +2286,8 @@
         "/boats/sea-pro-262-dlx-11.jpg",
         "/boats/sea-pro-262-dlx-12.jpg"
       ],
-      "blurb": "Explore our selection of new boats for sale in Stone Harbor, NJ at Stone Harbor Marina.",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "sea-pro-265-flx",
@@ -2320,8 +2320,8 @@
         "/boats/sea-pro-265-flx-11.jpg",
         "/boats/sea-pro-265-flx-12.jpg"
       ],
-      "blurb": "Explore the 2026 Sea Pro 265 FLX Center Console at Stone Harbor Marina. Features 26 length, Sea Pro is one of the fastest growing center console brands in the industry. The reason is simple… w.... Contact us for pricing",
-      "lengthFt": 56
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "solace-32cs",
@@ -2354,8 +2354,8 @@
         "/boats/solace-32cs-11.jpg",
         "/boats/solace-32cs-12.jpg"
       ],
-      "blurb": "The Solace Boats 32CS is a premium 32-foot Center Console designed for versatile performance, equally at home in inshore, offshore, or nearshore waters. Built using vacuum-infused carbon fiber and S-glass composites, its stepped hull delivers a smooth, efficient ride with impressive fuel range and h",
-      "lengthFt": 58
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "solace-37cs",
@@ -2388,8 +2388,8 @@
         "/boats/solace-37cs-11.jpg",
         "/boats/solace-37cs-12.jpg"
       ],
-      "blurb": "The Solace Boats 37CS is a premium, high-performance 37-foot Center Console that blends serious offshore fishing capability with luxurious comfort and refined design. Built on Solace’s engineered twin-step hull for a smooth, efficient ride and excellent range, it features a spacious Cabin with stand",
-      "lengthFt": 10
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "starcraft-svx-190-dc-ob",
@@ -2420,8 +2420,8 @@
         "/boats/starcraft-svx-190-dc-ob-9.jpg",
         "/boats/starcraft-svx-190-dc-ob-10.jpg"
       ],
-      "blurb": "New Jersey's #1 rated full-service marina located in Tuckerton. New and Used boat sales, service, gas, and more. Regal, SeaFox, Barletta, Sylvan, Bentley, Kawasaki, Yamaha, and full-service brokerage service.",
-      "lengthFt": 29
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "starcraft-svx-191-ob",
@@ -2454,8 +2454,8 @@
         "/boats/starcraft-svx-191-ob-11.jpg",
         "/boats/starcraft-svx-191-ob-12.jpg"
       ],
-      "blurb": "New Jersey's #1 rated full-service marina located in Tuckerton. New and Used boat sales, service, gas, and more. Regal, SeaFox, Barletta, Sylvan, Bentley, Kawasaki, Yamaha, and full-service brokerage service.",
-      "lengthFt": 29
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "starcraft-svx-210-dc-ob",
@@ -2488,8 +2488,8 @@
         "/boats/starcraft-svx-210-dc-ob-11.jpg",
         "/boats/starcraft-svx-210-dc-ob-12.jpg"
       ],
-      "blurb": "New Jersey's #1 rated full-service marina located in Tuckerton. New and Used boat sales, service, gas, and more. Regal, SeaFox, Barletta, Sylvan, Bentley, Kawasaki, Yamaha, and full-service brokerage service.",
-      "lengthFt": 29
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "starcraft-svx-211-ob",
@@ -2522,8 +2522,8 @@
         "/boats/starcraft-svx-211-ob-11.jpg",
         "/boats/starcraft-svx-211-ob-12.jpg"
       ],
-      "blurb": "New Jersey's #1 rated full-service marina located in Tuckerton. New and Used boat sales, service, gas, and more. Regal, SeaFox, Barletta, Sylvan, Bentley, Kawasaki, Yamaha, and full-service brokerage service.",
-      "lengthFt": 29
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "steiger-craft-255-annapolis",
@@ -2556,8 +2556,8 @@
         "/boats/steiger-craft-255-annapolis-11.jpg",
         "/boats/steiger-craft-255-annapolis-12.jpg"
       ],
-      "blurb": "Welcome to Steiger Craft, the world's most proven pilothouse. From the beginning, our obsession has been to design and build boats that are objects of desire. Now, and for decades to come.",
-      "lengthFt": 0
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "steiger-craft-255-miami",
@@ -2580,8 +2580,8 @@
         "/boats/steiger-craft-255-miami-1.jpg",
         "/boats/steiger-craft-255-miami-2.jpg"
       ],
-      "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
-      "lengthFt": 42
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "tidewater-282-cc-adventure",
@@ -2614,8 +2614,8 @@
         "/boats/tidewater-282-cc-adventure-11.jpg",
         "/boats/tidewater-282-cc-adventure-12.jpg"
       ],
-      "blurb": "Coastal Boat Sales is a marine dealership located in Brick, NJ. We sell new and pre-owned Boats from Crest and Tidewater with excellent financing and pricing options. Coastal Boat Sales offers service and parts, and proudly serves the areas of Trenton, Toms River, Asbury Park and Freehold.",
-      "lengthFt": 0
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "tidewater-302-cc-adventure",
@@ -2648,8 +2648,8 @@
         "/boats/tidewater-302-cc-adventure-11.jpg",
         "/boats/tidewater-302-cc-adventure-12.jpg"
       ],
-      "blurb": "Coastal Boat Sales is a marine dealership located in Brick, NJ. We sell new and pre-owned Boats from Crest and Tidewater with excellent financing and pricing options. Coastal Boat Sales offers service and parts, and proudly serves the areas of Trenton, Toms River, Asbury Park and Freehold.",
-      "lengthFt": 0
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "world-cat-235-te-center-console",
@@ -2672,8 +2672,8 @@
         "/boats/world-cat-235-te-center-console-1.jpg",
         "/boats/world-cat-235-te-center-console-2.jpg"
       ],
-      "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
-      "lengthFt": 42
+      "blurb": "",
+      "lengthFt": null
     },
     {
       "slug": "world-cat-325-dual-console",
@@ -2696,8 +2696,8 @@
         "/boats/world-cat-325-dual-console-1.jpg",
         "/boats/world-cat-325-dual-console-2.jpg"
       ],
-      "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
-      "lengthFt": 42
+      "blurb": "",
+      "lengthFt": null
     }
   ],
   "waiting": [
