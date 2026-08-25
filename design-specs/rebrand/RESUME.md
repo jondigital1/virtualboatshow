@@ -1,33 +1,34 @@
-# Resume checkpoint — 2026-08-25 (Jon in transit)
+# Resume checkpoint — 2026-08-25 (evening pause)
 
-## Where we are
-Curated inventory build (SRP/VDP from Giselle's workbook) is ~80% done. Live site
-(acvirtualboatshow.com) still runs the previous deploy — nothing broken, nothing half-shipped.
+Site is fully deployed and healthy at acvirtualboatshow.com. Everything committed & pushed
+(HEAD: "Hero shows the full marina"). Daily 8:08 AM inventory sync is armed — still needs
+one manual "Run now" from Jon in the Scheduled sidebar to pre-approve its tools.
 
-Done:
-- data/show-boats.json: 86 boats / 12 dealers imported (scripts/import-show-boats.mjs)
-- public/boats/: 237 photos from the first import + 35 rescued (Sheltered Cove ×11 boats,
-  Key West 249 FS, BW 220 Dauntless ×2, BW 325 Conquest ×1)
-- New pages built, not yet deployed: /inventory rewritten on curated data (no prices,
-  gold note badges, dealer filter), /boats/[slug] VDP (gallery, dealer block, show panel),
-  lib/showboats.ts (incl. pickFeatured — per-dealer fair random rotation)
-- Daily 8:08 AM scheduled task "vbs-feature-boats-daily-check": Drive workbook → diff →
-  reimport → build → deploy, with guardrails. NEEDS one manual "Run now" to pre-approve tools.
+## Jon's restart list (his words, in order)
 
-## Next steps, in order
-1. Finish photo rescue (browser canvas-extraction route, see scripts/rescue-photos.ps1
-   header): Navan T-30 + S30 (navan-boats.com model pages), Tiara 39LS (tiarayachts.com,
-   lazy-loads — scroll first), Regulator 35/31/24XO (regulatormarine.com model pages;
-   Comstock's own site is behind an interactive Cloudflare wall — do not bypass).
-2. node scripts/import-show-boats.mjs   (folds rescued photos into show-boats.json)
-3. Batch-resize public/boats/ (85 MB → target <20 MB: cap ~1280px wide, jpeg q82)
-4. app/page.tsx: replace Buoy-feed thumbnail rail with curated photos + add
-   "Featured at the Show" section using pickFeatured() (client-side, reshuffles per load)
-5. QA in preview: /, /inventory, /boats/[first-slug], mobile width
-6. npm run build → commit + push → vercel --prod
-7. Report boat/photo counts to Jon; remind about "Run now" on the scheduled task
+1. **Favicon fix with boat show logo.**
+   Note: a new favicon (white boat mark on navy tile, app/icon.png + app/apple-icon.png,
+   built by scripts/generate-og-icons.mjs) shipped today — browsers cache favicons hard,
+   so first verify whether Jon is seeing the old cached icon or actually wants a different
+   treatment (e.g. different mark/colors). Adjust to his taste.
 
-## Standing decisions (do not relitigate)
-- No prices anywhere on boat cards/VDPs; "X" workbook rows = Not Selected = excluded
-- Featured real estate rotates fairly BY DEALER, not by boat count
-- Fallback: if Fable usage runs out, Jon says switch to Opus + ultracode
+2. **Replace the map image with the newly created one from Claude Design.**
+   Jon is producing a new show map in Claude Design. When he shares it: export/receive the
+   asset, save under a NEW filename (cache rule: changed assets get new names — replaces
+   public/show/show-map-2026.png), swap references on the homepage map section and /map
+   page, and consider regenerating any map-derived crops.
+
+3. **Another full pass over the website — mobile AND desktop.**
+   Walk every page both widths, visual + interaction. Today's mobile pass fixed the
+   Explore-card stacking; this pass is broader polish (spacing, type scale, image quality,
+   dead ends, copy typos).
+
+## Standing state (don't relitigate)
+- Inventory: 86 curated boats / 12 dealers from Giselle's workbook; importer has
+  dedupe guards; galleries up to 12 photos; VDP lightbox; SRP card carousels.
+- No prices anywhere. Featured rail + exhibitor tiles rotate fairly per load.
+- Leads decision PARKED (email capture vs text-the-dealer) — endpoint still logs only.
+- Waiting on Giselle: photography pack, hi-res official map, booth #s, dock/slips,
+  per-dealer SMS numbers, brand sheet fonts. Morning sync watches the Drive folder.
+- Cache rule: any changed image gets a new filename.
+- CSS rule: ASCII-only comments in globals.css (em-dash broke the compiler once).
