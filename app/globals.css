@@ -6,22 +6,38 @@
    ============================================================ */
 
 :root {
-  --accent: #F26A3E;      /* brand orange (theme-swappable) */
-  --ink: #0A2138;         /* deep navy text */
-  --cream: #F4F1EA;       /* page background */
-  --mist: #E9EEEE;        /* alt section background */
-  --night: #050F1A;       /* darkest navy (footer / final CTA) */
+  /* AC In-Water Boat Show brand palette (client-supplied hex) */
+  --navy: #142E51;        /* primary: headlines, footer, buttons */
+  --lightblue: #75BAE4;   /* secondary accent: eyebrows, tints, waves */
+  --gold: #FDB717;        /* accent: highlight words, underlines, CTAs */
+  --linkblue: #2878B8;    /* darker light-blue for readable text links */
+  --bluetint: #F4F7F9;    /* pale panel / alt-section background */
+  --buoy-orange: #F26A3E; /* Buoy brand: ONLY inside Buoy-branded elements */
+
+  /* legacy token aliases (pre-rebrand names used throughout components) */
+  --accent: #FDB717;      /* was Buoy orange; now show gold */
+  --ink: #142E51;         /* deep navy text */
+  --cream: #FFFFFF;       /* page background: white per brand sheet */
+  --mist: #F4F7F9;        /* alt section background */
+  --night: #142E51;       /* darkest surface (footer / final CTA) */
   --green: #178a5a;
   --green-bright: #34C778;
 }
 
 @theme inline {
-  --font-display: var(--font-bricolage);
-  --font-body: var(--font-hanken);
-  --font-mono: var(--font-space-mono);
+  --font-display: var(--font-poppins);
+  --font-body: var(--font-poppins);
+  --font-mono: var(--font-poppins);
   --color-accent: var(--accent);
   --color-ink: var(--ink);
   --color-cream: var(--cream);
+}
+
+/* Legacy per-file font vars all resolve to Poppins (brand sheet pending). */
+:root {
+  --font-bricolage: var(--font-poppins);
+  --font-hanken: var(--font-poppins);
+  --font-space-mono: var(--font-poppins);
 }
 
 * { box-sizing: border-box; }
@@ -29,17 +45,17 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: var(--font-hanken), system-ui, sans-serif;
+  font-family: var(--font-poppins), system-ui, sans-serif;
   background: var(--cream);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-a { color: var(--accent); text-decoration: none; }
+a { color: var(--linkblue); text-decoration: none; }
 h1, h2, h3 { text-wrap: balance; }
 p { text-wrap: pretty; }
-::selection { background: #F26A3E; color: #0A2138; }
+::selection { background: #FDB717; color: #142E51; }
 input, textarea, button, select { font-family: inherit; }
 
 /* ---- animations ---- */
@@ -113,7 +129,15 @@ input, textarea, button, select { font-family: inherit; }
 
 /* outline pill -> solid ink border */
 .btn-outline { transition: border-color .15s, background .15s; }
-.btn-outline:hover { border-color: #0A2138; }
+.btn-outline:hover { border-color: #142E51; }
+
+/* gold accent rule under section headlines (AC brand system) */
+.gold-rule { display: block; width: 64px; height: 4px; border-radius: 2px; background: var(--gold); }
+
+/* homepage map section: plan-ahead card beside the map, stacked on mobile */
+@media (max-width: 860px) {
+  .map-grid { grid-template-columns: 1fr !important; }
+}
 
 /* range slider (VDP finance calculator) */
 input[type=range] { -webkit-appearance: none; appearance: none; height: 5px; border-radius: 999px; background: rgba(255,255,255,.22); outline: none; }

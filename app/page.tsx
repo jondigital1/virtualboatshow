@@ -1,465 +1,215 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
-import { VesselCard, AdSlot, type Vessel } from "@/components/VesselCard";
-import { useIframeModal } from "@/components/IframeModal";
+import { Eyebrow } from "@/components/ui";
 import { fetchListings, toV, type V } from "@/lib/buoy";
 
-const DISPLAY = "var(--font-bricolage), sans-serif";
-const MONO = "var(--font-space-mono), monospace";
+const FONT = "var(--font-poppins), sans-serif";
+const SECTION_PAD = "clamp(56px,7vw,96px) clamp(18px,5vw,56px)";
 
-const fmt = (n: number) => n.toLocaleString("en-US");
+/* ---- small helpers ---- */
 
-/* Striped placeholder backgrounds: the honest no-photo fallback only. */
-const BGS = [
-  "repeating-linear-gradient(135deg,#ccd8dc 0 14px,#c3d0d5 14px 28px)",
-  "repeating-linear-gradient(135deg,#d7ddd1 0 14px,#ced5c7 14px 28px)",
-  "repeating-linear-gradient(135deg,#d1dae0 0 14px,#c7d1d8 14px 28px)",
-];
-
-/** Map the live view-model onto the dev's card shape. Empty strings mean the
- *  server did not provide that element; MSRP/SAVE stay empty unless the
- *  server sent them (never computed client-side). */
-function liveVessel(v: V, i: number): Vessel {
-  return {
-    year: v.year,
-    name: [v.make, v.model].filter(Boolean).join(" "),
-    length: v.lenLabel,
-    engine: v.engine,
-    condition: v.condition,
-    usage: v.condition === "New" ? "New" : v.hours > 0 ? fmt(v.hours) + " hrs" : v.condition,
-    dockLabel: v.dock,
-    msrpFmt: v.msrp > 0 ? "$" + fmt(v.msrp) : "",
-    showFmt: v.por ? "Price on request" : v.price > 0 ? "$" + fmt(v.price) : "",
-    saveFmt: v.msrp > 0 && v.save > 0 ? "$" + fmt(v.save) : "",
-    bg: v.photoUrl ? `url("${v.photoUrl}") center / cover no-repeat` : BGS[i % BGS.length],
-    href: "/inventory/" + v.id,
-  };
-}
-
-/* ---- small presentational helpers ---- */
-function Eyebrow({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
+function InfoBar({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--accent)", ...style }}>
-      {children}
+    <div style={{ display: "flex", alignItems: "center", gap: 10, background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.35)", borderRadius: 10, padding: "11px 16px", marginTop: 22 }}>
+      <span aria-hidden style={{ width: 18, height: 18, borderRadius: "50%", background: "var(--lightblue)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, flex: "0 0 auto" }}>i</span>
+      <span style={{ fontSize: 13.5, color: "rgba(20,46,81,.75)" }}>{children}</span>
     </div>
   );
 }
-function Check({ bg = "#178a5a", size = 24 }: { bg?: string; size?: number }) {
+
+function OutlineBtn({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <span style={{ width: size, height: size, flex: "0 0 auto", borderRadius: "50%", background: bg, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: size * 0.58 }}>
-      ✓
-    </span>
+    <Link
+      href={href}
+      className="btn-outline"
+      style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#fff", color: "var(--navy)", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "12px 20px", borderRadius: 8, border: "1.5px solid var(--lightblue)" }}
+    >
+      {children} <span aria-hidden>→</span>
+    </Link>
   );
 }
 
-const SECTION_PAD = "clamp(70px,9vw,124px) clamp(18px,5vw,56px)";
-
 export default function Home() {
-  const [live, setLive] = useState<Vessel[]>([]);
-  const [hasMore, setHasMore] = useState(false);
-  const { open: openModal } = useIframeModal();
-  const openExhibit = () => openModal("https://acinwaterboatshow.com/exhibitors", "Exhibit at the Boat Show");
+  const [thumbs, setThumbs] = useState<V[]>([]);
 
   useEffect(() => {
     let alive = true;
-    fetchListings({ limit: 100 })
+    fetchListings({ limit: 60 })
       .then((data) => {
         if (!alive) return;
-        const vs = (data.listings ?? []).map(toV);
+        const vs = (data.listings ?? []).map(toV).filter((v) => v.photoUrl);
         vs.sort((a, b) => Number(b.featured) - Number(a.featured));
-        setLive(vs.map(liveVessel));
-        setHasMore(!!data.nextCursor);
+        // A partial row looks broken; render the rail only when it fills.
+        setThumbs(vs.length >= 4 ? vs.slice(0, 4) : []);
       })
       .catch(() => {
-        /* API unreachable: the rails and the live badge collapse. */
+        /* API unreachable: the thumbnail rail simply collapses. */
       });
     return () => {
       alive = false;
     };
   }, []);
 
-  // Prices are open: every card shows the live Buoy price.
-  const revealed = true;
-
-  const first = live.slice(0, 4);
-  const rest = live.slice(4);
-  const locations = Array.from(new Set(live.map((v) => v.dockLabel).filter(Boolean))).slice(0, 5);
+  const marketplaceCats = ["Electronics", "Engines & Service", "Docking", "Insurance", "Gear"];
 
   return (
     <>
       <AnnouncementBar />
       <Nav active="/" />
 
-      {/* HERO */}
-      <section id="top" style={{ position: "relative", background: "#0A2138", color: "#fff", overflow: "hidden" }}>
-        <div style={{ position: "absolute", top: "-25%", right: "-8%", width: "62%", height: "150%", background: "radial-gradient(circle at 68% 34%, rgba(242,106,62,.15), transparent 60%)", pointerEvents: "none", zIndex: 0 }} />
-        <div style={{ position: "relative", zIndex: 2, maxWidth: 1300, margin: "0 auto", padding: "clamp(48px,6vw,96px) clamp(18px,5vw,56px) clamp(52px,7vw,88px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,360px),1fr))", gap: "clamp(28px,4vw,60px)", alignItems: "center" }}>
-          <div style={{ minWidth: 0 }}>
-            <Eyebrow>AC In-Water Boat Show · Your VIP Preview</Eyebrow>
-            <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(40px,6vw,86px)", lineHeight: 0.95, letterSpacing: "-.03em", margin: "18px 0 0" }}>
-              Every Dock.<br />Every Dealer.<br /><span style={{ color: "var(--accent)" }}>Every Deal.</span>
+      {/* HERO — spacious, promotional, unmistakably AC In-Water Boat Show */}
+      <section style={{ position: "relative", background: "#fff", overflow: "hidden" }}>
+        <div style={{ maxWidth: 1340, margin: "0 auto", padding: "clamp(20px,3vw,40px) clamp(18px,4vw,44px) clamp(40px,5vw,64px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,380px),1fr))", gap: "clamp(20px,3vw,44px)", alignItems: "center" }}>
+          <div style={{ minWidth: 0, paddingTop: "clamp(8px,2vw,28px)" }}>
+            <Eyebrow>The Official Virtual Boat Show</Eyebrow>
+            <h1 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(34px,4.6vw,60px)", lineHeight: 1.08, letterSpacing: "-.015em", margin: "16px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
+              Explore the boats
+              <br />
+              <span style={{ color: "var(--gold)" }}>before you hit the docks.</span>
             </h1>
-            <p style={{ maxWidth: 540, fontSize: "clamp(16px,1.3vw,19px)", lineHeight: 1.55, color: "rgba(255,255,255,.82)", margin: "24px 0 0" }}>
-              Get a head start on the show. Browse the fleet from every presenting dealer, value your vessel, and build your dockside game plan online, so you show up ready to grab the deal of the year{" "}
-              <em style={{ fontStyle: "normal", color: "#fff", fontWeight: 600, borderBottom: "2px solid var(--accent)" }}>in person, on the docks</em>.
+            <span className="gold-rule" style={{ margin: "22px 0 0", background: "var(--lightblue)" }} />
+            <p style={{ maxWidth: 480, fontSize: "clamp(15.5px,1.2vw,17.5px)", lineHeight: 1.65, color: "rgba(20,46,81,.8)", margin: "22px 0 0" }}>
+              Browse participating dealers and available inventory, save the boats you want to see, and plan your Atlantic City waterfront weekend.
             </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 13, marginTop: 32 }}>
-              <button onClick={() => openModal()} className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>
-                Get Your Boat Show Deal →
-              </button>
-              <Link href="/inventory" className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "none" }}>
-                Boat Show Inventory →
-              </Link>
+            <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(30px,3.4vw,44px)", letterSpacing: ".01em", margin: "30px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
+              Let&rsquo;s <span style={{ color: "var(--gold)" }}>Boat!</span>
             </div>
           </div>
 
-          {/* plan-your-visit card */}
-          <div style={{ minWidth: 0 }}>
-            <div style={{ borderRadius: 24, border: "1px solid rgba(10,33,56,.08)", background: "linear-gradient(160deg,#FBFAF5,#EFEBE0)", boxShadow: "0 34px 70px -34px rgba(0,0,0,.55)", padding: "clamp(30px,3.2vw,46px)", display: "flex", flexDirection: "column", justifyContent: "center", minHeight: 380 }}>
-              <Eyebrow style={{ fontSize: 11, letterSpacing: ".2em" }}>Plan your visit</Eyebrow>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 14, margin: "18px 0 0", flexWrap: "wrap" }}>
-                <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(42px,5vw,68px)", lineHeight: 0.9, letterSpacing: "-.03em", color: "#0A2138" }}>Sept 10-13</span>
-                <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(22px,2.2vw,30px)", color: "rgba(10,33,56,.4)", letterSpacing: "-.01em" }}>2026</span>
-              </div>
-              <div style={{ height: 1, background: "rgba(10,33,56,.12)", margin: "26px 0" }} />
-              <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
-                <div style={{ flex: "1 1 200px", minWidth: 0, display: "flex", flexDirection: "column", gap: 16 }}>
-                  {[
-                    ["Venue", "Golden Nugget Casino Hotel"],
-                    ["In-water docks", "Farley State Marina, Atlantic City"],
-                  ].map(([k, val]) => (
-                    <div key={k} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-                      <span style={{ width: 8, height: 8, borderRadius: 2, background: "var(--accent)", marginTop: 6, flex: "0 0 auto" }} />
-                      <div>
-                        <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", color: "rgba(10,33,56,.5)" }}>{k}</div>
-                        <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 19, color: "#0A2138", marginTop: 3, letterSpacing: "-.01em" }}>{val}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ flex: "1 1 150px", minWidth: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/golden-nugget-logo.png" alt="Golden Nugget Atlantic City" style={{ width: "80%", maxWidth: 210, height: "auto", display: "block", objectFit: "contain" }} />
-                </div>
-              </div>
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 30 }}>
-                <button onClick={() => openModal()} className="h-brighten" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: "14px 24px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Get Boat Show Tickets →</button>
-                <button onClick={openExhibit} style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(10,33,56,.05)", color: "#0A2138", fontWeight: 600, fontSize: 15, padding: "14px 22px", borderRadius: 999, border: "1px solid rgba(10,33,56,.2)", cursor: "pointer", fontFamily: "inherit" }}>Exhibit</button>
-              </div>
-            </div>
+          <div style={{ minWidth: 0, position: "relative" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/show/hero-marina.jpg"
+              alt="Boats and dealer tents on the water at the Atlantic City In-Water Boat Show"
+              style={{ display: "block", width: "100%", height: "auto", borderRadius: 4 }}
+            />
           </div>
         </div>
       </section>
 
-      {/* HOW / PROBLEM */}
-      <section id="how" style={{ scrollMarginTop: 82, background: "#F4F1EA", padding: SECTION_PAD }}>
+      {/* EXPLORE THE SHOW — the bridge into both directories */}
+      <section id="explore" style={{ scrollMarginTop: 82, background: "var(--bluetint)", padding: SECTION_PAD }}>
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <Eyebrow>The easiest way to do show day</Eyebrow>
-          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", maxWidth: "20ch" }}>Start online. Make the most of every dock.</h2>
-          <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "#4c6270", margin: "20px 0 0", maxWidth: "64ch" }}>
-            You&rsquo;ve got your ticket. Now get a head start. Your VIP preview shows you the whole event before you arrive, every presenting dealer&rsquo;s lineup, the full inventory, the vendors and where to find them, so you walk in with a plan and head straight for your Boat Show Deal.
+          <Eyebrow>The Show, Your Way</Eyebrow>
+          <h2 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(28px,4vw,46px)", lineHeight: 1.05, letterSpacing: "-.01em", margin: "14px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>Explore the Show</h2>
+          <span className="gold-rule" style={{ margin: "18px 0 0" }} />
+          <p style={{ fontSize: "clamp(15.5px,1.2vw,17.5px)", lineHeight: 1.6, color: "rgba(20,46,81,.75)", margin: "18px 0 0", maxWidth: "58ch" }}>
+            Two ways to discover everything waiting for you at the Atlantic City In-Water Boat Show. Find the perfect boat. Find the right products and services. All in one place.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,270px),1fr))", gap: 18, marginTop: 44 }}>
-            {[
-              ["01 · CONVENIENCE", "Every dealer, one place", "Browse the full lineup from every presenting dealer side by side: makes, models, and specs gathered into one easy, searchable index."],
-              ["02 · GREAT DEALS", "Boat Show Deals", "Set up your appointment to get your Boat Show Only Deal in person."],
-              ["03 · A BETTER VISIT", "Arrive with a plan", "Shortlist your favorites and book dockside walkthroughs in advance, then spend the weekend enjoying the boats instead of hunting for them."],
-            ].map(([tag, h, body]) => (
-              <div key={tag} style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 18, padding: "26px 24px" }}>
-                <div style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".14em", color: "var(--accent)" }}>{tag}</div>
-                <h3 style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 21, margin: "14px 0 8px", letterSpacing: "-.01em" }}>{h}</h3>
-                <p style={{ fontSize: 15.5, lineHeight: 1.55, color: "#5a6c78", margin: 0 }}>{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* STAT / DIGITAL FOOTPRINT */}
-      <section style={{ background: "#0A2138", color: "#fff", padding: "clamp(66px,8vw,116px) clamp(18px,5vw,56px)" }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,340px),1fr))", gap: "clamp(32px,5vw,72px)", alignItems: "center" }}>
-          <div>
-            <Eyebrow>The docks never go empty</Eyebrow>
-            <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,3.8vw,48px)", lineHeight: 1.04, letterSpacing: "-.02em", margin: "14px 0 0", color: "#fff" }}>
-              A few hundred boats float the docks.<br />But they never sit empty.
-            </h2>
-            <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px 0 0", maxWidth: "52ch" }}>
-              The show floats 300+ boats at a time, and it runs like a living showroom: the moment one sells, its dealer walks another into the open slip. With thousands more in dealer inventory ready to restock, there&rsquo;s always something fresh tied up. Come early, come back, the docks stay full right through Sunday.
-            </p>
-          </div>
-          <div style={{ display: "flex", alignItems: "flex-end", gap: "clamp(22px,4vw,48px)", flexWrap: "wrap" }}>
-            <div>
-              <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(44px,6vw,72px)", lineHeight: 1, color: "var(--accent)" }}>300<span style={{ fontSize: ".5em" }}>+</span></div>
-              <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".06em", color: "rgba(255,255,255,.5)", marginTop: 8, maxWidth: "16ch" }}>boats in the water at the show</div>
-            </div>
-            <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 32, color: "rgba(255,255,255,.3)", paddingBottom: 18 }}>→</div>
-            <div>
-              <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(64px,9vw,116px)", lineHeight: 1, color: "var(--accent)" }}>3,400<span style={{ fontSize: ".5em" }}>+</span></div>
-              <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".06em", color: "#fff", marginTop: 8, maxWidth: "20ch" }}>in dealer inventory, ready to restock the docks</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* GUIDE / PILLARS */}
-      <section style={{ background: "#F4F1EA", padding: SECTION_PAD }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <Eyebrow>Your guide on the water</Eyebrow>
-          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", maxWidth: "20ch" }}>The whole show, in one clean dashboard.</h2>
-          <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "#4c6270", margin: "20px 0 0", maxWidth: "62ch" }}>
-            Buoy brings the In-Water Boat Show online, gathering every dock and dealer into a single, searchable index, so you can compare every boat at the show in one place, long before you set foot on the dock.
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,280px),1fr))", gap: 18, marginTop: 44 }}>
-            {[
-              ["01", "Feet on the Deck", "The best call you’ll make is standing on the boat, so do your homework online, then step aboard only the ones worth your time. No pressure, no hard sell, just your shortlist waiting at the slip."],
-              ["02", "Always-live availability", "Every listing updates live and hourly, so what you see online is exactly what’s floating at the dock, with no calling around, no stale listings, no wasted trips."],
-              ["03", "The docks restock themselves", "As boats sell, dealers walk fresh inventory into the open slips, so the fleet on the water stays full all weekend. Come back Sunday and there’s new metal tied up."],
-            ].map(([n, h, body]) => (
-              <div key={n} style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 20, padding: "30px 26px" }}>
-                <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 40, color: "var(--accent)", lineHeight: 1 }}>{n}</div>
-                <h3 style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 22, margin: "16px 0 10px", letterSpacing: "-.01em" }}>{h}</h3>
-                <p style={{ fontSize: 15.5, lineHeight: 1.58, color: "#5a6c78", margin: 0 }}>{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4 STEPS */}
-      <section id="plan" style={{ scrollMarginTop: 82, background: "#E9EEEE", padding: SECTION_PAD }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <Eyebrow>Your game plan</Eyebrow>
-          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.6vw,56px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: "14px 0 0", maxWidth: "16ch" }}>4 steps to boat show success.</h2>
-          <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "#4c6270", margin: "18px 0 42px", maxWidth: "56ch" }}>From ticket to trade to the deck. Here&rsquo;s exactly how to win the weekend before it even starts.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,240px),1fr))", gap: 18 }}>
-            {[
-              ["01", "Pre-purchase your tickets", "Grab your in-water show tickets right now.", "Get tickets →", "#unlock"],
-              ["02", "Line up your trade", "Selling or trading? Lock in your Boat Show Trade-In Special with the dealer for the boat you want, before you even arrive. Trade it toward a show boat or keep it simple.", "How it works →", "#trade"],
-              ["03", "Book your Boat Show Only Deal", "Set your appointment and lock in pricing you’ll only find at the show. The best deals happen here, so don’t be the one who missed out.", "Book my appointment →", "#unlock"],
-            ].map(([n, h, body, cta, href]) => (
-              <div key={n} className="card-lift" style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 20, padding: "28px 26px", display: "flex", flexDirection: "column" }}>
-                <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 46, lineHeight: 1, color: "var(--accent)" }}>{n}</div>
-                <h3 style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 20, margin: "16px 0 10px", letterSpacing: "-.01em" }}>{h}</h3>
-                <p style={{ fontSize: 15, lineHeight: 1.55, color: "#5a6c78", margin: "0 0 18px" }}>{body}</p>
-                <Link href={href} className="link-ink" style={{ marginTop: "auto", fontFamily: MONO, fontSize: 12, letterSpacing: ".06em", color: "var(--accent)" }}>{cta}</Link>
-              </div>
-            ))}
-            <div style={{ background: "#0A2138", color: "#fff", borderRadius: 20, padding: "28px 26px", display: "flex", flexDirection: "column", position: "relative", overflow: "hidden" }}>
-              <div style={{ position: "absolute", top: -30, right: -30, width: 120, height: 120, borderRadius: "50%", background: "radial-gradient(circle, rgba(242,106,62,.25), transparent 70%)", pointerEvents: "none" }} />
-              <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 46, lineHeight: 1, color: "var(--accent)" }}>04</div>
-              <h3 style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 20, margin: "16px 0 10px", letterSpacing: "-.01em", color: "#fff" }}>Show up &amp; set sail</h3>
-              <p style={{ fontSize: 15, lineHeight: 1.55, color: "rgba(255,255,255,.75)", margin: "0 0 18px" }}>Arrive for your appointment and experience the seamless service the Atlantic City In-Water Boat Show and Virtual Boat Show give every boater.</p>
-              <div style={{ marginTop: "auto", display: "flex", alignItems: "center", gap: 8, fontFamily: MONO, fontSize: 12, letterSpacing: ".06em", color: "var(--accent)" }}>
-                <span style={{ width: 16, height: 16, borderRadius: "50%", background: "var(--accent)", color: "#0A2138", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11 }}>✓</span>Boat show success
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* INVENTORY */}
-      <section id="docks" style={{ scrollMarginTop: 82, background: "#F4F1EA", padding: SECTION_PAD }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, flexWrap: "wrap" }}>
-            <div>
-              <Eyebrow>Boat show inventory</Eyebrow>
-              <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", maxWidth: "18ch" }}>Every hull at the show, in one index.</h2>
-            </div>
-            {live.length > 0 && (
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", border: "1px solid rgba(11,34,56,.12)", borderRadius: 999, padding: "9px 16px" }}>
-                <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#34C778", animation: "livePulse 2.4s infinite" }} />
-                <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>{fmt(live.length)}{hasMore ? "+" : ""} boats in the water · updates hourly</span>
-              </div>
-            )}
-          </div>
-
-          {locations.length > 0 && (
-            <div style={{ display: "flex", gap: 9, flexWrap: "wrap", margin: "28px 0 30px" }}>
-              {["All locations", ...locations].map((c, i) => (
-                <span key={c} style={{ background: i === 0 ? "#0A2138" : "#fff", color: i === 0 ? "#fff" : "#3d5260", border: i === 0 ? "none" : "1px solid rgba(11,34,56,.14)", fontFamily: MONO, fontSize: 12, letterSpacing: ".05em", padding: "8px 15px", borderRadius: 999 }}>{c}</span>
-              ))}
-            </div>
-          )}
-
-          <div style={{ margin: locations.length > 0 ? "0 0 18px" : "28px 0 18px" }}>
-            <AdSlot label="Presenting sponsor banner · 970×90" />
-          </div>
-
-          {first.length > 0 && (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,250px),1fr))", gap: 18 }}>
-              {first.map((v) => (
-                <VesselCard key={v.href} v={v} revealed={revealed} />
-              ))}
-              {rest.length > 0 && (
-                <>
-                  <div style={{ gridColumn: "1 / -1" }}>
-                    <AdSlot label="Sponsor / vendor in-feed banner" tag="SPONSORED · IN-FEED" height={120} accent />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,340px),1fr))", gap: 20, marginTop: 36 }}>
+            {/* Browse Boats card */}
+            <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: 190 }}>
+                <div style={{ padding: "24px 22px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 12 }}>
+                  <h3 style={{ fontFamily: FONT, fontWeight: 800, fontSize: 19, letterSpacing: ".01em", margin: 0, color: "var(--navy)", textTransform: "uppercase" }}>Browse Boats at the Show</h3>
+                  <p style={{ fontSize: 14.5, lineHeight: 1.55, color: "rgba(20,46,81,.7)", margin: 0 }}>Explore boats scheduled to be on display from participating dealers and brands.</p>
+                  <div style={{ marginTop: "auto" }}>
+                    <OutlineBtn href="/inventory">Browse Boats</OutlineBtn>
                   </div>
-                  {rest.map((v) => (
-                    <VesselCard key={v.href} v={v} revealed={revealed} />
+                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/show/card-boats.jpg" alt="Boats docked at the in-water show" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+              {thumbs.length > 0 && (
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8, padding: "0 16px 16px" }}>
+                  {thumbs.map((v) => (
+                    <Link key={v.id} href={"/inventory/" + v.id} title={[v.year || "", v.make, v.model].filter(Boolean).join(" ")} style={{ display: "block", aspectRatio: "4/3", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(20,46,81,.1)" }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={v.photoUrl!} alt={[v.year || "", v.make, v.model].filter(Boolean).join(" ")} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                    </Link>
                   ))}
-                </>
+                </div>
               )}
             </div>
-          )}
 
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 18, flexWrap: "wrap", marginTop: 30 }}>
-            <p style={{ fontFamily: MONO, fontSize: 12, color: "#7c8b96", margin: 0, maxWidth: "52ch", lineHeight: 1.5 }}>
-              The steal-of-the-year pricing happens live on the docks Sept 10-13. Off-site units are dynamically paired from each dealer&rsquo;s brick-and-mortar showroom.
-            </p>
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <Link href="/inventory" className="btn-outline" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: "14px 22px", borderRadius: 999, border: "1px solid rgba(11,34,56,.16)" }}>Browse full inventory →</Link>
-              <button onClick={() => openModal()} className="btn-invert" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#0A2138", color: "#fff", fontWeight: 700, fontSize: 15, padding: "14px 22px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Get Your Boat Show Deal →</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* TRADE-IN */}
-      <section id="trade" style={{ scrollMarginTop: 82, background: "#0A2138", color: "#fff", padding: SECTION_PAD }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,320px),1fr))", gap: "clamp(32px,5vw,64px)", alignItems: "start" }}>
-          <div>
-            <Eyebrow>Sell or Trade · Boat Show Special</Eyebrow>
-            <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,4vw,50px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", color: "#fff", maxWidth: "18ch" }}>Get your Boat Show Trade-In Special before you arrive.</h2>
-            <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px 0 34px", maxWidth: "52ch" }}>Found the boat you want? Start your trade right from its page. The dealer for that boat prepares your Boat Show Trade-In Special ahead of time, so it&rsquo;s ready and waiting when you get to the docks. One dealer, no runaround, no obligation.</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              {[
-                ["01", "Find your next boat", "Browse the fleet and open the boat you love. Your trade starts right from its page."],
-                ["02", "Start your trade", "Tell the dealer about your boat: year, make, engine hours, condition. It goes straight to them."],
-                ["03", "Get your special before you arrive", "That dealer prepares your Boat Show Trade-In Special and reaches out ahead of the show, so it’s ready when you hit the docks."],
-              ].map(([n, h, body], i) => (
-                <div key={n} style={{ display: "flex", gap: 16, padding: "16px 0", borderTop: "1px solid rgba(255,255,255,.14)", borderBottom: i === 2 ? "1px solid rgba(255,255,255,.14)" : undefined }}>
-                  <span style={{ fontFamily: MONO, fontSize: 13, color: "var(--accent)", fontWeight: 700, flex: "0 0 auto" }}>{n}</span>
-                  <div>
-                    <div style={{ fontWeight: 600, fontSize: 16 }}>{h}</div>
-                    <div style={{ fontSize: 14.5, color: "rgba(255,255,255,.62)", marginTop: 3 }}>{body}</div>
+            {/* Marine Marketplace card */}
+            <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: 190 }}>
+                <div style={{ padding: "24px 22px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 12 }}>
+                  <h3 style={{ fontFamily: FONT, fontWeight: 800, fontSize: 19, letterSpacing: ".01em", margin: 0, color: "var(--navy)", textTransform: "uppercase" }}>Browse Marine Marketplace</h3>
+                  <p style={{ fontSize: 14.5, lineHeight: 1.55, color: "rgba(20,46,81,.7)", margin: 0 }}>Discover marine products, services and exhibitors at the show.</p>
+                  <div style={{ marginTop: "auto" }}>
+                    <OutlineBtn href="/vendors">Browse Marketplace</OutlineBtn>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <div style={{ background: "rgba(255,255,255,.04)", border: "1px solid rgba(255,255,255,.14)", borderRadius: 22, padding: "clamp(26px,3vw,36px)" }}>
-            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 20, letterSpacing: "-.01em", lineHeight: 1.1, color: "#fff" }}>Why start your trade here</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 20 }}>
-              {["It goes to the dealer for the boat you want, not a lead pool", "Your Boat Show Trade-In Special, locked in before you arrive", "Trade it toward your show boat, or keep it simple", "No online guesswork, the dealer handles it"].map((t) => (
-                <div key={t} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <Check size={22} />
-                  <span style={{ fontSize: 15.5, lineHeight: 1.45, color: "rgba(255,255,255,.9)" }}>{t}</span>
-                </div>
-              ))}
-            </div>
-            <Link href="/inventory" className="h-brighten" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 26, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: 14, borderRadius: 12 }}>Browse the fleet to start →</Link>
-            <div style={{ fontFamily: MONO, fontSize: 11, color: "rgba(255,255,255,.5)", textAlign: "center", marginTop: 12, lineHeight: 1.5 }}>Open any boat and tap &ldquo;Value My Vessel&rdquo; to start your trade with that dealer.</div>
-          </div>
-        </div>
-      </section>
-
-      {/* SUCCESS / PAYOFF */}
-      <section style={{ background: "#F4F1EA", padding: SECTION_PAD }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,320px),1fr))", gap: "clamp(32px,5vw,64px)", alignItems: "center" }}>
-          <div>
-            <Eyebrow>SB7 · The payoff</Eyebrow>
-            <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", maxWidth: "15ch" }}>Walk past the lines. Straight to the deck.</h2>
-            <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "#4c6270", margin: "20px 0 28px", maxWidth: "52ch" }}>This is show day, handled: your trade conversation is already started, your dockside appointments are booked, and a dedicated captain is waiting at the slip for your private walkthrough.</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              {["Skip the ticket-line chaos", "Your trade conversation already started", "Your Boat Show Deal waiting at the dock", "VIP dockside walkthrough booked"].map((t) => (
-                <div key={t} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                  <Check /><span style={{ fontSize: 16.5, fontWeight: 500 }}>{t}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* dock pass card */}
-          <div style={{ position: "relative", background: "#0A2138", color: "#fff", borderRadius: 22, padding: "clamp(26px,3vw,38px)", boxShadow: "0 30px 70px -34px rgba(10,33,56,.7)", overflow: "hidden" }}>
-            <div style={{ position: "absolute", top: -40, right: -40, width: 150, height: 150, borderRadius: "50%", background: "radial-gradient(circle, rgba(242,106,62,.28), transparent 70%)" }} />
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <div style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: ".22em", color: "rgba(255,255,255,.6)" }}>BUOY · SHOW PASS</div>
-              <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".1em", background: "var(--accent)", color: "#0A2138", padding: "4px 10px", borderRadius: 999, fontWeight: 700 }}>UNLOCKED</div>
-            </div>
-            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(38px,5vw,56px)", lineHeight: 1, marginTop: 26, letterSpacing: "-.02em" }}>F DOCK</div>
-            <div style={{ fontFamily: MONO, fontSize: 13, color: "rgba(255,255,255,.7)", marginTop: 8 }}>SLIP 12 · 10:30 AM WALKTHROUGH</div>
-            <div style={{ borderTop: "1.5px dashed rgba(255,255,255,.22)", margin: "26px 0", position: "relative" }}>
-              <span style={{ position: "absolute", left: -38, top: -11, width: 22, height: 22, borderRadius: "50%", background: "#F4F1EA" }} />
-              <span style={{ position: "absolute", right: -38, top: -11, width: 22, height: 22, borderRadius: "50%", background: "#F4F1EA" }} />
-            </div>
-            <div style={{ display: "flex", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
-              {[
-                ["YOUR CAPTAIN", "Your name here", "#fff"],
-                ["TRADE-IN", "Appraised ✓", "var(--accent)"],
-                ["INCENTIVES", "Applied ✓", "var(--accent)"],
-              ].map(([lab, val, col]) => (
-                <div key={lab}>
-                  <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".12em", color: "rgba(255,255,255,.5)" }}>{lab}</div>
-                  <div style={{ fontWeight: 600, fontSize: 16, marginTop: 5, color: col }}>{val}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FINAL CTA / TICKET GATE */}
-      <section id="unlock" style={{ scrollMarginTop: 82, background: "#050F1A", color: "#fff", padding: "clamp(74px,10vw,132px) clamp(18px,5vw,56px)", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", top: -120, left: "50%", transform: "translateX(-50%)", width: 520, height: 520, borderRadius: "50%", background: "radial-gradient(circle, rgba(242,106,62,.16), transparent 65%)", pointerEvents: "none" }} />
-        <div style={{ position: "relative", maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
-          <Eyebrow>The steal of the year</Eyebrow>
-          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(32px,5vw,64px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: "16px 0 0", color: "#fff" }}>Boat Show Deals, where<br />they belong, at the docks.</h2>
-          <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "rgba(255,255,255,.75)", margin: "20px auto 32px", maxWidth: "54ch" }}>The best boat deals of the year don&rsquo;t happen in a showroom. They happen for four days on the water, when every dealer at the show is competing slip to slip. Reserve your ticket and come get the steal of the season.</p>
-          <div style={{ display: "flex", gap: 13, flexWrap: "wrap", justifyContent: "center" }}>
-            <button onClick={() => openModal()} className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 28px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Get Boat Show Tickets →</button>
-            <Link href="/inventory" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,.08)", color: "#fff", fontWeight: 600, fontSize: 16, padding: "16px 28px", borderRadius: 999, border: "1.5px solid rgba(255,255,255,.32)" }}>Browse the fleet</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* DEALERS */}
-      <section id="dealers" style={{ scrollMarginTop: 82, background: "#F4F1EA", padding: "clamp(64px,8vw,112px) clamp(18px,5vw,56px)", borderTop: "1px solid rgba(11,34,56,.1)" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
-          <Eyebrow>The whole network, on your side</Eyebrow>
-          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(26px,3.6vw,44px)", lineHeight: 1.06, letterSpacing: "-.02em", margin: "14px auto 0", maxWidth: "22ch" }}>Every dealer at the show, competing for your business.</h2>
-          <p style={{ fontSize: "clamp(16px,1.2vw,18px)", lineHeight: 1.6, color: "#4c6270", margin: "18px auto 28px", maxWidth: "60ch" }}>One marketplace brings all presenting dealers together, with every boat they floated at the show in one place, so you compare freely and the best offer comes to you. No driving lot to lot, no haggling in the dark. Just the whole show working in your favor.</p>
-          <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}>
-            <Link href="#docks" className="btn-invert" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#0A2138", color: "#fff", fontWeight: 700, fontSize: 15, padding: "14px 24px", borderRadius: 999 }}>Browse the marketplace →</Link>
-            <Link href="/vendors" className="link-ink" style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".05em", color: "#7c8b96" }}>Run a dealership? Join the lineup →</Link>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(120px,1fr))", gap: 12, marginTop: 44 }}>
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} style={{ height: 60, border: "1px dashed rgba(11,34,56,.22)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: MONO, fontSize: 10.5, letterSpacing: ".1em", color: "rgba(11,34,56,.4)" }}>DEALER LOGO</div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* VENDORS & SERVICES */}
-      <section id="vendors" style={{ scrollMarginTop: 82, background: "#E9EEEE", padding: "clamp(70px,9vw,120px) clamp(18px,5vw,56px)" }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <Eyebrow>More than boats</Eyebrow>
-          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", maxWidth: "20ch" }}>Everything else your boat needs, in one place.</h2>
-          <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "#4c6270", margin: "20px 0 44px", maxWidth: "62ch" }}>The show isn&rsquo;t just dealers. Browse trusted vendors for financing, insurance, electronics, storage, gear, and service, all in the same marketplace, so you can outfit and protect your boat without ever leaving the docks.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,260px),1fr))", gap: 16 }}>
-            {[
-              ["Financing & Lending", "Get pre-qualified and compare rates before you ever sign."],
-              ["Insurance", "Quote and bind the right coverage the moment you buy."],
-              ["Electronics & Nav", "Radar, GPS, and sound systems, spec’d and installed by the show."],
-              ["Docking & Storage", "Line up a slip or winter storage near your home water."],
-              ["Gear & Apparel", "Safety kit, watersports gear, and crew apparel for launch day."],
-              ["Service & Maintenance", "Book winterization, detailing, and repowers with local pros."],
-            ].map(([h, body]) => (
-              <div key={h} className="card-lift-sm" style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 16, padding: 22, display: "flex", flexDirection: "column", gap: 10 }}>
-                <span style={{ width: 12, height: 12, borderRadius: 3, background: "var(--accent)" }} />
-                <h3 style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 18, margin: "2px 0 0", letterSpacing: "-.01em" }}>{h}</h3>
-                <p style={{ fontSize: 14.5, lineHeight: 1.5, color: "#5a6c78", margin: 0 }}>{body}</p>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/show/card-marketplace.jpg" alt="Exhibitor tents at the Marine Marketplace" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
-            ))}
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", padding: "0 16px 16px" }}>
+                {marketplaceCats.map((c) => (
+                  <span key={c} style={{ fontFamily: FONT, fontWeight: 600, fontSize: 11.5, letterSpacing: ".04em", textTransform: "uppercase", color: "var(--navy)", background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.4)", borderRadius: 999, padding: "7px 13px" }}>{c}</span>
+                ))}
+              </div>
+            </div>
           </div>
-          <div style={{ marginTop: 30 }}>
-            <Link href="/vendors" className="link-ink" style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".05em", color: "#7c8b96" }}>Are you a vendor? Get a free listing →</Link>
+
+          <InfoBar>Lineup, products and locations are subject to change.</InfoBar>
+        </div>
+      </section>
+
+      {/* FIND YOUR WAY — the official 2026 visitor map */}
+      <section id="map" style={{ scrollMarginTop: 82, background: "#fff", padding: SECTION_PAD }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+          <Eyebrow>Getting Around</Eyebrow>
+          <h2 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(28px,4vw,46px)", lineHeight: 1.08, letterSpacing: "-.01em", margin: "14px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
+            Find your way <span style={{ color: "var(--gold)" }}>around the show.</span>
+          </h2>
+          <span className="gold-rule" style={{ margin: "18px 0 0", background: "var(--lightblue)" }} />
+          <p style={{ fontSize: "clamp(15.5px,1.2vw,17.5px)", lineHeight: 1.6, color: "rgba(20,46,81,.75)", margin: "18px 0 0", maxWidth: "56ch" }}>
+            Use the map to find boat displays, dealer locations, exhibitors in the Marine Marketplace, amenities and more.
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "minmax(240px,1fr) minmax(min(100%,420px),2.2fr)", gap: 22, marginTop: 32, alignItems: "start" }} className="map-grid">
+            <div style={{ background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.35)", borderRadius: 16, padding: "clamp(22px,2.5vw,32px)", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 14 }}>
+              <span aria-hidden style={{ width: 52, height: 52, borderRadius: "50%", background: "var(--navy)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10Z" /><circle cx="12" cy="11" r="2.3" /></svg>
+              </span>
+              <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 19, lineHeight: 1.25, color: "var(--navy)", textTransform: "uppercase" }}>
+                Plan ahead,
+                <br />
+                make it a weekend!
+              </div>
+              <p style={{ fontSize: 14.5, lineHeight: 1.55, color: "rgba(20,46,81,.7)", margin: 0 }}>Find everything you need for a smooth and unforgettable boat show experience.</p>
+              <OutlineBtn href="/plan">Plan Your Visit</OutlineBtn>
+            </div>
+
+            <div style={{ background: "#fff", border: "1px solid rgba(20,46,81,.14)", borderRadius: 16, overflow: "hidden", boxShadow: "0 24px 54px -32px rgba(20,46,81,.35)" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/show/show-map-2026.png" alt="Official 2026 Atlantic City In-Water Boat Show visitor map" style={{ display: "block", width: "100%", height: "auto" }} />
+            </div>
           </div>
+
+          <InfoBar>Map is subject to change. Please check with show staff for the most up-to-date information.</InfoBar>
+        </div>
+      </section>
+
+      {/* POWERED BY BUOY — the one block where Buoy identity leads */}
+      <section id="buoy" style={{ scrollMarginTop: 82, background: "var(--bluetint)", padding: "clamp(48px,6vw,80px) clamp(18px,5vw,56px)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", gap: "clamp(28px,5vw,64px)", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, flex: "0 0 auto" }}>
+            <Image src="/buoy-ring-logo.svg" alt="" width={56} height={56} style={{ display: "block" }} />
+            <span style={{ fontFamily: FONT, fontWeight: 800, fontSize: 40, letterSpacing: ".02em", color: "var(--navy)" }}>BUOY</span>
+          </div>
+          <div style={{ flex: "1 1 380px", minWidth: 0 }}>
+            <h2 style={{ fontFamily: FONT, fontWeight: 700, fontSize: "clamp(22px,2.6vw,30px)", margin: 0, color: "var(--navy)" }}>Powered by Buoy</h2>
+            <p style={{ fontSize: 15.5, lineHeight: 1.6, color: "rgba(20,46,81,.75)", margin: "10px 0 0", maxWidth: "62ch" }}>
+              Buoy provides the technology behind the Atlantic City Virtual Boat Show, helping visitors explore boats, discover dealers and exhibitors, and plan their experience before and during the show.
+            </p>
+          </div>
+          <a
+            href="https://buoylist.com?utm_source=acvbs&utm_medium=referral"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline"
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#fff", color: "var(--navy)", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "13px 22px", borderRadius: 8, border: "1.5px solid rgba(20,46,81,.3)", flex: "0 0 auto" }}
+          >
+            Learn About Buoy <span aria-hidden>→</span>
+          </a>
         </div>
       </section>
 

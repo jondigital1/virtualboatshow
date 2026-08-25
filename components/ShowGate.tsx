@@ -116,7 +116,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
             alignItems: "center",
             justifyContent: "center",
             padding: "clamp(18px,4vw,40px)",
-            background: "#050F1A",
+            background: "#142E51",
             overflowX: "hidden",
             opacity: leaving ? 0 : 1,
             transition: "opacity .45s ease",
@@ -126,7 +126,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
           }}
         >
           {/* warm coral glow, the show's signature accent on dark grounds */}
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(60% 55% at 50% 8%, rgba(242,106,62,.22), transparent 60%)", pointerEvents: "none" }} />
+          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(60% 55% at 50% 8%, rgba(253,183,23,.22), transparent 60%)", pointerEvents: "none" }} />
 
           <div
             style={{
@@ -136,7 +136,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
               width: "100%",
               maxWidth: "min(520px, calc(100vw - 32px))",
               minWidth: 0,
-              background: "var(--cream, #F4F1EA)",
+              background: "var(--cream, #F4F7F9)",
               borderRadius: 26,
               padding: "clamp(30px,5vw,52px) clamp(26px,5vw,48px)",
               boxShadow: "0 40px 90px -30px rgba(0,0,0,.7)",
@@ -147,7 +147,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
             {/* brand lockup */}
             <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
               <Image src="/buoy-ring-logo.svg" alt="Buoy" width={38} height={38} priority style={{ display: "block" }} />
-              <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 18, letterSpacing: "-.01em", color: "var(--ink,#0A2138)" }}>
+              <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 18, letterSpacing: "-.01em", color: "var(--ink,#142E51)" }}>
                 AC In-Water Boat Show
               </span>
             </div>
@@ -156,7 +156,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
               September 10&ndash;13, 2026 · Atlantic City
             </div>
 
-            <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(27px,4.5vw,38px)", lineHeight: 1.06, letterSpacing: "-.02em", color: "var(--ink,#0A2138)", margin: "12px 0 0" }}>
+            <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(27px,4.5vw,38px)", lineHeight: 1.06, letterSpacing: "-.02em", color: "var(--ink,#142E51)", margin: "12px 0 0" }}>
               Thanks for stopping by.
             </h1>
 
@@ -173,14 +173,14 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
               target="_blank"
               rel="noopener noreferrer"
               className="h-lift"
-              style={{ display: "block", textAlign: "center", marginTop: 26, padding: "16px 20px", fontSize: 17, fontWeight: 700, color: "var(--ink,#0A2138)", background: "var(--accent,#F26A3E)", borderRadius: 999, textDecoration: "none" }}
+              style={{ display: "block", textAlign: "center", marginTop: 26, padding: "16px 20px", fontSize: 17, fontWeight: 700, color: "var(--ink,#142E51)", background: "var(--accent,#F26A3E)", borderRadius: 999, textDecoration: "none" }}
             >
               Get your show tickets →
             </a>
 
             {/* SECONDARY: for guests who already bought in. Offered warmly, below
                 the invitation, never as the first thing they hit. */}
-            <form onSubmit={submit} style={{ marginTop: 24, paddingTop: 22, borderTop: "1px solid rgba(10,33,56,.12)" }}>
+            <form onSubmit={submit} style={{ marginTop: 24, paddingTop: 22, borderTop: "1px solid rgba(20,46,81,.12)" }}>
               <label htmlFor="show-pw" style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".14em", textTransform: "uppercase", color: "#5f7180", fontWeight: 700 }}>
                 Already have tickets? Enter your code
               </label>
@@ -200,16 +200,16 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
                   padding: "16px 18px",
                   fontSize: 17,
                   fontFamily: "inherit",
-                  color: "var(--ink,#0A2138)",
+                  color: "var(--ink,#142E51)",
                   background: "#fff",
-                  border: `2px solid ${error ? "#c0392b" : "rgba(10,33,56,.18)"}`,
+                  border: `2px solid ${error ? "#c0392b" : "rgba(20,46,81,.18)"}`,
                   borderRadius: 14,
                   outline: "none",
                   transition: "border-color .15s ease",
                   animation: error ? "gateShake .4s" : undefined,
                 }}
                 onFocus={(e) => { if (!error) e.currentTarget.style.borderColor = "var(--accent,#F26A3E)"; }}
-                onBlur={(e) => { if (!error) e.currentTarget.style.borderColor = "rgba(10,33,56,.18)"; }}
+                onBlur={(e) => { if (!error) e.currentTarget.style.borderColor = "rgba(20,46,81,.18)"; }}
               />
               {error && (
                 <div id="show-pw-err" role="alert" style={{ color: "#c0392b", fontSize: 14.5, marginTop: 10, fontWeight: 600 }}>
@@ -228,11 +228,11 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
                   fontSize: 16,
                   fontWeight: 700,
                   fontFamily: "inherit",
-                  color: "var(--ink,#0A2138)",
+                  color: "var(--ink,#142E51)",
                   // Quiet outline, not the coral fill: tickets are the loud
                   // action, unlocking is the secondary one.
                   background: "transparent",
-                  border: "1.5px solid rgba(10,33,56,.28)",
+                  border: "1.5px solid rgba(20,46,81,.28)",
                   borderRadius: 999,
                   cursor: busy && !error ? "default" : "pointer",
                   opacity: busy && !error ? 0.75 : 1,
@@ -243,7 +243,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
             </form>
 
             {/* powered-by-Buoy footer, matching the site chrome */}
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 30, paddingTop: 20, borderTop: "1px solid rgba(10,33,56,.1)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 30, paddingTop: 20, borderTop: "1px solid rgba(20,46,81,.1)" }}>
               <Image src="/buoy-ring-logo.svg" alt="" width={18} height={18} style={{ display: "block", opacity: 0.75 }} />
               <span style={{ fontFamily: MONO, fontSize: 11.5, letterSpacing: ".1em", textTransform: "uppercase", color: "#7c8b96", fontWeight: 700 }}>
                 The digital companion, powered by Buoy

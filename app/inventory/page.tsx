@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
-import { AdSlot } from "@/components/VesselCard";
 import { BlurredPrice } from "@/components/BlurredPrice";
 import { DISPLAY, MONO, fmt, Eyebrow } from "@/components/ui";
 import { fetchListings, toV, type V } from "@/lib/buoy";
@@ -20,12 +19,12 @@ const FAQ_DATA: [string, string][] = [
   ["Can I take the boat out before I buy?", "Nothing replaces time on the water. Book a dockside walkthrough through the show and the dealer will arrange a sea trial where available, so you can feel how she handles and runs before you commit to anything."],
   ["What does a boat really cost to own beyond the sticker?", "Plan for insurance, storage or a slip, fuel, winterizing, registration, and routine maintenance. A good rule of thumb is roughly 10% of the purchase price each year. Ask each dealer to break the numbers down for your specific boat at your appointment."],
   ["How does boat financing work, and should I get pre-qualified?", "Marine loans commonly run 10 to 20 years with 10-20% down. Getting pre-qualified before the show tells you your true budget and speeds the whole deal up. Several lenders exhibit on-site, and an estimated monthly payment appears on every listing."],
-  ["Is the “Boat Show Price” really a better deal?", "Show pricing is negotiated for the event and is typically the most aggressive of the year. Because every presenting dealer is competing in one marketplace, you can see who’s sharpest without driving lot to lot."],
-  ["Can I trade in or sell my current boat?", "Absolutely, and you don’t have to buy one to sell one. Value your boat online, let the dealers compete for it, then bring the best offer to your appointment and roll it straight into your next vessel."],
+  ["Is the “Boat Show Price” really a better deal?", "Show pricing is negotiated for the event. Booking an appointment ahead of time means the dealer is ready for you at the dock, and pricing details are confirmed with the dealer at the show."],
+  ["Can I trade in or sell my current boat?", "Absolutely. Open the boat you're interested in and start your trade from its page — the dealer for that boat prepares your trade-in conversation ahead of the show, so it's ready when you arrive."],
   ["What’s included: trailer, electronics, warranty?", "It varies boat to boat, so confirm what’s on the sticker: trailer, electronics package, and any remaining factory or extended warranty. Each listing notes the highlights, and your walkthrough is the moment to get every inclusion in writing."],
 ];
 
-const chipStyle = (active: boolean): React.CSSProperties => ({ fontFamily: MONO, fontSize: 11, letterSpacing: ".02em", padding: "7px 12px", borderRadius: 999, cursor: "pointer", background: active ? "#0A2138" : "#fff", color: active ? "#fff" : "#3d5260", border: `1px solid ${active ? "#0A2138" : "rgba(11,34,56,.16)"}` });
+const chipStyle = (active: boolean): React.CSSProperties => ({ fontFamily: MONO, fontSize: 11, letterSpacing: ".02em", padding: "7px 12px", borderRadius: 999, cursor: "pointer", background: active ? "#142E51" : "#fff", color: active ? "#fff" : "#3d5260", border: `1px solid ${active ? "#142E51" : "rgba(20,46,81,.16)"}` });
 const railHead: React.CSSProperties = { fontFamily: MONO, fontSize: 10.5, letterSpacing: ".12em", color: "#8595a0", textTransform: "uppercase" };
 
 export default function Inventory() {
@@ -124,39 +123,40 @@ export default function Inventory() {
       <Nav active="/inventory" />
 
       {/* PAGE HEAD */}
-      <section style={{ background: "#F4F1EA", padding: "clamp(24px,3vw,40px) clamp(18px,3vw,44px) 0" }}>
+      <section style={{ background: "#F4F7F9", padding: "clamp(24px,3vw,40px) clamp(18px,3vw,44px) 0" }}>
         <div style={{ maxWidth: 1500, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: MONO, fontSize: 11.5, letterSpacing: ".12em", color: "#8595a0" }}>
-            <Link href="/" style={{ color: "#8595a0" }} className="link-ink">HOME</Link><span>/</span><span>INVENTORY</span>
-            <span style={{ background: "#0A2138", color: "#fff", padding: "3px 8px", borderRadius: 5, letterSpacing: ".14em" }}>SRP</span>
-          </div>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 20, flexWrap: "wrap", marginTop: 12 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,340px),1fr))", gap: "clamp(18px,3vw,36px)", alignItems: "center" }}>
             <div>
-              <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4vw,52px)", lineHeight: 1, letterSpacing: "-.025em", margin: 0 }}>Boat Show Inventory</h1>
-              <p style={{ fontSize: 15.5, color: "#4c6270", margin: "11px 0 0", maxWidth: "64ch" }}>A first look at every boat coming to this year&rsquo;s docks, from the presenting dealers, restocked all weekend as they sell. The Boat Show Pricing is revealed when you book your appointment at the show.</p>
+              <Eyebrow>Explore the Show</Eyebrow>
+              <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,3.6vw,46px)", lineHeight: 1.06, letterSpacing: "-.015em", margin: "12px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>Browse Boats at the Show</h1>
+              <span className="gold-rule" style={{ margin: "16px 0 0" }} />
+              <p style={{ fontSize: 15.5, color: "#4c6270", margin: "16px 0 0", maxWidth: "52ch", lineHeight: 1.6 }}>Explore boats headed to the Atlantic City In-Water Boat Show from participating dealers and brands. These are the boats you can see in person during the show.</p>
+              {!loading && totalAll > 0 && (
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", border: "1px solid rgba(20,46,81,.12)", borderRadius: 999, padding: "9px 16px", marginTop: 18 }}>
+                  <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#34C778", animation: "livePulse 2.4s infinite" }} />
+                  <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>{fmt(totalAll)} {totalAll === 1 ? "boat" : "boats"} listed for the show</span>
+                </div>
+              )}
             </div>
-            {!loading && totalAll > 0 && (
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", border: "1px solid rgba(11,34,56,.12)", borderRadius: 999, padding: "9px 16px" }}>
-                <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#34C778", animation: "livePulse 2.4s infinite" }} />
-                <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>{fmt(totalAll)} {totalAll === 1 ? "boat" : "boats"} in the water</span>
-              </div>
-            )}
+            <div style={{ minWidth: 0 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/show/banner-boats.jpg" alt="Boats and dealer tents lining the docks at the show" style={{ display: "block", width: "100%", height: "auto", borderRadius: 4 }} />
+            </div>
           </div>
-          <div style={{ marginTop: 24 }}><AdSlot label="Presenting sponsor banner · 970×90" height={110} /></div>
         </div>
       </section>
 
       {/* BROWSE */}
-      <section style={{ background: "#F4F1EA", padding: "clamp(22px,2.5vw,32px) clamp(18px,3vw,44px) clamp(60px,7vw,96px)" }}>
+      <section style={{ background: "#F4F7F9", padding: "clamp(22px,2.5vw,32px) clamp(18px,3vw,44px) clamp(60px,7vw,96px)" }}>
         <div style={{ maxWidth: 1500, margin: "0 auto", display: "flex", gap: "clamp(18px,2vw,30px)", alignItems: "flex-start", flexWrap: "wrap" }}>
           {/* FILTER RAIL */}
-          <aside style={{ flex: "1 1 220px", maxWidth: 246, position: "sticky", top: 78, background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 18, padding: "20px 18px" }}>
+          <aside style={{ flex: "1 1 220px", maxWidth: 246, position: "sticky", top: 78, background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 18, padding: "20px 18px" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 16 }}>Filters</div>
               <button onClick={clearFilters} className="link-ink" style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".04em", color: "var(--accent)", background: "none", border: "none", cursor: "pointer", padding: 0 }}>Clear all</button>
             </div>
             <div style={{ marginTop: 15 }}>
-              <input value={q} onChange={(e) => { setQ(e.target.value); setVisible(10); }} placeholder="Search make or model…" style={{ width: "100%", background: "#F8F6F1", border: "1px solid rgba(11,34,56,.16)", borderRadius: 10, padding: "11px 13px", fontSize: 14, color: "#0A2138", outline: "none" }} />
+              <input value={q} onChange={(e) => { setQ(e.target.value); setVisible(10); }} placeholder="Search make or model…" style={{ width: "100%", background: "#F8F6F1", border: "1px solid rgba(20,46,81,.16)", borderRadius: 10, padding: "11px 13px", fontSize: 14, color: "#142E51", outline: "none" }} />
             </div>
 
             <FilterGroup title="Condition">
@@ -179,14 +179,14 @@ export default function Inventory() {
               </FilterGroup>
             )}
 
-            <div style={{ marginTop: 20, borderTop: "1px solid rgba(11,34,56,.1)", paddingTop: 16 }}>
+            <div style={{ marginTop: 20, borderTop: "1px solid rgba(20,46,81,.1)", paddingTop: 16 }}>
               <div style={railHead}>Make</div>
               <div style={{ marginTop: 8, maxHeight: 200, overflow: "auto" }}>
                 {Object.keys(makeCounts).sort().map((m) => {
                   const on = !!make[m];
                   return (
                     <button key={m} onClick={() => toggle(setMake, m)} style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", background: "none", border: "none", padding: "6px 0", cursor: "pointer", textAlign: "left" }}>
-                      <span style={{ width: 18, height: 18, borderRadius: 5, border: `1.5px solid ${on ? "#0A2138" : "rgba(11,34,56,.3)"}`, background: on ? "#0A2138" : "#fff", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, flex: "0 0 auto" }}>{on ? "✓" : ""}</span>
+                      <span style={{ width: 18, height: 18, borderRadius: 5, border: `1.5px solid ${on ? "#142E51" : "rgba(20,46,81,.3)"}`, background: on ? "#142E51" : "#fff", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, flex: "0 0 auto" }}>{on ? "✓" : ""}</span>
                       <span style={{ fontSize: 13.5, color: "#33454f", flex: 1 }}>{m}</span>
                       <span style={{ fontFamily: MONO, fontSize: 11, color: "#9aa7b0" }}>{makeCounts[m]}</span>
                     </button>
@@ -199,10 +199,10 @@ export default function Inventory() {
           {/* RESULTS */}
           <div style={{ flex: "5 1 620px", minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14, flexWrap: "wrap", marginBottom: 18 }}>
-              <div style={{ fontFamily: MONO, fontSize: 13, color: "#3d5260" }}>{!loading && (<>Showing <strong style={{ color: "#0A2138" }}>{total}</strong> of {totalAll} at the show</>)}</div>
+              <div style={{ fontFamily: MONO, fontSize: 13, color: "#3d5260" }}>{!loading && (<>Showing <strong style={{ color: "#142E51" }}>{total}</strong> of {totalAll} at the show</>)}</div>
               <label style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".08em", color: "#8595a0" }}>SORT</span>
-                <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ background: "#fff", border: "1px solid rgba(11,34,56,.16)", borderRadius: 10, padding: "10px 30px 10px 13px", fontSize: 13.5, color: "#0A2138", cursor: "pointer" }}>
+                <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ background: "#fff", border: "1px solid rgba(20,46,81,.16)", borderRadius: 10, padding: "10px 30px 10px 13px", fontSize: 13.5, color: "#142E51", cursor: "pointer" }}>
                   <option value="featured">Featured</option>
                   <option value="price-asc">Price: Low to High</option>
                   <option value="price-desc">Price: High to Low</option>
@@ -215,9 +215,9 @@ export default function Inventory() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,200px),1fr))", gap: 16, alignItems: "stretch" }}>
               {items.map((it, i) =>
                 it.ad ? (
-                  <div key={it.adId} style={{ position: "relative", border: "1px dashed rgba(242,106,62,.45)", borderRadius: 16, overflow: "hidden", background: "linear-gradient(180deg,#fbf3ef,#fbfaf5)", display: "flex", flexDirection: "column", minHeight: 250 }}>
+                  <div key={it.adId} style={{ position: "relative", border: "1px dashed rgba(253,183,23,.45)", borderRadius: 16, overflow: "hidden", background: "linear-gradient(180deg,#fbf3ef,#fbfaf5)", display: "flex", flexDirection: "column", minHeight: 250 }}>
                     <div style={{ position: "absolute", top: 9, left: 9, zIndex: 3, fontFamily: MONO, fontSize: 9, letterSpacing: ".12em", color: "var(--accent)", background: "rgba(255,255,255,.85)", padding: "2px 7px", borderRadius: 4 }}>SPONSORED</div>
-                    <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: MONO, fontSize: 11, color: "rgba(11,34,56,.4)", padding: 16, textAlign: "center" }}>Sponsor / vendor ad</div>
+                    <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: MONO, fontSize: 11, color: "rgba(20,46,81,.4)", padding: 16, textAlign: "center" }}>Sponsor / vendor ad</div>
                   </div>
                 ) : (
                   <BoatCard key={it.id} v={it} bg={BGS[i % BGS.length]} fav={!!favs[it.id]} onFav={() => setFavs((s) => ({ ...s, [it.id]: !s[it.id] }))} />
@@ -226,14 +226,18 @@ export default function Inventory() {
             </div>
 
             {!loading && total === 0 && (
-              <div style={{ textAlign: "center", padding: "60px 20px", border: "1px dashed rgba(11,34,56,.2)", borderRadius: 18 }}>
+              <div style={{ textAlign: "center", padding: "60px 20px", border: "1px dashed rgba(20,46,81,.2)", borderRadius: 18 }}>
                 <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 21 }}>No boats match those filters.</div>
-                <p style={{ color: "#5a6c78", margin: "10px 0 18px" }}>Try widening your search. The docks restock all weekend as boats sell.</p>
-                <button onClick={clearFilters} className="btn-invert" style={{ background: "#0A2138", color: "#fff", fontWeight: 700, fontSize: 14, padding: "12px 20px", borderRadius: 999, border: "none", cursor: "pointer" }}>Clear all filters</button>
+                <p style={{ color: "#5a6c78", margin: "10px 0 18px" }}>Try widening your search — new listings are added as dealers confirm their show lineups.</p>
+                <button onClick={clearFilters} className="btn-invert" style={{ background: "#142E51", color: "#fff", fontWeight: 700, fontSize: 14, padding: "12px 20px", borderRadius: 999, border: "none", cursor: "pointer" }}>Clear all filters</button>
               </div>
             )}
 
             <div ref={sentinel} style={{ height: 1 }} />
+            <div style={{ display: "flex", alignItems: "center", gap: 10, background: "#fff", border: "1px solid rgba(117,186,228,.4)", borderRadius: 10, padding: "11px 16px", marginTop: 24 }}>
+              <span aria-hidden style={{ width: 18, height: 18, borderRadius: "50%", background: "var(--lightblue)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, flex: "0 0 auto" }}>i</span>
+              <span style={{ fontSize: 13.5, color: "rgba(20,46,81,.75)" }}>Boats and locations are subject to change. Please check with the dealer for the most up-to-date information.</span>
+            </div>
             <div style={{ textAlign: "center", marginTop: 26, fontFamily: MONO, fontSize: 12, letterSpacing: ".04em", color: "#8595a0" }}>
               {loading ? (
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 9 }}><span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", animation: "livePulse 1.6s infinite" }} />Loading listings…</span>
@@ -248,7 +252,7 @@ export default function Inventory() {
       </section>
 
       {/* FAQ */}
-      <section style={{ background: "#F4F1EA", padding: "clamp(56px,7vw,96px) clamp(18px,3vw,44px)", borderTop: "1px solid rgba(11,34,56,.08)" }}>
+      <section style={{ background: "#F4F7F9", padding: "clamp(56px,7vw,96px) clamp(18px,3vw,44px)", borderTop: "1px solid rgba(20,46,81,.08)" }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <Eyebrow style={{ textAlign: "center" }}>Before you buy</Eyebrow>
           <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,4vw,46px)", lineHeight: 1.04, letterSpacing: "-.02em", margin: "14px 0 0", textAlign: "center" }}>Boat-buying questions, answered.</h2>
@@ -257,10 +261,10 @@ export default function Inventory() {
             {FAQ_DATA.map(([q2, a], i) => {
               const open = faqOpen === i;
               return (
-                <div key={q2} style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 16, overflow: "hidden" }}>
+                <div key={q2} style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden" }}>
                   <button onClick={() => setFaqOpen(open ? -1 : i)} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, textAlign: "left", background: "none", border: "none", cursor: "pointer", padding: "20px clamp(18px,2vw,26px)" }}>
-                    <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(16px,1.5vw,19px)", color: "#0A2138", letterSpacing: "-.01em" }}>{q2}</span>
-                    <span style={{ flex: "0 0 auto", width: 27, height: 27, borderRadius: "50%", background: open ? "var(--accent)" : "rgba(11,34,56,.06)", color: open ? "#0A2138" : "#4c6270", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, lineHeight: 1, transform: open ? "rotate(45deg)" : "rotate(0deg)", transition: "transform .25s, background .2s" }}>+</span>
+                    <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(16px,1.5vw,19px)", color: "#142E51", letterSpacing: "-.01em" }}>{q2}</span>
+                    <span style={{ flex: "0 0 auto", width: 27, height: 27, borderRadius: "50%", background: open ? "var(--accent)" : "rgba(20,46,81,.06)", color: open ? "#142E51" : "#4c6270", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, lineHeight: 1, transform: open ? "rotate(45deg)" : "rotate(0deg)", transition: "transform .25s, background .2s" }}>+</span>
                   </button>
                   <div style={{ maxHeight: open ? 540 : 0, overflow: "hidden", transition: "max-height .32s ease" }}>
                     <p style={{ margin: 0, padding: "0 clamp(18px,2vw,26px) 22px", fontSize: 15.5, lineHeight: 1.62, color: "#4c6270" }}>{a}</p>
@@ -296,21 +300,21 @@ function BoatCard({ v, bg, fav, onFav }: { v: V; bg: string; fav: boolean; onFav
   else if (v.hours > 0) meta.push(fmt(v.hours) + " hrs");
   else if (v.condition) meta.push(v.condition);
   return (
-    <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
+    <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
       <div style={{ position: "relative", aspectRatio: "16/11", background: bg }}>
         <Link href={href} aria-label={`${title} details`} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1 }}>
           {v.photoUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={v.photoUrl} alt={title} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
           ) : (
-            <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".14em", color: "rgba(10,33,56,.4)" }}>{"// VESSEL PHOTO"}</span>
+            <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".14em", color: "rgba(20,46,81,.4)" }}>{"// VESSEL PHOTO"}</span>
           )}
         </Link>
         {v.dock ? (
-          <span style={{ position: "absolute", top: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(8,24,41,.9)", color: "#fff", padding: "4px 7px", borderRadius: 5, pointerEvents: "none", zIndex: 2 }}>{v.dock}</span>
+          <span style={{ position: "absolute", top: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(20,46,81,.9)", color: "#fff", padding: "4px 7px", borderRadius: 5, pointerEvents: "none", zIndex: 2 }}>{v.dock}</span>
         ) : null}
         {v.photos > 0 ? (
-          <span style={{ position: "absolute", bottom: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(8,24,41,.78)", color: "#fff", padding: "3px 7px", borderRadius: 5, pointerEvents: "none", zIndex: 2 }}>{v.photos} {v.photos === 1 ? "photo" : "photos"}</span>
+          <span style={{ position: "absolute", bottom: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(20,46,81,.78)", color: "#fff", padding: "3px 7px", borderRadius: 5, pointerEvents: "none", zIndex: 2 }}>{v.photos} {v.photos === 1 ? "photo" : "photos"}</span>
         ) : null}
         <button onClick={onFav} aria-label="Save" style={{ position: "absolute", top: 7, right: 7, width: 30, height: 30, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.92)", color: fav ? "var(--accent)" : "#4c6270", cursor: "pointer", fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3 }}>{fav ? "♥" : "♡"}</button>
       </div>
@@ -330,15 +334,15 @@ function BoatCard({ v, bg, fav, onFav }: { v: V; bg: string; fav: boolean; onFav
         )}
         <div style={{ fontFamily: MONO, fontSize: 10, color: "#8595a0" }}>{v.dealer}</div>
         <div style={{ marginTop: "auto" }}>
-          <div style={{ paddingTop: 10, borderTop: "1px solid rgba(11,34,56,.08)" }}>
+          <div style={{ paddingTop: 10, borderTop: "1px solid rgba(20,46,81,.08)" }}>
             {v.msrp > 0 && (
               <div style={{ fontFamily: MONO, fontSize: 9.5, color: "#9aa7b0", textDecoration: "line-through" }}>MSRP ${fmt(v.msrp)}</div>
             )}
             {v.price > 0
               ? <BlurredPrice value={`$${fmt(v.price)}`} />
-              : <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 15, color: "#0A2138", lineHeight: 1.05, marginTop: v.msrp > 0 ? 2 : 0 }}>Price on request</div>}
+              : <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 15, color: "#142E51", lineHeight: 1.05, marginTop: v.msrp > 0 ? 2 : 0 }}>Price on request</div>}
           </div>
-          <Link href={href} className="h-brighten" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginTop: 12, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 13.5, padding: 11, borderRadius: 10 }}>Vessel Details →</Link>
+          <Link href={href} className="h-brighten" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginTop: 12, background: "var(--accent)", color: "#142E51", fontWeight: 700, fontSize: 13.5, padding: 11, borderRadius: 10 }}>Vessel Details →</Link>
         </div>
       </div>
     </div>

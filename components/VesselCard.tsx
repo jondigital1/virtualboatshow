@@ -44,7 +44,7 @@ export function VesselCard({ v }: { v: Vessel; revealed?: boolean }) {
       className="card-lift"
       style={{
         background: "#fff",
-        border: "1px solid rgba(11,34,56,.1)",
+        border: "1px solid rgba(20,46,81,.1)",
         borderRadius: 18,
         overflow: "hidden",
         display: "flex",
@@ -61,15 +61,15 @@ export function VesselCard({ v }: { v: Vessel; revealed?: boolean }) {
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
           />
         ) : (
-          <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".16em", color: "rgba(10,33,56,.4)" }}>// VESSEL PHOTO</span>
+          <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".16em", color: "rgba(20,46,81,.4)" }}>// VESSEL PHOTO</span>
         )}
         {v.dockLabel ? (
-          <span style={{ position: "absolute", top: 11, left: 11, fontFamily: MONO, fontSize: 10, letterSpacing: ".08em", background: "rgba(8,24,41,.9)", color: "#fff", padding: "5px 9px", borderRadius: 6 }}>
+          <span style={{ position: "absolute", top: 11, left: 11, fontFamily: MONO, fontSize: 10, letterSpacing: ".08em", background: "rgba(20,46,81,.9)", color: "#fff", padding: "5px 9px", borderRadius: 6 }}>
             {v.dockLabel}
           </span>
         ) : null}
         {v.condition ? (
-          <span style={{ position: "absolute", top: 11, right: 11, fontFamily: MONO, fontSize: 10, letterSpacing: ".08em", background: "#fff", color: "#0A2138", padding: "5px 9px", borderRadius: 6, border: "1px solid rgba(11,34,56,.1)" }}>
+          <span style={{ position: "absolute", top: 11, right: 11, fontFamily: MONO, fontSize: 10, letterSpacing: ".08em", background: "#fff", color: "#142E51", padding: "5px 9px", borderRadius: 6, border: "1px solid rgba(20,46,81,.1)" }}>
             {v.condition}
           </span>
         ) : null}
@@ -89,14 +89,14 @@ export function VesselCard({ v }: { v: Vessel; revealed?: boolean }) {
             ))}
           </div>
         )}
-        <div style={{ marginTop: "auto", paddingTop: 13, borderTop: "1px solid rgba(11,34,56,.08)" }}>
+        <div style={{ marginTop: "auto", paddingTop: 13, borderTop: "1px solid rgba(20,46,81,.08)" }}>
           <div>
             {v.msrpFmt ? (
               <div style={{ fontFamily: MONO, fontSize: 11, color: "#9aa7b0", textDecoration: "line-through" }}>MSRP {v.msrpFmt}</div>
             ) : null}
             {v.por ? (
               <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 3 }}>
-                <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 19, color: "#0A2138" }}>Price on request</span>
+                <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 19, color: "#142E51" }}>Price on request</span>
               </div>
             ) : (
               <BlurredPrice value={v.showFmt} />
@@ -105,7 +105,7 @@ export function VesselCard({ v }: { v: Vessel; revealed?: boolean }) {
           <Link
             href={v.href ?? "/inventory"}
             className="h-brighten"
-            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginTop: 12, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 13.5, padding: 11, borderRadius: 10 }}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginTop: 12, background: "var(--accent)", color: "#142E51", fontWeight: 700, fontSize: 13.5, padding: 11, borderRadius: 10 }}
           >
             Vessel Details →
           </Link>
@@ -122,7 +122,7 @@ export function AdSlot({ label, tag = "ADVERTISEMENT", height, accent = false }:
     <div
       style={{
         position: "relative",
-        border: accent ? "1px dashed rgba(242,106,62,.4)" : "1px dashed rgba(11,34,56,.24)",
+        border: accent ? "1px dashed rgba(253,183,23,.4)" : "1px dashed rgba(20,46,81,.24)",
         borderRadius: 14,
         overflow: "hidden",
         background: accent ? "linear-gradient(180deg,#fbf3ef,#fbfaf5)" : "#fbfaf5",
@@ -132,10 +132,10 @@ export function AdSlot({ label, tag = "ADVERTISEMENT", height, accent = false }:
         justifyContent: "center",
       }}
     >
-      <div style={{ position: "absolute", top: 8, left: 10, fontFamily: MONO, fontSize: 9, letterSpacing: ".14em", color: accent ? "var(--accent)" : "rgba(11,34,56,.45)", background: "rgba(255,255,255,.85)", padding: "2px 7px", borderRadius: 4 }}>
+      <div style={{ position: "absolute", top: 8, left: 10, fontFamily: MONO, fontSize: 9, letterSpacing: ".14em", color: accent ? "var(--accent)" : "rgba(20,46,81,.45)", background: "rgba(255,255,255,.85)", padding: "2px 7px", borderRadius: 4 }}>
         {tag}
       </div>
-      <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".08em", color: "rgba(11,34,56,.4)", textAlign: "center", padding: "0 16px" }}>{label}</span>
+      <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".08em", color: "rgba(20,46,81,.4)", textAlign: "center", padding: "0 16px" }}>{label}</span>
     </div>
   );
 }

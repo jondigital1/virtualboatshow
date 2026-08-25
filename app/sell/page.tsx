@@ -7,12 +7,12 @@ import { DISPLAY, MONO, Eyebrow } from "@/components/ui";
 import { submitLead } from "@/lib/leads";
 
 const inputStyle: React.CSSProperties = {
-  border: "1px solid rgba(11,34,56,.18)",
+  border: "1px solid rgba(20,46,81,.18)",
   borderRadius: 10,
   padding: 12,
   fontSize: 14.5,
   background: "#F8F6F1",
-  color: "#0A2138",
+  color: "#142E51",
 };
 const fieldLabel: React.CSSProperties = { fontFamily: MONO, fontSize: 10.5, letterSpacing: ".06em", color: "#7c8b96" };
 const CONDITIONS = ["New", "Excellent", "Good", "Fair"];
@@ -68,8 +68,8 @@ export default function SellYourBoat() {
       {!embedded && <AnnouncementBar />}
       {!embedded && <Nav active="/#trade" />}
 
-      <section style={{ position: "relative", background: "#0A2138", color: "#fff", overflow: "hidden" }}>
-        <div style={{ position: "absolute", top: "-25%", right: "-8%", width: "60%", height: "150%", background: "radial-gradient(circle at 68% 34%, rgba(242,106,62,.14), transparent 60%)", pointerEvents: "none", zIndex: 0 }} />
+      <section style={{ position: "relative", background: "#142E51", color: "#fff", overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: "-25%", right: "-8%", width: "60%", height: "150%", background: "radial-gradient(circle at 68% 34%, rgba(253,183,23,.14), transparent 60%)", pointerEvents: "none", zIndex: 0 }} />
         <div style={{ position: "relative", zIndex: 2, maxWidth: 1300, margin: "0 auto", padding: "clamp(32px,5vw,64px) clamp(18px,4vw,40px) clamp(40px,6vw,72px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,340px),1fr))", gap: "clamp(28px,4vw,52px)", alignItems: "center" }}>
           <div style={{ minWidth: 0 }}>
             <Eyebrow>Boat Show Trade-In Special</Eyebrow>
@@ -89,7 +89,7 @@ export default function SellYourBoat() {
           </div>
 
           {/* STEPPER CARD */}
-          <div style={{ background: "#fff", color: "#0A2138", borderRadius: 22, padding: "clamp(24px,3vw,34px)", boxShadow: "0 34px 80px -34px rgba(0,0,0,.6)" }}>
+          <div style={{ background: "#fff", color: "#142E51", borderRadius: 22, padding: "clamp(24px,3vw,34px)", boxShadow: "0 34px 80px -34px rgba(0,0,0,.6)" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
               <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 19 }}>{cardTitle}</div>
               <div style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: ".08em", color: "var(--accent)", border: "1px solid var(--accent)", borderRadius: 999, padding: "4px 10px" }}>{badge}</div>
@@ -119,7 +119,7 @@ export default function SellYourBoat() {
                     {CONDITIONS.map((c) => {
                       const on = f.condition === c;
                       return (
-                        <button key={c} onClick={() => setF((s) => ({ ...s, condition: c }))} style={{ fontFamily: MONO, fontSize: 12, padding: "9px 15px", borderRadius: 999, cursor: "pointer", background: on ? "#0A2138" : "#fff", color: on ? "#fff" : "#3d5260", border: `1px solid ${on ? "#0A2138" : "rgba(11,34,56,.16)"}` }}>{c}</button>
+                        <button key={c} onClick={() => setF((s) => ({ ...s, condition: c }))} style={{ fontFamily: MONO, fontSize: 12, padding: "9px 15px", borderRadius: 999, cursor: "pointer", background: on ? "#142E51" : "#fff", color: on ? "#fff" : "#3d5260", border: `1px solid ${on ? "#142E51" : "rgba(20,46,81,.16)"}` }}>{c}</button>
                       );
                     })}
                   </div>
@@ -138,19 +138,19 @@ export default function SellYourBoat() {
             {step === 4 && (
               <div style={{ textAlign: "center", padding: "10px 0 2px" }}>
                 <div style={{ width: 54, height: 54, borderRadius: "50%", background: "rgba(23,138,90,.12)", color: "#178a5a", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, margin: "0 auto 14px" }}>✓</div>
-                <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(22px,3vw,28px)", color: "#0A2138", letterSpacing: "-.01em" }}>Thanks, {f.firstName || "you"}!</div>
+                <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(22px,3vw,28px)", color: "#142E51", letterSpacing: "-.01em" }}>Thanks, {f.firstName || "you"}!</div>
                 <p style={{ fontSize: 14.5, lineHeight: 1.55, color: "#5a6c78", margin: "10px auto 0", maxWidth: "36ch" }}>{dealerName} will reach out with your Boat Show Trade-In Special before the show, so it&rsquo;s ready and waiting when you arrive. No obligation.</p>
               </div>
             )}
 
             <div style={{ display: "flex", gap: 10, marginTop: 22 }}>
               {step > 1 && step < 4 && (
-                <button onClick={back} className="btn-outline" style={{ flex: "0 0 auto", background: "#fff", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: "14px 20px", borderRadius: 12, border: "1px solid rgba(11,34,56,.2)", cursor: "pointer" }}>Back</button>
+                <button onClick={back} className="btn-outline" style={{ flex: "0 0 auto", background: "#fff", color: "#142E51", fontWeight: 700, fontSize: 15, padding: "14px 20px", borderRadius: 12, border: "1px solid rgba(20,46,81,.2)", cursor: "pointer" }}>Back</button>
               )}
               {step === 4 ? (
-                <Link href="/inventory" className="h-brighten" style={{ flex: 1, textAlign: "center", background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: 15, borderRadius: 12 }}>Browse the fleet →</Link>
+                <Link href="/inventory" className="h-brighten" style={{ flex: 1, textAlign: "center", background: "var(--accent)", color: "#142E51", fontWeight: 700, fontSize: 15, padding: 15, borderRadius: 12 }}>Browse the fleet →</Link>
               ) : (
-                <button onClick={next} className="h-brighten" style={{ flex: 1, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 15, padding: 15, borderRadius: 12, border: "none", cursor: "pointer" }}>{nextLabel}</button>
+                <button onClick={next} className="h-brighten" style={{ flex: 1, background: "var(--accent)", color: "#142E51", fontWeight: 700, fontSize: 15, padding: 15, borderRadius: 12, border: "none", cursor: "pointer" }}>{nextLabel}</button>
               )}
             </div>
             <div style={{ fontFamily: MONO, fontSize: 10.5, color: "#9aa7b0", marginTop: 12, textAlign: "center", lineHeight: 1.5 }}>{footHint}</div>

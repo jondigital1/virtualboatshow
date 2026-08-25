@@ -1,24 +1,15 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Hanken_Grotesk, Space_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { IframeModalProvider } from "@/components/IframeModal";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
+/* Single brand family per the AC Boat Show mockups: Poppins carries display,
+ * body, and the letterspaced eyebrow/caps styles (legacy font vars are
+ * aliased to it in globals.css until the official brand sheet arrives). */
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-bricolage",
-  display: "swap",
-});
-
-const hanken = Hanken_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-hanken",
-  display: "swap",
-});
-
-const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-space-mono",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
@@ -28,13 +19,13 @@ export const metadata: Metadata = {
     template: "%s · AC In-Water Boat Show",
   },
   description:
-    "Preview every boat coming to the Atlantic City In-Water Boat Show, value your current boat, and book your appointment. Boat Show Pricing is revealed at the show. Sept 10-13, 2026 · Atlantic City.",
+    "The official virtual companion to the Atlantic City In-Water Boat Show. Browse boats and Marine Marketplace exhibitors, save your favorites, and plan your visit. Sept 10-13, 2026 · Farley State Marina, Atlantic City.",
   keywords: [
     "Atlantic City boat show",
     "in-water boat show",
     "boats for sale NJ",
-    "boat show pricing",
-    "sell my boat",
+    "marine marketplace",
+    "boat show tickets",
   ],
 };
 
@@ -42,10 +33,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${bricolage.variable} ${hanken.variable} ${spaceMono.variable}`}
-    >
+    <html lang="en" className={poppins.variable}>
       <body>
         <IframeModalProvider>{children}</IframeModalProvider>
       </body>

@@ -26,7 +26,7 @@ export function BlurredPrice({ value, large = false }: { value: string; large?: 
           fontFamily: DISPLAY,
           fontWeight: 800,
           fontSize: large ? 30 : 22,
-          color: "#0A2138",
+          color: "#142E51",
           lineHeight: 1.05,
           marginTop: large ? 5 : 2,
           width: "fit-content",
