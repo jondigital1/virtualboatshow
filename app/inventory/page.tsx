@@ -215,11 +215,17 @@ function ShowBoatCard({ b, fav, onFav }: { b: ShowBoat; fav: boolean; onFav: () 
           <>
             <button aria-label="Previous photo" onClick={() => step(-1)} style={arrowStyle("left")}>‹</button>
             <button aria-label="Next photo" onClick={() => step(1)} style={arrowStyle("right")}>›</button>
-            <span aria-hidden style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", zIndex: 2, display: "flex", gap: 5, pointerEvents: "none" }}>
-              {b.photos.map((_, i) => (
-                <span key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: i === idx ? "#fff" : "rgba(255,255,255,.5)", boxShadow: "0 1px 3px rgba(20,46,81,.4)" }} />
-              ))}
-            </span>
+            {b.photos.length <= 8 ? (
+              <span aria-hidden style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", zIndex: 2, display: "flex", gap: 5, pointerEvents: "none" }}>
+                {b.photos.map((_, i) => (
+                  <span key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: i === idx ? "#fff" : "rgba(255,255,255,.5)", boxShadow: "0 1px 3px rgba(20,46,81,.4)" }} />
+                ))}
+              </span>
+            ) : (
+              <span aria-hidden style={{ position: "absolute", bottom: 8, right: 8, zIndex: 2, pointerEvents: "none", fontFamily: FONT, fontWeight: 700, fontSize: 10.5, background: "rgba(20,46,81,.75)", color: "#fff", padding: "3px 8px", borderRadius: 999 }}>
+                {idx + 1} / {b.photos.length}
+              </span>
+            )}
           </>
         )}
         {b.notes ? (

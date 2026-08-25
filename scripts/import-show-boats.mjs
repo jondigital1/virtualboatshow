@@ -22,6 +22,12 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, unlinkSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import sharp from "sharp";
+
+/** Max gallery photos stored per boat (page weight + repo size ceiling). */
+const MAX_PHOTOS = 12;
+/** --refresh: ignore the on-disk photo cache and re-harvest every gallery. */
+const REFRESH = process.argv.includes("--refresh");
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const RAW = join(ROOT, "data", "feature-boats-raw.json");
@@ -206,23 +212,38 @@ const absolutize = (src, base) => {
 
 function extractFromHtml(html, baseUrl) {
   const found = [];
+  const junk = /logo|icon|sprite|placeholder|pixel|avatar|favicon|captcha|badge-|banner-ad/i;
+  // 1) social meta images (usually the hero shot)
   const metas = [...html.matchAll(/<meta[^>]+(?:property|name)=["'](?:og:image|og:image:url|twitter:image)["'][^>]+content=["']([^"']+)["']/gi)]
     .concat([...html.matchAll(/<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["'](?:og:image|og:image:url|twitter:image)["']/gi)]);
   for (const m of metas) found.push(m[1]);
-  // common inventory/product gallery imgs
-  for (const m of html.matchAll(/<img[^>]+src=["']([^"']+\.(?:jpe?g|png|webp)(?:\?[^"']*)?)["']/gi)) {
-    const src = m[1];
-    if (/logo|icon|sprite|placeholder|badge|flag|banner-ad|pixel/i.test(src)) continue;
-    found.push(src);
+  // 2) every visible AND lazy-loaded gallery image attribute
+  for (const m of html.matchAll(/(?:src|data-src|data-lazy|data-original|data-image|data-large_image|data-full|href)=["']([^"']+\.(?:jpe?g|png|webp)(?:\?[^"']*)?)["']/gi)) {
+    if (!junk.test(m[1])) found.push(m[1]);
+  }
+  // 3) srcset variants: keep the largest candidate of each set
+  for (const m of html.matchAll(/(?:srcset|data-srcset)=["']([^"']+)["']/gi)) {
+    const parts = m[1].split(",").map((p) => p.trim().split(/\s+/)[0]).filter((u) => /\.(jpe?g|png|webp)/i.test(u));
+    const last = parts[parts.length - 1];
+    if (last && !junk.test(last)) found.push(last);
+  }
+  // 4) image URLs embedded in inline JSON (gallery configs, JSON-LD)
+  for (const m of html.matchAll(/https?:\\?\/\\?\/[^"'\s\\]+\.(?:jpe?g|png|webp)(?:\?[^"'\s\\]*)?/gi)) {
+    const u = m[0].replace(/\\\//g, "/");
+    if (!junk.test(u)) found.push(u);
   }
   const photos = [];
   const seen = new Set();
   for (const f of found) {
     const abs = absolutize(f.replace(/&amp;/g, "&"), baseUrl);
-    if (!abs || seen.has(abs)) continue;
-    seen.add(abs);
+    if (!abs) continue;
+    // Dedupe size-variants of the same asset by path (except query-driven
+    // thumbnailers like Thumb.aspx, where the query IS the identity).
+    const key = /\.aspx/i.test(abs) ? abs : abs.split("?")[0].replace(/-\d{2,4}x\d{2,4}(?=\.\w+$)/, "");
+    if (seen.has(key)) continue;
+    seen.add(key);
     photos.push(abs);
-    if (photos.length >= 8) break;
+    if (photos.length >= 40) break;
   }
   const descM = html.match(/<meta[^>]+(?:property|name)=["'](?:og:description|description)["'][^>]+content=["']([^"']+)["']/i);
   const blurb = descM ? descM[1].replace(/&amp;/g, "&").replace(/&#0?39;|&rsquo;/g, "'").replace(/&quot;/g, '"').slice(0, 300) : "";
@@ -254,34 +275,59 @@ const extFor = (url, buf) => {
   return m ? m[1].toLowerCase().replace("jpeg", "jpg") : "jpg";
 };
 
+/** Numeric sort so slug-10 follows slug-9, not slug-1. */
+const byPhotoNum = (a, b) => (Number(a.match(/-(\d+)\.\w+$/)?.[1]) || 0) - (Number(b.match(/-(\d+)\.\w+$/)?.[1]) || 0);
+
 async function enrich(boat) {
   // Strict cache-key match (slug-N.ext): keeps sibling slugs like
   // "sea-pro-245" from claiming "sea-pro-245-flxr-1.jpg".
   const mine = new RegExp("^" + boat.slug.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "-\\d+\\.(jpe?g|png|webp)$", "i");
-  const existing = readdirSync(PHOTO_DIR).filter((f) => mine.test(f));
-  if (existing.length > 0) {
-    boat.photos = existing.sort().map((f) => "/boats/" + f);
+  const existing = readdirSync(PHOTO_DIR).filter((f) => mine.test(f)).sort(byPhotoNum);
+  if (existing.length > 0 && !REFRESH) {
+    boat.photos = existing.map((f) => "/boats/" + f);
     return "cached";
   }
-  if (!boat.sourceUrl) return "no-source";
+  const keepCached = () => {
+    boat.photos = existing.map((f) => "/boats/" + f);
+    return existing.length > 0 ? "kept-cached" : "no-photos";
+  };
+  if (!boat.sourceUrl) return existing.length ? keepCached() : "no-source";
   const html = await fetchWithTimeout(boat.sourceUrl);
-  if (!html) return "fetch-failed";
+  if (!html) return keepCached(); // bot-gated page: keep what we have
   const { photos, blurb, lengthFt } = extractFromHtml(html, boat.sourceUrl);
   boat.blurb = blurb;
   boat.lengthFt = lengthFt;
-  let n = 0;
+
+  const written = [];
   for (const p of photos) {
-    if (n >= 4) break;
+    if (written.length >= MAX_PHOTOS) break;
     const buf = await fetchWithTimeout(p, 25000, true);
-    if (!buf || buf.length < 12000 || buf.length > 8_000_000) continue; // skip icons + monsters
-    const ext = extFor(p, buf);
-    const name = `${boat.slug}-${n + 1}.${ext}`;
-    writeFileSync(join(PHOTO_DIR, name), buf);
-    boat.photos.push("/boats/" + name);
-    n++;
-    await new Promise((r) => setTimeout(r, 250));
+    if (!buf || buf.length < 8000 || buf.length > 15_000_000) continue;
+    try {
+      // Normalize everything through sharp: cap 1280px wide, JPEG q80.
+      // Also drops junk (banners, swatches) by minimum real dimensions.
+      const img = sharp(buf);
+      const meta = await img.metadata();
+      if (!meta.width || meta.width < 500 || (meta.height ?? 0) < 300) continue;
+      const out = await img.resize({ width: 1280, withoutEnlargement: true }).jpeg({ quality: 80, mozjpeg: true }).toBuffer();
+      const name = `${boat.slug}-${written.length + 1}.jpg`;
+      writeFileSync(join(PHOTO_DIR, name), out);
+      written.push(name);
+    } catch {
+      continue; // undecodable buffer: skip
+    }
+    await new Promise((r) => setTimeout(r, 200));
   }
-  return boat.photos.length > 0 ? "ok" : "no-photos";
+
+  if (written.length === 0) return keepCached(); // harvest failed: keep old set
+  // Remove superseded files for this slug (old extensions / higher numbers).
+  for (const f of existing) {
+    if (!written.includes(f)) {
+      try { unlinkSync(join(PHOTO_DIR, f)); } catch { /* already gone */ }
+    }
+  }
+  boat.photos = written.map((f) => "/boats/" + f);
+  return "ok";
 }
 
 async function main() {
