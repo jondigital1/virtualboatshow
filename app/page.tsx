@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { Eyebrow } from "@/components/ui";
-import { fetchListings, toV, type V } from "@/lib/buoy";
+import { pickFeatured, boatTitle, type ShowBoat } from "@/lib/showboats";
 
 const FONT = "var(--font-poppins), sans-serif";
 const SECTION_PAD = "clamp(56px,7vw,96px) clamp(18px,5vw,56px)";
@@ -34,24 +34,17 @@ function OutlineBtn({ href, children }: { href: string; children: React.ReactNod
 }
 
 export default function Home() {
-  const [thumbs, setThumbs] = useState<V[]>([]);
+  // Curated show boats (data/show-boats.json). Random picks are client-only
+  // (useEffect) so the server render never mismatches, and every page load
+  // reshuffles — each dealer gets equal turns at the featured real estate.
+  const [featured, setFeatured] = useState<ShowBoat[]>([]);
+  const [thumbs, setThumbs] = useState<ShowBoat[]>([]);
 
   useEffect(() => {
-    let alive = true;
-    fetchListings({ limit: 60 })
-      .then((data) => {
-        if (!alive) return;
-        const vs = (data.listings ?? []).map(toV).filter((v) => v.photoUrl);
-        vs.sort((a, b) => Number(b.featured) - Number(a.featured));
-        // A partial row looks broken; render the rail only when it fills.
-        setThumbs(vs.length >= 4 ? vs.slice(0, 4) : []);
-      })
-      .catch(() => {
-        /* API unreachable: the thumbnail rail simply collapses. */
-      });
-    return () => {
-      alive = false;
-    };
+    const picks = pickFeatured(10);
+    setFeatured(picks.slice(0, 6));
+    const rest = picks.slice(6, 10);
+    setThumbs(rest.length === 4 ? rest : picks.slice(0, 4));
   }, []);
 
   const marketplaceCats = ["Electronics", "Engines & Service", "Docking", "Insurance", "Gear"];
@@ -117,10 +110,10 @@ export default function Home() {
               </div>
               {thumbs.length > 0 && (
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8, padding: "0 16px 16px" }}>
-                  {thumbs.map((v) => (
-                    <Link key={v.id} href={"/inventory/" + v.id} title={[v.year || "", v.make, v.model].filter(Boolean).join(" ")} style={{ display: "block", aspectRatio: "4/3", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(20,46,81,.1)" }}>
+                  {thumbs.map((b) => (
+                    <Link key={b.slug} href={"/boats/" + b.slug} title={boatTitle(b)} style={{ display: "block", aspectRatio: "4/3", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(20,46,81,.1)" }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={v.photoUrl!} alt={[v.year || "", v.make, v.model].filter(Boolean).join(" ")} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                      <img src={b.photos[0]} alt={boatTitle(b)} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                     </Link>
                   ))}
                 </div>
@@ -151,6 +144,47 @@ export default function Home() {
           <InfoBar>Lineup, products and locations are subject to change.</InfoBar>
         </div>
       </section>
+
+      {/* FEATURED AT THE SHOW — rotating, dealer-fair selection */}
+      {featured.length > 0 && (
+        <section id="featured" style={{ scrollMarginTop: 82, background: "#fff", padding: SECTION_PAD }}>
+          <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 18, flexWrap: "wrap" }}>
+              <div>
+                <Eyebrow>On the Water This Year</Eyebrow>
+                <h2 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(28px,4vw,46px)", lineHeight: 1.05, letterSpacing: "-.01em", margin: "14px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
+                  Featured at <span style={{ color: "var(--gold)" }}>the show</span>
+                </h2>
+                <span className="gold-rule" style={{ margin: "18px 0 0" }} />
+              </div>
+              <Link href="/inventory" className="btn-outline" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#fff", color: "var(--navy)", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "12px 20px", borderRadius: 8, border: "1.5px solid var(--lightblue)" }}>
+                See All Boats <span aria-hidden>→</span>
+              </Link>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,250px),1fr))", gap: 18, marginTop: 30 }}>
+              {featured.map((b) => (
+                <Link key={b.slug} href={"/boats/" + b.slug} className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "block" }}>
+                  <div style={{ position: "relative", aspectRatio: "16/10" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={b.photos[0]} alt={boatTitle(b)} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+                    {b.notes && (
+                      <span style={{ position: "absolute", top: 9, left: 9, fontFamily: FONT, fontWeight: 700, fontSize: 10, letterSpacing: ".06em", textTransform: "uppercase", background: "var(--gold)", color: "#142E51", padding: "5px 9px", borderRadius: 6, maxWidth: "85%" }}>{b.notes}</span>
+                    )}
+                  </div>
+                  <div style={{ padding: "13px 15px 15px" }}>
+                    <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "rgba(20,46,81,.55)" }}>{b.brand}{b.year ? ` · ${b.year}` : ""}</div>
+                    <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 17, color: "var(--navy)", marginTop: 3, lineHeight: 1.15 }}>{b.model}</div>
+                    <div style={{ fontSize: 12.5, color: "#5a6c78", marginTop: 5 }}>{b.dealers.map((d) => d.name).join(" · ")}</div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <p style={{ fontFamily: FONT, fontSize: 12.5, color: "#8595a0", margin: "16px 0 0" }}>
+              A rotating selection from the show lineup — every participating dealer shares this space equally.
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* FIND YOUR WAY — the official 2026 visitor map */}
       <section id="map" style={{ scrollMarginTop: 82, background: "#fff", padding: SECTION_PAD }}>
