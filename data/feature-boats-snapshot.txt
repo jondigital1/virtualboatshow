@@ -45,6 +45,8 @@ R44:  | Hurricane Deck Boats | Y | F | I | M | 46245.0
 R45:  | Parker Boats | Y | F | I | M | 46254.0
 R46:  | Sea Hunt Boats | Y | F | I | M | 46260.0
 R47: Riptide
+R48:  | Sailfish Boats
+R49:  | SouthPort Boats
 R50: Riverside Marina & Yacht Sales
 R51:  | Brig Inflatables
 R52:  | Jeanneau Boats
@@ -148,7 +150,7 @@ R62: P | C |  | Formula Boats | 2.0 | 310 BR |  | https://www.formulaboats.com/b
 R63: G. Winter's Sailing Center Inc.
 R64:  |  |  | Ranger Tugs Boats | 0.0 | Waiting
 R65: Irwin
-R66:  |  |  | Sailfish Boats | 0.0 | Waiting
+R66:  |  |  | Bennington Pontoons | 0.0 | Waiting
 R67: MarineMax
 R68: P | C |  | Boston Whaler Boats | 1.0 | 330 Outrage |  | SHARED BRAND - USE BRAND LINK | https://www.bostonwhaler.com/us/en/boats/outrage/330-outrage
 R69: P | C | 2026.0 | Cruisers Yachts | 1.0 | 42 GLS |  | https://www.marinemax.com/products/new-cruisers-yachts-42-gls-2026-marinemax-warehouse-mdl9069645 | https://www.cruisersyachts.com/
@@ -166,75 +168,76 @@ R80: P | C | 2027.0 | Sea Hunt Boats | 1.0 | Ultra 305 SE |  | https://www.njout
 R81: P | C | 2027.0 | Sea Hunt Boats | 2.0 | Ultra 275 SE |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=18972806&p=1&make=sea%20hunt&s=(Sort%20By)&d=D&fr=xnewinventory | https://seahuntboats.com/boats/ultra/ultra-275se/
 R82: P | C | 2027.0 | Sea Hunt Boats | 2.0 | Ultra 265 SE |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=18229996&p=1&make=sea%20hunt&s=(Sort%20By)&d=D&t=new&fr=xnewinventory | https://seahuntboats.com/boats/ultra/ultra-265se/
 R83: Riptide
-R84:  |  |  | Bennington Pontoons | 0.0 | Waiting
-R85: Riverside Marina & Yacht Sales
-R86:  |  |  | Brig Inflatables | 0.0 | Waiting
-R87:  |  |  | Jeanneau Boats | 0.0 | Waiting
-R88: Sandy Hook
-R89: P | C | 2026.0 | De Antonio Yachts | 1.0 | De Antonio D42 |  | https://sandyhookyachts.com/listing/2026-de-antonio-yachts-d42/2846128/3/ | https://www.deantonioyachts.com/
-R90: P | C | 2026.0 | De Antonio Yachts | 2.0 | De Antonio D36 |  | https://sandyhookyachts.com/listing/2026-de-antonio-yachts-d36/2846787/3/ | https://www.deantonioyachts.com/
-R91: P | C | 2026.0 | Marex Boats | 1.0 | Marex 440 |  | https://sandyhookyachts.com/listing/2026-marex-440/2818997/3/ | https://marex.no/
-R92: P | C | 2026.0 | Marex Boats | 2.0 | Marex 360 |  | https://sandyhookyachts.com/listing/2026-marex-360-cabriolet-cruiser/2818982/3/ | https://marex.no/
-R93: Schrader Yacht Sales Inc.
-R94:  |  |  | Chris Craft Boats | 0.0 | Waiting
-R95:  |  |  | Jupiter Boats
-R96:  |  |  | Ken Craft Boats | 0.0 | Waiting
-R97: Seaport Inlet Marina
-R98:  |  |  | Cape Horn Boats | 0.0 | Waiting
-R99:  |  |  | NorthCoast Boats | 0.0 | Waiting
-R100: Sheltered Cove Marina
-R101:  |  |  | Regal Boats | 1.0 | 36XO |  | Regal 36XO https://shelteredcovemarina.com/product/2026-regal-36-xo-9998913/
-R102:  |  |  | Regal Boats | 2.0 | 26XO |  | Regal 26XO https://shelteredcovemarina.com/product/2026-regal-26-xo-9949004/
-R103:  |  |  | Barletta Pontoons | 1.0 | L25UC |  | Barletta L25UC https://shelteredcovemarina.com/product/2026-barletta-lusso-25uc-10152501/
-R104:  |  |  | Barletta Pontoons | 2.0 | C24M |  | Barletta C24M https://shelteredcovemarina.com/product/2026-barletta-c24m-9850634/
-R105:  |  |  | Barletta Pontoons | 2.0 | C22QC |  | Barletta C22QC https://shelteredcovemarina.com/product/2026-barletta-cabrio-22qc-10135200/
-R106:  |  |  | Barletta Pontoons | 2.0 | A22UC |  | Barletta A22UC https://shelteredcovemarina.com/product/2026-barletta-aria-22uc-10135002/
-R107:  |  |  | Starcraft Boats | 1.0 | SVX 230 DC OB |  | Starcraft SVX 230 DC OB https://shelteredcovemarina.com/product/2026-starcraft-svx-230-dc-ob-10015860/
-R108:  |  |  | Starcraft Boats | 0.0 | SVX 210 DC OB |  | Starcraft SVX 210 DC OB https://shelteredcovemarina.com/product/2027-starcraft-svx-210-dc-ob-10283184/
-R109:  |  |  | Starcraft Boats | 2.0 | SVX 211 OB |  | Starcraft SVX 211 OB https://shelteredcovemarina.com/product/2026-starcraft-svx-211-ob-dc-10016004/
-R110:  |  |  | Starcraft Boats | 2.0 | SVX 190 DC OB |  | Starcraft SVX 190 DC OB https://shelteredcovemarina.com/product/2026-starcraft-svx-190-dc-ob-10283168/
-R111:  |  |  | Starcraft Boats | 0.0 | SVX 191 OB |  | Starcraft SVX 191 OB https://shelteredcovemarina.com/product/2026-starcraft-svx-191-ob-10016060/
-R112: South Jersey Yacht Sales
-R113: P | C |  | Albemarle Boats | 1.0 | 45 Carolinian Fisharound Express |  | https://southjerseyyachtsales.com/brand/albemarle/ | https://southjerseyyachtsales.com/brand/albemarle/
-R114: P | C | 2026.0 | Albemarle Boats | 2.0 | 27 Dual Console |  | https://southjerseyyachtsales.com/yacht-listing/2026-albemarle-27-dual-console/ | https://southjerseyyachtsales.com/brand/albemarle/
-R115: P | C | 2026.0 | Albemarle Boats | 2.0 | 30 Express |  | https://southjerseyyachtsales.com/yacht-listing/2026-albemarle-30-express-available-to-order/ | https://southjerseyyachtsales.com/brand/albemarle/
-R116: P | C |  | Solace Boats | 1.0 | 35CS |  | https://southjerseyyachtsales.com/solace/35cs/ | https://southjerseyyachtsales.com/brand/solace/
-R117: P | C | 2026.0 | Solace Boats | 2.0 | 37CS |  | https://southjerseyyachtsales.com/yacht-listing/2026-solace-37cs/ | https://southjerseyyachtsales.com/brand/solace/
-R118: P | C | 2026.0 | Solace Boats | 2.0 | 32CS |  | https://southjerseyyachtsales.com/yacht-listing/2026-solace-32cs/ | https://southjerseyyachtsales.com/brand/solace/
-R119: P | C |  | Viking Yachts | 1.0 | 50 C |  | https://southjerseyyachtsales.com/viking/50-c/ | https://southjerseyyachtsales.com/brand/viking/
-R120: P | C |  | Valhalla Boats | 1.0 | V-33 | SHARED BRAND | https://southjerseyyachtsales.com/valhalla/v-33/ | https://southjerseyyachtsales.com/brand/valhalla/
-R121: Stone Harbor Marina
-R122: X | X | 2026.0 | Cobia | X | 265 CC |  | https://www.stoneharbormarina.com/details/cobia/265-cc/d22ab7ba2afdb6520dcd760482904961 | X
-R123: P | C | 2027.0 | Cobia - 3 | 1.0 | 245 CC |  | https://www.stoneharbormarina.com/search/condition-new/make-cobia | https://www.cobiaboats.com/boats/center-console/245-cc?utm
-R124: X | X | 2026.0 | Cobia | X | 305 CC |  | https://www.stoneharbormarina.com/details/cobia/305-cc/b8579802e905f3482d1fee73786c900c | X
-R125: P | C | 2026.0 | Cobia | 2.0 | 285 CC |  | https://www.stoneharbormarina.com/details/cobia/285-cc/eaf4f5bf6cfbd5d57cca05ddd845d926 | https://www.cobiaboats.com/boats/center-console/285-cc?utm
-R126: P | C | 2026.0 | Cobia | 2.0 | 320 CC |  | https://www.stoneharbormarina.com/details/cobia/320-cc/fb63032d482a9c04b7408daa07ba21f0 | https://www.cobiaboats.com/boats/center-console/320-cc?utm
-R127: X | X | 2026.0 | Everglades | X | 285 CC |  | https://www.stoneharbormarina.com/details/everglades/285-cc/df2cab94e8c0a7716b219e46d7fe80a7 | X
-R128: P | C | 2027.0 | Everglades | 2.0 | 315 CC |  | https://www.stoneharbormarina.com/search/condition-new/make-everglades | https://www.evergladesboats.com/find-your-boat/center-consoles/315cc/?utm
-R129: P | C | 2027.0 | Everglades - 1 | 1.0 | 375 CC |  | https://www.stoneharbormarina.com/search/condition-new/make-everglades | https://www.evergladesboats.com/find-your-boat/center-consoles/375cc/?utm
-R130: P | C | 2026.0 | Everglades | 2.0 | 395 CC |  | https://www.stoneharbormarina.com/details/everglades/395-cc/bd41ee588966c7ba15a0e303df0aaf14 | https://www.evergladesboats.com/find-your-boat/center-consoles/395cc/?utm
-R131: X | X | 2026.0 | Everglades | X | 335 CC |  | https://www.stoneharbormarina.com/details/everglades/335-cc/4cd485a0281879f9e20b3317f2b3455e | X
-R132: X | X | 2026.0 | Everglades | X | 367 CX |  | https://www.stoneharbormarina.com/details/everglades/367-cx/162dee2921c90b7d49e9375da80462ae | X
-R133: P | C | 2027.0 | Pursuit - 2 | 1.0 | S 288 |  | https://www.stoneharbormarina.com/search/condition-new/make-pursuit
-R134: P | C | 2026.0 | Pursuit | 1.0 | S 358 |  | https://www.stoneharbormarina.com/details/pursuit/s-358/621afb90645aa5b3de52ddbbd7c3d99c
-R135: P | C | 2026.0 | Pursuit | 2.0 | DC 365 |  | https://www.stoneharbormarina.com/details/pursuit/dc-365/bc560574b16faff27cf4e29168b61cdc
-R136: X | X | 2026.0 | Pursuit | X | DC 326 |  | https://www.stoneharbormarina.com/details/pursuit/dc-326/0122f381a5e4c005162e09d9f3ce896b | X
-R137: X | X | 2026.0 | Pursuit | X | OS 325 |  | https://www.stoneharbormarina.com/details/pursuit/os-325/3d6e0fb3d8d6c898b4ff6770df74d89a | X
-R138: P | C | 2026.0 | Pursuit | 2.0 | OS 355 |  | https://www.stoneharbormarina.com/details/pursuit/os-355/ac045872d3e3e12503ba4ef08730d7cb
-R139: X | X | 2026.0 | Sea Pro | X | 225 FLXR |  | https://www.stoneharbormarina.com/search/condition-new/make-sea-pro | X
-R140: X | X | 2026.0 | Sea Pro | X | 322 DLX |  | https://www.stoneharbormarina.com/details/sea-pro/322-dlx/22a7ba10185999baebb42c85fd658553 | X
-R141: X | X | 2026.0 | Sea Pro | X | 292 DLX |  | https://www.stoneharbormarina.com/details/sea-pro/292-dlx/1bde3f853f228e7ebb36bdd9b8f1ee1a | X
-R142:  | C | 2027.0 | Sea Pro | 2.0 | 262 DLX |  | https://www.stoneharbormarina.com/search/condition-new/make-sea-pro
-R143:  | C | 2027.0 | Sea Pro - 4 | 1.0 | 245 FLXR |  | https://www.stoneharbormarina.com/search/condition-new/make-sea-pro
-R144:  | C | 2026.0 | Sea Pro | 2.0 | 265 FLX |  | https://www.stoneharbormarina.com/details/sea-pro/265-flx/2d811deb729e2c10e39cff706d30c2d1
-R145: Total Marine
-R146:  |  |  | Alara Boats | 0.0 | Waiting
-R147:  |  |  | Donzi Boats | 0.0 | Waiting
-R148:  |  |  | Fairline Boats | 0.0 | Waiting
-R149:  |  |  | Fountain Boats | 0.0 | Waiting
-R150:  |  |  | Twin Vee Boats | 0.0 | Waiting
-R151: Valhalla Boat Sales
-R152:  |  |  | Contender Boats | 0.0 | Waiting
-R153:  |  |  | Monterey Boats | 0.0 | Waiting
-R154:  |  |  | Sportsman Boats | 0.0 | Waiting
-R155:  |  |  | Valhalla Boats | 0.0 | Waiting
+R84:  |  |  | Sailfish Boats | 0.0 | Waiting
+R85:  |  |  | Southport Boats | 0.0 | Waiting
+R86: Riverside Marina & Yacht Sales
+R87:  |  |  | Brig Inflatables | 0.0 | Waiting
+R88:  |  |  | Jeanneau Boats | 0.0 | Waiting
+R89: Sandy Hook
+R90: P | C | 2026.0 | De Antonio Yachts | 1.0 | De Antonio D42 |  | https://sandyhookyachts.com/listing/2026-de-antonio-yachts-d42/2846128/3/ | https://www.deantonioyachts.com/
+R91: P | C | 2026.0 | De Antonio Yachts | 2.0 | De Antonio D36 |  | https://sandyhookyachts.com/listing/2026-de-antonio-yachts-d36/2846787/3/ | https://www.deantonioyachts.com/
+R92: P | C | 2026.0 | Marex Boats | 1.0 | Marex 440 |  | https://sandyhookyachts.com/listing/2026-marex-440/2818997/3/ | https://marex.no/
+R93: P | C | 2026.0 | Marex Boats | 2.0 | Marex 360 |  | https://sandyhookyachts.com/listing/2026-marex-360-cabriolet-cruiser/2818982/3/ | https://marex.no/
+R94: Schrader Yacht Sales Inc.
+R95:  |  |  | Chris Craft Boats | 0.0 | Waiting
+R96:  |  |  | Jupiter Boats
+R97:  |  |  | Ken Craft Boats | 0.0 | Waiting
+R98: Seaport Inlet Marina
+R99:  |  |  | Cape Horn Boats | 0.0 | Waiting
+R100:  |  |  | NorthCoast Boats | 0.0 | Waiting
+R101: Sheltered Cove Marina
+R102:  |  |  | Regal Boats | 1.0 | 36XO |  | Regal 36XO https://shelteredcovemarina.com/product/2026-regal-36-xo-9998913/
+R103:  |  |  | Regal Boats | 2.0 | 26XO |  | Regal 26XO https://shelteredcovemarina.com/product/2026-regal-26-xo-9949004/
+R104:  |  |  | Barletta Pontoons | 1.0 | L25UC |  | Barletta L25UC https://shelteredcovemarina.com/product/2026-barletta-lusso-25uc-10152501/
+R105:  |  |  | Barletta Pontoons | 2.0 | C24M |  | Barletta C24M https://shelteredcovemarina.com/product/2026-barletta-c24m-9850634/
+R106:  |  |  | Barletta Pontoons | 2.0 | C22QC |  | Barletta C22QC https://shelteredcovemarina.com/product/2026-barletta-cabrio-22qc-10135200/
+R107:  |  |  | Barletta Pontoons | 2.0 | A22UC |  | Barletta A22UC https://shelteredcovemarina.com/product/2026-barletta-aria-22uc-10135002/
+R108:  |  |  | Starcraft Boats | 1.0 | SVX 230 DC OB |  | Starcraft SVX 230 DC OB https://shelteredcovemarina.com/product/2026-starcraft-svx-230-dc-ob-10015860/
+R109:  |  |  | Starcraft Boats | 0.0 | SVX 210 DC OB |  | Starcraft SVX 210 DC OB https://shelteredcovemarina.com/product/2027-starcraft-svx-210-dc-ob-10283184/
+R110:  |  |  | Starcraft Boats | 2.0 | SVX 211 OB |  | Starcraft SVX 211 OB https://shelteredcovemarina.com/product/2026-starcraft-svx-211-ob-dc-10016004/
+R111:  |  |  | Starcraft Boats | 2.0 | SVX 190 DC OB |  | Starcraft SVX 190 DC OB https://shelteredcovemarina.com/product/2026-starcraft-svx-190-dc-ob-10283168/
+R112:  |  |  | Starcraft Boats | 0.0 | SVX 191 OB |  | Starcraft SVX 191 OB https://shelteredcovemarina.com/product/2026-starcraft-svx-191-ob-10016060/
+R113: South Jersey Yacht Sales
+R114: P | C |  | Albemarle Boats | 1.0 | 45 Carolinian Fisharound Express |  | https://southjerseyyachtsales.com/brand/albemarle/ | https://southjerseyyachtsales.com/brand/albemarle/
+R115: P | C | 2026.0 | Albemarle Boats | 2.0 | 27 Dual Console |  | https://southjerseyyachtsales.com/yacht-listing/2026-albemarle-27-dual-console/ | https://southjerseyyachtsales.com/brand/albemarle/
+R116: P | C | 2026.0 | Albemarle Boats | 2.0 | 30 Express |  | https://southjerseyyachtsales.com/yacht-listing/2026-albemarle-30-express-available-to-order/ | https://southjerseyyachtsales.com/brand/albemarle/
+R117: P | C |  | Solace Boats | 1.0 | 35CS |  | https://southjerseyyachtsales.com/solace/35cs/ | https://southjerseyyachtsales.com/brand/solace/
+R118: P | C | 2026.0 | Solace Boats | 2.0 | 37CS |  | https://southjerseyyachtsales.com/yacht-listing/2026-solace-37cs/ | https://southjerseyyachtsales.com/brand/solace/
+R119: P | C | 2026.0 | Solace Boats | 2.0 | 32CS |  | https://southjerseyyachtsales.com/yacht-listing/2026-solace-32cs/ | https://southjerseyyachtsales.com/brand/solace/
+R120: P | C |  | Viking Yachts | 1.0 | 50 C |  | https://southjerseyyachtsales.com/viking/50-c/ | https://southjerseyyachtsales.com/brand/viking/
+R121: P | C |  | Valhalla Boats | 1.0 | V-33 | SHARED BRAND | https://southjerseyyachtsales.com/valhalla/v-33/ | https://southjerseyyachtsales.com/brand/valhalla/
+R122: Stone Harbor Marina
+R123: X | X | 2026.0 | Cobia | X | 265 CC |  | https://www.stoneharbormarina.com/details/cobia/265-cc/d22ab7ba2afdb6520dcd760482904961 | X
+R124: P | C | 2027.0 | Cobia - 3 | 1.0 | 245 CC |  | https://www.stoneharbormarina.com/search/condition-new/make-cobia | https://www.cobiaboats.com/boats/center-console/245-cc?utm
+R125: X | X | 2026.0 | Cobia | X | 305 CC |  | https://www.stoneharbormarina.com/details/cobia/305-cc/b8579802e905f3482d1fee73786c900c | X
+R126: P | C | 2026.0 | Cobia | 2.0 | 285 CC |  | https://www.stoneharbormarina.com/details/cobia/285-cc/eaf4f5bf6cfbd5d57cca05ddd845d926 | https://www.cobiaboats.com/boats/center-console/285-cc?utm
+R127: P | C | 2026.0 | Cobia | 2.0 | 320 CC |  | https://www.stoneharbormarina.com/details/cobia/320-cc/fb63032d482a9c04b7408daa07ba21f0 | https://www.cobiaboats.com/boats/center-console/320-cc?utm
+R128: X | X | 2026.0 | Everglades | X | 285 CC |  | https://www.stoneharbormarina.com/details/everglades/285-cc/df2cab94e8c0a7716b219e46d7fe80a7 | X
+R129: P | C | 2027.0 | Everglades | 2.0 | 315 CC |  | https://www.stoneharbormarina.com/search/condition-new/make-everglades | https://www.evergladesboats.com/find-your-boat/center-consoles/315cc/?utm
+R130: P | C | 2027.0 | Everglades - 1 | 1.0 | 375 CC |  | https://www.stoneharbormarina.com/search/condition-new/make-everglades | https://www.evergladesboats.com/find-your-boat/center-consoles/375cc/?utm
+R131: P | C | 2026.0 | Everglades | 2.0 | 395 CC |  | https://www.stoneharbormarina.com/details/everglades/395-cc/bd41ee588966c7ba15a0e303df0aaf14 | https://www.evergladesboats.com/find-your-boat/center-consoles/395cc/?utm
+R132: X | X | 2026.0 | Everglades | X | 335 CC |  | https://www.stoneharbormarina.com/details/everglades/335-cc/4cd485a0281879f9e20b3317f2b3455e | X
+R133: X | X | 2026.0 | Everglades | X | 367 CX |  | https://www.stoneharbormarina.com/details/everglades/367-cx/162dee2921c90b7d49e9375da80462ae | X
+R134: P | C | 2027.0 | Pursuit - 2 | 1.0 | S 288 |  | https://www.stoneharbormarina.com/search/condition-new/make-pursuit
+R135: P | C | 2026.0 | Pursuit | 1.0 | S 358 |  | https://www.stoneharbormarina.com/details/pursuit/s-358/621afb90645aa5b3de52ddbbd7c3d99c
+R136: P | C | 2026.0 | Pursuit | 2.0 | DC 365 |  | https://www.stoneharbormarina.com/details/pursuit/dc-365/bc560574b16faff27cf4e29168b61cdc
+R137: X | X | 2026.0 | Pursuit | X | DC 326 |  | https://www.stoneharbormarina.com/details/pursuit/dc-326/0122f381a5e4c005162e09d9f3ce896b | X
+R138: X | X | 2026.0 | Pursuit | X | OS 325 |  | https://www.stoneharbormarina.com/details/pursuit/os-325/3d6e0fb3d8d6c898b4ff6770df74d89a | X
+R139: P | C | 2026.0 | Pursuit | 2.0 | OS 355 |  | https://www.stoneharbormarina.com/details/pursuit/os-355/ac045872d3e3e12503ba4ef08730d7cb
+R140: X | X | 2026.0 | Sea Pro | X | 225 FLXR |  | https://www.stoneharbormarina.com/search/condition-new/make-sea-pro | X
+R141: X | X | 2026.0 | Sea Pro | X | 322 DLX |  | https://www.stoneharbormarina.com/details/sea-pro/322-dlx/22a7ba10185999baebb42c85fd658553 | X
+R142: X | X | 2026.0 | Sea Pro | X | 292 DLX |  | https://www.stoneharbormarina.com/details/sea-pro/292-dlx/1bde3f853f228e7ebb36bdd9b8f1ee1a | X
+R143:  | C | 2027.0 | Sea Pro | 2.0 | 262 DLX |  | https://www.stoneharbormarina.com/search/condition-new/make-sea-pro
+R144:  | C | 2027.0 | Sea Pro - 4 | 1.0 | 245 FLXR |  | https://www.stoneharbormarina.com/search/condition-new/make-sea-pro
+R145:  | C | 2026.0 | Sea Pro | 2.0 | 265 FLX |  | https://www.stoneharbormarina.com/details/sea-pro/265-flx/2d811deb729e2c10e39cff706d30c2d1
+R146: Total Marine
+R147:  |  |  | Alara Boats | 0.0 | Waiting
+R148:  |  |  | Donzi Boats | 0.0 | Waiting
+R149:  |  |  | Fairline Boats | 0.0 | Waiting
+R150:  |  |  | Fountain Boats | 0.0 | Waiting
+R151:  |  |  | Twin Vee Boats | 0.0 | Waiting
+R152: Valhalla Boat Sales
+R153:  |  |  | Contender Boats | 0.0 | Waiting
+R154:  |  |  | Monterey Boats | 0.0 | Waiting
+R155:  |  |  | Sportsman Boats | 0.0 | Waiting
+R156:  |  |  | Valhalla Boats | 0.0 | Waiting

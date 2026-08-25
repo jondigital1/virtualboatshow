@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T20:47:26.390Z",
+  "generatedAt": "2026-08-25T22:13:39.554Z",
   "boatCount": 86,
   "boats": [
     {
@@ -2767,13 +2767,14 @@
     {
       "dealer": "Irwin Marine",
       "brands": [
-        "Sailfish"
+        "Bennington Pontoons"
       ]
     },
     {
       "dealer": "Riptide Marine",
       "brands": [
-        "Bennington Pontoons"
+        "Sailfish",
+        "Southport"
       ]
     },
     {
