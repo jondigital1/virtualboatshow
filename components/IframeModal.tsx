@@ -88,7 +88,7 @@ export function IframeModalProvider({ children }: { children: React.ReactNode })
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            style={{ position: "relative", width: "100%", maxWidth: 680, height: "min(90vh, 920px)", background: "#fff", borderRadius: 16, overflow: "hidden", boxShadow: "0 40px 100px -30px rgba(0,0,0,.6)", display: "flex", flexDirection: "column" }}
+            style={{ position: "relative", width: "100%", maxWidth: "min(1240px, 96vw)", height: "min(92vh, 1040px)", background: "#fff", borderRadius: 16, overflow: "hidden", boxShadow: "0 40px 100px -30px rgba(0,0,0,.6)", display: "flex", flexDirection: "column" }}
           >
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "12px 14px 12px 18px", background: "#142E51", color: "#fff", flex: "0 0 auto" }}>
               <span style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 800, fontSize: 15 }}>{state.title}</span>
