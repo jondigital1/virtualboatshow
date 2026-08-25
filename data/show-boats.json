@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T20:00:23.378Z",
+  "generatedAt": "2026-08-25T20:03:59.091Z",
   "boatCount": 86,
   "boats": [
     {
@@ -150,7 +150,14 @@
         }
       ],
       "photos": [
-        "/boats/boston-whaler-330-outrage-1.jpg"
+        "/boats/boston-whaler-330-outrage-1.jpg",
+        "/boats/boston-whaler-330-outrage-2.jpg",
+        "/boats/boston-whaler-330-outrage-3.jpg",
+        "/boats/boston-whaler-330-outrage-4.jpg",
+        "/boats/boston-whaler-330-outrage-5.jpg",
+        "/boats/boston-whaler-330-outrage-6.jpg",
+        "/boats/boston-whaler-330-outrage-7.jpg",
+        "/boats/boston-whaler-330-outrage-8.jpg"
       ],
       "blurb": "",
       "lengthFt": null
