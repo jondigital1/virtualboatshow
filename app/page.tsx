@@ -110,7 +110,7 @@ export default function Home() {
                 <img src="/show/explore-boats.jpg" alt="Aerial view of boats filling Farley State Marina" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               {thumbs.length > 0 && (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8, padding: "0 16px 16px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8, padding: "16px", margin: "auto 0" }}>
                   {thumbs.map((b) => (
                     <Link key={b.slug} href={"/boats/" + b.slug} title={boatTitle(b)} style={{ display: "block", aspectRatio: "4/3", borderRadius: 8, overflow: "hidden", border: "1px solid rgba(20,46,81,.1)" }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -135,9 +135,9 @@ export default function Home() {
                 <img src="/show/explore-marketplace.jpg" alt="Exhibitor tents at the Marine Marketplace" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               {exhibitors.length > 0 && (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8, padding: "0 16px 16px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8, padding: "16px", margin: "auto 0" }}>
                   {exhibitors.map((v) => (
-                    <Link key={v.n} href="/vendors" title={v.n} style={{ aspectRatio: "4/3", borderRadius: 8, border: "1px solid rgba(117,186,228,.4)", background: "var(--bluetint)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, padding: "8px 6px", textAlign: "center", minWidth: 0 }}>
+                    <Link key={v.n} href="/vendors" title={v.n} style={{ height: "100%", minHeight: 118, borderRadius: 8, border: "1px solid rgba(117,186,228,.4)", background: "var(--bluetint)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, padding: "10px 6px", textAlign: "center", minWidth: 0 }}>
                       <span style={{ width: 34, height: 34, borderRadius: "50%", background: "var(--navy)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT, fontWeight: 800, fontSize: 12.5, flex: "0 0 auto" }}>{initials(v.n)}</span>
                       <span style={{ fontFamily: FONT, fontWeight: 700, fontSize: 11, lineHeight: 1.25, color: "var(--navy)", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{v.n}</span>
                       <span style={{ fontFamily: FONT, fontWeight: 500, fontSize: 9.5, color: "rgba(20,46,81,.55)", textTransform: "uppercase", letterSpacing: ".05em" }}>{[v.c, v.s].filter((x) => x && x !== "N/A").join(", ")}</span>
