@@ -1,121 +1,53 @@
 "use client";
 
 import Link from "next/link";
-import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
-import { BlurredPrice } from "@/components/BlurredPrice";
-import { DISPLAY, MONO, fmt, Eyebrow } from "@/components/ui";
-import { fetchListings, toV, type V } from "@/lib/buoy";
+import { DISPLAY, Eyebrow } from "@/components/ui";
+import { showBoats, waitingDealers, boatTitle, allBrands, allDealers, type ShowBoat } from "@/lib/showboats";
 
-const BGS = [
-  "repeating-linear-gradient(135deg,#ccd8dc 0 14px,#c3d0d5 14px 28px)",
-  "repeating-linear-gradient(135deg,#d7ddd1 0 14px,#ced5c7 14px 28px)",
-  "repeating-linear-gradient(135deg,#d1dae0 0 14px,#c7d1d8 14px 28px)",
-];
+const FONT = "var(--font-poppins), sans-serif";
 
 const FAQ_DATA: [string, string][] = [
-  ["Should I buy a new or used boat?", "New boats bring full factory warranties and the latest tech; used boats stretch your budget and hold value when they’re well kept. At the show you can weigh both side by side, and every listing here flags New versus hours used, so you can compare honestly before you ever board."],
-  ["What do engine hours actually tell me?", "Hours are the odometer of the water. Under about 100 a year is light use, but documented service history matters even more. Every pre-owned listing shows engine hours up front, and your dockside walkthrough is the time to ask the dealer for maintenance records."],
-  ["Can I take the boat out before I buy?", "Nothing replaces time on the water. Book a dockside walkthrough through the show and the dealer will arrange a sea trial where available, so you can feel how she handles and runs before you commit to anything."],
-  ["What does a boat really cost to own beyond the sticker?", "Plan for insurance, storage or a slip, fuel, winterizing, registration, and routine maintenance. A good rule of thumb is roughly 10% of the purchase price each year. Ask each dealer to break the numbers down for your specific boat at your appointment."],
-  ["How does boat financing work, and should I get pre-qualified?", "Marine loans commonly run 10 to 20 years with 10-20% down. Getting pre-qualified before the show tells you your true budget and speeds the whole deal up. Several lenders exhibit on-site, and an estimated monthly payment appears on every listing."],
-  ["Is the “Boat Show Price” really a better deal?", "Show pricing is negotiated for the event. Booking an appointment ahead of time means the dealer is ready for you at the dock, and pricing details are confirmed with the dealer at the show."],
-  ["Can I trade in or sell my current boat?", "Absolutely. Open the boat you're interested in and start your trade from its page — the dealer for that boat prepares your trade-in conversation ahead of the show, so it's ready when you arrive."],
-  ["What’s included: trailer, electronics, warranty?", "It varies boat to boat, so confirm what’s on the sticker: trailer, electronics package, and any remaining factory or extended warranty. Each listing notes the highlights, and your walkthrough is the moment to get every inclusion in writing."],
+  ["Should I buy a new or used boat?", "New boats bring full factory warranties and the latest tech; used boats stretch your budget and hold value when they’re well kept. At the show you can weigh both side by side and compare honestly before you ever board."],
+  ["What do engine hours actually tell me?", "Hours are the odometer of the water. Under about 100 a year is light use, but documented service history matters even more. Your dockside walkthrough is the time to ask the dealer for maintenance records."],
+  ["Can I take the boat out before I buy?", "Nothing replaces time on the water. Ask the dealer at the show — many will arrange a sea trial where available, so you can feel how she handles before you commit to anything."],
+  ["What does a boat really cost to own beyond the sticker?", "Plan for insurance, storage or a slip, fuel, winterizing, registration, and routine maintenance. A good rule of thumb is roughly 10% of the purchase price each year. Ask each dealer to break the numbers down for your specific boat."],
+  ["How does boat financing work, and should I get pre-qualified?", "Marine loans commonly run 10 to 20 years with 10-20% down. Getting pre-qualified before the show tells you your true budget and speeds everything up. Several lenders exhibit on-site."],
+  ["Is the “Boat Show Price” really a better deal?", "Show pricing is negotiated for the event. Talking to the dealer at the dock is how you get it — pricing details are confirmed with the dealer at the show."],
+  ["Can I trade in or sell my current boat?", "Absolutely. Talk to the dealer for the boat you're interested in — starting the conversation before the show means your trade-in is ready to discuss when you arrive."],
+  ["What’s included: trailer, electronics, warranty?", "It varies boat to boat, so confirm what’s on the sticker: trailer, electronics package, and any remaining factory or extended warranty. Your walkthrough is the moment to get every inclusion in writing."],
 ];
 
-const chipStyle = (active: boolean): React.CSSProperties => ({ fontFamily: MONO, fontSize: 11, letterSpacing: ".02em", padding: "7px 12px", borderRadius: 999, cursor: "pointer", background: active ? "#142E51" : "#fff", color: active ? "#fff" : "#3d5260", border: `1px solid ${active ? "#142E51" : "rgba(20,46,81,.16)"}` });
-const railHead: React.CSSProperties = { fontFamily: MONO, fontSize: 10.5, letterSpacing: ".12em", color: "#8595a0", textTransform: "uppercase" };
+const selectStyle: React.CSSProperties = { background: "#fff", border: "1px solid rgba(20,46,81,.16)", borderRadius: 10, padding: "12px 34px 12px 14px", fontSize: 14, color: "#142E51", cursor: "pointer", fontFamily: FONT };
 
 export default function Inventory() {
-  const [vessels, setVessels] = useState<V[] | null>(null);
   const [q, setQ] = useState("");
-  const [condition, setCondition] = useState("all");
-  const [price, setPrice] = useState("all");
-  const [lenBand, setLenBand] = useState("all");
-  const [klass, setKlass] = useState<Record<string, boolean>>({});
-  const [make, setMake] = useState<Record<string, boolean>>({});
-  const [dock, setDock] = useState<Record<string, boolean>>({});
+  const [brand, setBrand] = useState("all");
+  const [dealer, setDealer] = useState("all");
   const [sort, setSort] = useState("featured");
   const [favs, setFavs] = useState<Record<string, boolean>>({});
-  const [visible, setVisible] = useState(10);
-  const [faqOpen, setFaqOpen] = useState(0);
-  const sentinel = useRef<HTMLDivElement | null>(null);
+  const [faqOpen, setFaqOpen] = useState(-1);
 
-  const loading = vessels === null;
-  const totalAll = vessels?.length ?? 0;
-
-  const toggle = (setter: React.Dispatch<React.SetStateAction<Record<string, boolean>>>, key: string) => { setter((s) => ({ ...s, [key]: !s[key] })); setVisible(10); };
-  const clearFilters = () => { setQ(""); setCondition("all"); setPrice("all"); setLenBand("all"); setKlass({}); setMake({}); setDock({}); setVisible(10); };
-
-  useEffect(() => {
-    let alive = true;
-    fetchListings({ sort: "newest", limit: 100 })
-      .then((res) => { if (alive) setVessels((res.listings ?? []).map(toV)); })
-      .catch(() => { if (alive) setVessels([]); });
-    return () => { alive = false; };
-  }, []);
-
-  useEffect(() => {
-    const io = new IntersectionObserver((entries) => { if (entries[0]?.isIntersecting) setVisible((v) => v + 5); }, { rootMargin: "600px" });
-    if (sentinel.current) io.observe(sentinel.current);
-    const onScroll = () => { const doc = document.documentElement; if (window.innerHeight + window.scrollY >= doc.scrollHeight - 700) setVisible((v) => v + 5); };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    onScroll();
-    return () => { io.disconnect(); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); };
-  }, []);
-
-  const keysTrue = (o: Record<string, boolean>) => Object.keys(o).filter((k) => o[k]);
-  const makeCounts = useMemo(() => { const c: Record<string, number> = {}; (vessels ?? []).forEach((v) => { if (v.make) c[v.make] = (c[v.make] || 0) + 1; }); return c; }, [vessels]);
-  const klassOptions = useMemo(() => {
-    const c: Record<string, number> = {};
-    (vessels ?? []).forEach((v) => { if (v.klass) c[v.klass] = (c[v.klass] || 0) + 1; });
-    return Object.keys(c).sort((a, b) => c[b] - c[a] || a.localeCompare(b));
-  }, [vessels]);
-  const dockOptions = useMemo(() => {
-    const c: Record<string, number> = {};
-    (vessels ?? []).forEach((v) => { if (v.dock) c[v.dock] = (c[v.dock] || 0) + 1; });
-    return Object.keys(c).sort((a, b) => c[b] - c[a] || a.localeCompare(b));
-  }, [vessels]);
+  const brands = useMemo(allBrands, []);
+  const dealers = useMemo(allDealers, []);
 
   const list = useMemo(() => {
     const query = q.trim().toLowerCase();
-    const selK = keysTrue(klass), selM = keysTrue(make), selD = keysTrue(dock);
-    let l = (vessels ?? []).filter((v) => {
-      if (condition !== "all" && v.condition !== condition) return false;
-      const p = v.price;
-      if (price === "lt100" && !(p < 100000)) return false;
-      if (price === "mid" && !(p >= 100000 && p < 300000)) return false;
-      if (price === "gt300" && !(p >= 300000)) return false;
-      const le = v.len;
-      if (lenBand === "lt25" && !(le < 25)) return false;
-      if (lenBand === "mid" && !(le >= 25 && le <= 32)) return false;
-      if (lenBand === "gt33" && !(le > 32)) return false;
-      if (selK.length && !selK.includes(v.klass)) return false;
-      if (selM.length && !selM.includes(v.make)) return false;
-      if (selD.length && !selD.includes(v.dock)) return false;
-      if (query && !(v.year + " " + v.make + " " + v.model).toLowerCase().includes(query)) return false;
+    let l = showBoats.filter((b) => {
+      if (brand !== "all" && b.brand !== brand) return false;
+      if (dealer !== "all" && !b.dealers.some((d) => d.name === dealer)) return false;
+      if (query && !(boatTitle(b) + " " + b.dealers.map((d) => d.name).join(" ")).toLowerCase().includes(query)) return false;
       return true;
     });
-    if (sort === "price-asc") l = [...l].sort((a, b) => a.price - b.price);
-    else if (sort === "price-desc") l = [...l].sort((a, b) => b.price - a.price);
-    else if (sort === "year") l = [...l].sort((a, b) => b.year - a.year || b.price - a.price);
-    else if (sort === "length") l = [...l].sort((a, b) => b.len - a.len);
-    // Keep featured boats pinned to the top regardless of sort
-    // (stable sort preserves the order of everything else).
-    l = [...l].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+    if (sort === "brand") l = [...l].sort((a, b) => a.brand.localeCompare(b.brand) || a.model.localeCompare(b.model));
+    else if (sort === "length") l = [...l].sort((a, b) => (b.lengthFt ?? 0) - (a.lengthFt ?? 0));
+    else if (sort === "year") l = [...l].sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
+    else l = [...l].sort((a, b) => a.priority - b.priority || a.brand.localeCompare(b.brand));
     return l;
-  }, [vessels, q, condition, price, lenBand, klass, make, dock, sort]);
+  }, [q, brand, dealer, sort]);
 
-  const total = list.length;
-  const vis = Math.min(visible, total);
-  const shown = list.slice(0, vis);
-
-  // interleave ad cards every 6 boats
-  const items: ({ ad: true; adId: string } | (V & { ad: false }))[] = [];
-  let boatCount = 0;
-  shown.forEach((v) => { items.push({ ...v, ad: false }); boatCount++; if (boatCount % 6 === 0) items.push({ ad: true, adId: "srp-ad-" + boatCount / 6 }); });
+  const clearAll = () => { setQ(""); setBrand("all"); setDealer("all"); };
 
   return (
     <>
@@ -123,139 +55,103 @@ export default function Inventory() {
       <Nav active="/inventory" />
 
       {/* PAGE HEAD */}
-      <section style={{ background: "#F4F7F9", padding: "clamp(24px,3vw,40px) clamp(18px,3vw,44px) 0" }}>
-        <div style={{ maxWidth: 1500, margin: "0 auto" }}>
+      <section style={{ background: "#fff", padding: "clamp(24px,3vw,40px) clamp(18px,3vw,44px) 0" }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,340px),1fr))", gap: "clamp(18px,3vw,36px)", alignItems: "center" }}>
             <div>
               <Eyebrow>Explore the Show</Eyebrow>
               <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,3.6vw,46px)", lineHeight: 1.06, letterSpacing: "-.015em", margin: "12px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>Browse Boats at the Show</h1>
               <span className="gold-rule" style={{ margin: "16px 0 0" }} />
-              <p style={{ fontSize: 15.5, color: "#4c6270", margin: "16px 0 0", maxWidth: "52ch", lineHeight: 1.6 }}>Explore boats headed to the Atlantic City In-Water Boat Show from participating dealers and brands. These are the boats you can see in person during the show.</p>
-              {!loading && totalAll > 0 && (
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", border: "1px solid rgba(20,46,81,.12)", borderRadius: 999, padding: "9px 16px", marginTop: 18 }}>
-                  <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#34C778", animation: "livePulse 2.4s infinite" }} />
-                  <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>{fmt(totalAll)} {totalAll === 1 ? "boat" : "boats"} listed for the show</span>
-                </div>
-              )}
+              <p style={{ fontSize: 15.5, color: "#4c6270", margin: "16px 0 0", maxWidth: "52ch", lineHeight: 1.6 }}>
+                Explore the feature boats participating dealers are bringing to the Atlantic City In-Water Boat Show. These are the boats you can see in person during the show.
+              </p>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.4)", borderRadius: 999, padding: "9px 16px", marginTop: 18 }}>
+                <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: 12.5, color: "var(--navy)" }}>{showBoats.length} feature boats · {dealers.length} dealers · 250+ boats in the water at the show</span>
+              </div>
             </div>
             <div style={{ minWidth: 0 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/show/banner-boats.jpg" alt="Boats and dealer tents lining the docks at the show" style={{ display: "block", width: "100%", height: "auto", borderRadius: 4 }} />
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* BROWSE */}
-      <section style={{ background: "#F4F7F9", padding: "clamp(22px,2.5vw,32px) clamp(18px,3vw,44px) clamp(60px,7vw,96px)" }}>
-        <div style={{ maxWidth: 1500, margin: "0 auto", display: "flex", gap: "clamp(18px,2vw,30px)", alignItems: "flex-start", flexWrap: "wrap" }}>
-          {/* FILTER RAIL */}
-          <aside style={{ flex: "1 1 220px", maxWidth: 246, position: "sticky", top: 78, background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 18, padding: "20px 18px" }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 16 }}>Filters</div>
-              <button onClick={clearFilters} className="link-ink" style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".04em", color: "var(--accent)", background: "none", border: "none", cursor: "pointer", padding: 0 }}>Clear all</button>
+          {/* SEARCH + FILTERS */}
+          <div style={{ background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.35)", borderRadius: 16, padding: "clamp(14px,2vw,20px)", marginTop: 28 }}>
+            <div style={{ position: "relative" }}>
+              <span aria-hidden style={{ position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)", color: "rgba(20,46,81,.45)" }}>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+              </span>
+              <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search boats, brands, models or dealers…" style={{ width: "100%", background: "#fff", border: "1px solid rgba(20,46,81,.16)", borderRadius: 10, padding: "13px 16px 13px 42px", fontSize: 15, color: "#142E51", fontFamily: FONT }} />
             </div>
-            <div style={{ marginTop: 15 }}>
-              <input value={q} onChange={(e) => { setQ(e.target.value); setVisible(10); }} placeholder="Search make or model…" style={{ width: "100%", background: "#F8F6F1", border: "1px solid rgba(20,46,81,.16)", borderRadius: 10, padding: "11px 13px", fontSize: 14, color: "#142E51", outline: "none" }} />
-            </div>
-
-            <FilterGroup title="Condition">
-              {([["all", "All"], ["New", "New"], ["Used", "Used"]] as [string, string][]).map(([v, l]) => <button key={v} onClick={() => { setCondition(v); setVisible(10); }} style={chipStyle(condition === v)}>{l}</button>)}
-            </FilterGroup>
-            <FilterGroup title="Price">
-              {([["all", "Any"], ["lt100", "Under $100k"], ["mid", "$100k-$300k"], ["gt300", "$300k+"]] as [string, string][]).map(([v, l]) => <button key={v} onClick={() => { setPrice(v); setVisible(10); }} style={chipStyle(price === v)}>{l}</button>)}
-            </FilterGroup>
-            <FilterGroup title="Length">
-              {([["all", "Any"], ["lt25", "Under 25'"], ["mid", "25'-32'"], ["gt33", "33'+"]] as [string, string][]).map(([v, l]) => <button key={v} onClick={() => { setLenBand(v); setVisible(10); }} style={chipStyle(lenBand === v)}>{l}</button>)}
-            </FilterGroup>
-            {klassOptions.length > 0 && (
-              <FilterGroup title="Class">
-                {klassOptions.map((c) => <button key={c} onClick={() => toggle(setKlass, c)} style={chipStyle(!!klass[c])}>{c}</button>)}
-              </FilterGroup>
-            )}
-            {dockOptions.length > 0 && (
-              <FilterGroup title="Location">
-                {dockOptions.map((d) => <button key={d} onClick={() => toggle(setDock, d)} style={chipStyle(!!dock[d])}>{d}</button>)}
-              </FilterGroup>
-            )}
-
-            <div style={{ marginTop: 20, borderTop: "1px solid rgba(20,46,81,.1)", paddingTop: 16 }}>
-              <div style={railHead}>Make</div>
-              <div style={{ marginTop: 8, maxHeight: 200, overflow: "auto" }}>
-                {Object.keys(makeCounts).sort().map((m) => {
-                  const on = !!make[m];
-                  return (
-                    <button key={m} onClick={() => toggle(setMake, m)} style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", background: "none", border: "none", padding: "6px 0", cursor: "pointer", textAlign: "left" }}>
-                      <span style={{ width: 18, height: 18, borderRadius: 5, border: `1.5px solid ${on ? "#142E51" : "rgba(20,46,81,.3)"}`, background: on ? "#142E51" : "#fff", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, flex: "0 0 auto" }}>{on ? "✓" : ""}</span>
-                      <span style={{ fontSize: 13.5, color: "#33454f", flex: 1 }}>{m}</span>
-                      <span style={{ fontFamily: MONO, fontSize: 11, color: "#9aa7b0" }}>{makeCounts[m]}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </aside>
-
-          {/* RESULTS */}
-          <div style={{ flex: "5 1 620px", minWidth: 0 }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14, flexWrap: "wrap", marginBottom: 18 }}>
-              <div style={{ fontFamily: MONO, fontSize: 13, color: "#3d5260" }}>{!loading && (<>Showing <strong style={{ color: "#142E51" }}>{total}</strong> of {totalAll} at the show</>)}</div>
-              <label style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".08em", color: "#8595a0" }}>SORT</span>
-                <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ background: "#fff", border: "1px solid rgba(20,46,81,.16)", borderRadius: 10, padding: "10px 30px 10px 13px", fontSize: 13.5, color: "#142E51", cursor: "pointer" }}>
-                  <option value="featured">Featured</option>
-                  <option value="price-asc">Price: Low to High</option>
-                  <option value="price-desc">Price: High to Low</option>
-                  <option value="year">Year: Newest</option>
-                  <option value="length">Length: Longest</option>
-                </select>
-              </label>
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,200px),1fr))", gap: 16, alignItems: "stretch" }}>
-              {items.map((it, i) =>
-                it.ad ? (
-                  <div key={it.adId} style={{ position: "relative", border: "1px dashed rgba(253,183,23,.45)", borderRadius: 16, overflow: "hidden", background: "linear-gradient(180deg,#fbf3ef,#fbfaf5)", display: "flex", flexDirection: "column", minHeight: 250 }}>
-                    <div style={{ position: "absolute", top: 9, left: 9, zIndex: 3, fontFamily: MONO, fontSize: 9, letterSpacing: ".12em", color: "var(--accent)", background: "rgba(255,255,255,.85)", padding: "2px 7px", borderRadius: 4 }}>SPONSORED</div>
-                    <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: MONO, fontSize: 11, color: "rgba(20,46,81,.4)", padding: 16, textAlign: "center" }}>Sponsor / vendor ad</div>
-                  </div>
-                ) : (
-                  <BoatCard key={it.id} v={it} bg={BGS[i % BGS.length]} fav={!!favs[it.id]} onFav={() => setFavs((s) => ({ ...s, [it.id]: !s[it.id] }))} />
-                )
+            <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: 12 }}>
+              <select value={brand} onChange={(e) => setBrand(e.target.value)} style={selectStyle} aria-label="Filter by brand">
+                <option value="all">Brand: All</option>
+                {brands.map((b) => <option key={b} value={b}>{b}</option>)}
+              </select>
+              <select value={dealer} onChange={(e) => setDealer(e.target.value)} style={selectStyle} aria-label="Filter by dealer">
+                <option value="all">Dealer: All</option>
+                {dealers.map((d) => <option key={d} value={d}>{d}</option>)}
+              </select>
+              <select value={sort} onChange={(e) => setSort(e.target.value)} style={selectStyle} aria-label="Sort">
+                <option value="featured">Sort: Featured</option>
+                <option value="brand">Brand A–Z</option>
+                <option value="year">Year: Newest</option>
+                <option value="length">Length: Longest</option>
+              </select>
+              {(q || brand !== "all" || dealer !== "all") && (
+                <button onClick={clearAll} style={{ background: "none", border: "none", color: "var(--linkblue)", fontFamily: FONT, fontWeight: 700, fontSize: 13, cursor: "pointer", padding: "6px 4px" }}>Clear All</button>
               )}
-            </div>
-
-            {!loading && total === 0 && (
-              <div style={{ textAlign: "center", padding: "60px 20px", border: "1px dashed rgba(20,46,81,.2)", borderRadius: 18 }}>
-                <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 21 }}>No boats match those filters.</div>
-                <p style={{ color: "#5a6c78", margin: "10px 0 18px" }}>Try widening your search — new listings are added as dealers confirm their show lineups.</p>
-                <button onClick={clearFilters} className="btn-invert" style={{ background: "#142E51", color: "#fff", fontWeight: 700, fontSize: 14, padding: "12px 20px", borderRadius: 999, border: "none", cursor: "pointer" }}>Clear all filters</button>
-              </div>
-            )}
-
-            <div ref={sentinel} style={{ height: 1 }} />
-            <div style={{ display: "flex", alignItems: "center", gap: 10, background: "#fff", border: "1px solid rgba(117,186,228,.4)", borderRadius: 10, padding: "11px 16px", marginTop: 24 }}>
-              <span aria-hidden style={{ width: 18, height: 18, borderRadius: "50%", background: "var(--lightblue)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, flex: "0 0 auto" }}>i</span>
-              <span style={{ fontSize: 13.5, color: "rgba(20,46,81,.75)" }}>Boats and locations are subject to change. Please check with the dealer for the most up-to-date information.</span>
-            </div>
-            <div style={{ textAlign: "center", marginTop: 26, fontFamily: MONO, fontSize: 12, letterSpacing: ".04em", color: "#8595a0" }}>
-              {loading ? (
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 9 }}><span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", animation: "livePulse 1.6s infinite" }} />Loading listings…</span>
-              ) : vis < total ? (
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 9 }}><span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", animation: "livePulse 1.6s infinite" }} />Loading more listings…</span>
-              ) : total > 0 ? (
-                <span>End of the list. Refine filters to explore more of the show fleet.</span>
-              ) : null}
+              <span style={{ marginLeft: "auto", fontFamily: FONT, fontSize: 13, color: "rgba(20,46,81,.6)" }}>
+                <strong style={{ color: "var(--navy)" }}>{list.length}</strong> {list.length === 1 ? "result" : "results"}
+              </span>
             </div>
           </div>
         </div>
       </section>
 
+      {/* RESULTS */}
+      <section style={{ background: "#fff", padding: "clamp(22px,2.5vw,32px) clamp(18px,3vw,44px) clamp(56px,7vw,90px)" }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,250px),1fr))", gap: 18 }}>
+            {list.map((b) => (
+              <ShowBoatCard key={b.slug} b={b} fav={!!favs[b.slug]} onFav={() => setFavs((s) => ({ ...s, [b.slug]: !s[b.slug] }))} />
+            ))}
+          </div>
+
+          {list.length === 0 && (
+            <div style={{ textAlign: "center", padding: "60px 20px", border: "1px dashed rgba(20,46,81,.2)", borderRadius: 18 }}>
+              <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 21, color: "var(--navy)" }}>No boats match those filters.</div>
+              <p style={{ color: "#5a6c78", margin: "10px 0 18px" }}>Try widening your search — new boats are added as dealers confirm their show lineups.</p>
+              <button onClick={clearAll} className="btn-invert" style={{ background: "#142E51", color: "#fff", fontWeight: 700, fontSize: 14, padding: "12px 20px", borderRadius: 999, border: "none", cursor: "pointer" }}>Clear all filters</button>
+            </div>
+          )}
+
+          <div style={{ display: "flex", alignItems: "center", gap: 10, background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.35)", borderRadius: 10, padding: "11px 16px", marginTop: 26 }}>
+            <span aria-hidden style={{ width: 18, height: 18, borderRadius: "50%", background: "var(--lightblue)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, flex: "0 0 auto" }}>i</span>
+            <span style={{ fontSize: 13.5, color: "rgba(20,46,81,.75)" }}>Boats and locations are subject to change. Please check with the dealer for the most up-to-date information.</span>
+          </div>
+
+          {waitingDealers.length > 0 && (
+            <div style={{ marginTop: 34 }}>
+              <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 18, color: "var(--navy)", textTransform: "uppercase", letterSpacing: ".02em", margin: 0 }}>More lineups on the way</h2>
+              <p style={{ fontSize: 14, color: "#5a6c78", margin: "6px 0 14px" }}>These dealers are at the show — their feature boats are being finalized.</p>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                {waitingDealers.map((w) => (
+                  <span key={w.dealer} style={{ background: "#fff", border: "1px solid rgba(20,46,81,.14)", borderRadius: 12, padding: "10px 14px", fontSize: 13, color: "#33454f" }}>
+                    <strong style={{ color: "var(--navy)" }}>{w.dealer}</strong> · {w.brands.join(", ")}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* FAQ */}
-      <section style={{ background: "#F4F7F9", padding: "clamp(56px,7vw,96px) clamp(18px,3vw,44px)", borderTop: "1px solid rgba(20,46,81,.08)" }}>
+      <section style={{ background: "var(--bluetint)", padding: "clamp(56px,7vw,96px) clamp(18px,3vw,44px)", borderTop: "1px solid rgba(20,46,81,.08)" }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <Eyebrow style={{ textAlign: "center" }}>Before you buy</Eyebrow>
-          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,4vw,46px)", lineHeight: 1.04, letterSpacing: "-.02em", margin: "14px 0 0", textAlign: "center" }}>Boat-buying questions, answered.</h2>
+          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(26px,3.6vw,42px)", lineHeight: 1.04, letterSpacing: "-.01em", margin: "14px 0 0", textAlign: "center", color: "var(--navy)" }}>Boat-buying questions, answered.</h2>
           <p style={{ textAlign: "center", fontSize: 16, color: "#4c6270", margin: "14px auto 40px", maxWidth: "58ch" }}>New to the docks or trading up? Here’s what smart buyers sort out before they step aboard.</p>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {FAQ_DATA.map(([q2, a], i) => {
@@ -264,7 +160,7 @@ export default function Inventory() {
                 <div key={q2} style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden" }}>
                   <button onClick={() => setFaqOpen(open ? -1 : i)} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, textAlign: "left", background: "none", border: "none", cursor: "pointer", padding: "20px clamp(18px,2vw,26px)" }}>
                     <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(16px,1.5vw,19px)", color: "#142E51", letterSpacing: "-.01em" }}>{q2}</span>
-                    <span style={{ flex: "0 0 auto", width: 27, height: 27, borderRadius: "50%", background: open ? "var(--accent)" : "rgba(20,46,81,.06)", color: open ? "#142E51" : "#4c6270", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, lineHeight: 1, transform: open ? "rotate(45deg)" : "rotate(0deg)", transition: "transform .25s, background .2s" }}>+</span>
+                    <span style={{ flex: "0 0 auto", width: 27, height: 27, borderRadius: "50%", background: open ? "var(--gold)" : "rgba(20,46,81,.06)", color: open ? "#142E51" : "#4c6270", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, lineHeight: 1, transform: open ? "rotate(45deg)" : "rotate(0deg)", transition: "transform .25s, background .2s" }}>+</span>
                   </button>
                   <div style={{ maxHeight: open ? 540 : 0, overflow: "hidden", transition: "max-height .32s ease" }}>
                     <p style={{ margin: 0, padding: "0 clamp(18px,2vw,26px) 22px", fontSize: 15.5, lineHeight: 1.62, color: "#4c6270" }}>{a}</p>
@@ -273,7 +169,6 @@ export default function Inventory() {
               );
             })}
           </div>
-          <div style={{ textAlign: "center", marginTop: 38, fontSize: 15, color: "#4c6270" }}>Still have questions? <Link href="/map" style={{ fontWeight: 700 }}>Find the right dealer at the show →</Link></div>
         </div>
       </section>
 
@@ -282,67 +177,47 @@ export default function Inventory() {
   );
 }
 
-function FilterGroup({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div style={{ marginTop: 20 }}>
-      <div style={railHead}>{title}</div>
-      <div style={{ display: "flex", gap: 7, flexWrap: "wrap", marginTop: 10 }}>{children}</div>
-    </div>
-  );
-}
-
-function BoatCard({ v, bg, fav, onFav }: { v: V; bg: string; fav: boolean; onFav: () => void }) {
-  const href = `/inventory/${v.id}`;
-  const title = [v.year > 0 ? v.year : null, v.make, v.model].filter(Boolean).join(" ");
-  const meta: string[] = [];
-  if (v.len > 0) meta.push(v.lenLabel);
-  if (v.condition === "New") meta.push("New");
-  else if (v.hours > 0) meta.push(fmt(v.hours) + " hrs");
-  else if (v.condition) meta.push(v.condition);
+function ShowBoatCard({ b, fav, onFav }: { b: ShowBoat; fav: boolean; onFav: () => void }) {
+  const href = `/boats/${b.slug}`;
+  const title = boatTitle(b);
+  const dealerLine = b.dealers.map((d) => d.name).join(" · ");
   return (
     <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
-      <div style={{ position: "relative", aspectRatio: "16/11", background: bg }}>
+      <div style={{ position: "relative", aspectRatio: "16/11", background: "linear-gradient(160deg,#e8eef3,#dfe7ee)" }}>
         <Link href={href} aria-label={`${title} details`} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1 }}>
-          {v.photoUrl ? (
+          {b.photos.length > 0 ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={v.photoUrl} alt={title} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src={b.photos[0]} alt={title} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
           ) : (
-            <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".14em", color: "rgba(20,46,81,.4)" }}>{"// VESSEL PHOTO"}</span>
+            <span style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/ac-mark.png" alt="" style={{ width: 74, opacity: 0.5 }} />
+              <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: 11, letterSpacing: ".08em", color: "rgba(20,46,81,.45)", textTransform: "uppercase" }}>Photos coming soon</span>
+            </span>
           )}
         </Link>
-        {v.dock ? (
-          <span style={{ position: "absolute", top: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(20,46,81,.9)", color: "#fff", padding: "4px 7px", borderRadius: 5, pointerEvents: "none", zIndex: 2 }}>{v.dock}</span>
+        {b.notes ? (
+          <span style={{ position: "absolute", top: 9, left: 9, fontFamily: FONT, fontWeight: 700, fontSize: 10, letterSpacing: ".06em", textTransform: "uppercase", background: "var(--gold)", color: "#142E51", padding: "5px 9px", borderRadius: 6, pointerEvents: "none", zIndex: 2, maxWidth: "80%" }}>{b.notes}</span>
+        ) : b.priority === 1 ? (
+          <span style={{ position: "absolute", top: 9, left: 9, fontFamily: FONT, fontWeight: 700, fontSize: 10, letterSpacing: ".08em", textTransform: "uppercase", background: "rgba(20,46,81,.92)", color: "#fff", padding: "5px 9px", borderRadius: 6, pointerEvents: "none", zIndex: 2 }}>Dealer Feature</span>
         ) : null}
-        {v.photos > 0 ? (
-          <span style={{ position: "absolute", bottom: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(20,46,81,.78)", color: "#fff", padding: "3px 7px", borderRadius: 5, pointerEvents: "none", zIndex: 2 }}>{v.photos} {v.photos === 1 ? "photo" : "photos"}</span>
-        ) : null}
-        <button onClick={onFav} aria-label="Save" style={{ position: "absolute", top: 7, right: 7, width: 30, height: 30, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.92)", color: fav ? "var(--accent)" : "#4c6270", cursor: "pointer", fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3 }}>{fav ? "♥" : "♡"}</button>
+        <button onClick={onFav} aria-label="Save" style={{ position: "absolute", top: 7, right: 7, width: 30, height: 30, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.92)", color: fav ? "#d33" : "#4c6270", cursor: "pointer", fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3 }}>{fav ? "♥" : "♡"}</button>
       </div>
-      <div style={{ padding: "13px 14px 15px", display: "flex", flexDirection: "column", gap: 7, flex: 1 }}>
-        <h3 style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 15.5, margin: 0, lineHeight: 1.15, letterSpacing: "-.01em" }}>
-          <Link href={href} className="link-ink" style={{ color: "inherit" }}>{title}</Link>
-        </h3>
-        {meta.length > 0 && (
-          <div style={{ fontFamily: MONO, fontSize: 10.5, color: "#5a6c78", display: "flex", flexWrap: "wrap", gap: "4px 7px" }}>
-            {meta.map((m, i) => (
-              <Fragment key={m + i}>
-                {i > 0 && <span style={{ opacity: 0.4 }}>·</span>}
-                <span>{m}</span>
-              </Fragment>
-            ))}
-          </div>
-        )}
-        <div style={{ fontFamily: MONO, fontSize: 10, color: "#8595a0" }}>{v.dealer}</div>
-        <div style={{ marginTop: "auto" }}>
-          <div style={{ paddingTop: 10, borderTop: "1px solid rgba(20,46,81,.08)" }}>
-            {v.msrp > 0 && (
-              <div style={{ fontFamily: MONO, fontSize: 9.5, color: "#9aa7b0", textDecoration: "line-through" }}>MSRP ${fmt(v.msrp)}</div>
-            )}
-            {v.price > 0
-              ? <BlurredPrice value={`$${fmt(v.price)}`} />
-              : <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 15, color: "#142E51", lineHeight: 1.05, marginTop: v.msrp > 0 ? 2 : 0 }}>Price on request</div>}
-          </div>
-          <Link href={href} className="h-brighten" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginTop: 12, background: "var(--accent)", color: "#142E51", fontWeight: 700, fontSize: 13.5, padding: 11, borderRadius: 10 }}>Vessel Details →</Link>
+      <div style={{ padding: "14px 15px 16px", display: "flex", flexDirection: "column", gap: 7, flex: 1 }}>
+        <div>
+          <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "rgba(20,46,81,.55)" }}>{b.brand}{b.year ? ` · ${b.year}` : ""}</div>
+          <h3 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 17.5, margin: "3px 0 0", lineHeight: 1.15, letterSpacing: "-.01em", color: "var(--navy)" }}>
+            <Link href={href} className="link-ink" style={{ color: "inherit" }}>{b.model}</Link>
+          </h3>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12.5, color: "#5a6c78" }}>
+          <span>⚓ {dealerLine}</span>
+          <span>📍 Dock &amp; slip announced before the show</span>
+        </div>
+        <div style={{ marginTop: "auto", paddingTop: 10, borderTop: "1px solid rgba(20,46,81,.08)" }}>
+          <Link href={href} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--linkblue)" }}>
+            View Boat <span aria-hidden>→</span>
+          </Link>
         </div>
       </div>
     </div>

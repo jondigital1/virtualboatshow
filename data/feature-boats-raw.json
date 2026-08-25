@@ -1,0 +1,1954 @@
+﻿{
+    "MASTER":  [
+                   {
+                       "r":  1,
+                       "c3":  "HAVE",
+                       "c4":  "FACE",
+                       "c5":  "INSTA",
+                       "c6":  "EMAIL",
+                       "c7":  "EMAIL SENT"
+                   },
+                   {
+                       "r":  2,
+                       "c3":  "BOATS",
+                       "c4":  "BOOK",
+                       "c5":  "GRAM",
+                       "c6":  "BLAST",
+                       "c7":  "DATE"
+                   },
+                   {
+                       "r":  3,
+                       "c1":  "Clarks Landing Marina",
+                       "c3":  "DONE",
+                       "c4":  "DONE",
+                       "c5":  "DONE",
+                       "c6":  "DONE",
+                       "c7":  "46245.0"
+                   },
+                   {
+                       "r":  4,
+                       "c2":  "Beneteau Dayboats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46247.0"
+                   },
+                   {
+                       "r":  5,
+                       "c2":  "Cutwater Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46244.0"
+                   },
+                   {
+                       "r":  6,
+                       "c2":  "Nimbus Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46253.0"
+                   },
+                   {
+                       "r":  7,
+                       "c2":  "Solara Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46255.0"
+                   },
+                   {
+                       "r":  8,
+                       "c2":  "Wellcraft Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "X",
+                       "c7":  "X"
+                   },
+                   {
+                       "r":  9,
+                       "c1":  "Coastal Boat Sales",
+                       "c3":  "DONE",
+                       "c4":  "DONE",
+                       "c5":  "DONE",
+                       "c6":  "DONE",
+                       "c7":  "46247.0"
+                   },
+                   {
+                       "r":  10,
+                       "c2":  "TideWater Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46246.0"
+                   },
+                   {
+                       "r":  11,
+                       "c1":  "Comstock Yacht Sales \u0026 Marina",
+                       "c3":  "DONE",
+                       "c4":  "DONE",
+                       "c5":  "DONE",
+                       "c6":  "DONE",
+                       "c7":  "46252.0"
+                   },
+                   {
+                       "r":  12,
+                       "c1":  "SHAERED",
+                       "c2":  "Boston Whaler",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46261.0"
+                   },
+                   {
+                       "r":  13,
+                       "c1":  "SHARED",
+                       "c2":  "Grady-White Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M"
+                   },
+                   {
+                       "r":  14,
+                       "c2":  "Regulator Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46258.0"
+                   },
+                   {
+                       "r":  15,
+                       "c2":  "Tiara Yachts",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46252.0"
+                   },
+                   {
+                       "r":  16,
+                       "c1":  "Coty Marine",
+                       "c4":  "DONE",
+                       "c5":  "DONE",
+                       "c7":  "46239.0"
+                   },
+                   {
+                       "r":  17,
+                       "c2":  "Black Fin Boats",
+                       "c4":  "F",
+                       "c5":  "I"
+                   },
+                   {
+                       "r":  18,
+                       "c2":  "Key West Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46262.0"
+                   },
+                   {
+                       "r":  19,
+                       "c1":  "SHARED",
+                       "c2":  "Monterey Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c7":  "Wait",
+                       "c8":  "Waiting on Valhalla"
+                   },
+                   {
+                       "r":  20,
+                       "c1":  "D \u0026 R Boat World",
+                       "c3":  "DONE",
+                       "c4":  "DONE",
+                       "c5":  "DONE",
+                       "c6":  "DONE",
+                       "c7":  "46244.0"
+                   },
+                   {
+                       "r":  21,
+                       "c2":  "Crownline Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46251.0"
+                   },
+                   {
+                       "r":  22,
+                       "c2":  "Finseeker Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46244.0"
+                   },
+                   {
+                       "r":  23,
+                       "c2":  "Navan Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46255.0"
+                   },
+                   {
+                       "r":  24,
+                       "c2":  "Robalo Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46258.0"
+                   },
+                   {
+                       "r":  25,
+                       "c2":  "Steiger Craft Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46261.0"
+                   },
+                   {
+                       "r":  26,
+                       "c2":  "World Cat Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M"
+                   },
+                   {
+                       "r":  27,
+                       "c1":  "Formula Boats",
+                       "c3":  "DONE",
+                       "c4":  "DONE",
+                       "c5":  "DONE",
+                       "c6":  "DONE",
+                       "c7":  "46254.0"
+                   },
+                   {
+                       "r":  28,
+                       "c2":  "Formula Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46252.0"
+                   },
+                   {
+                       "r":  29,
+                       "c1":  "G. Winter\u0027s Sailing Center Inc."
+                   },
+                   {
+                       "r":  30,
+                       "c2":  "Ranger Tugs Boats"
+                   },
+                   {
+                       "r":  31,
+                       "c1":  "Irwin"
+                   },
+                   {
+                       "r":  32,
+                       "c2":  "Sailfish Boats"
+                   },
+                   {
+                       "r":  34,
+                       "c1":  "MarineMax",
+                       "c3":  "DONE"
+                   },
+                   {
+                       "r":  35,
+                       "c1":  "SHARED",
+                       "c2":  "Boston Whaler Boats",
+                       "c3":  "Y",
+                       "c6":  "M",
+                       "c7":  "46261.0"
+                   },
+                   {
+                       "r":  36,
+                       "c2":  "Cruisers Yachts",
+                       "c3":  "Y",
+                       "c6":  "M",
+                       "c7":  "46253.0"
+                   },
+                   {
+                       "r":  37,
+                       "c2":  "Galeon Yachts",
+                       "c3":  "Y",
+                       "c6":  "M",
+                       "c7":  "46256.0"
+                   },
+                   {
+                       "r":  38,
+                       "c1":  "SHARED",
+                       "c2":  "Grady-White Boats",
+                       "c3":  "Y",
+                       "c6":  "M"
+                   },
+                   {
+                       "r":  39,
+                       "c2":  "Saxdor Boats",
+                       "c3":  "Y",
+                       "c6":  "M",
+                       "c7":  "46259.0"
+                   },
+                   {
+                       "r":  40,
+                       "c2":  "Scout Boats",
+                       "c3":  "Y",
+                       "c6":  "M",
+                       "c7":  "46249.0"
+                   },
+                   {
+                       "r":  41,
+                       "c2":  "Sea Ray Boats",
+                       "c3":  "Y",
+                       "c6":  "M",
+                       "c7":  "46263.0"
+                   },
+                   {
+                       "r":  42,
+                       "c1":  "New Jersey Outboards",
+                       "c3":  "DONE",
+                       "c4":  "DONE",
+                       "c5":  "DONE",
+                       "c6":  "DONE",
+                       "c7":  "46241.0"
+                   },
+                   {
+                       "r":  43,
+                       "c2":  "Godfrey Pontoons",
+                       "c3":  "N",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "X",
+                       "c7":  "NO"
+                   },
+                   {
+                       "r":  44,
+                       "c2":  "Hurricane Deck Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46245.0"
+                   },
+                   {
+                       "r":  45,
+                       "c2":  "Parker Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46254.0"
+                   },
+                   {
+                       "r":  46,
+                       "c2":  "Sea Hunt Boats",
+                       "c3":  "Y",
+                       "c4":  "F",
+                       "c5":  "I",
+                       "c6":  "M",
+                       "c7":  "46260.0"
+                   },
+                   {
+                       "r":  47,
+                       "c1":  "Riptide"
+                   },
+                   {
+                       "r":  50,
+                       "c1":  "Riverside Marina \u0026 Yacht Sales"
+                   },
+                   {
+                       "r":  51,
+                       "c2":  "Brig Inflatables"
+                   },
+                   {
+                       "r":  52,
+                       "c2":  "Jeanneau Boats"
+                   },
+                   {
+                       "r":  53,
+                       "c1":  "Sandy Hook",
+                       "c3":  "DONE",
+                       "c6":  "DONE"
+                   },
+                   {
+                       "r":  54,
+                       "c2":  "De Antonio Yachts",
+                       "c3":  "Y",
+                       "c6":  "M",
+                       "c7":  "46262.0"
+                   },
+                   {
+                       "r":  55,
+                       "c2":  "Marex Boats",
+                       "c3":  "Y",
+                       "c6":  "M",
+                       "c7":  "46246.0"
+                   },
+                   {
+                       "r":  56,
+                       "c1":  "Schrader Yacht Sales Inc."
+                   },
+                   {
+                       "r":  57,
+                       "c2":  "Chris Craft Boats"
+                   },
+                   {
+                       "r":  58,
+                       "c2":  "Ken Craft Boats"
+                   },
+                   {
+                       "r":  59,
+                       "c1":  "Seaport Inlet Marina"
+                   },
+                   {
+                       "r":  60,
+                       "c2":  "Cape Horn Boats"
+                   },
+                   {
+                       "r":  61,
+                       "c2":  "NorthCoast Boats"
+                   },
+                   {
+                       "r":  62,
+                       "c1":  "Sheltered Cove Marina"
+                   },
+                   {
+                       "r":  63,
+                       "c2":  "Barletta Pontoons",
+                       "c3":  "Y"
+                   },
+                   {
+                       "r":  64,
+                       "c1":  "SHARED",
+                       "c2":  "Regal Boats",
+                       "c3":  "Y"
+                   },
+                   {
+                       "r":  65,
+                       "c2":  "StarCraft Deck Boats",
+                       "c3":  "Y"
+                   },
+                   {
+                       "r":  66,
+                       "c1":  "South Jersey Yacht Sales",
+                       "c3":  "DONE"
+                   },
+                   {
+                       "r":  67,
+                       "c2":  "Albemarle Boats",
+                       "c3":  "Y",
+                       "c6":  "M",
+                       "c7":  "46251.0"
+                   },
+                   {
+                       "r":  68,
+                       "c2":  "Solace Boats",
+                       "c3":  "Y",
+                       "c6":  "M"
+                   },
+                   {
+                       "r":  69,
+                       "c2":  "Viking Yachts",
+                       "c3":  "Y",
+                       "c6":  "M",
+                       "c7":  "46260.0"
+                   },
+                   {
+                       "r":  70,
+                       "c1":  "SHARED",
+                       "c2":  "Valhalla Boats",
+                       "c3":  "Y",
+                       "c7":  "Wait",
+                       "c8":  "Waiting on Valhalla"
+                   },
+                   {
+                       "r":  71,
+                       "c1":  "Stone Harbor Marina"
+                   },
+                   {
+                       "r":  72,
+                       "c2":  "Cobia Boats",
+                       "c3":  "Y",
+                       "c6":  "M"
+                   },
+                   {
+                       "r":  73,
+                       "c2":  "Everglades Boats",
+                       "c3":  "Y",
+                       "c6":  "M",
+                       "c7":  "46259.0"
+                   },
+                   {
+                       "r":  74,
+                       "c2":  "Pursuit Boats",
+                       "c3":  "Y",
+                       "c6":  "M"
+                   },
+                   {
+                       "r":  75,
+                       "c2":  "Sea Pro Boats",
+                       "c3":  "Y",
+                       "c6":  "M"
+                   },
+                   {
+                       "r":  76,
+                       "c1":  "Total Marine"
+                   },
+                   {
+                       "r":  77,
+                       "c2":  "Alara Boats"
+                   },
+                   {
+                       "r":  78,
+                       "c2":  "Donzi Boats"
+                   },
+                   {
+                       "r":  79,
+                       "c2":  "Fairline Boats"
+                   },
+                   {
+                       "r":  80,
+                       "c2":  "Fountain Boats"
+                   },
+                   {
+                       "r":  81,
+                       "c2":  "Twin Vee Boats"
+                   },
+                   {
+                       "r":  82,
+                       "c1":  "Valhalla Boat Sales"
+                   },
+                   {
+                       "r":  83,
+                       "c2":  "Contender Boats"
+                   },
+                   {
+                       "r":  84,
+                       "c1":  "SHARED",
+                       "c2":  "Monterey Boats"
+                   },
+                   {
+                       "r":  85,
+                       "c2":  "Sportsman Boats"
+                   },
+                   {
+                       "r":  86,
+                       "c1":  "SHARED",
+                       "c2":  "Valhalla Boats"
+                   }
+               ],
+    "Models To Do":  [
+                         {
+                             "r":  1,
+                             "c1":  "DEALER",
+                             "c3":  "YEAR",
+                             "c4":  "BRAND",
+                             "c6":  "MODEL",
+                             "c7":  "DEALER NOTES",
+                             "c8":  "DEALER LISTING LINK",
+                             "c9":  "BRAND LINK"
+                         },
+                         {
+                             "r":  2,
+                             "c1":  "Clarks Landing Marina"
+                         },
+                         {
+                             "r":  3,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Beneteau Dayboats",
+                             "c5":  "1.0",
+                             "c6":  "Antares 9",
+                             "c8":  "https://www.clarkslanding.com/inventory/2026-beneteau-antares-9-bt067",
+                             "c9":  "https://www.beneteau.com/en-us"
+                         },
+                         {
+                             "r":  4,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Cutwater Boats",
+                             "c5":  "1.0",
+                             "c6":  "288.0",
+                             "c8":  "https://www.clarkslanding.com/inventory/2026-cutwater-c-288-coupe-le-nj627138",
+                             "c9":  "https://cutwaterboats.com/"
+                         },
+                         {
+                             "r":  5,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Cutwater Boats",
+                             "c5":  "2.0",
+                             "c6":  "248.0",
+                             "c8":  "https://www.clarkslanding.com/inventory/2026-Cutwater-c-248-coupe-cw073",
+                             "c9":  "https://cutwaterboats.com/"
+                         },
+                         {
+                             "r":  6,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2025.0",
+                             "c4":  "Nimbus Boats",
+                             "c5":  "1.0",
+                             "c6":  "T8",
+                             "c8":  "https://www.clarkslanding.com/inventory/2025-nimbus-tender-8-nb012",
+                             "c9":  "https://nimbusboats.com/en-us/"
+                         },
+                         {
+                             "r":  7,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Solara Boats",
+                             "c5":  "1.0",
+                             "c6":  "310 CW",
+                             "c8":  "https://www.clarkslanding.com/inventory/2026-solara-s-310-cw-sl029",
+                             "c9":  "https://solaraboats.com/"
+                         },
+                         {
+                             "r":  8,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c4":  "Wellcraft Boats",
+                             "c5":  "X",
+                             "c6":  "No Model Supplied by Dealer",
+                             "c7":  "No Models Supplied by Dealer",
+                             "c8":  "X",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  9,
+                             "c1":  "Coastal Boat Sales"
+                         },
+                         {
+                             "r":  10,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "TideWater Boats",
+                             "c5":  "1.0",
+                             "c6":  "330 CC Adventure",
+                             "c8":  "https://www.coastalboatsalesnj.com/default.asp?page=xNewInventoryDetail\u0026id=18327303\u0026p=1\u0026s=(Sort%20By)\u0026d=D\u0026fr=xNewInventory",
+                             "c9":  "https://www.tidewaterboats.com/"
+                         },
+                         {
+                             "r":  11,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "TideWater Boats",
+                             "c5":  "2.0",
+                             "c6":  "302 CC Adventure",
+                             "c8":  "https://www.coastalboatsalesnj.com/default.asp?page=xNewInventoryDetail\u0026id=17678119\u0026p=1\u0026s=(Sort%20By)\u0026d=D\u0026fr=xNewInventory",
+                             "c9":  "https://www.tidewaterboats.com/"
+                         },
+                         {
+                             "r":  12,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "TideWater Boats",
+                             "c5":  "2.0",
+                             "c6":  "282 CC Adventure",
+                             "c8":  "https://www.coastalboatsalesnj.com/default.asp?page=xNewInventoryDetail\u0026id=13552070\u0026p=1\u0026s=(Sort%20By)\u0026d=D\u0026fr=xNewInventory",
+                             "c9":  "https://www.tidewaterboats.com/"
+                         },
+                         {
+                             "r":  13,
+                             "c1":  "Comstock Yacht Sales \u0026 Marina"
+                         },
+                         {
+                             "r":  14,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Boston Whaler",
+                             "c5":  "2.0",
+                             "c6":  "220 Dauntless",
+                             "c7":  "USE COMSTOCK HARPOON LOGO",
+                             "c8":  "SHARED BRAND - USE BRAND LINK",
+                             "c9":  "https://www.bostonwhaler.com/us/en/boats/dauntless/220-dauntless"
+                         },
+                         {
+                             "r":  15,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c4":  "Boston Whaler",
+                             "c5":  "X",
+                             "c6":  "240 Vantage",
+                             "c7":  "Not Selected",
+                             "c8":  "X",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  16,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c4":  "Boston Whaler",
+                             "c5":  "X",
+                             "c6":  "250 Outrage",
+                             "c7":  "Not Selected",
+                             "c8":  "X",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  17,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Boston Whaler",
+                             "c5":  "2.0",
+                             "c6":  "280 Vantage",
+                             "c8":  "SHARED BRAND - USE BRAND LINK",
+                             "c9":  "https://www.bostonwhaler.com/us/en/boats/vantage/280-vantage"
+                         },
+                         {
+                             "r":  18,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Boston Whaler",
+                             "c5":  "1.0",
+                             "c6":  "325 Conquest",
+                             "c8":  "SHARED BRAND - USE BRAND LINK",
+                             "c9":  "https://www.bostonwhaler.com/us/en/boats/conquest/325-conquest"
+                         },
+                         {
+                             "r":  19,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Boston Whaler",
+                             "c5":  "1.0",
+                             "c6":  "330 Outrage",
+                             "c7":  "New Model, First Boat Show For This Model In NJ",
+                             "c8":  "SHARED BRAND - USE BRAND LINK",
+                             "c9":  "https://www.bostonwhaler.com/us/en/boats/outrage/330-outrage"
+                         },
+                         {
+                             "r":  20,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c4":  "Four Winns Boats",
+                             "c5":  "X",
+                             "c6":  "No Model Supplied by Dealer",
+                             "c7":  "No Models Supplied by Dealer",
+                             "c8":  "X",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  21,
+                             "c1":  "C",
+                             "c2":  "C",
+                             "c4":  "Grady-White Boats",
+                             "c5":  "1.0",
+                             "c6":  "Canyon 266",
+                             "c7":  "ALL NEW",
+                             "c8":  "SHARED BRAND",
+                             "c9":  "https://www.gradywhite.com/"
+                         },
+                         {
+                             "r":  22,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c4":  "Grady-White Boats",
+                             "c5":  "X",
+                             "c6":  "Canyon 306",
+                             "c7":  "Not Selected",
+                             "c8":  "X",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  23,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c4":  "Grady-White Boats",
+                             "c5":  "X",
+                             "c6":  "Canyon 336",
+                             "c7":  "Not Selected",
+                             "c8":  "X",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  24,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c4":  "Grady-White Boats",
+                             "c5":  "X",
+                             "c6":  "Freedom 235",
+                             "c7":  "Not Selected",
+                             "c8":  "X",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  25,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c4":  "Grady-White Boats",
+                             "c5":  "X",
+                             "c6":  "Freedom 285",
+                             "c7":  "Not Selected",
+                             "c8":  "X",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  26,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Grady-White Boats",
+                             "c5":  "2.0",
+                             "c6":  "Freedom 345",
+                             "c8":  "SHARED BRAND",
+                             "c9":  "https://www.gradywhite.com/"
+                         },
+                         {
+                             "r":  27,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c4":  "MJM Yachts",
+                             "c5":  "X",
+                             "c6":  "No Model Supplied by Dealer",
+                             "c7":  "No Models Supplied by Dealer",
+                             "c8":  "X",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  28,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Regulator Boats",
+                             "c5":  "1.0",
+                             "c6":  "35.0",
+                             "c7":  "NEW",
+                             "c8":  "https://www.comstockyachtsales.com/inventory/2027-regulator-35-brick-nj-08724-14450477i",
+                             "c9":  "https://www.regulatormarine.com/"
+                         },
+                         {
+                             "r":  29,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Regulator Boats",
+                             "c5":  "1.0",
+                             "c6":  "31.0",
+                             "c7":  "NEW",
+                             "c8":  "https://www.comstockyachtsales.com/inventory/2027-regulator-31-brick-nj-08724-14450478i",
+                             "c9":  "https://www.regulatormarine.com/"
+                         },
+                         {
+                             "r":  30,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c4":  "Regulator Boats",
+                             "c5":  "X",
+                             "c6":  "28.0",
+                             "c7":  "Not Selected",
+                             "c8":  "X",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  31,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Regulator Boats",
+                             "c5":  "2.0",
+                             "c6":  "24XO",
+                             "c8":  "https://www.comstockyachtsales.com/inventory/2027-regulator-24xo-brick-nj-08724-14400852i",
+                             "c9":  "https://www.regulatormarine.com/"
+                         },
+                         {
+                             "r":  32,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Tiara Yachts",
+                             "c5":  "1.0",
+                             "c6":  "39LS",
+                             "c7":  "NJ Boat Show Debut",
+                             "c8":  "https://www.comstockyachtsales.com/inventory/2027-tiara-39-ls-brick-nj-08724-14371133i",
+                             "c9":  "https://www.tiarayachts.com/series/ls/models/39ls"
+                         },
+                         {
+                             "r":  33,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c5":  "2.0",
+                             "c6":  "34LS",
+                             "c7":  "NJ Boat Show Debut",
+                             "c8":  "https://www.comstockyachtsales.com/inventory/2026-tiara-34-ls-brick-nj-08724-13506414i",
+                             "c9":  "https://www.tiarayachts.com/"
+                         },
+                         {
+                             "r":  34,
+                             "c1":  "Coty Marine",
+                             "c6":  "DONE",
+                             "c8":  "DONE"
+                         },
+                         {
+                             "r":  35,
+                             "c4":  "Black Fin Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  36,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Key West Boats",
+                             "c5":  "1.0",
+                             "c6":  "249 FS",
+                             "c8":  "https://www.cotymarine.com/inventory/2027-key-west-249-fs-toms-river-nj-08753-14455851i",
+                             "c9":  "https://keywestboats.com/"
+                         },
+                         {
+                             "r":  37,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Monterey Boats",
+                             "c5":  "1.0",
+                             "c6":  "34 Elite",
+                             "c7":  "DEBUT / SHARED BRAND",
+                             "c8":  "https://www.cotymarine.com/search/inventory/availability/In%20Stock/brand/Monterey/page/1",
+                             "c9":  "https://www.montereyboats.com/"
+                         },
+                         {
+                             "r":  38,
+                             "c4":  "Viaggio Pontoons",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  39,
+                             "c1":  "D \u0026 R Boat World"
+                         },
+                         {
+                             "r":  40,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Crownline Boats",
+                             "c5":  "1.0",
+                             "c6":  "318 XSS",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-Crownline-Boat-318-XSS-D-R-Boat-World-17826629?ref=list",
+                             "c9":  "https://crownline.com/"
+                         },
+                         {
+                             "r":  41,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Crownline Boats",
+                             "c5":  "2.0",
+                             "c6":  "298 XSS",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-Crownline-Boat-298-XSS-D-R-Boat-World-18896251?ref=list",
+                             "c9":  "https://crownline.com/"
+                         },
+                         {
+                             "r":  42,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Finseeker Boats",
+                             "c5":  "1.0",
+                             "c6":  "260 Dual Console",
+                             "c8":  "Not Listed",
+                             "c9":  "https://crownline.com/boats/finseeker/"
+                         },
+                         {
+                             "r":  43,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Navan Boats",
+                             "c5":  "1.0",
+                             "c6":  "T-30 Center Console",
+                             "c8":  "Not Listed",
+                             "c9":  "https://www.navan-boats.com/us/en/boats/t30"
+                         },
+                         {
+                             "r":  44,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Navan Boats",
+                             "c5":  "2.0",
+                             "c6":  "S30",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-Navan-Boat-S30-D-R-Boat-World-17764282?ref=list",
+                             "c9":  "https://www.navan-boats.com/us/en"
+                         },
+                         {
+                             "r":  45,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Navan Boats",
+                             "c5":  "2.0",
+                             "c6":  "C30",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-Navan-Boat-C30-D-R-Boat-World-18187314?ref=list",
+                             "c9":  "https://www.navan-boats.com/us/en"
+                         },
+                         {
+                             "r":  46,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c4":  "Robalo Boats",
+                             "c5":  "X",
+                             "c6":  "300 Center Console",
+                             "c7":  "Not Selected",
+                             "c8":  "X",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  47,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Robalo Boats",
+                             "c5":  "1.0",
+                             "c6":  "277 Dual Console",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-Robalo-Boat-R277-Dual-Console-D-R-Boat-World-18876153?ref=list",
+                             "c9":  "https://robalo.com/Robalo_Boats.php?utm_source=google"
+                         },
+                         {
+                             "r":  48,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Robalo Boats",
+                             "c5":  "2.0",
+                             "c6":  "257 Dual Console",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-Robalo-Boat-R257-D-R-Boat-World-17941674?ref=list",
+                             "c9":  "https://robalo.com/Robalo_Boats.php?utm_source=google"
+                         },
+                         {
+                             "r":  49,
+                             "c1":  "X",
+                             "c2":  "x",
+                             "c4":  "Robalo Boats",
+                             "c5":  "X",
+                             "c6":  "237 Dual Console",
+                             "c7":  "Not Selected",
+                             "c8":  "X",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  50,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Robalo Boats",
+                             "c5":  "2.0",
+                             "c6":  "230 Center Console",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-Robalo-Boat-R230-D-R-Boat-World-17941625?ref=list",
+                             "c9":  "https://robalo.com/Robalo_Boats.php?utm_source=google"
+                         },
+                         {
+                             "r":  51,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Steiger Craft Boats",
+                             "c5":  "1.0",
+                             "c6":  "31 Fisherman",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-Steiger-Craft-Boat-31-Fisherman-D-R-Boat-World-17909839?ref=list",
+                             "c9":  "https://www.steigercraft.com/31-fisherman/"
+                         },
+                         {
+                             "r":  52,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2025.0",
+                             "c4":  "Steiger Craft Boats",
+                             "c5":  "2.0",
+                             "c6":  "255 Miami",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2025-Steiger-Craft-Boat-255-DV-MIAMI-D-R-Boat-World-16221291?ref=list",
+                             "c9":  "https://www.steigercraft.com/"
+                         },
+                         {
+                             "r":  53,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Steiger Craft Boats",
+                             "c5":  "2.0",
+                             "c6":  "255 Annapolis",
+                             "c8":  "Not Listed",
+                             "c9":  "https://www.steigercraft.com/"
+                         },
+                         {
+                             "r":  54,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "World Cat Boats",
+                             "c5":  "1.0",
+                             "c6":  "280 Center Console",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-World-Cat-Boat-280CC-X-D-R-Boat-World-18891352?ref=list",
+                             "c9":  "https://worldcat.com/models/280cc-x/"
+                         },
+                         {
+                             "r":  55,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c3":  "2026.0",
+                             "c4":  "World Cat Boats",
+                             "c5":  "X",
+                             "c6":  "230 Dual Console",
+                             "c7":  "Not Selected",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-World-Cat-Boat-230DC-17799133?ref=list",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  56,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c3":  "2026.0",
+                             "c4":  "World Cat Boats",
+                             "c5":  "X",
+                             "c6":  "265 Dual Console",
+                             "c7":  "Not Selected",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-World-Cat-Boat-265-DC-X-D-R-Boat-World-17799165?ref=list",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  57,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "World Cat Boats",
+                             "c5":  "2.0",
+                             "c6":  "235 TE Center Console",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-World-Cat-Boat-235TE-D-R-Boat-World-17733034?ref=list",
+                             "c9":  "https://worldcat.com/"
+                         },
+                         {
+                             "r":  58,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "World Cat Boats",
+                             "c5":  "2.0",
+                             "c6":  "325 Dual Console",
+                             "c8":  "https://www.dnrboatworld.com/NEW-Inventory-2026-World-Cat-Boat-325DC-D-R-Boat-World-17799212?ref=list",
+                             "c9":  "https://worldcat.com/"
+                         },
+                         {
+                             "r":  59,
+                             "c1":  "Formula Boats"
+                         },
+                         {
+                             "r":  60,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Formula Boats",
+                             "c5":  "1.0",
+                             "c6":  "360 CBR",
+                             "c8":  "https://www.formulaboats.com/boats/360-crossover-bowrider/",
+                             "c9":  "https://www.formulaboats.com/"
+                         },
+                         {
+                             "r":  61,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Formula Boats",
+                             "c5":  "2.0",
+                             "c6":  "330 CBR",
+                             "c8":  "https://www.formulaboats.com/boats/330-crossover-bowrider/",
+                             "c9":  "https://www.formulaboats.com/"
+                         },
+                         {
+                             "r":  62,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Formula Boats",
+                             "c5":  "2.0",
+                             "c6":  "310 BR",
+                             "c8":  "https://www.formulaboats.com/boats/310-bowrider/",
+                             "c9":  "https://www.formulaboats.com/"
+                         },
+                         {
+                             "r":  63,
+                             "c1":  "G. Winter\u0027s Sailing Center Inc."
+                         },
+                         {
+                             "r":  64,
+                             "c4":  "Ranger Tugs Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  65,
+                             "c1":  "Irwin"
+                         },
+                         {
+                             "r":  66,
+                             "c4":  "Sailfish Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  67,
+                             "c1":  "MarineMax"
+                         },
+                         {
+                             "r":  68,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Boston Whaler Boats",
+                             "c5":  "1.0",
+                             "c6":  "330 Outrage",
+                             "c8":  "SHARED BRAND - USE BRAND LINK",
+                             "c9":  "https://www.bostonwhaler.com/us/en/boats/outrage/330-outrage"
+                         },
+                         {
+                             "r":  69,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Cruisers Yachts",
+                             "c5":  "1.0",
+                             "c6":  "42 GLS",
+                             "c8":  "https://www.marinemax.com/products/new-cruisers-yachts-42-gls-2026-marinemax-warehouse-mdl9069645",
+                             "c9":  "https://www.cruisersyachts.com/"
+                         },
+                         {
+                             "r":  70,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Galeon Yachts",
+                             "c5":  "1.0",
+                             "c6":  "335 GTO",
+                             "c8":  "https://www.marinemax.com/products/new-galeon-335-gto-2026-marinemax-warehouse-mdl9069066",
+                             "c9":  "https://www.galeonyachts.us/"
+                         },
+                         {
+                             "r":  71,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Grady-White Boats",
+                             "c5":  "1.0",
+                             "c6":  "321 Coastal Explorer",
+                             "c8":  "SHARED BRAND - USE BRAND LINK",
+                             "c9":  "https://www.gradywhite.com/models/321-ce/"
+                         },
+                         {
+                             "r":  72,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Saxdor Yachts",
+                             "c5":  "1.0",
+                             "c6":  "400 GTC",
+                             "c8":  "https://www.marinemax.com/products/new-saxdor-400-gtc-2026-marinemax-warehouse-mdl9070137",
+                             "c9":  "https://saxdoryachts.com/"
+                         },
+                         {
+                             "r":  73,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2025.0",
+                             "c4":  "Scout Boats",
+                             "c5":  "1.0",
+                             "c6":  "260 LXF",
+                             "c8":  "https://www.marinemax.com/products/new-scout-260-lxf-2025-marinemax-warehouse-mdl9059963",
+                             "c9":  "https://www.scoutboats.com/"
+                         },
+                         {
+                             "r":  74,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Sea Ray Boats",
+                             "c5":  "1.0",
+                             "c6":  "360 SLX OB",
+                             "c8":  "https://www.marinemax.com/products/new-sea-ray-slx-360-outboard-2026-marinemax-warehouse-mdl9072412",
+                             "c9":  "https://www.searay.com/"
+                         },
+                         {
+                             "r":  75,
+                             "c1":  "New Jersey Outboards",
+                             "c6":  "DONE",
+                             "c8":  "DONE"
+                         },
+                         {
+                             "r":  76,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c4":  "Godfrey Pontoons",
+                             "c5":  "X",
+                             "c6":  "2485 SDB Slide Boat",
+                             "c8":  "Not supplied"
+                         },
+                         {
+                             "r":  77,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2025.0",
+                             "c4":  "Hurricane Deck Boats",
+                             "c5":  "1.0",
+                             "c6":  "Sundeck 2690",
+                             "c8":  "https://www.njoutboards.com/default.asp?page=xNewInventoryDetail\u0026id=17020803\u0026p=1\u0026make=hurricane\u0026s=(Sort%20By)\u0026d=D\u0026fr=xnewinventory",
+                             "c9":  "https://www.hurricaneboats.com/en-us/sundeck/sundeck-2690/"
+                         },
+                         {
+                             "r":  78,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Parker Boats",
+                             "c5":  "1.0",
+                             "c6":  "227 Explorer",
+                             "c8":  "https://www.njoutboards.com/default.asp?page=xNewInventoryDetail\u0026id=17477433\u0026p=1\u0026make=parker\u0026s=(Sort%20By)\u0026d=D\u0026t=new\u0026fr=xnewinventory",
+                             "c9":  "https://parkerboats.com/models/227-explorer"
+                         },
+                         {
+                             "r":  79,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Parker Boats",
+                             "c5":  "2.0",
+                             "c6":  "210 Coastal",
+                             "c8":  "https://www.njoutboards.com/default.asp?page=xNewInventoryDetail\u0026id=18556735\u0026p=1\u0026make=parker\u0026s=(Sort%20By)\u0026d=D\u0026fr=xnewinventory",
+                             "c9":  "https://parkerboats.com/models/210-coastal"
+                         },
+                         {
+                             "r":  80,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Sea Hunt Boats",
+                             "c5":  "1.0",
+                             "c6":  "Ultra 305 SE",
+                             "c8":  "https://www.njoutboards.com/default.asp?page=xNewInventoryDetail\u0026id=17439438\u0026p=2\u0026make=sea%20hunt\u0026s=(Sort%20By)\u0026d=D\u0026fr=xnewinventory",
+                             "c9":  "https://seahuntboats.com/boats/ultra/ultra-305se/"
+                         },
+                         {
+                             "r":  81,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Sea Hunt Boats",
+                             "c5":  "2.0",
+                             "c6":  "Ultra 275 SE",
+                             "c8":  "https://www.njoutboards.com/default.asp?page=xNewInventoryDetail\u0026id=18972806\u0026p=1\u0026make=sea%20hunt\u0026s=(Sort%20By)\u0026d=D\u0026fr=xnewinventory",
+                             "c9":  "https://seahuntboats.com/boats/ultra/ultra-275se/"
+                         },
+                         {
+                             "r":  82,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Sea Hunt Boats",
+                             "c5":  "2.0",
+                             "c6":  "Ultra 265 SE",
+                             "c8":  "https://www.njoutboards.com/default.asp?page=xNewInventoryDetail\u0026id=18229996\u0026p=1\u0026make=sea%20hunt\u0026s=(Sort%20By)\u0026d=D\u0026t=new\u0026fr=xnewinventory",
+                             "c9":  "https://seahuntboats.com/boats/ultra/ultra-265se/"
+                         },
+                         {
+                             "r":  83,
+                             "c1":  "Riptide"
+                         },
+                         {
+                             "r":  84,
+                             "c4":  "Bennington Pontoons",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  85,
+                             "c1":  "Riverside Marina \u0026 Yacht Sales"
+                         },
+                         {
+                             "r":  86,
+                             "c4":  "Brig Inflatables",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  87,
+                             "c4":  "Jeanneau Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  88,
+                             "c1":  "Sandy Hook"
+                         },
+                         {
+                             "r":  89,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "De Antonio Yachts",
+                             "c5":  "1.0",
+                             "c6":  "De Antonio D42",
+                             "c8":  "https://sandyhookyachts.com/listing/2026-de-antonio-yachts-d42/2846128/3/",
+                             "c9":  "https://www.deantonioyachts.com/"
+                         },
+                         {
+                             "r":  90,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "De Antonio Yachts",
+                             "c5":  "2.0",
+                             "c6":  "De Antonio D36",
+                             "c8":  "https://sandyhookyachts.com/listing/2026-de-antonio-yachts-d36/2846787/3/",
+                             "c9":  "https://www.deantonioyachts.com/"
+                         },
+                         {
+                             "r":  91,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Marex Boats",
+                             "c5":  "1.0",
+                             "c6":  "Marex 440",
+                             "c8":  "https://sandyhookyachts.com/listing/2026-marex-440/2818997/3/",
+                             "c9":  "https://marex.no/"
+                         },
+                         {
+                             "r":  92,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Marex Boats",
+                             "c5":  "2.0",
+                             "c6":  "Marex 360",
+                             "c8":  "https://sandyhookyachts.com/listing/2026-marex-360-cabriolet-cruiser/2818982/3/",
+                             "c9":  "https://marex.no/"
+                         },
+                         {
+                             "r":  93,
+                             "c1":  "Schrader Yacht Sales Inc."
+                         },
+                         {
+                             "r":  94,
+                             "c4":  "Chris Craft Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  95,
+                             "c4":  "Jupiter Boats"
+                         },
+                         {
+                             "r":  96,
+                             "c4":  "Ken Craft Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  97,
+                             "c1":  "Seaport Inlet Marina"
+                         },
+                         {
+                             "r":  98,
+                             "c4":  "Cape Horn Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  99,
+                             "c4":  "NorthCoast Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  100,
+                             "c1":  "Sheltered Cove Marina"
+                         },
+                         {
+                             "r":  101,
+                             "c4":  "Regal Boats",
+                             "c5":  "1.0",
+                             "c6":  "36XO",
+                             "c8":  "Regal 36XO https://shelteredcovemarina.com/product/2026-regal-36-xo-9998913/"
+                         },
+                         {
+                             "r":  102,
+                             "c4":  "Regal Boats",
+                             "c5":  "2.0",
+                             "c6":  "26XO",
+                             "c8":  "Regal 26XO https://shelteredcovemarina.com/product/2026-regal-26-xo-9949004/"
+                         },
+                         {
+                             "r":  103,
+                             "c4":  "Barletta Pontoons",
+                             "c5":  "1.0",
+                             "c6":  "L25UC",
+                             "c8":  "Barletta L25UC https://shelteredcovemarina.com/product/2026-barletta-lusso-25uc-10152501/"
+                         },
+                         {
+                             "r":  104,
+                             "c4":  "Barletta Pontoons",
+                             "c5":  "2.0",
+                             "c6":  "C24M",
+                             "c8":  "Barletta C24M https://shelteredcovemarina.com/product/2026-barletta-c24m-9850634/"
+                         },
+                         {
+                             "r":  105,
+                             "c4":  "Barletta Pontoons",
+                             "c5":  "2.0",
+                             "c6":  "C22QC",
+                             "c8":  "Barletta C22QC https://shelteredcovemarina.com/product/2026-barletta-cabrio-22qc-10135200/"
+                         },
+                         {
+                             "r":  106,
+                             "c4":  "Barletta Pontoons",
+                             "c5":  "2.0",
+                             "c6":  "A22UC",
+                             "c8":  "Barletta A22UC https://shelteredcovemarina.com/product/2026-barletta-aria-22uc-10135002/"
+                         },
+                         {
+                             "r":  107,
+                             "c4":  "Starcraft Boats",
+                             "c5":  "1.0",
+                             "c6":  "SVX 230 DC OB",
+                             "c8":  "Starcraft SVX 230 DC OB https://shelteredcovemarina.com/product/2026-starcraft-svx-230-dc-ob-10015860/"
+                         },
+                         {
+                             "r":  108,
+                             "c4":  "Starcraft Boats",
+                             "c5":  "0.0",
+                             "c6":  "SVX 210 DC OB",
+                             "c8":  "Starcraft SVX 210 DC OB https://shelteredcovemarina.com/product/2027-starcraft-svx-210-dc-ob-10283184/"
+                         },
+                         {
+                             "r":  109,
+                             "c4":  "Starcraft Boats",
+                             "c5":  "2.0",
+                             "c6":  "SVX 211 OB",
+                             "c8":  "Starcraft SVX 211 OB https://shelteredcovemarina.com/product/2026-starcraft-svx-211-ob-dc-10016004/"
+                         },
+                         {
+                             "r":  110,
+                             "c4":  "Starcraft Boats",
+                             "c5":  "2.0",
+                             "c6":  "SVX 190 DC OB",
+                             "c8":  "Starcraft SVX 190 DC OB https://shelteredcovemarina.com/product/2026-starcraft-svx-190-dc-ob-10283168/"
+                         },
+                         {
+                             "r":  111,
+                             "c4":  "Starcraft Boats",
+                             "c5":  "0.0",
+                             "c6":  "SVX 191 OB",
+                             "c8":  "Starcraft SVX 191 OB https://shelteredcovemarina.com/product/2026-starcraft-svx-191-ob-10016060/"
+                         },
+                         {
+                             "r":  112,
+                             "c1":  "South Jersey Yacht Sales"
+                         },
+                         {
+                             "r":  113,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Albemarle Boats",
+                             "c5":  "1.0",
+                             "c6":  "45 Carolinian Fisharound Express",
+                             "c8":  "https://southjerseyyachtsales.com/brand/albemarle/",
+                             "c9":  "https://southjerseyyachtsales.com/brand/albemarle/"
+                         },
+                         {
+                             "r":  114,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Albemarle Boats",
+                             "c5":  "2.0",
+                             "c6":  "27 Dual Console",
+                             "c8":  "https://southjerseyyachtsales.com/yacht-listing/2026-albemarle-27-dual-console/",
+                             "c9":  "https://southjerseyyachtsales.com/brand/albemarle/"
+                         },
+                         {
+                             "r":  115,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Albemarle Boats",
+                             "c5":  "2.0",
+                             "c6":  "30 Express",
+                             "c8":  "https://southjerseyyachtsales.com/yacht-listing/2026-albemarle-30-express-available-to-order/",
+                             "c9":  "https://southjerseyyachtsales.com/brand/albemarle/"
+                         },
+                         {
+                             "r":  116,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Solace Boats",
+                             "c5":  "1.0",
+                             "c6":  "35CS",
+                             "c8":  "https://southjerseyyachtsales.com/solace/35cs/",
+                             "c9":  "https://southjerseyyachtsales.com/brand/solace/"
+                         },
+                         {
+                             "r":  117,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Solace Boats",
+                             "c5":  "2.0",
+                             "c6":  "37CS",
+                             "c8":  "https://southjerseyyachtsales.com/yacht-listing/2026-solace-37cs/",
+                             "c9":  "https://southjerseyyachtsales.com/brand/solace/"
+                         },
+                         {
+                             "r":  118,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Solace Boats",
+                             "c5":  "2.0",
+                             "c6":  "32CS",
+                             "c8":  "https://southjerseyyachtsales.com/yacht-listing/2026-solace-32cs/",
+                             "c9":  "https://southjerseyyachtsales.com/brand/solace/"
+                         },
+                         {
+                             "r":  119,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Viking Yachts",
+                             "c5":  "1.0",
+                             "c6":  "50 C",
+                             "c8":  "https://southjerseyyachtsales.com/viking/50-c/",
+                             "c9":  "https://southjerseyyachtsales.com/brand/viking/"
+                         },
+                         {
+                             "r":  120,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c4":  "Valhalla Boats",
+                             "c5":  "1.0",
+                             "c6":  "V-33",
+                             "c7":  "SHARED BRAND",
+                             "c8":  "https://southjerseyyachtsales.com/valhalla/v-33/",
+                             "c9":  "https://southjerseyyachtsales.com/brand/valhalla/"
+                         },
+                         {
+                             "r":  121,
+                             "c1":  "Stone Harbor Marina"
+                         },
+                         {
+                             "r":  122,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c3":  "2026.0",
+                             "c4":  "Cobia",
+                             "c5":  "X",
+                             "c6":  "265 CC",
+                             "c8":  "https://www.stoneharbormarina.com/details/cobia/265-cc/d22ab7ba2afdb6520dcd760482904961",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  123,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Cobia - 3",
+                             "c5":  "1.0",
+                             "c6":  "245 CC",
+                             "c8":  "https://www.stoneharbormarina.com/search/condition-new/make-cobia",
+                             "c9":  "https://www.cobiaboats.com/boats/center-console/245-cc?utm"
+                         },
+                         {
+                             "r":  124,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c3":  "2026.0",
+                             "c4":  "Cobia",
+                             "c5":  "X",
+                             "c6":  "305 CC",
+                             "c8":  "https://www.stoneharbormarina.com/details/cobia/305-cc/b8579802e905f3482d1fee73786c900c",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  125,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Cobia",
+                             "c5":  "2.0",
+                             "c6":  "285 CC",
+                             "c8":  "https://www.stoneharbormarina.com/details/cobia/285-cc/eaf4f5bf6cfbd5d57cca05ddd845d926",
+                             "c9":  "https://www.cobiaboats.com/boats/center-console/285-cc?utm"
+                         },
+                         {
+                             "r":  126,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Cobia",
+                             "c5":  "2.0",
+                             "c6":  "320 CC",
+                             "c8":  "https://www.stoneharbormarina.com/details/cobia/320-cc/fb63032d482a9c04b7408daa07ba21f0",
+                             "c9":  "https://www.cobiaboats.com/boats/center-console/320-cc?utm"
+                         },
+                         {
+                             "r":  127,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c3":  "2026.0",
+                             "c4":  "Everglades",
+                             "c5":  "X",
+                             "c6":  "285 CC",
+                             "c8":  "https://www.stoneharbormarina.com/details/everglades/285-cc/df2cab94e8c0a7716b219e46d7fe80a7",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  128,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Everglades",
+                             "c5":  "2.0",
+                             "c6":  "315 CC",
+                             "c8":  "https://www.stoneharbormarina.com/search/condition-new/make-everglades",
+                             "c9":  "https://www.evergladesboats.com/find-your-boat/center-consoles/315cc/?utm"
+                         },
+                         {
+                             "r":  129,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Everglades - 1",
+                             "c5":  "1.0",
+                             "c6":  "375 CC",
+                             "c8":  "https://www.stoneharbormarina.com/search/condition-new/make-everglades",
+                             "c9":  "https://www.evergladesboats.com/find-your-boat/center-consoles/375cc/?utm"
+                         },
+                         {
+                             "r":  130,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Everglades",
+                             "c5":  "2.0",
+                             "c6":  "395 CC",
+                             "c8":  "https://www.stoneharbormarina.com/details/everglades/395-cc/bd41ee588966c7ba15a0e303df0aaf14",
+                             "c9":  "https://www.evergladesboats.com/find-your-boat/center-consoles/395cc/?utm"
+                         },
+                         {
+                             "r":  131,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c3":  "2026.0",
+                             "c4":  "Everglades",
+                             "c5":  "X",
+                             "c6":  "335 CC",
+                             "c8":  "https://www.stoneharbormarina.com/details/everglades/335-cc/4cd485a0281879f9e20b3317f2b3455e",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  132,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c3":  "2026.0",
+                             "c4":  "Everglades",
+                             "c5":  "X",
+                             "c6":  "367 CX",
+                             "c8":  "https://www.stoneharbormarina.com/details/everglades/367-cx/162dee2921c90b7d49e9375da80462ae",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  133,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Pursuit - 2",
+                             "c5":  "1.0",
+                             "c6":  "S 288",
+                             "c8":  "https://www.stoneharbormarina.com/search/condition-new/make-pursuit"
+                         },
+                         {
+                             "r":  134,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Pursuit",
+                             "c5":  "1.0",
+                             "c6":  "S 358",
+                             "c8":  "https://www.stoneharbormarina.com/details/pursuit/s-358/621afb90645aa5b3de52ddbbd7c3d99c"
+                         },
+                         {
+                             "r":  135,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Pursuit",
+                             "c5":  "2.0",
+                             "c6":  "DC 365",
+                             "c8":  "https://www.stoneharbormarina.com/details/pursuit/dc-365/bc560574b16faff27cf4e29168b61cdc"
+                         },
+                         {
+                             "r":  136,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c3":  "2026.0",
+                             "c4":  "Pursuit",
+                             "c5":  "X",
+                             "c6":  "DC 326",
+                             "c8":  "https://www.stoneharbormarina.com/details/pursuit/dc-326/0122f381a5e4c005162e09d9f3ce896b",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  137,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c3":  "2026.0",
+                             "c4":  "Pursuit",
+                             "c5":  "X",
+                             "c6":  "OS 325",
+                             "c8":  "https://www.stoneharbormarina.com/details/pursuit/os-325/3d6e0fb3d8d6c898b4ff6770df74d89a",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  138,
+                             "c1":  "P",
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Pursuit",
+                             "c5":  "2.0",
+                             "c6":  "OS 355",
+                             "c8":  "https://www.stoneharbormarina.com/details/pursuit/os-355/ac045872d3e3e12503ba4ef08730d7cb"
+                         },
+                         {
+                             "r":  139,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c3":  "2026.0",
+                             "c4":  "Sea Pro",
+                             "c5":  "X",
+                             "c6":  "225 FLXR",
+                             "c8":  "https://www.stoneharbormarina.com/search/condition-new/make-sea-pro",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  140,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c3":  "2026.0",
+                             "c4":  "Sea Pro",
+                             "c5":  "X",
+                             "c6":  "322 DLX",
+                             "c8":  "https://www.stoneharbormarina.com/details/sea-pro/322-dlx/22a7ba10185999baebb42c85fd658553",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  141,
+                             "c1":  "X",
+                             "c2":  "X",
+                             "c3":  "2026.0",
+                             "c4":  "Sea Pro",
+                             "c5":  "X",
+                             "c6":  "292 DLX",
+                             "c8":  "https://www.stoneharbormarina.com/details/sea-pro/292-dlx/1bde3f853f228e7ebb36bdd9b8f1ee1a",
+                             "c9":  "X"
+                         },
+                         {
+                             "r":  142,
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Sea Pro",
+                             "c5":  "2.0",
+                             "c6":  "262 DLX",
+                             "c8":  "https://www.stoneharbormarina.com/search/condition-new/make-sea-pro"
+                         },
+                         {
+                             "r":  143,
+                             "c2":  "C",
+                             "c3":  "2027.0",
+                             "c4":  "Sea Pro - 4",
+                             "c5":  "1.0",
+                             "c6":  "245 FLXR",
+                             "c8":  "https://www.stoneharbormarina.com/search/condition-new/make-sea-pro"
+                         },
+                         {
+                             "r":  144,
+                             "c2":  "C",
+                             "c3":  "2026.0",
+                             "c4":  "Sea Pro",
+                             "c5":  "2.0",
+                             "c6":  "265 FLX",
+                             "c8":  "https://www.stoneharbormarina.com/details/sea-pro/265-flx/2d811deb729e2c10e39cff706d30c2d1"
+                         },
+                         {
+                             "r":  145,
+                             "c1":  "Total Marine"
+                         },
+                         {
+                             "r":  146,
+                             "c4":  "Alara Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  147,
+                             "c4":  "Donzi Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  148,
+                             "c4":  "Fairline Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  149,
+                             "c4":  "Fountain Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  150,
+                             "c4":  "Twin Vee Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  151,
+                             "c1":  "Valhalla Boat Sales"
+                         },
+                         {
+                             "r":  152,
+                             "c4":  "Contender Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  153,
+                             "c4":  "Monterey Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  154,
+                             "c4":  "Sportsman Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         },
+                         {
+                             "r":  155,
+                             "c4":  "Valhalla Boats",
+                             "c5":  "0.0",
+                             "c6":  "Waiting"
+                         }
+                     ]
+}
