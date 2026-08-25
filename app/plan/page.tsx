@@ -165,7 +165,7 @@ export default function PlanYourVisit() {
       {/* MAKE IT A WEEKEND */}
       <section id="weekend" style={{ scrollMarginTop: 82, position: "relative", overflow: "hidden" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/show/ac-skyline.jpg" alt="" aria-hidden style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+        <img src="/show/ac-boardwalk.jpg" alt="" aria-hidden style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(244,247,249,.96) 0%, rgba(244,247,249,.82) 34%, rgba(244,247,249,0) 62%)" }} />
         <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "clamp(56px,7vw,96px) clamp(18px,5vw,56px)" }}>
           <div style={{ maxWidth: 460 }}>

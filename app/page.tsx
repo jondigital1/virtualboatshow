@@ -106,7 +106,7 @@ export default function Home() {
                   </div>
                 </div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/show/card-boats.jpg" alt="Boats docked at the in-water show" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/show/explore-boats.jpg" alt="Aerial view of boats filling Farley State Marina" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               {thumbs.length > 0 && (
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8, padding: "0 16px 16px" }}>
@@ -131,7 +131,7 @@ export default function Home() {
                   </div>
                 </div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/show/card-marketplace.jpg" alt="Exhibitor tents at the Marine Marketplace" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/show/explore-marketplace.jpg" alt="Exhibitor tents at the Marine Marketplace" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", padding: "0 16px 16px" }}>
                 {marketplaceCats.map((c) => (
