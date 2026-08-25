@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T20:31:22.375Z",
+  "generatedAt": "2026-08-25T20:47:26.390Z",
   "boatCount": 86,
   "boats": [
     {
@@ -159,7 +159,7 @@
         "/boats/boston-whaler-330-outrage-27.jpg",
         "/boats/boston-whaler-330-outrage-28.jpg"
       ],
-      "blurb": "",
+      "blurb": "The 330 Outrage is the newest boat in Boston Whaler's flagship offshore line: a center console built on Whaler's famously unsinkable hull, with a deep protected cockpit, serious fishing capability, and family comfort throughout. Atlantic City is its first New Jersey boat show, presented on the water by Comstock and MarineMax.",
       "lengthFt": null
     },
     {
@@ -383,7 +383,7 @@
         "/boats/finseeker-260-dual-console-1.jpg",
         "/boats/finseeker-260-dual-console-2.jpg"
       ],
-      "blurb": "",
+      "blurb": "The Finseeker 260 is a 26-foot dual console from Crownline's fishing-focused line, pairing genuine fishing features with the seating and comfort of a family day boat.",
       "lengthFt": 22
     },
     {
@@ -417,7 +417,7 @@
         "/boats/formula-360-cbr-11.jpg",
         "/boats/formula-360-cbr-12.jpg"
       ],
-      "blurb": "",
+      "blurb": "The Formula 360 Crossover Bowrider does two jobs without compromise: open-bow day boating and genuine performance cruising, with overnight-capable cabin space below and Formula's signature build quality throughout.",
       "lengthFt": 92
     },
     {
@@ -580,7 +580,7 @@
       "photos": [
         "/boats/key-west-249-fs-1.jpg"
       ],
-      "blurb": "",
+      "blurb": "The Key West 249FS is a family sportsman that splits its time honestly: a fishing-first hull and cockpit with the bow seating and comfort that keep the whole crew aboard for the rest of the day.",
       "lengthFt": null
     },
     {
@@ -676,7 +676,7 @@
         "/boats/navan-t-30-center-console-1.jpg",
         "/boats/navan-t-30-center-console-2.jpg"
       ],
-      "blurb": "",
+      "blurb": "The Navan T30 is a Scandinavian-designed 30-foot adventure center console: deep protected seating, smart all-weather ergonomics, and twin Mercury outboards, built for running hard in real conditions.",
       "lengthFt": null
     },
     {
@@ -879,7 +879,7 @@
         "/boats/regulator-31-11.jpg",
         "/boats/regulator-31-12.jpg"
       ],
-      "blurb": "",
+      "blurb": "The Regulator 31 is a serious offshore center console with the deep-V Carolina ride Regulator is known for, twin Yamaha outboard power, and a tournament-grade fishing cockpit finished to yacht standards.",
       "lengthFt": null
     },
     {
@@ -904,7 +904,7 @@
         "/boats/regulator-35-2.png",
         "/boats/regulator-35-3.jpg"
       ],
-      "blurb": "",
+      "blurb": "The Regulator 35 is the biggest boat Regulator builds: a canyon-running center console with Yamaha outboard power, massive fuel and fish capacity, and the legendary Carolina-flared ride that made the brand.",
       "lengthFt": null
     },
     {
@@ -1260,7 +1260,7 @@
         "/boats/tiara-yachts-39ls-11.jpg",
         "/boats/tiara-yachts-39ls-12.jpg"
       ],
-      "blurb": "",
+      "blurb": "The 39 LS is Tiara's luxury sport day yacht: outboard power, a wide-open social cockpit with seating that converts around an outdoor galley, and the fit and finish Tiara has built its name on. It makes its New Jersey boat show debut in Atlantic City.",
       "lengthFt": null
     },
     {
@@ -1574,7 +1574,7 @@
         "/boats/boston-whaler-220-dauntless-1.jpg",
         "/boats/boston-whaler-220-dauntless-2.jpg"
       ],
-      "blurb": "",
+      "blurb": "The 220 Dauntless is Boston Whaler's do-anything 22-footer: the unsinkable hull the brand is famous for, a fishing-ready cockpit, and comfortable bow seating that turns the same boat into a family cruiser by afternoon.",
       "lengthFt": null
     },
     {
@@ -1597,7 +1597,7 @@
       "photos": [
         "/boats/boston-whaler-280-vantage-1.jpg"
       ],
-      "blurb": "",
+      "blurb": "The 280 Vantage is Boston Whaler's versatile dual console: one side console, one comfortable port lounge, and a layout that moves easily between fishing, cruising, and watersports, all on Whaler's unsinkable foundation.",
       "lengthFt": null
     },
     {

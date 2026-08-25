@@ -391,9 +391,11 @@ async function main() {
   for (const b of boats) {
     const o = OVERRIDES[b.slug];
     if (o) {
-      b.official = !!o.official;
-      b.sourceUrls = o.sourceUrls;
-      b.sourceUrl = o.sourceUrls[0];
+      if (o.official !== undefined) b.official = !!o.official;
+      if (o.sourceUrls?.length) {
+        b.sourceUrls = o.sourceUrls;
+        b.sourceUrl = o.sourceUrls[0];
+      }
     }
   }
   console.log(`parsed ${boats.length} selected boats across ${new Set(boats.flatMap((b) => b.dealers.map((d) => d.name))).size} dealers (${Object.keys(OVERRIDES).length} source overrides)`);
