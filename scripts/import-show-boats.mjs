@@ -19,7 +19,7 @@
  * saved as public/boats/<slug>-<n>.<ext>. Boats that already have photos on
  * disk are not refetched, so daily syncs only hit new/changed listings.
  */
-import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, unlinkSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -63,12 +63,19 @@ const cleanNum = (v) => {
   return Number.isFinite(n) ? n : 0;
 };
 
+const warnings = [];
+const warn = (msg) => {
+  warnings.push(msg);
+  console.log("WARNING: " + msg);
+};
+
 function parseRows() {
   // PowerShell 5.1's Out-File writes a UTF-8 BOM; strip it before parsing.
   const raw = JSON.parse(readFileSync(RAW, "utf8").replace(/^﻿/, ""));
   const sheet = raw["Models To Do"] ?? [];
   const boats = [];
   const waiting = {};
+  const seenRows = new Set();
   let dealerKey = null;
 
   for (const row of sheet) {
@@ -111,6 +118,15 @@ function parseRows() {
 
     // Excel floats: "288.0" -> "288", "35.0" -> "35".
     if (/^\d+(\.0+)?$/.test(model)) model = String(parseInt(model, 10));
+
+    // Anti-duplication guard #1: an identical dealer+brand+model row appearing
+    // twice in the workbook (copy/paste slip) imports once, with a warning.
+    const rowKey = (dealerKey + "|" + cleanBrand(brandRaw) + "|" + model).toLowerCase().replace(/\s+/g, " ");
+    if (seenRows.has(rowKey)) {
+      warn(`duplicate row skipped: ${cleanBrand(brandRaw)} ${model} appears twice under ${dealerKey}`);
+      continue;
+    }
+    seenRows.add(rowKey);
 
     boats.push({
       dealerKey,
@@ -159,13 +175,27 @@ function mergeShared(boats) {
     if (key) byKey.set(key, rec);
     out.push(rec);
   }
-  // Slugs: brand-model, disambiguated by dealer when two dealers bring the same model separately.
-  const used = new Map();
+  // Slugs: brand-model. When two UNMERGED boats share brand+model (two dealers
+  // each bringing the same model as separate hulls), BOTH get a dealer suffix —
+  // deterministic regardless of workbook row order, so URLs stay stable when
+  // Giselle reorders sections. Also anti-duplication guard #2: flag those
+  // pairs, since an unmarked shared-brand row would look exactly like this.
+  const byBase = new Map();
   for (const r of out) {
-    let s = slugify(r.brand + "-" + r.model);
-    if (used.has(s)) s = slugify(s + "-" + r.dealers[0].name.split(" ")[0]);
-    used.set(s, true);
-    r.slug = s;
+    const base = slugify(r.brand + "-" + r.model);
+    (byBase.get(base) ?? byBase.set(base, []).get(base)).push(r);
+  }
+  for (const [base, group] of byBase) {
+    if (group.length === 1) {
+      group[0].slug = base;
+    } else {
+      warn(
+        `possible duplicate: ${group[0].brand} ${group[0].model} listed separately by ` +
+          group.map((g) => g.dealers.map((d) => d.name).join("+")).join(" and ") +
+          ` — if it's one shared display boat, mark the rows SHARED BRAND in the workbook to merge them`
+      );
+      for (const g of group) g.slug = slugify(base + "-" + g.dealers[0].name.split(" ")[0]);
+    }
   }
   return out;
 }
@@ -225,7 +255,10 @@ const extFor = (url, buf) => {
 };
 
 async function enrich(boat) {
-  const existing = readdirSync(PHOTO_DIR).filter((f) => f.startsWith(boat.slug + "-"));
+  // Strict cache-key match (slug-N.ext): keeps sibling slugs like
+  // "sea-pro-245" from claiming "sea-pro-245-flxr-1.jpg".
+  const mine = new RegExp("^" + boat.slug.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "-\\d+\\.(jpe?g|png|webp)$", "i");
+  const existing = readdirSync(PHOTO_DIR).filter((f) => mine.test(f));
   if (existing.length > 0) {
     boat.photos = existing.sort().map((f) => "/boats/" + f);
     return "cached";
@@ -256,6 +289,18 @@ async function main() {
   const boats = mergeShared(rows);
   console.log(`parsed ${boats.length} selected boats across ${new Set(boats.flatMap((b) => b.dealers.map((d) => d.name))).size} dealers`);
 
+  // Orphan sweep: photos whose slug no longer exists in the workbook (boat
+  // renamed/removed) are deleted so renames can't leave stale imagery behind.
+  const live = boats.map((b) => new RegExp("^" + b.slug.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "-\\d+\\.(jpe?g|png|webp)$", "i"));
+  let orphans = 0;
+  for (const f of readdirSync(PHOTO_DIR)) {
+    if (!live.some((re) => re.test(f))) {
+      unlinkSync(join(PHOTO_DIR, f));
+      orphans++;
+    }
+  }
+  if (orphans > 0) warn(`${orphans} orphaned photo file(s) removed (boats renamed or dropped from the workbook)`);
+
   let i = 0;
   const stats = {};
   const queue = [...boats];
@@ -276,8 +321,9 @@ async function main() {
   }));
 
   boats.sort((a, b) => a.priority - b.priority || a.brand.localeCompare(b.brand) || a.model.localeCompare(b.model));
-  writeFileSync(OUT, JSON.stringify({ generatedAt: new Date().toISOString(), boatCount: boats.length, boats, waiting: waitingOut }, null, 2));
+  writeFileSync(OUT, JSON.stringify({ generatedAt: new Date().toISOString(), boatCount: boats.length, boats, waiting: waitingOut, warnings }, null, 2));
   console.log("stats:", JSON.stringify(stats));
+  console.log(warnings.length ? `WARNINGS (${warnings.length}) — see above; also recorded in show-boats.json` : "no duplicate/orphan warnings");
   console.log(`wrote ${OUT} with ${boats.length} boats; waiting dealers: ${waitingOut.length}`);
   if (boats.length < 30) {
     console.error("SANITY FAIL: fewer than 30 boats parsed");

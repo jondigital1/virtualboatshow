@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow } from "@/components/ui";
 import { showBoats, waitingDealers, boatTitle, allBrands, allDealers, type ShowBoat } from "@/lib/showboats";
@@ -181,13 +181,28 @@ function ShowBoatCard({ b, fav, onFav }: { b: ShowBoat; fav: boolean; onFav: () 
   const href = `/boats/${b.slug}`;
   const title = boatTitle(b);
   const dealerLine = b.dealers.map((d) => d.name).join(" · ");
+  // In-card photo browsing: arrows + dots + swipe, without leaving the SRP.
+  const [idx, setIdx] = useState(0);
+  const touchX = useRef<number | null>(null);
+  const many = b.photos.length > 1;
+  const step = (d: number) => setIdx((i) => (i + d + b.photos.length) % b.photos.length);
+  const arrowStyle = (side: "left" | "right"): React.CSSProperties => ({ position: "absolute", [side]: 6, top: "50%", transform: "translateY(-50%)", zIndex: 3, width: 28, height: 28, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.92)", color: "var(--navy)", cursor: "pointer", fontSize: 15, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(20,46,81,.25)" });
   return (
     <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
-      <div style={{ position: "relative", aspectRatio: "16/11", background: "linear-gradient(160deg,#e8eef3,#dfe7ee)" }}>
+      <div
+        style={{ position: "relative", aspectRatio: "16/11", background: "linear-gradient(160deg,#e8eef3,#dfe7ee)", touchAction: "pan-y" }}
+        onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
+        onTouchEnd={(e) => {
+          if (touchX.current === null || !many) return;
+          const dx = e.changedTouches[0].clientX - touchX.current;
+          if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+          touchX.current = null;
+        }}
+      >
         <Link href={href} aria-label={`${title} details`} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1 }}>
           {b.photos.length > 0 ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={b.photos[0]} alt={title} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src={b.photos[idx] ?? b.photos[0]} alt={title} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
           ) : (
             <span style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -196,6 +211,17 @@ function ShowBoatCard({ b, fav, onFav }: { b: ShowBoat; fav: boolean; onFav: () 
             </span>
           )}
         </Link>
+        {many && (
+          <>
+            <button aria-label="Previous photo" onClick={() => step(-1)} style={arrowStyle("left")}>‹</button>
+            <button aria-label="Next photo" onClick={() => step(1)} style={arrowStyle("right")}>›</button>
+            <span aria-hidden style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", zIndex: 2, display: "flex", gap: 5, pointerEvents: "none" }}>
+              {b.photos.map((_, i) => (
+                <span key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: i === idx ? "#fff" : "rgba(255,255,255,.5)", boxShadow: "0 1px 3px rgba(20,46,81,.4)" }} />
+              ))}
+            </span>
+          </>
+        )}
         {b.notes ? (
           <span style={{ position: "absolute", top: 9, left: 9, fontFamily: FONT, fontWeight: 700, fontSize: 10, letterSpacing: ".06em", textTransform: "uppercase", background: "var(--gold)", color: "#142E51", padding: "5px 9px", borderRadius: 6, pointerEvents: "none", zIndex: 2, maxWidth: "80%" }}>{b.notes}</span>
         ) : b.priority === 1 ? (

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T14:02:04.004Z",
+  "generatedAt": "2026-08-25T14:09:21.409Z",
   "boatCount": 86,
   "boats": [
     {
@@ -2255,5 +2255,6 @@
         "Valhalla"
       ]
     }
-  ]
+  ],
+  "warnings": []
 }
