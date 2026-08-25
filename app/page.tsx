@@ -68,7 +68,7 @@ export default function Home() {
             </h1>
             <span className="gold-rule" style={{ margin: "22px 0 0", background: "var(--lightblue)" }} />
             <p style={{ maxWidth: 480, fontSize: "clamp(15.5px,1.2vw,17.5px)", lineHeight: 1.65, color: "rgba(20,46,81,.8)", margin: "22px 0 0" }}>
-              Browse participating dealers and available inventory, save the boats you want to see, and plan your Atlantic City waterfront weekend.
+              Browse participating dealers and available inventory, see what&rsquo;s coming to the docks, and plan your Atlantic City waterfront weekend.
             </p>
             <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(30px,3.4vw,44px)", letterSpacing: ".01em", margin: "30px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
               Let&rsquo;s <span style={{ color: "var(--gold)" }}>Boat!</span>

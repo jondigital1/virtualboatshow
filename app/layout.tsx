@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import { IframeModalProvider } from "@/components/IframeModal";
 import "./globals.css";
 
@@ -14,7 +15,7 @@ const poppins = Poppins({
 });
 
 const DESCRIPTION =
-  "The official virtual companion to the Atlantic City In-Water Boat Show. Browse boats and Marine Marketplace exhibitors, save your favorites, and plan your visit. Sept 10-13, 2026 · Farley State Marina, Atlantic City.";
+  "The official virtual companion to the Atlantic City In-Water Boat Show. Browse boats and Marine Marketplace exhibitors and plan your visit. Sept 10-13, 2026 · Farley State Marina, Atlantic City.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://acvirtualboatshow.com"),
@@ -53,6 +54,7 @@ export default function RootLayout({
     <html lang="en" className={poppins.variable}>
       <body>
         <IframeModalProvider>{children}</IframeModalProvider>
+        <Analytics />
       </body>
     </html>
   );

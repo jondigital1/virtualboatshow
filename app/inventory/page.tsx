@@ -26,7 +26,6 @@ export default function Inventory() {
   const [brand, setBrand] = useState("all");
   const [dealer, setDealer] = useState("all");
   const [sort, setSort] = useState("featured");
-  const [favs, setFavs] = useState<Record<string, boolean>>({});
   const [faqOpen, setFaqOpen] = useState(-1);
 
   const brands = useMemo(allBrands, []);
@@ -114,7 +113,7 @@ export default function Inventory() {
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,250px),1fr))", gap: 18 }}>
             {list.map((b) => (
-              <ShowBoatCard key={b.slug} b={b} fav={!!favs[b.slug]} onFav={() => setFavs((s) => ({ ...s, [b.slug]: !s[b.slug] }))} />
+              <ShowBoatCard key={b.slug} b={b} />
             ))}
           </div>
 
@@ -177,7 +176,7 @@ export default function Inventory() {
   );
 }
 
-function ShowBoatCard({ b, fav, onFav }: { b: ShowBoat; fav: boolean; onFav: () => void }) {
+function ShowBoatCard({ b }: { b: ShowBoat }) {
   const href = `/boats/${b.slug}`;
   const title = boatTitle(b);
   const dealerLine = b.dealers.map((d) => d.name).join(" · ");
@@ -233,7 +232,6 @@ function ShowBoatCard({ b, fav, onFav }: { b: ShowBoat; fav: boolean; onFav: () 
         ) : b.priority === 1 ? (
           <span style={{ position: "absolute", top: 9, left: 9, fontFamily: FONT, fontWeight: 700, fontSize: 10, letterSpacing: ".08em", textTransform: "uppercase", background: "rgba(20,46,81,.92)", color: "#fff", padding: "5px 9px", borderRadius: 6, pointerEvents: "none", zIndex: 2 }}>Dealer Feature</span>
         ) : null}
-        <button onClick={onFav} aria-label="Save" style={{ position: "absolute", top: 7, right: 7, width: 30, height: 30, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.92)", color: fav ? "#d33" : "#4c6270", cursor: "pointer", fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3 }}>{fav ? "♥" : "♡"}</button>
       </div>
       <div style={{ padding: "14px 15px 16px", display: "flex", flexDirection: "column", gap: 7, flex: 1 }}>
         <div>
