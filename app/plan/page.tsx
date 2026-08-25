@@ -58,11 +58,11 @@ export default function PlanYourVisit() {
       icon: <svg {...ICON_PROPS}><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M8 3v4M16 3v4M3 10h18" /></svg>,
     },
     {
-      title: "Directions & Parking",
-      body: "Find the show at Farley State Marina, get directions and parking information.",
-      cta: "Get Directions",
-      action: { kind: "link", href: DIRECTIONS_URL, external: true },
-      icon: <svg {...ICON_PROPS}><path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10Z" /><circle cx="12" cy="11" r="2.3" /></svg>,
+      title: "Stay & Play",
+      body: "Where to stay and more to do in Atlantic City.",
+      cta: "View Details",
+      action: { kind: "link", href: "#explore-ac" },
+      icon: <svg {...ICON_PROPS}><path d="M3 20V9l9-5 9 5v11" /><path d="M9 20v-6h6v6" /></svg>,
     },
     {
       title: "Food & Drinks",
@@ -72,11 +72,11 @@ export default function PlanYourVisit() {
       icon: <svg {...ICON_PROPS}><path d="M7 3v8M5 3v4a2 2 0 0 0 4 0V3M7 11v10M17 3c-1.7 0-3 2-3 5v3h3M17 3v18M17 11v10" transform="translate(1 0) scale(.92)" /></svg>,
     },
     {
-      title: "Stay & Play",
-      body: "Where to stay and more to do in Atlantic City.",
-      cta: "View Details",
-      action: { kind: "link", href: "#explore-ac" },
-      icon: <svg {...ICON_PROPS}><path d="M3 20V9l9-5 9 5v11" /><path d="M9 20v-6h6v6" /></svg>,
+      title: "Directions & Parking",
+      body: "Find the show at Farley State Marina, get directions and parking information.",
+      cta: "Get Directions",
+      action: { kind: "link", href: DIRECTIONS_URL, external: true },
+      icon: <svg {...ICON_PROPS}><path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10Z" /><circle cx="12" cy="11" r="2.3" /></svg>,
     },
   ];
 

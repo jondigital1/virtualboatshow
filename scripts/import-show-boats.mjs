@@ -350,6 +350,9 @@ async function enrich(boat) {
   boat.blurb = blurb;
   boat.lengthFt = lengthFt;
 
+  // Cache-busting: new harvests continue numbering after the old set so
+  // replaced galleries get URLs no browser or CDN has ever cached.
+  const prevMax = existing.reduce((m, f) => Math.max(m, Number(f.match(/-(\d+)\.\w+$/)?.[1]) || 0), 0);
   const written = [];
   for (const p of photos) {
     if (written.length >= MAX_PHOTOS) break;
@@ -362,7 +365,7 @@ async function enrich(boat) {
       const meta = await img.metadata();
       if (!meta.width || meta.width < 500 || (meta.height ?? 0) < 300) continue;
       const out = await img.resize({ width: 1280, withoutEnlargement: true }).jpeg({ quality: 80, mozjpeg: true }).toBuffer();
-      const name = `${boat.slug}-${written.length + 1}.jpg`;
+      const name = `${boat.slug}-${prevMax + written.length + 1}.jpg`;
       writeFileSync(join(PHOTO_DIR, name), out);
       written.push(name);
     } catch {
