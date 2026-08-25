@@ -162,6 +162,47 @@ export default function PlanYourVisit() {
         </div>
       </section>
 
+      {/* EXPLORE ATLANTIC CITY: partner pages open in the on-site modal */}
+      <section id="explore-ac" style={{ scrollMarginTop: 82, background: "#fff", padding: "clamp(48px,6vw,80px) clamp(18px,4vw,44px)" }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
+          <Eyebrow>Beyond the docks</Eyebrow>
+          <h2 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(26px,3.6vw,42px)", lineHeight: 1.06, letterSpacing: "-.01em", margin: "14px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
+            Explore <span style={{ color: "var(--gold)" }}>Atlantic City</span>
+          </h2>
+          <span className="gold-rule" style={{ margin: "18px 0 0" }} />
+          <p style={{ fontSize: "clamp(15px,1.2vw,17px)", lineHeight: 1.6, color: "rgba(20,46,81,.75)", margin: "16px 0 30px", maxWidth: "60ch" }}>
+            The show is four days, and the city around it doesn&rsquo;t slow down. Browse what Atlantic City has going on without ever leaving this site.
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,270px),1fr))", gap: 16 }}>
+            {[
+              { t: "Hotels & Stays", d: "Rooms go fast on show weekend. Browse hotels with the show dates already plugged in.", u: "https://visitatlanticcity.bookdirect.net/#/lodgings/ctab/540?checkin=20260910&checkout=20260913", icon: "M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6M3 18h18M3 18v2m18-2v2M7 10V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3" },
+              { t: "Beaches & Boardwalk", d: "The famous boardwalk and wide, clean beaches start a few minutes from the marina.", u: "https://www.visitatlanticcity.com/things-to-do/beaches-boardwalk/", icon: "M2 20c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M2 15c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M12 3v5M9 5.5 12 3l3 2.5" },
+              { t: "Shopping", d: "Boutiques, brand-name outlets, and tax-free clothing. Some of the best shopping on the coast.", u: "https://www.visitatlanticcity.com/things-to-do/shopping/", icon: "M6 8h12l1.2 12H4.8L6 8Zm3 0V6a3 3 0 0 1 6 0v2" },
+              { t: "Casinos", d: "Nine casinos in town, one of them right at the show. Try your luck when the docks close.", u: "https://www.visitatlanticcity.com/things-to-do/casinos/", icon: "M5 4h14v16H5zM9 8h.01M15 8h.01M12 12h.01M9 16h.01M15 16h.01" },
+              { t: "Nightlife & Entertainment", d: "Live music, comedy, and late nights, from Boardwalk Hall to the beach bars.", u: "https://www.visitatlanticcity.com/things-to-do/nightlife/", icon: "M9 18V6l10-2v12M9 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm10-2a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" },
+              { t: "All Things to Do", d: "The aquarium, golf, family attractions, and everything else worth a detour.", u: "https://www.visitatlanticcity.com/things-to-do/", icon: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm3.5 5.5-2 5-5 2 2-5 5-2Z" },
+            ].map((c) => (
+              <button
+                key={c.t}
+                onClick={() => openTickets(c.u, c.t)}
+                className="card-lift-sm"
+                style={{ background: "#fff", border: "1px solid rgba(20,46,81,.12)", borderRadius: 16, padding: "22px 20px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 10, textAlign: "left", cursor: "pointer", fontFamily: "inherit" }}
+              >
+                <span aria-hidden style={{ width: 44, height: 44, borderRadius: "50%", background: "var(--navy)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d={c.icon} /></svg>
+                </span>
+                <span style={{ fontFamily: FONT, fontWeight: 800, fontSize: 16.5, color: "var(--navy)" }}>{c.t}</span>
+                <span style={{ fontFamily: FONT, fontSize: 13.5, lineHeight: 1.5, color: "#5a6c78" }}>{c.d}</span>
+                <span style={{ fontFamily: FONT, fontWeight: 700, fontSize: 11.5, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--linkblue)", marginTop: "auto" }}>Take a look <span aria-hidden>→</span></span>
+              </button>
+            ))}
+          </div>
+          <p style={{ fontFamily: FONT, fontSize: 12.5, color: "#8595a0", margin: "16px 0 0" }}>
+            Listings and booking are provided by Visit Atlantic City and open right here in a viewer.
+          </p>
+        </div>
+      </section>
+
       {/* MAKE IT A WEEKEND */}
       <section id="weekend" style={{ scrollMarginTop: 82, position: "relative", overflow: "hidden" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
