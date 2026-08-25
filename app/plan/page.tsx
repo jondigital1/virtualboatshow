@@ -7,7 +7,6 @@ import { useIframeModal } from "@/components/IframeModal";
 const FONT = "var(--font-poppins), sans-serif";
 
 const DIRECTIONS_URL = "https://www.google.com/maps/search/?api=1&query=Farley+State+Marina%2C+Atlantic+City%2C+NJ";
-const SHOW_SITE = "https://acinwaterboatshow.com";
 
 type InfoCard = {
   title: string;
@@ -27,16 +26,19 @@ function Circle({ children }: { children: React.ReactNode }) {
   );
 }
 
-function DineCard({ img, name, tag, phone, place }: { img: string; name: string; tag: string; phone: string; place: string }) {
+function DineCard({ img, name, tag, phone, place, group }: { img: string; name: string; tag: string; phone: string; place: string; group: string }) {
   return (
-    <div className="card-lift-sm" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 14, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={img} alt={name} loading="lazy" style={{ width: "100%", aspectRatio: "2/1", objectFit: "cover", display: "block" }} />
-      <div style={{ padding: "16px 16px 18px", display: "flex", flexDirection: "column", gap: 6 }}>
-        <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 16.5, color: "var(--navy)" }}>{name}</div>
+    <div className="card-lift-sm" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 14, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
+      <div style={{ position: "relative" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={img} alt={name} loading="lazy" style={{ width: "100%", aspectRatio: "2/1", objectFit: "cover", display: "block" }} />
+        <span style={{ position: "absolute", top: 9, left: 9, fontFamily: FONT, fontWeight: 700, fontSize: 10, letterSpacing: ".08em", textTransform: "uppercase", background: "rgba(255,255,255,.94)", color: "var(--navy)", padding: "5px 10px", borderRadius: 999 }}>{group}</span>
+      </div>
+      <div style={{ padding: "15px 16px 16px", display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
+        <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 16, color: "var(--navy)", lineHeight: 1.2 }}>{name}</div>
         <div style={{ fontSize: 13.5, lineHeight: 1.5, color: "rgba(20,46,81,.7)" }}>{tag}</div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 3, marginTop: 6, fontSize: 13, color: "rgba(20,46,81,.65)" }}>
-          <span>📍 {place}</span>
+        <div style={{ fontSize: 12.5, color: "rgba(20,46,81,.55)" }}>{place}</div>
+        <div style={{ marginTop: "auto", paddingTop: 8 }}>
           <PhonePill phone={phone} />
         </div>
       </div>
@@ -73,13 +75,13 @@ export default function PlanYourVisit() {
       title: "Stay & Play",
       body: "Where to stay and more to do in Atlantic City.",
       cta: "View Details",
-      action: { kind: "link", href: "#weekend" },
+      action: { kind: "link", href: "#explore-ac" },
       icon: <svg {...ICON_PROPS}><path d="M3 20V9l9-5 9 5v11" /><path d="M9 20v-6h6v6" /></svg>,
     },
   ];
 
   const cardAction = (c: InfoCard) => {
-    const style: React.CSSProperties = { display: "inline-flex", alignItems: "center", gap: 7, color: "var(--linkblue)", fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".07em", textTransform: "uppercase", background: "none", border: "none", cursor: "pointer", padding: 0 };
+    const style: React.CSSProperties = { display: "inline-flex", alignItems: "center", gap: 7, color: "var(--gold)", fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".07em", textTransform: "uppercase", background: "none", border: "none", cursor: "pointer", padding: 0 };
     if (c.action.kind === "tickets") {
       return <button onClick={() => openTickets()} style={style}>{c.cta} <span aria-hidden>→</span></button>;
     }
@@ -111,21 +113,26 @@ export default function PlanYourVisit() {
               Everything you need to plan your Atlantic City In-Water Boat Show experience, from show hours and parking to waterfront dining and where to stay.
             </p>
           </div>
-          <div style={{ minWidth: 0 }}>
+          <div style={{ minWidth: 0, position: "relative", borderRadius: 6, overflow: "hidden" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/show/golden-nugget.jpg" alt="Golden Nugget Atlantic City and Farley State Marina" style={{ display: "block", width: "100%", height: "auto", borderRadius: 4 }} />
+            <img src="/show/golden-nugget.jpg" alt="Golden Nugget Atlantic City and Farley State Marina" style={{ display: "block", width: "100%", height: "auto" }} />
+            <svg aria-hidden viewBox="0 0 1600 120" preserveAspectRatio="none" style={{ position: "absolute", left: 0, right: 0, bottom: -1, width: "100%", height: "clamp(30px,5vw,52px)", display: "block" }}>
+              <path d="M0,78 C300,18 620,118 900,70 C1180,26 1420,88 1600,52 L1600,120 L0,120 Z" fill="#75BAE4" opacity="0.9" />
+              <path d="M0,96 C320,44 640,132 940,88 C1220,50 1440,104 1600,74 L1600,120 L0,120 Z" fill="#FDB717" />
+              <path d="M0,112 C340,76 700,138 1020,104 C1280,80 1470,116 1600,98 L1600,120 L0,120 Z" fill="#fff" />
+            </svg>
           </div>
         </div>
       </section>
 
-      {/* INFO CARDS */}
-      <section style={{ background: "var(--bluetint)", padding: "clamp(36px,4.5vw,60px) clamp(18px,5vw,56px)" }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,240px),1fr))", gap: 18 }}>
+      {/* UTILITY STRIP: one connected navy bar, not four floating cards */}
+      <section style={{ background: "#fff", padding: "0 clamp(18px,5vw,56px) clamp(44px,5.5vw,72px)" }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto", background: "rgba(255,255,255,.14)", borderRadius: 18, overflow: "hidden", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,250px),1fr))", gap: 1, boxShadow: "0 26px 56px -30px rgba(20,46,81,.55)" }}>
           {cards.map((c) => (
-            <div key={c.title} className="card-lift-sm" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, padding: "26px 24px", display: "flex", flexDirection: "column", gap: 13, alignItems: "flex-start" }}>
-              <Circle>{c.icon}</Circle>
-              <h3 style={{ fontFamily: FONT, fontWeight: 800, fontSize: 17.5, letterSpacing: ".01em", margin: 0, color: "var(--navy)", textTransform: "uppercase" }}>{c.title}</h3>
-              <p style={{ fontSize: 14.5, lineHeight: 1.55, color: "rgba(20,46,81,.7)", margin: 0, flex: 1 }}>{c.body}</p>
+            <div key={c.title} style={{ background: "var(--navy)", padding: "clamp(22px,2.4vw,30px) clamp(20px,2.2vw,28px)", display: "flex", flexDirection: "column", gap: 10, alignItems: "flex-start" }}>
+              <span aria-hidden style={{ color: "var(--gold)" }}>{c.icon}</span>
+              <h3 style={{ fontFamily: FONT, fontWeight: 800, fontSize: 15.5, letterSpacing: ".04em", margin: 0, color: "#fff", textTransform: "uppercase" }}>{c.title}</h3>
+              <p style={{ fontSize: 13.5, lineHeight: 1.55, color: "rgba(255,255,255,.72)", margin: 0, flex: 1 }}>{c.body}</p>
               {cardAction(c)}
             </div>
           ))}
@@ -133,31 +140,20 @@ export default function PlanYourVisit() {
       </section>
 
       {/* FOOD & DRINKS */}
-      <section id="dining" style={{ scrollMarginTop: 82, background: "#fff", padding: "clamp(48px,6vw,84px) clamp(18px,5vw,56px)" }}>
+      <section id="dining" style={{ scrollMarginTop: 82, background: "var(--bluetint)", padding: "clamp(48px,6vw,84px) clamp(18px,5vw,56px)" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <h2 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(24px,3.2vw,38px)", letterSpacing: "-.01em", margin: 0, color: "var(--navy)", textTransform: "uppercase" }}>Food &amp; Drinks</h2>
+          <Eyebrow>Eat and Drink Well</Eyebrow>
+          <h2 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(24px,3.2vw,38px)", letterSpacing: "-.01em", margin: "14px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>Food &amp; Drinks</h2>
           <span className="gold-rule" style={{ margin: "16px 0 0" }} />
           <p style={{ fontSize: "clamp(15px,1.15vw,17px)", lineHeight: 1.6, color: "rgba(20,46,81,.75)", margin: "16px 0 0", maxWidth: "64ch" }}>
             From casual bites at the show to world-class dining at the Golden Nugget, there&rsquo;s something for every taste.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,300px),1fr))", gap: "clamp(24px,3vw,40px)", marginTop: 34 }}>
-            <div>
-              <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 16, letterSpacing: ".03em", color: "var(--navy)", textTransform: "uppercase" }}>At the Show</div>
-              <p style={{ fontSize: 14, color: "rgba(20,46,81,.65)", margin: "6px 0 16px" }}>Grab a bite, enjoy a drink and take in the waterfront views.</p>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,210px),1fr))", gap: 16 }}>
-                <DineCard img="/show/dine-deck.jpg" name="The Deck" tag="Waterfront dining, drinks and light bites." place="Show Waterfront" phone="(609) 441-2000" />
-                <DineCard img="/show/dine-live.jpg" name="Live Entertainment" tag="Live music and entertainment throughout the show." place="Show Waterfront" phone="(609) 441-2000" />
-              </div>
-            </div>
-            <div>
-              <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 16, letterSpacing: ".03em", color: "var(--navy)", textTransform: "uppercase" }}>Nearby Dining</div>
-              <p style={{ fontSize: 14, color: "rgba(20,46,81,.65)", margin: "6px 0 16px" }}>World-class restaurants at the Golden Nugget and beyond.</p>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,210px),1fr))", gap: 16 }}>
-                <DineCard img="/show/dine-vic.jpg" name="Vic & Anthony's Steakhouse" tag="Classic steakhouse with waterfront views." place="Golden Nugget" phone="(609) 441-8355" />
-                <DineCard img="/show/dine-chart.jpg" name="Chart House" tag="Seafood with a perfect view." place="Golden Nugget" phone="(609) 340-5030" />
-              </div>
-            </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,240px),1fr))", gap: 16, marginTop: 30 }}>
+            <DineCard img="/show/dine-deck.jpg" name="The Deck" tag="Waterfront dining, drinks and light bites." place="Show Waterfront" phone="(609) 441-2000" group="At the Show" />
+            <DineCard img="/show/dine-live.jpg" name="Live Entertainment" tag="Live music and entertainment throughout the show." place="Show Waterfront" phone="(609) 441-2000" group="At the Show" />
+            <DineCard img="/show/dine-vic.jpg" name="Vic & Anthony's Steakhouse" tag="Classic steakhouse with waterfront views." place="Golden Nugget" phone="(609) 441-8355" group="Nearby Dining" />
+            <DineCard img="/show/dine-chart.jpg" name="Chart House" tag="Seafood with a perfect view." place="Golden Nugget" phone="(609) 340-5030" group="Nearby Dining" />
           </div>
         </div>
       </section>
@@ -173,62 +169,34 @@ export default function PlanYourVisit() {
           <p style={{ fontSize: "clamp(15px,1.2vw,17px)", lineHeight: 1.6, color: "rgba(20,46,81,.75)", margin: "16px 0 30px", maxWidth: "60ch" }}>
             The show is four days, and the city around it doesn&rsquo;t slow down. Browse what Atlantic City has going on without ever leaving this site.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,270px),1fr))", gap: 16 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,300px),1fr))", gap: 18 }}>
             {[
-              { t: "Hotels & Stays", d: "Rooms go fast on show weekend. Browse hotels with the show dates already plugged in.", u: "https://visitatlanticcity.bookdirect.net/#/lodgings/ctab/540?checkin=20260910&checkout=20260913", icon: "M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6M3 18h18M3 18v2m18-2v2M7 10V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3" },
-              { t: "Beaches & Boardwalk", d: "The famous boardwalk and wide, clean beaches start a few minutes from the marina.", u: "https://www.visitatlanticcity.com/things-to-do/beaches-boardwalk/", icon: "M2 20c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M2 15c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M12 3v5M9 5.5 12 3l3 2.5" },
-              { t: "Shopping", d: "Boutiques, brand-name outlets, and tax-free clothing. Some of the best shopping on the coast.", u: "https://www.visitatlanticcity.com/things-to-do/shopping/", icon: "M6 8h12l1.2 12H4.8L6 8Zm3 0V6a3 3 0 0 1 6 0v2" },
-              { t: "Casinos", d: "Nine casinos in town, one of them right at the show. Try your luck when the docks close.", u: "https://www.visitatlanticcity.com/things-to-do/casinos/", icon: "M5 4h14v16H5zM9 8h.01M15 8h.01M12 12h.01M9 16h.01M15 16h.01" },
-              { t: "Nightlife & Entertainment", d: "Live music, comedy, and late nights, from Boardwalk Hall to the beach bars.", u: "https://www.visitatlanticcity.com/things-to-do/nightlife/", icon: "M9 18V6l10-2v12M9 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm10-2a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" },
-              { t: "All Things to Do", d: "The aquarium, golf, family attractions, and everything else worth a detour.", u: "https://www.visitatlanticcity.com/things-to-do/", icon: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm3.5 5.5-2 5-5 2 2-5 5-2Z" },
+              { t: "Hotels & Stays", d: "Rooms go fast on show weekend. Browse hotels with the show dates already plugged in.", u: "https://visitatlanticcity.bookdirect.net/#/lodgings/ctab/540?checkin=20260910&checkout=20260913", img: "/show/tile-hotels.jpg" },
+              { t: "Beaches & Boardwalk", d: "The famous boardwalk and wide, clean beaches start a few minutes from the marina.", u: "https://www.visitatlanticcity.com/things-to-do/beaches-boardwalk/", img: "/show/tile-beaches.jpg" },
+              { t: "Shopping", d: "Boutiques, brand-name outlets, and tax-free clothing. Some of the best shopping on the coast.", u: "https://www.visitatlanticcity.com/things-to-do/shopping/", img: "/show/tile-shopping.jpg" },
+              { t: "Casinos", d: "Nine casinos in town, one of them right at the show. Try your luck when the docks close.", u: "https://www.visitatlanticcity.com/things-to-do/casinos/", img: "/show/tile-casinos.jpg" },
+              { t: "Nightlife & Entertainment", d: "Live music, comedy, and late nights, from Boardwalk Hall to the beach bars.", u: "https://www.visitatlanticcity.com/things-to-do/nightlife/", img: "/show/tile-nightlife.jpg" },
+              { t: "All Things to Do", d: "The aquarium, golf, family attractions, and everything else worth a detour.", u: "https://www.visitatlanticcity.com/things-to-do/", img: "/show/tile-things.jpg" },
             ].map((c) => (
               <button
                 key={c.t}
                 onClick={() => openTickets(c.u, c.t)}
-                className="card-lift-sm"
-                style={{ background: "#fff", border: "1px solid rgba(20,46,81,.12)", borderRadius: 16, padding: "22px 20px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 10, textAlign: "left", cursor: "pointer", fontFamily: "inherit" }}
+                className="card-lift"
+                style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", padding: 0, display: "flex", flexDirection: "column", alignItems: "stretch", textAlign: "left", cursor: "pointer", fontFamily: "inherit" }}
               >
-                <span aria-hidden style={{ width: 44, height: 44, borderRadius: "50%", background: "var(--navy)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d={c.icon} /></svg>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={c.img} alt="" loading="lazy" style={{ width: "100%", aspectRatio: "16/9", objectFit: "cover", display: "block" }} />
+                <span style={{ display: "flex", flexDirection: "column", gap: 8, padding: "16px 18px 18px", flex: 1 }}>
+                  <span style={{ fontFamily: FONT, fontWeight: 800, fontSize: 17, color: "var(--navy)" }}>{c.t}</span>
+                  <span style={{ fontFamily: FONT, fontSize: 13.5, lineHeight: 1.55, color: "#5a6c78" }}>{c.d}</span>
+                  <span style={{ fontFamily: FONT, fontWeight: 700, fontSize: 11.5, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--linkblue)", marginTop: "auto", paddingTop: 6 }}>Take a look <span aria-hidden>→</span></span>
                 </span>
-                <span style={{ fontFamily: FONT, fontWeight: 800, fontSize: 16.5, color: "var(--navy)" }}>{c.t}</span>
-                <span style={{ fontFamily: FONT, fontSize: 13.5, lineHeight: 1.5, color: "#5a6c78" }}>{c.d}</span>
-                <span style={{ fontFamily: FONT, fontWeight: 700, fontSize: 11.5, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--linkblue)", marginTop: "auto" }}>Take a look <span aria-hidden>→</span></span>
               </button>
             ))}
           </div>
           <p style={{ fontFamily: FONT, fontSize: 12.5, color: "#8595a0", margin: "16px 0 0" }}>
             Listings and booking are provided by Visit Atlantic City and open right here in a viewer.
           </p>
-        </div>
-      </section>
-
-      {/* MAKE IT A WEEKEND */}
-      <section id="weekend" style={{ scrollMarginTop: 82, position: "relative", overflow: "hidden" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/show/ac-boardwalk.jpg" alt="" aria-hidden style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(244,247,249,.96) 0%, rgba(244,247,249,.82) 34%, rgba(244,247,249,0) 62%)" }} />
-        <div style={{ position: "relative", maxWidth: 1240, margin: "0 auto", padding: "clamp(56px,7vw,96px) clamp(18px,5vw,56px)" }}>
-          <div style={{ maxWidth: 460 }}>
-            <h2 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(28px,3.6vw,44px)", letterSpacing: "-.01em", margin: 0, color: "var(--navy)" }}>Make It a Weekend</h2>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "12px 0 0" }}>
-              <span aria-hidden style={{ height: 2, width: 34, background: "var(--navy)", opacity: 0.4 }} />
-              <span style={{ fontFamily: FONT, fontWeight: 700, fontSize: 13.5, letterSpacing: ".14em", color: "var(--linkblue)", textTransform: "uppercase", whiteSpace: "nowrap" }}>Atlantic City Awaits</span>
-              <span aria-hidden style={{ height: 2, width: 34, background: "var(--navy)", opacity: 0.4 }} />
-            </div>
-            <p style={{ fontSize: 15.5, lineHeight: 1.65, color: "rgba(20,46,81,.85)", margin: "16px 0 0" }}>
-              Stay, dine and play in Atlantic City. Find the best hotel deals and explore top attractions just minutes from the marina.
-            </p>
-            <a
-              href={SHOW_SITE}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="h-brighten"
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 24, background: "var(--navy)", color: "#fff", fontWeight: 700, fontSize: 12.5, letterSpacing: ".07em", textTransform: "uppercase", padding: "14px 24px", borderRadius: 8 }}
-            >
-              Explore Stay &amp; Play <span aria-hidden>→</span>
-            </a>
-          </div>
         </div>
       </section>
 
