@@ -77,8 +77,8 @@ export default function Home() {
           <div style={{ minWidth: 0, position: "relative", borderRadius: 6, overflow: "hidden" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/show/hero-show.jpg"
-              alt="A Beneteau Antares 9 on the water in front of the Golden Nugget at the Atlantic City In-Water Boat Show"
+              src="/show/hero-marina-aerial.jpg"
+              alt="Aerial view of hundreds of boats filling Farley State Marina beside the Golden Nugget in Atlantic City"
               style={{ display: "block", width: "100%", height: "auto" }}
             />
             {/* brand wave accent along the waterline, echoing the logo */}
@@ -113,7 +113,7 @@ export default function Home() {
                   </div>
                 </div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/show/explore-boats.jpg" alt="Aerial view of boats filling Farley State Marina" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/show/explore-boats-show.jpg" alt="A Beneteau Antares 9 on display in front of the Golden Nugget at the show" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               {thumbs.length > 0 && (
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8, padding: "16px", margin: "auto 0" }}>
