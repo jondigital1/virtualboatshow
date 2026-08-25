@@ -1,44 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { AdSlot } from "@/components/VesselCard";
+import { BlurredPrice } from "@/components/BlurredPrice";
 import { DISPLAY, MONO, fmt, Eyebrow } from "@/components/ui";
-
-type V = { id: string; year: number; make: string; model: string; klass: string; len: number; lenLabel: string; condition: string; hours: number; dock: string; dealer: string; msrp: number; price: number; photos: number };
-
-/** Demo: this boat stays pinned first on the SRP regardless of sort. */
-const FEATURED_ID = "nor-tech-390";
-
-const VESSELS: V[] = [
-  { id: "nor-tech-390", year: 2026, make: "Nor-Tech", model: "390 Sport", klass: "Center Console", len: 39, lenLabel: "39' 0\"", condition: "New", hours: 0, dock: "F Dock", dealer: "South Jersey Yacht Sales", msrp: 1395000, price: 1312000, photos: 81 },
-  { id: "gw336", year: 2024, make: "Grady-White", model: "Canyon 336", klass: "Center Console", len: 33.5, lenLabel: "33' 6\"", condition: "New", hours: 0, dock: "F Dock", dealer: "Comstock Yacht Sales", msrp: 725000, price: 679900, photos: 24 },
-  { id: "bw250", year: 2023, make: "Boston Whaler", model: "250 Outrage", klass: "Center Console", len: 25, lenLabel: "25' 0\"", condition: "Used", hours: 46, dock: "E Dock", dealer: "Coastal Boat Sales", msrp: 289000, price: 264500, photos: 31 },
-  { id: "sr260", year: 2024, make: "Sea Ray", model: "SLX 260", klass: "Bowrider", len: 26, lenLabel: "26' 0\"", condition: "New", hours: 0, dock: "C Dock", dealer: "Clarks Landing Yacht Sales", msrp: 214900, price: 199900, photos: 18 },
-  { id: "rb242", year: 2022, make: "Robalo", model: "R242 Explorer", klass: "Dual Console", len: 24.2, lenLabel: "24' 2\"", condition: "Used", hours: 120, dock: "Off-site", dealer: "Comstock Yacht Sales", msrp: 129500, price: 118900, photos: 22 },
-  { id: "cb320", year: 2024, make: "Cobia", model: "320 CC", klass: "Center Console", len: 32, lenLabel: "32' 0\"", condition: "New", hours: 0, dock: "F Dock", dealer: "South Jersey Yacht Sales", msrp: 489000, price: 452000, photos: 27 },
-  { id: "rg28", year: 2023, make: "Regulator", model: "28", klass: "Center Console", len: 28, lenLabel: "28' 0\"", condition: "Used", hours: 88, dock: "E Dock", dealer: "Coastal Boat Sales", msrp: 415000, price: 389500, photos: 19 },
-  { id: "pu266", year: 2024, make: "Pursuit", model: "DC 266", klass: "Dual Console", len: 26.5, lenLabel: "26' 6\"", condition: "New", hours: 0, dock: "D Dock", dealer: "Clarks Landing Yacht Sales", msrp: 289900, price: 271000, photos: 20 },
-  { id: "ch287", year: 2024, make: "Chaparral", model: "287 SSX", klass: "Bowrider", len: 28, lenLabel: "28' 0\"", condition: "New", hours: 0, dock: "C Dock", dealer: "Clarks Landing Yacht Sales", msrp: 234900, price: 219900, photos: 16 },
-  { id: "sc355", year: 2024, make: "Scout", model: "355 LXF", klass: "Center Console", len: 35.5, lenLabel: "35' 6\"", condition: "New", hours: 0, dock: "F Dock", dealer: "South Jersey Yacht Sales", msrp: 895000, price: 839000, photos: 33 },
-  { id: "ev253", year: 2021, make: "Everglades", model: "253 CC", klass: "Center Console", len: 25, lenLabel: "25' 0\"", condition: "Used", hours: 210, dock: "Off-site", dealer: "Coastal Boat Sales", msrp: 175000, price: 162500, photos: 21 },
-  { id: "by21", year: 2024, make: "Bayliner", model: "VR5 Bowrider", klass: "Bowrider", len: 21, lenLabel: "21' 4\"", condition: "New", hours: 0, dock: "B Dock", dealer: "Clarks Landing Yacht Sales", msrp: 62900, price: 57900, photos: 12 },
-  { id: "pu378", year: 2024, make: "Pursuit", model: "S 378", klass: "Sport Fish", len: 37.8, lenLabel: "37' 8\"", condition: "New", hours: 0, dock: "F Dock", dealer: "South Jersey Yacht Sales", msrp: 1150000, price: 1079000, photos: 29 },
-  { id: "ya275", year: 2024, make: "Yamaha", model: "275 SD", klass: "Bowrider", len: 27.5, lenLabel: "27' 6\"", condition: "New", hours: 0, dock: "D Dock", dealer: "Clarks Landing Yacht Sales", msrp: 189000, price: 177900, photos: 15 },
-  { id: "sr320", year: 2024, make: "Sea Ray", model: "Sundancer 320", klass: "Cruiser", len: 32, lenLabel: "32' 0\"", condition: "New", hours: 0, dock: "C Dock", dealer: "Clarks Landing Yacht Sales", msrp: 469000, price: 439000, photos: 26 },
-  { id: "gw236", year: 2023, make: "Grady-White", model: "Fisherman 236", klass: "Center Console", len: 23.6, lenLabel: "23' 6\"", condition: "Used", hours: 65, dock: "E Dock", dealer: "Coastal Boat Sales", msrp: 189000, price: 174900, photos: 23 },
-  { id: "bw280", year: 2024, make: "Boston Whaler", model: "280 Outrage", klass: "Center Console", len: 28, lenLabel: "28' 0\"", condition: "New", hours: 0, dock: "F Dock", dealer: "Comstock Yacht Sales", msrp: 465000, price: 432000, photos: 28 },
-  { id: "rb230", year: 2024, make: "Robalo", model: "R230", klass: "Center Console", len: 23, lenLabel: "23' 0\"", condition: "New", hours: 0, dock: "D Dock", dealer: "Comstock Yacht Sales", msrp: 119900, price: 111900, photos: 14 },
-  { id: "ch23", year: 2024, make: "Chaparral", model: "23 Surf", klass: "Bowrider", len: 23, lenLabel: "23' 0\"", condition: "New", hours: 0, dock: "C Dock", dealer: "Clarks Landing Yacht Sales", msrp: 149900, price: 139900, photos: 13 },
-  { id: "rg34", year: 2024, make: "Regulator", model: "34", klass: "Center Console", len: 34, lenLabel: "34' 0\"", condition: "New", hours: 0, dock: "F Dock", dealer: "Coastal Boat Sales", msrp: 795000, price: 742000, photos: 30 },
-  { id: "pu355", year: 2024, make: "Pursuit", model: "OS 355", klass: "Sport Fish", len: 35.5, lenLabel: "35' 6\"", condition: "New", hours: 0, dock: "F Dock", dealer: "South Jersey Yacht Sales", msrp: 985000, price: 929000, photos: 31 },
-  { id: "cb262", year: 2023, make: "Cobia", model: "262 CC", klass: "Center Console", len: 26, lenLabel: "26' 0\"", condition: "Used", hours: 40, dock: "E Dock", dealer: "Coastal Boat Sales", msrp: 219000, price: 203500, photos: 20 },
-  { id: "sc235", year: 2024, make: "Scout", model: "235 Dorado", klass: "Dual Console", len: 23.5, lenLabel: "23' 6\"", condition: "New", hours: 0, dock: "D Dock", dealer: "South Jersey Yacht Sales", msrp: 169000, price: 158000, photos: 17 },
-  { id: "ev340", year: 2024, make: "Everglades", model: "340 CC", klass: "Center Console", len: 34, lenLabel: "34' 0\"", condition: "New", hours: 0, dock: "F Dock", dealer: "Coastal Boat Sales", msrp: 725000, price: 679000, photos: 27 },
-  { id: "by205", year: 2024, make: "Bayliner", model: "DX2050", klass: "Bowrider", len: 20.5, lenLabel: "20' 6\"", condition: "New", hours: 0, dock: "B Dock", dealer: "Clarks Landing Yacht Sales", msrp: 69900, price: 64900, photos: 11 },
-  { id: "sr400", year: 2024, make: "Sea Ray", model: "SLX 400", klass: "Cruiser", len: 40, lenLabel: "40' 0\"", condition: "New", hours: 0, dock: "C Dock", dealer: "Clarks Landing Yacht Sales", msrp: 1295000, price: 1219000, photos: 34 },
-];
+import { fetchListings, toV, type V } from "@/lib/buoy";
 
 const BGS = [
   "repeating-linear-gradient(135deg,#ccd8dc 0 14px,#c3d0d5 14px 28px)",
@@ -52,7 +20,7 @@ const FAQ_DATA: [string, string][] = [
   ["Can I take the boat out before I buy?", "Nothing replaces time on the water. Book a dockside walkthrough through the show and the dealer will arrange a sea trial where available, so you can feel how she handles and runs before you commit to anything."],
   ["What does a boat really cost to own beyond the sticker?", "Plan for insurance, storage or a slip, fuel, winterizing, registration, and routine maintenance. A good rule of thumb is roughly 10% of the purchase price each year. Ask each dealer to break the numbers down for your specific boat at your appointment."],
   ["How does boat financing work, and should I get pre-qualified?", "Marine loans commonly run 10 to 20 years with 10-20% down. Getting pre-qualified before the show tells you your true budget and speeds the whole deal up. Several lenders exhibit on-site, and an estimated monthly payment appears on every listing."],
-  ["Is the “Boat Show Price” really a better deal?", "Show pricing is negotiated for the event and is typically the most aggressive of the year. Because every presenting dealer is competing in one marketplace, you can see who’s sharpest without driving lot to lot. Unlock pricing with your show ticket to compare."],
+  ["Is the “Boat Show Price” really a better deal?", "Show pricing is negotiated for the event and is typically the most aggressive of the year. Because every presenting dealer is competing in one marketplace, you can see who’s sharpest without driving lot to lot."],
   ["Can I trade in or sell my current boat?", "Absolutely, and you don’t have to buy one to sell one. Value your boat online, let the dealers compete for it, then bring the best offer to your appointment and roll it straight into your next vessel."],
   ["What’s included: trailer, electronics, warranty?", "It varies boat to boat, so confirm what’s on the sticker: trailer, electronics package, and any remaining factory or extended warranty. Each listing notes the highlights, and your walkthrough is the moment to get every inclusion in writing."],
 ];
@@ -61,6 +29,7 @@ const chipStyle = (active: boolean): React.CSSProperties => ({ fontFamily: MONO,
 const railHead: React.CSSProperties = { fontFamily: MONO, fontSize: 10.5, letterSpacing: ".12em", color: "#8595a0", textTransform: "uppercase" };
 
 export default function Inventory() {
+  const [vessels, setVessels] = useState<V[] | null>(null);
   const [q, setQ] = useState("");
   const [condition, setCondition] = useState("all");
   const [price, setPrice] = useState("all");
@@ -74,13 +43,24 @@ export default function Inventory() {
   const [faqOpen, setFaqOpen] = useState(0);
   const sentinel = useRef<HTMLDivElement | null>(null);
 
+  const loading = vessels === null;
+  const totalAll = vessels?.length ?? 0;
+
   const toggle = (setter: React.Dispatch<React.SetStateAction<Record<string, boolean>>>, key: string) => { setter((s) => ({ ...s, [key]: !s[key] })); setVisible(10); };
   const clearFilters = () => { setQ(""); setCondition("all"); setPrice("all"); setLenBand("all"); setKlass({}); setMake({}); setDock({}); setVisible(10); };
 
   useEffect(() => {
-    const io = new IntersectionObserver((entries) => { if (entries[0]?.isIntersecting) setVisible((v) => (v < 25 ? v + 5 : v)); }, { rootMargin: "600px" });
+    let alive = true;
+    fetchListings({ sort: "newest", limit: 100 })
+      .then((res) => { if (alive) setVessels((res.listings ?? []).map(toV)); })
+      .catch(() => { if (alive) setVessels([]); });
+    return () => { alive = false; };
+  }, []);
+
+  useEffect(() => {
+    const io = new IntersectionObserver((entries) => { if (entries[0]?.isIntersecting) setVisible((v) => v + 5); }, { rootMargin: "600px" });
     if (sentinel.current) io.observe(sentinel.current);
-    const onScroll = () => { const doc = document.documentElement; if (window.innerHeight + window.scrollY >= doc.scrollHeight - 700) setVisible((v) => (v < 25 ? v + 5 : v)); };
+    const onScroll = () => { const doc = document.documentElement; if (window.innerHeight + window.scrollY >= doc.scrollHeight - 700) setVisible((v) => v + 5); };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
     onScroll();
@@ -88,12 +68,22 @@ export default function Inventory() {
   }, []);
 
   const keysTrue = (o: Record<string, boolean>) => Object.keys(o).filter((k) => o[k]);
-  const makeCounts = useMemo(() => { const c: Record<string, number> = {}; VESSELS.forEach((v) => { c[v.make] = (c[v.make] || 0) + 1; }); return c; }, []);
+  const makeCounts = useMemo(() => { const c: Record<string, number> = {}; (vessels ?? []).forEach((v) => { if (v.make) c[v.make] = (c[v.make] || 0) + 1; }); return c; }, [vessels]);
+  const klassOptions = useMemo(() => {
+    const c: Record<string, number> = {};
+    (vessels ?? []).forEach((v) => { if (v.klass) c[v.klass] = (c[v.klass] || 0) + 1; });
+    return Object.keys(c).sort((a, b) => c[b] - c[a] || a.localeCompare(b));
+  }, [vessels]);
+  const dockOptions = useMemo(() => {
+    const c: Record<string, number> = {};
+    (vessels ?? []).forEach((v) => { if (v.dock) c[v.dock] = (c[v.dock] || 0) + 1; });
+    return Object.keys(c).sort((a, b) => c[b] - c[a] || a.localeCompare(b));
+  }, [vessels]);
 
   const list = useMemo(() => {
     const query = q.trim().toLowerCase();
     const selK = keysTrue(klass), selM = keysTrue(make), selD = keysTrue(dock);
-    let l = VESSELS.filter((v) => {
+    let l = (vessels ?? []).filter((v) => {
       if (condition !== "all" && v.condition !== condition) return false;
       const p = v.price;
       if (price === "lt100" && !(p < 100000)) return false;
@@ -113,11 +103,11 @@ export default function Inventory() {
     else if (sort === "price-desc") l = [...l].sort((a, b) => b.price - a.price);
     else if (sort === "year") l = [...l].sort((a, b) => b.year - a.year || b.price - a.price);
     else if (sort === "length") l = [...l].sort((a, b) => b.len - a.len);
-    // Demo: keep the featured boat pinned to the top regardless of sort
+    // Keep featured boats pinned to the top regardless of sort
     // (stable sort preserves the order of everything else).
-    l = [...l].sort((a, b) => (b.id === FEATURED_ID ? 1 : 0) - (a.id === FEATURED_ID ? 1 : 0));
+    l = [...l].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
     return l;
-  }, [q, condition, price, lenBand, klass, make, dock, sort]);
+  }, [vessels, q, condition, price, lenBand, klass, make, dock, sort]);
 
   const total = list.length;
   const vis = Math.min(visible, total);
@@ -143,12 +133,14 @@ export default function Inventory() {
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 20, flexWrap: "wrap", marginTop: 12 }}>
             <div>
               <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4vw,52px)", lineHeight: 1, letterSpacing: "-.025em", margin: 0 }}>Boat Show Inventory</h1>
-              <p style={{ fontSize: 15.5, color: "#4c6270", margin: "11px 0 0", maxWidth: "64ch" }}>The full show floor, browsable and open: every boat in the water from all 20 presenting dealers, restocked all weekend as they sell. No ticket required to look around.</p>
+              <p style={{ fontSize: 15.5, color: "#4c6270", margin: "11px 0 0", maxWidth: "64ch" }}>A first look at every boat coming to this year&rsquo;s docks, from the presenting dealers, restocked all weekend as they sell. The Boat Show Pricing is revealed when you book your appointment at the show.</p>
             </div>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", border: "1px solid rgba(11,34,56,.12)", borderRadius: 999, padding: "9px 16px" }}>
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#34C778", animation: "livePulse 2.4s infinite" }} />
-              <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>300+ boats in the water · updates hourly</span>
-            </div>
+            {!loading && totalAll > 0 && (
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", border: "1px solid rgba(11,34,56,.12)", borderRadius: 999, padding: "9px 16px" }}>
+                <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#34C778", animation: "livePulse 2.4s infinite" }} />
+                <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>{fmt(totalAll)} {totalAll === 1 ? "boat" : "boats"} in the water</span>
+              </div>
+            )}
           </div>
           <div style={{ marginTop: 24 }}><AdSlot label="Presenting sponsor banner · 970×90" height={110} /></div>
         </div>
@@ -176,12 +168,16 @@ export default function Inventory() {
             <FilterGroup title="Length">
               {([["all", "Any"], ["lt25", "Under 25'"], ["mid", "25'-32'"], ["gt33", "33'+"]] as [string, string][]).map(([v, l]) => <button key={v} onClick={() => { setLenBand(v); setVisible(10); }} style={chipStyle(lenBand === v)}>{l}</button>)}
             </FilterGroup>
-            <FilterGroup title="Class">
-              {["Center Console", "Bowrider", "Dual Console", "Cruiser", "Sport Fish"].map((c) => <button key={c} onClick={() => toggle(setKlass, c)} style={chipStyle(!!klass[c])}>{c}</button>)}
-            </FilterGroup>
-            <FilterGroup title="Dock">
-              {["F Dock", "E Dock", "D Dock", "C Dock", "B Dock", "Off-site"].map((d) => <button key={d} onClick={() => toggle(setDock, d)} style={chipStyle(!!dock[d])}>{d}</button>)}
-            </FilterGroup>
+            {klassOptions.length > 0 && (
+              <FilterGroup title="Class">
+                {klassOptions.map((c) => <button key={c} onClick={() => toggle(setKlass, c)} style={chipStyle(!!klass[c])}>{c}</button>)}
+              </FilterGroup>
+            )}
+            {dockOptions.length > 0 && (
+              <FilterGroup title="Location">
+                {dockOptions.map((d) => <button key={d} onClick={() => toggle(setDock, d)} style={chipStyle(!!dock[d])}>{d}</button>)}
+              </FilterGroup>
+            )}
 
             <div style={{ marginTop: 20, borderTop: "1px solid rgba(11,34,56,.1)", paddingTop: 16 }}>
               <div style={railHead}>Make</div>
@@ -203,7 +199,7 @@ export default function Inventory() {
           {/* RESULTS */}
           <div style={{ flex: "5 1 620px", minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14, flexWrap: "wrap", marginBottom: 18 }}>
-              <div style={{ fontFamily: MONO, fontSize: 13, color: "#3d5260" }}>Showing <strong style={{ color: "#0A2138" }}>{total}</strong> of 312 at the show</div>
+              <div style={{ fontFamily: MONO, fontSize: 13, color: "#3d5260" }}>{!loading && (<>Showing <strong style={{ color: "#0A2138" }}>{total}</strong> of {totalAll} at the show</>)}</div>
               <label style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".08em", color: "#8595a0" }}>SORT</span>
                 <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ background: "#fff", border: "1px solid rgba(11,34,56,.16)", borderRadius: 10, padding: "10px 30px 10px 13px", fontSize: 13.5, color: "#0A2138", cursor: "pointer" }}>
@@ -229,7 +225,7 @@ export default function Inventory() {
               )}
             </div>
 
-            {total === 0 && (
+            {!loading && total === 0 && (
               <div style={{ textAlign: "center", padding: "60px 20px", border: "1px dashed rgba(11,34,56,.2)", borderRadius: 18 }}>
                 <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 21 }}>No boats match those filters.</div>
                 <p style={{ color: "#5a6c78", margin: "10px 0 18px" }}>Try widening your search. The docks restock all weekend as boats sell.</p>
@@ -239,10 +235,12 @@ export default function Inventory() {
 
             <div ref={sentinel} style={{ height: 1 }} />
             <div style={{ textAlign: "center", marginTop: 26, fontFamily: MONO, fontSize: 12, letterSpacing: ".04em", color: "#8595a0" }}>
-              {vis < total ? (
+              {loading ? (
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 9 }}><span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", animation: "livePulse 1.6s infinite" }} />Loading listings…</span>
+              ) : vis < total ? (
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 9 }}><span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", animation: "livePulse 1.6s infinite" }} />Loading more listings…</span>
               ) : total > 0 ? (
-                <span>End of this sample set. Refine filters to explore more of the show fleet.</span>
+                <span>End of the list. Refine filters to explore more of the show fleet.</span>
               ) : null}
             </div>
           </div>
@@ -291,29 +289,54 @@ function FilterGroup({ title, children }: { title: string; children: React.React
 
 function BoatCard({ v, bg, fav, onFav }: { v: V; bg: string; fav: boolean; onFav: () => void }) {
   const href = `/inventory/${v.id}`;
+  const title = [v.year > 0 ? v.year : null, v.make, v.model].filter(Boolean).join(" ");
+  const meta: string[] = [];
+  if (v.len > 0) meta.push(v.lenLabel);
+  if (v.condition === "New") meta.push("New");
+  else if (v.hours > 0) meta.push(fmt(v.hours) + " hrs");
+  else if (v.condition) meta.push(v.condition);
   return (
     <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
       <div style={{ position: "relative", aspectRatio: "16/11", background: bg }}>
-        <Link href={href} aria-label={`${v.year} ${v.make} ${v.model} details`} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1 }}>
-          <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".14em", color: "rgba(10,33,56,.4)" }}>// VESSEL PHOTO</span>
+        <Link href={href} aria-label={`${title} details`} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1 }}>
+          {v.photoUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={v.photoUrl} alt={title} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+          ) : (
+            <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: ".14em", color: "rgba(10,33,56,.4)" }}>{"// VESSEL PHOTO"}</span>
+          )}
         </Link>
-        <span style={{ position: "absolute", top: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(8,24,41,.9)", color: "#fff", padding: "4px 7px", borderRadius: 5, pointerEvents: "none", zIndex: 2 }}>{v.dock}</span>
-        <span style={{ position: "absolute", bottom: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(8,24,41,.78)", color: "#fff", padding: "3px 7px", borderRadius: 5, pointerEvents: "none", zIndex: 2 }}>{v.photos} photos</span>
+        {v.dock ? (
+          <span style={{ position: "absolute", top: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(8,24,41,.9)", color: "#fff", padding: "4px 7px", borderRadius: 5, pointerEvents: "none", zIndex: 2 }}>{v.dock}</span>
+        ) : null}
+        {v.photos > 0 ? (
+          <span style={{ position: "absolute", bottom: 9, left: 9, fontFamily: MONO, fontSize: 9, letterSpacing: ".05em", background: "rgba(8,24,41,.78)", color: "#fff", padding: "3px 7px", borderRadius: 5, pointerEvents: "none", zIndex: 2 }}>{v.photos} {v.photos === 1 ? "photo" : "photos"}</span>
+        ) : null}
         <button onClick={onFav} aria-label="Save" style={{ position: "absolute", top: 7, right: 7, width: 30, height: 30, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.92)", color: fav ? "var(--accent)" : "#4c6270", cursor: "pointer", fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3 }}>{fav ? "♥" : "♡"}</button>
       </div>
       <div style={{ padding: "13px 14px 15px", display: "flex", flexDirection: "column", gap: 7, flex: 1 }}>
         <h3 style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 15.5, margin: 0, lineHeight: 1.15, letterSpacing: "-.01em" }}>
-          <Link href={href} className="link-ink" style={{ color: "inherit" }}>{v.year} {v.make} {v.model}</Link>
+          <Link href={href} className="link-ink" style={{ color: "inherit" }}>{title}</Link>
         </h3>
-        <div style={{ fontFamily: MONO, fontSize: 10.5, color: "#5a6c78", display: "flex", flexWrap: "wrap", gap: "4px 7px" }}>
-          <span>{v.lenLabel}</span><span style={{ opacity: 0.4 }}>·</span><span>{v.condition === "New" ? "New" : v.hours + " hrs"}</span>
-        </div>
+        {meta.length > 0 && (
+          <div style={{ fontFamily: MONO, fontSize: 10.5, color: "#5a6c78", display: "flex", flexWrap: "wrap", gap: "4px 7px" }}>
+            {meta.map((m, i) => (
+              <Fragment key={m + i}>
+                {i > 0 && <span style={{ opacity: 0.4 }}>·</span>}
+                <span>{m}</span>
+              </Fragment>
+            ))}
+          </div>
+        )}
         <div style={{ fontFamily: MONO, fontSize: 10, color: "#8595a0" }}>{v.dealer}</div>
         <div style={{ marginTop: "auto" }}>
           <div style={{ paddingTop: 10, borderTop: "1px solid rgba(11,34,56,.08)" }}>
-            <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: ".06em", color: "#8595a0", textTransform: "uppercase" }}>MSRP</div>
-            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 19, color: "#0A2138", lineHeight: 1.05 }}>${fmt(v.msrp)}</div>
-            <div style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: ".04em", color: "#178a5a", fontWeight: 700, marginTop: 4 }}>★ Far below at the show</div>
+            {v.msrp > 0 && (
+              <div style={{ fontFamily: MONO, fontSize: 9.5, color: "#9aa7b0", textDecoration: "line-through" }}>MSRP ${fmt(v.msrp)}</div>
+            )}
+            {v.price > 0
+              ? <BlurredPrice value={`$${fmt(v.price)}`} />
+              : <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 15, color: "#0A2138", lineHeight: 1.05, marginTop: v.msrp > 0 ? 2 : 0 }}>Price on request</div>}
           </div>
           <Link href={href} className="h-brighten" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, marginTop: 12, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 13.5, padding: 11, borderRadius: 10 }}>Vessel Details →</Link>
         </div>

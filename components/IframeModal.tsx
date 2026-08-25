@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 
 /** Default target: the Interactive Ticketing purchase flow. Calling
  *  open() with no args uses this, so the ticket CTAs stay a bare open(). */
@@ -23,6 +23,44 @@ export function IframeModalProvider({ children }: { children: React.ReactNode })
   );
   const close = useCallback(() => setState(null), []);
   const isOpen = !!state;
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Auto-close when the purchase completes.
+  //
+  // The checkout is a cross-origin third party (Interactive Ticketing), so we
+  // cannot read "did they finish" from inside the frame. The reliable signal is
+  // the RETURN: when the platform redirects to a URL on OUR domain after
+  // purchase, the frame becomes same-origin and readable. That navigation is the
+  // "done" event. It needs the platform's post-purchase return URL pointed at
+  // acvirtualboatshow.com (the same setting that lets a ticket buyer land on the
+  // unlocked inventory) — without it, we cannot detect completion and the buyer
+  // closes the modal with the ✕.
+  const onFrameLoad = useCallback(() => {
+    const el = iframeRef.current;
+    if (!el) return;
+    try {
+      const href = el.contentWindow?.location.href;
+      // Readable === same-origin === the flow came back to our site. The initial
+      // ticketing load throws here (cross-origin) and is correctly ignored.
+      if (href && href.startsWith(window.location.origin)) close();
+    } catch {
+      /* still on the ticketing domain, not finished */
+    }
+  }, [close]);
+
+  // Bonus path: if the platform ever posts a completion message, honor it. Gated
+  // to their origin and a clear signal, so it cannot fire mid-checkout.
+  useEffect(() => {
+    if (!isOpen) return;
+    const onMsg = (e: MessageEvent) => {
+      if (!e.origin.includes("interactiveticketing.com")) return;
+      const d = e.data as unknown;
+      const type = typeof d === "object" && d ? String((d as Record<string, unknown>).type ?? "") : "";
+      if (/^(purchase[_-]?complete|order[_-]?complete|checkout[_-]?complete|success)$/i.test(type)) close();
+    };
+    window.addEventListener("message", onMsg);
+    return () => window.removeEventListener("message", onMsg);
+  }, [isOpen, close]);
 
   // Close on Escape and lock body scroll while the modal is open.
   useEffect(() => {
@@ -57,6 +95,8 @@ export function IframeModalProvider({ children }: { children: React.ReactNode })
               <button onClick={close} aria-label="Close" style={{ width: 34, height: 34, borderRadius: 8, border: "1px solid rgba(255,255,255,.2)", background: "rgba(255,255,255,.08)", color: "#fff", fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flex: "0 0 auto" }}>✕</button>
             </div>
             <iframe
+              ref={iframeRef}
+              onLoad={onFrameLoad}
               src={state.url}
               title={state.title}
               style={{ flex: 1, width: "100%", border: 0 }}

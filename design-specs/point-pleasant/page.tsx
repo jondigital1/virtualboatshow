@@ -12,8 +12,6 @@ const DEALER = {
   name: "Clarks Landing Yacht Sales",
   shortName: "Clarks Landing",
   tagline: "Family-run on the Manasquan River since 1981, and still the friendliest way to buy a boat on the Jersey Shore.",
-  rating: 4.7,
-  reviews: 293,
   address: "847 Arnold Ave",
   city: "Point Pleasant",
   state: "NJ",
@@ -26,7 +24,6 @@ const DEALER = {
     { k: "40+ yrs", t: "Family-run since 1981", b: "Four decades on the river and one of the largest boat dealers in the Mid-Atlantic." },
     { k: "Full-service", t: "A marina, not just a lot", b: "Slips to 70 ft, a bait-and-tackle ship store, fuel dock, and factory-trained techs on site." },
     { k: "Clean Marina", t: "NJ certified Clean Marina", b: "Recognized by the state for protecting the same water you boat on." },
-    { k: "4.7 ★", t: "293 neighbors and counting", b: "Local boaters keep coming back for honest, no-pressure help." },
   ],
 };
 
@@ -56,14 +53,6 @@ const LOCAL = {
   ],
 };
 
-const REVIEWS = [
-  { author: "Mike R.", rating: 5, when: "2 weeks ago", text: "Bought our first boat here and they walked us through everything with zero pressure. The service department has been just as good every time we come back." },
-  { author: "Danielle P.", rating: 5, when: "a month ago", text: "The crew on the Manasquan is the real deal. Fair price at the show, smooth trade on our old boat, and they had us on the water the same week." },
-  { author: "Tom V.", rating: 4, when: "3 months ago", text: "Great selection and a genuinely helpful team. Summer weekends get busy so call ahead, but it is well worth it." },
-  { author: "Karen S.", rating: 5, when: "5 months ago", text: "Repowered our center console here and the techs kept us updated the whole way. Honest shop that clearly knows these waters." },
-];
-
-const stars = (r: number) => "★".repeat(Math.round(r)) + "☆".repeat(Math.max(0, 5 - Math.round(r)));
 const phoneHref = "tel:" + DEALER.phone.replace(/[^0-9+]/g, "");
 const mapHref = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent([DEALER.name, DEALER.address, DEALER.city, DEALER.state, DEALER.zip].join(" "));
 
@@ -118,7 +107,7 @@ export default function PointPleasant() {
                   <div style={{ width: 46, height: 46, flex: "0 0 auto", borderRadius: 11, background: "#0A2138", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: DISPLAY, fontWeight: 800, fontSize: 15 }}>CL</div>
                   <div style={{ minWidth: 0 }}>
                     <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 20, letterSpacing: "-.01em", margin: 0, lineHeight: 1.1 }}>{DEALER.name}</h2>
-                    <div style={{ fontFamily: MONO, fontSize: 11.5, color: "#5a6c78", marginTop: 4 }}><span style={{ color: "var(--accent)", fontWeight: 700 }}>{DEALER.rating} ★</span> · {DEALER.reviews} reviews · Boat dealer</div>
+                    <div style={{ fontFamily: MONO, fontSize: 11.5, color: "#5a6c78", marginTop: 4 }}>Boat dealer · {DEALER.city}, {DEALER.state}</div>
                   </div>
                 </div>
                 <div style={{ height: 1, background: "rgba(11,34,56,.1)", margin: "20px 0" }} />
@@ -207,42 +196,6 @@ export default function PointPleasant() {
             <span style={{ letterSpacing: ".1em", textTransform: "uppercase", color: "#8595a0" }}>On the docks:</span>
             <span>{DEALER.brands.join("   ·   ")}</span>
           </div>
-        </div>
-      </section>
-
-      {/* GOOGLE REVIEWS */}
-      <section style={{ background: "#F4F1EA", padding: "clamp(70px,9vw,120px) clamp(18px,5vw,56px)" }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 28, flexWrap: "wrap" }}>
-            <div>
-              <div style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--accent)" }}>Straight from Google</div>
-              <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", maxWidth: "20ch" }}>What {LOCAL.town} boaters say.</h2>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 16, background: "#fff", border: "1px solid rgba(11,34,56,.12)", borderRadius: 16, padding: "16px 22px" }}>
-              <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 44, lineHeight: 0.9, color: "#0A2138", letterSpacing: "-.02em" }}>{DEALER.rating}</span>
-              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                <span style={{ color: "var(--accent)", fontSize: 17, letterSpacing: 2, lineHeight: 1 }}>{stars(DEALER.rating)}</span>
-                <a href={mapHref} target="_blank" rel="noopener noreferrer" className="link-ink" style={{ fontFamily: MONO, fontSize: 12, color: "#5a6c78" }}>{DEALER.reviews} Google reviews →</a>
-              </div>
-            </div>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,300px),1fr))", gap: 18, marginTop: 38 }}>
-            {REVIEWS.map((r) => (
-              <div key={r.author} style={{ background: "#fff", border: "1px solid rgba(11,34,56,.1)", borderRadius: 20, padding: 26, display: "flex", flexDirection: "column" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 13 }}>
-                  <span style={{ width: 42, height: 42, flex: "0 0 auto", borderRadius: "50%", background: "#0A2138", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: DISPLAY, fontWeight: 700, fontSize: 15 }}>{r.author.split(" ").map((w) => w[0]).slice(0, 2).join("")}</span>
-                  <div style={{ minWidth: 0 }}>
-                    <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 16, letterSpacing: "-.01em" }}>{r.author}</div>
-                    <div style={{ fontFamily: MONO, fontSize: 11, color: "#9aa7b0", marginTop: 2 }}>{r.when}</div>
-                  </div>
-                  <span style={{ marginLeft: "auto", fontFamily: MONO, fontSize: 10, letterSpacing: ".1em", color: "#c3ccd2" }}>GOOGLE</span>
-                </div>
-                <div style={{ color: "var(--accent)", fontSize: 15, letterSpacing: 2, margin: "16px 0 10px", lineHeight: 1 }}>{stars(r.rating)}</div>
-                <p style={{ fontSize: 15, lineHeight: 1.6, color: "#4c6270", margin: 0 }}>{r.text}</p>
-              </div>
-            ))}
-          </div>
-          <p style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".04em", color: "#9aa7b0", margin: "28px 0 0", maxWidth: "64ch", lineHeight: 1.6 }}>Reviews sync automatically from the dealer&rsquo;s Google Business Profile once it is claimed and connected. Until then, these show as a preview.</p>
         </div>
       </section>
 

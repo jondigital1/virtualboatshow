@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/buoy-api/:path*", "destination": "https://api.buoylist.com/:path*" }
+  ]
+}

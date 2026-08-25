@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s · AC In-Water Boat Show",
   },
   description:
-    "Browse live inventory from every presenting dealer, value your current boat, and unlock exclusive Boat Show Pricing before the docks open. Sept 10-13, 2026 · Atlantic City.",
+    "Preview every boat coming to the Atlantic City In-Water Boat Show, value your current boat, and book your appointment. Boat Show Pricing is revealed at the show. Sept 10-13, 2026 · Atlantic City.",
   keywords: [
     "Atlantic City boat show",
     "in-water boat show",

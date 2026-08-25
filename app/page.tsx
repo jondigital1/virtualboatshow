@@ -5,44 +5,39 @@ import { useEffect, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { VesselCard, AdSlot, type Vessel } from "@/components/VesselCard";
 import { useIframeModal } from "@/components/IframeModal";
+import { fetchListings, toV, type V } from "@/lib/buoy";
 
 const DISPLAY = "var(--font-bricolage), sans-serif";
 const MONO = "var(--font-space-mono), monospace";
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
+/* Striped placeholder backgrounds: the honest no-photo fallback only. */
 const BGS = [
   "repeating-linear-gradient(135deg,#ccd8dc 0 14px,#c3d0d5 14px 28px)",
   "repeating-linear-gradient(135deg,#d7ddd1 0 14px,#ced5c7 14px 28px)",
   "repeating-linear-gradient(135deg,#d1dae0 0 14px,#c7d1d8 14px 28px)",
 ];
 
-const RAW = [
-  { year: 2026, name: "Nor-Tech 390 Sport", length: "39'0\"", engine: "Quad Mercury 500R", condition: "New", hours: 0, dockLabel: "AT SLIPS · F DOCK", msrp: 1395000, show: 1312000 },
-  { year: 2024, name: "Grady-White Canyon 336", length: "33'6\"", engine: "Twin Yamaha 300", condition: "New", hours: 0, dockLabel: "AT SLIPS · F DOCK", msrp: 725000, show: 679900 },
-  { year: 2023, name: "Boston Whaler 250 Outrage", length: "25'0\"", engine: "Twin Mercury 250", condition: "Used", hours: 46, dockLabel: "AT SLIPS · E DOCK", msrp: 289000, show: 264500 },
-  { year: 2024, name: "Sea Ray SLX 260", length: "26'0\"", engine: "MerCruiser 350", condition: "New", hours: 0, dockLabel: "AT SLIPS · C DOCK", msrp: 214900, show: 199900 },
-  { year: 2022, name: "Robalo R242 Explorer", length: "24'2\"", engine: "Single Yamaha 300", condition: "Used", hours: 120, dockLabel: "OFF-SITE LOT", msrp: 129500, show: 118900 },
-  { year: 2024, name: "Cobia 320 CC", length: "32'0\"", engine: "Twin Yamaha 350", condition: "New", hours: 0, dockLabel: "AT SLIPS · F DOCK", msrp: 489000, show: 452000 },
-  { year: 2023, name: "Regulator 28", length: "28'0\"", engine: "Twin Yamaha 300", condition: "Used", hours: 88, dockLabel: "AT SLIPS · E DOCK", msrp: 415000, show: 389500 },
-  { year: 2024, name: "Scout 355 LXF", length: "35'6\"", engine: "Twin Yamaha 425", condition: "New", hours: 0, dockLabel: "AT SLIPS · F DOCK", msrp: 875000, show: 819000 },
-  { year: 2024, name: "Pursuit DC 266", length: "26'6\"", engine: "Twin Yamaha 300", condition: "New", hours: 0, dockLabel: "AT SLIPS · D DOCK", msrp: 289900, show: 268000 },
-];
-
-const VESSELS: Vessel[] = RAW.map((v, i) => ({
-  year: v.year,
-  name: v.name,
-  length: v.length,
-  engine: v.engine,
-  condition: v.condition,
-  usage: v.condition === "New" ? "New" : v.hours + " hrs",
-  dockLabel: v.dockLabel,
-  msrpFmt: "$" + fmt(v.msrp),
-  showFmt: "$" + fmt(v.show),
-  saveFmt: "$" + fmt(v.msrp - v.show),
-  bg: BGS[i % BGS.length],
-  href: v.name.includes("Nor-Tech 390") ? "/inventory/nor-tech-390" : "/inventory/" + v.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
-}));
+/** Map the live view-model onto the dev's card shape. Empty strings mean the
+ *  server did not provide that element; MSRP/SAVE stay empty unless the
+ *  server sent them (never computed client-side). */
+function liveVessel(v: V, i: number): Vessel {
+  return {
+    year: v.year,
+    name: [v.make, v.model].filter(Boolean).join(" "),
+    length: v.lenLabel,
+    engine: v.engine,
+    condition: v.condition,
+    usage: v.condition === "New" ? "New" : v.hours > 0 ? fmt(v.hours) + " hrs" : v.condition,
+    dockLabel: v.dock,
+    msrpFmt: v.msrp > 0 ? "$" + fmt(v.msrp) : "",
+    showFmt: v.por ? "Price on request" : v.price > 0 ? "$" + fmt(v.price) : "",
+    saveFmt: v.msrp > 0 && v.save > 0 ? "$" + fmt(v.save) : "",
+    bg: v.photoUrl ? `url("${v.photoUrl}") center / cover no-repeat` : BGS[i % BGS.length],
+    href: "/inventory/" + v.id,
+  };
+}
 
 /* ---- small presentational helpers ---- */
 function Eyebrow({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
@@ -63,25 +58,35 @@ function Check({ bg = "#178a5a", size = 24 }: { bg?: string; size?: number }) {
 const SECTION_PAD = "clamp(70px,9vw,124px) clamp(18px,5vw,56px)";
 
 export default function Home() {
-  const [vesselCount, setVesselCount] = useState(286);
+  const [live, setLive] = useState<Vessel[]>([]);
+  const [hasMore, setHasMore] = useState(false);
   const { open: openModal } = useIframeModal();
   const openExhibit = () => openModal("https://acinwaterboatshow.com/exhibitors", "Exhibit at the Boat Show");
 
   useEffect(() => {
-    const start = 286, target = 312, dur = 1100, t0 = performance.now();
-    let raf = 0;
-    const tick = (now: number) => {
-      const p = Math.min(1, (now - t0) / dur);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setVesselCount(Math.round(start + (target - start) * eased));
-      if (p < 1) raf = requestAnimationFrame(tick);
+    let alive = true;
+    fetchListings({ limit: 100 })
+      .then((data) => {
+        if (!alive) return;
+        const vs = (data.listings ?? []).map(toV);
+        vs.sort((a, b) => Number(b.featured) - Number(a.featured));
+        setLive(vs.map(liveVessel));
+        setHasMore(!!data.nextCursor);
+      })
+      .catch(() => {
+        /* API unreachable: the rails and the live badge collapse. */
+      });
+    return () => {
+      alive = false;
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Prices are never published online, the deal lives at the docks.
-  const revealed = false;
+  // Prices are open: every card shows the live Buoy price.
+  const revealed = true;
+
+  const first = live.slice(0, 4);
+  const rest = live.slice(4);
+  const locations = Array.from(new Set(live.map((v) => v.dockLabel).filter(Boolean))).slice(0, 5);
 
   return (
     <>
@@ -105,8 +110,8 @@ export default function Home() {
               <button onClick={() => openModal()} className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "none", cursor: "pointer", fontFamily: "inherit" }}>
                 Get Your Boat Show Deal →
               </button>
-              <Link href="#trade" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,.07)", color: "#fff", fontWeight: 600, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "1.5px solid rgba(255,255,255,.32)" }}>
-                Selling or Trading?
+              <Link href="/inventory" className="h-lift" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--accent)", color: "#0A2138", fontWeight: 700, fontSize: 16, padding: "16px 26px", borderRadius: 999, border: "none" }}>
+                Boat Show Inventory →
               </Link>
             </div>
           </div>
@@ -231,7 +236,7 @@ export default function Home() {
           <p style={{ fontSize: "clamp(16px,1.2vw,19px)", lineHeight: 1.6, color: "#4c6270", margin: "18px 0 42px", maxWidth: "56ch" }}>From ticket to trade to the deck. Here&rsquo;s exactly how to win the weekend before it even starts.</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,240px),1fr))", gap: 18 }}>
             {[
-              ["01", "Pre-purchase your tickets", "Grab your in-water show tickets right now and unlock a 48-hour sneak peek at every vessel headed to the docks.", "Get tickets →", "#unlock"],
+              ["01", "Pre-purchase your tickets", "Grab your in-water show tickets right now.", "Get tickets →", "#unlock"],
               ["02", "Line up your trade", "Selling or trading? Lock in your Boat Show Trade-In Special with the dealer for the boat you want, before you even arrive. Trade it toward a show boat or keep it simple.", "How it works →", "#trade"],
               ["03", "Book your Boat Show Only Deal", "Set your appointment and lock in pricing you’ll only find at the show. The best deals happen here, so don’t be the one who missed out.", "Book my appointment →", "#unlock"],
             ].map(([n, h, body, cta, href]) => (
@@ -263,33 +268,43 @@ export default function Home() {
               <Eyebrow>Boat show inventory</Eyebrow>
               <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.03, letterSpacing: "-.02em", margin: "14px 0 0", maxWidth: "18ch" }}>Every hull at the show, in one index.</h2>
             </div>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", border: "1px solid rgba(11,34,56,.12)", borderRadius: 999, padding: "9px 16px" }}>
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#34C778", animation: "livePulse 2.4s infinite" }} />
-              <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>{fmt(vesselCount)} boats in the water · updates hourly</span>
+            {live.length > 0 && (
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "#fff", border: "1px solid rgba(11,34,56,.12)", borderRadius: 999, padding: "9px 16px" }}>
+                <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#34C778", animation: "livePulse 2.4s infinite" }} />
+                <span style={{ fontFamily: MONO, fontSize: 12, color: "#3d5260" }}>{fmt(live.length)}{hasMore ? "+" : ""} boats in the water · updates hourly</span>
+              </div>
+            )}
+          </div>
+
+          {locations.length > 0 && (
+            <div style={{ display: "flex", gap: 9, flexWrap: "wrap", margin: "28px 0 30px" }}>
+              {["All locations", ...locations].map((c, i) => (
+                <span key={c} style={{ background: i === 0 ? "#0A2138" : "#fff", color: i === 0 ? "#fff" : "#3d5260", border: i === 0 ? "none" : "1px solid rgba(11,34,56,.14)", fontFamily: MONO, fontSize: 12, letterSpacing: ".05em", padding: "8px 15px", borderRadius: 999 }}>{c}</span>
+              ))}
             </div>
-          </div>
+          )}
 
-          <div style={{ display: "flex", gap: 9, flexWrap: "wrap", margin: "28px 0 30px" }}>
-            {["All docks", "F Dock", "E Dock", "Center consoles", "Under $300k", "Off-site lot"].map((c, i) => (
-              <span key={c} style={{ background: i === 0 ? "#0A2138" : "#fff", color: i === 0 ? "#fff" : "#3d5260", border: i === 0 ? "none" : "1px solid rgba(11,34,56,.14)", fontFamily: MONO, fontSize: 12, letterSpacing: ".05em", padding: "8px 15px", borderRadius: 999 }}>{c}</span>
-            ))}
-          </div>
-
-          <div style={{ marginBottom: 18 }}>
+          <div style={{ margin: locations.length > 0 ? "0 0 18px" : "28px 0 18px" }}>
             <AdSlot label="Presenting sponsor banner · 970×90" />
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,250px),1fr))", gap: 18 }}>
-            {VESSELS.slice(0, 4).map((v) => (
-              <VesselCard key={v.name} v={v} revealed={revealed} />
-            ))}
-            <div style={{ gridColumn: "1 / -1" }}>
-              <AdSlot label="Sponsor / vendor in-feed banner" tag="SPONSORED · IN-FEED" height={120} accent />
+          {first.length > 0 && (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,250px),1fr))", gap: 18 }}>
+              {first.map((v) => (
+                <VesselCard key={v.href} v={v} revealed={revealed} />
+              ))}
+              {rest.length > 0 && (
+                <>
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <AdSlot label="Sponsor / vendor in-feed banner" tag="SPONSORED · IN-FEED" height={120} accent />
+                  </div>
+                  {rest.map((v) => (
+                    <VesselCard key={v.href} v={v} revealed={revealed} />
+                  ))}
+                </>
+              )}
             </div>
-            {VESSELS.slice(4).map((v) => (
-              <VesselCard key={v.name} v={v} revealed={revealed} />
-            ))}
-          </div>
+          )}
 
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 18, flexWrap: "wrap", marginTop: 30 }}>
             <p style={{ fontFamily: MONO, fontSize: 12, color: "#7c8b96", margin: 0, maxWidth: "52ch", lineHeight: 1.5 }}>
@@ -374,7 +389,7 @@ export default function Home() {
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
               {[
-                ["YOUR CAPTAIN", "Capt. Marco Reyes", "#fff"],
+                ["YOUR CAPTAIN", "Your name here", "#fff"],
                 ["TRADE-IN", "Appraised ✓", "var(--accent)"],
                 ["INCENTIVES", "Applied ✓", "var(--accent)"],
               ].map(([lab, val, col]) => (
@@ -407,7 +422,7 @@ export default function Home() {
         <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
           <Eyebrow>The whole network, on your side</Eyebrow>
           <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(26px,3.6vw,44px)", lineHeight: 1.06, letterSpacing: "-.02em", margin: "14px auto 0", maxWidth: "22ch" }}>Every dealer at the show, competing for your business.</h2>
-          <p style={{ fontSize: "clamp(16px,1.2vw,18px)", lineHeight: 1.6, color: "#4c6270", margin: "18px auto 28px", maxWidth: "60ch" }}>One marketplace brings all 20 presenting dealers together, with every boat they floated at the show in one place, so you compare freely and the best offer comes to you. No driving lot to lot, no haggling in the dark. Just the whole show working in your favor.</p>
+          <p style={{ fontSize: "clamp(16px,1.2vw,18px)", lineHeight: 1.6, color: "#4c6270", margin: "18px auto 28px", maxWidth: "60ch" }}>One marketplace brings all presenting dealers together, with every boat they floated at the show in one place, so you compare freely and the best offer comes to you. No driving lot to lot, no haggling in the dark. Just the whole show working in your favor.</p>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}>
             <Link href="#docks" className="btn-invert" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#0A2138", color: "#fff", fontWeight: 700, fontSize: 15, padding: "14px 24px", borderRadius: 999 }}>Browse the marketplace →</Link>
             <Link href="/vendors" className="link-ink" style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".05em", color: "#7c8b96" }}>Run a dealership? Join the lineup →</Link>
