@@ -74,6 +74,36 @@ export const VENDORS: Row[] = [
   { n: "Viking Eyewear", c: "Oceanport", s: "NJ", p: "(732) 272-3524" },
 ];
 
+/**
+ * Dealer logos harvested from each dealer's own website (public/dealers/,
+ * via scripts/fetch-dealer-logos.mjs). White/light originals carry a baked
+ * navy backing so they read on white cards. Riverside Marina has no website
+ * to harvest from — their card falls back to the monogram.
+ */
+export const DEALER_LOGOS: Record<string, string> = {
+  "Causeway Marine": "/dealers/causeway-marine.png",
+  "Clarks Landing Yacht Sales & Marina": "/dealers/clarks-landing.png",
+  "Coastal Boat Sales": "/dealers/coastal-boat-sales.png",
+  "Comstock Yacht Sales & Marina": "/dealers/comstock.png",
+  "Coty Marine": "/dealers/coty-marine.png",
+  "D & R Boat World": "/dealers/dr-boat-world.png",
+  "EZ Dock Mid Atlantic": "/dealers/ez-dock.png",
+  "Formula Boats": "/dealers/formula-boats.png",
+  "G Winter's Sailing Center, Inc.": "/dealers/g-winters.png",
+  "Henriques Yachts": "/dealers/henriques.png",
+  "MarineMax (Brick)": "/dealers/marinemax.png",
+  "MarineMax (Somers Point)": "/dealers/marinemax.png",
+  "MarineMax (Ocean View)": "/dealers/marinemax.png",
+  "New Jersey Outboards": "/dealers/nj-outboards.png",
+  "Sandy Hook Yacht Sales": "/dealers/sandy-hook.png",
+  "Schrader Yacht Sales": "/dealers/schrader.png",
+  "Seaport Inlet Marina": "/dealers/seaport-inlet.png",
+  "Sheltered Cove Marina": "/dealers/sheltered-cove.png",
+  "Stone Harbor Marina": "/dealers/stone-harbor.png",
+  "South Jersey Yacht Sales": "/dealers/south-jersey.png",
+  "Valhalla Boat Sales": "/dealers/valhalla.png",
+};
+
 /** "Marks Marine Insurance" -> "MM" (monogram for logo-less tiles). */
 export function initials(name: string): string {
   const words = name.replace(/\([^)]*\)/g, " ").replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).filter((w) => w && !["llc", "inc"].includes(w.toLowerCase()));

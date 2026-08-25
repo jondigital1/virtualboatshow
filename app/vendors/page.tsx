@@ -5,12 +5,12 @@ import { useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, MONO, Eyebrow } from "@/components/ui";
 import { submitLead } from "@/lib/leads";
-import { DEALERS, VENDORS, initials, type Row } from "@/lib/exhibitors";
+import { DEALERS, VENDORS, DEALER_LOGOS, initials, type Row } from "@/lib/exhibitors";
 
 function deco(r: Row) {
   const loc = [r.c, r.s].filter((x) => x && x !== "N/A").join(", ");
   const hasPhone = !!(r.p && r.p !== "N/A");
-  return { name: r.n, loc, initials: initials(r.n), phone: r.p, hasPhone, tel: "tel:" + String(r.p || "").replace(/[^0-9]/g, "") };
+  return { name: r.n, loc, initials: initials(r.n), phone: r.p, hasPhone, tel: "tel:" + String(r.p || "").replace(/[^0-9]/g, ""), logo: DEALER_LOGOS[r.n] };
 }
 
 const DECK = [
@@ -48,7 +48,14 @@ export default function Vendors() {
   const dirCard = (d: ReturnType<typeof deco>, dark: boolean) => (
     <div key={d.name + d.loc} style={{ background: dark ? "rgba(255,255,255,.04)" : "#fff", border: dark ? "1px solid rgba(255,255,255,.14)" : "1px solid rgba(20,46,81,.1)", borderRadius: 16, padding: dark ? 18 : 20, boxShadow: dark ? undefined : "0 14px 34px -26px rgba(20,46,81,.5)", display: "flex", flexDirection: "column", gap: dark ? 11 : 12 }}>
       <div style={{ display: "flex", alignItems: "center", gap: dark ? 12 : 13 }}>
-        <div style={{ flex: "0 0 auto", width: dark ? 44 : 46, height: dark ? 44 : 46, borderRadius: dark ? 10 : 11, background: dark ? "rgba(255,255,255,.08)" : "#eef2f2", border: dark ? "1px solid rgba(255,255,255,.12)" : undefined, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: DISPLAY, fontWeight: 800, fontSize: dark ? 15 : 16, color: dark ? "#fff" : "#142E51" }}>{d.initials}</div>
+        {d.logo ? (
+          <div style={{ flex: "0 0 auto", width: 96, height: 48, borderRadius: 9, background: "#fff", border: "1px solid rgba(20,46,81,.1)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: 4 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={d.logo} alt={d.name + " logo"} loading="lazy" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", display: "block" }} />
+          </div>
+        ) : (
+          <div style={{ flex: "0 0 auto", width: dark ? 44 : 46, height: dark ? 44 : 46, borderRadius: dark ? 10 : 11, background: dark ? "rgba(255,255,255,.08)" : "#eef2f2", border: dark ? "1px solid rgba(255,255,255,.12)" : undefined, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: DISPLAY, fontWeight: 800, fontSize: dark ? 15 : 16, color: dark ? "#fff" : "#142E51" }}>{d.initials}</div>
+        )}
         <div style={{ minWidth: 0 }}>
           <h3 style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: dark ? 15.5 : 16, margin: "0 0 3px", letterSpacing: "-.01em", lineHeight: 1.15, color: dark ? "#fff" : undefined }}>{d.name}</h3>
           <div style={{ fontFamily: MONO, fontSize: dark ? 10.5 : 11, letterSpacing: ".04em", color: "var(--accent)", textTransform: "uppercase" }}>{d.loc}</div>
