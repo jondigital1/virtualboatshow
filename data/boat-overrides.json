@@ -1,0 +1,13 @@
+{
+  "_comment": "Per-boat source overrides: boats whose workbook link is a search page or brand homepage pull photos/description from the manufacturer's model page instead. official:true relabels the VDP outbound link as the brand model page. Applied by scripts/import-show-boats.mjs after parsing; survives daily syncs.",
+  "monterey-34-elite": { "official": true, "sourceUrls": ["https://www.montereyboats.com/ELITE-34-OB-2026-10-1167951.html"], "blurb": "The Elite 34 is the next evolution of Monterey's award-winning Elite Series — an upper-premium outboard model with expanded entertaining space, elevated helm ergonomics, and extended offshore capability, launching in Summer 2026. See it make its debut on the water in Atlantic City with Coty Marine." },
+  "grady-white-freedom-345": { "official": true, "sourceUrls": ["https://www.gradywhite.com/models/freedom-345/"] },
+  "grady-white-canyon-266": { "official": true, "sourceUrls": ["https://www.gradywhite.com/models/canyon-266/"] },
+  "cobia-245-cc": { "official": true, "sourceUrls": ["https://www.cobiaboats.com/boats/center-console/245-cc"] },
+  "everglades-315-cc": { "official": true, "sourceUrls": ["https://www.evergladesboats.com/find-your-boat/center-consoles/315cc/"] },
+  "everglades-375-cc": { "official": true, "sourceUrls": ["https://www.evergladesboats.com/find-your-boat/center-consoles/375cc/"] },
+  "pursuit-s-288": { "official": true, "sourceUrls": ["https://www.pursuitboats.com/S288.php"], "blurb": "The S 288 is Pursuit's compact sport center console: 30'0\" length overall with a 9'8\" beam, twin Yamaha outboards up to 600 hp, and a deep 24-degree transom deadrise for offshore work. The layout fits generous bow and aft seating, big stowage, and a sizable console with a step-down head, backed by 230 gallons of fuel and Pursuit's signature fit and finish." },
+  "sea-pro-245-flxr": { "official": true, "sourceUrls": ["https://seapromfg.com/245-sandbar-boat/"] },
+  "sea-pro-262-dlx": { "official": true, "sourceUrls": ["https://seapromfg.com/262-dlx/", "https://seapromfg.com/262-dlx-boat/", "https://seapromfg.com/262-dual-console/", "https://seapromfg.com/262-center-console/"] },
+  "steiger-craft-255-annapolis": { "official": true, "sourceUrls": ["https://www.steigercraft.com/255-annapolis/"] }
+}

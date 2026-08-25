@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
-import { DISPLAY, MONO, Eyebrow } from "@/components/ui";
+import { DISPLAY, MONO, Eyebrow, PhonePill } from "@/components/ui";
 import { submitLead } from "@/lib/leads";
 import { DEALERS, VENDORS, DEALER_LOGOS, initials, type Row } from "@/lib/exhibitors";
 
@@ -62,7 +62,9 @@ export default function Vendors() {
         </div>
       </div>
       {d.hasPhone && (
-        <a href={d.tel} className={dark ? "link-muted" : "link-ink"} style={{ fontSize: dark ? 13 : 13.5, color: dark ? "rgba(255,255,255,.62)" : "#5a6c78", marginTop: "auto" }}>{d.phone}</a>
+        <div style={{ marginTop: "auto" }}>
+          <PhonePill phone={d.phone} />
+        </div>
       )}
     </div>
   );

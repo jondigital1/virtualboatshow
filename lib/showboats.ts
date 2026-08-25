@@ -23,6 +23,8 @@ export type ShowBoat = {
   notes: string;
   /** Shared manufacturer showcase (no single-dealer listing page). */
   shared: boolean;
+  /** Source overridden to the manufacturer's official model page. */
+  official?: boolean;
   sourceUrl: string | null;
   brandUrl: string | null;
   dealers: DealerRef[];

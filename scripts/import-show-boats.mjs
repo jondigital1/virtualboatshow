@@ -26,14 +26,29 @@ import sharp from "sharp";
 
 /** Max gallery photos stored per boat (page weight + repo size ceiling). */
 const MAX_PHOTOS = 12;
-/** --refresh: ignore the on-disk photo cache and re-harvest every gallery. */
+/** --refresh: ignore the on-disk photo cache and re-harvest galleries. */
 const REFRESH = process.argv.includes("--refresh");
+/** --only=slug1,slug2: restrict --refresh to these boats (others stay cached). */
+const ONLY = new Set((process.argv.find((a) => a.startsWith("--only="))?.slice(7) ?? "").split(",").filter(Boolean));
+const refreshWanted = (slug) => REFRESH && (ONLY.size === 0 || ONLY.has(slug));
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const RAW = join(ROOT, "data", "feature-boats-raw.json");
 const OUT = join(ROOT, "data", "show-boats.json");
+const OVERRIDES_FILE = join(ROOT, "data", "boat-overrides.json");
 const PHOTO_DIR = join(ROOT, "public", "boats");
 mkdirSync(PHOTO_DIR, { recursive: true });
+
+/** Previous run's text, carried forward for photo-cached boats. */
+const PREV = new Map(
+  existsSync(OUT)
+    ? JSON.parse(readFileSync(OUT, "utf8")).boats.map((b) => [b.slug, { blurb: b.blurb, lengthFt: b.lengthFt }])
+    : []
+);
+/** Per-boat source overrides (see data/boat-overrides.json). */
+const OVERRIDES = existsSync(OVERRIDES_FILE)
+  ? Object.fromEntries(Object.entries(JSON.parse(readFileSync(OVERRIDES_FILE, "utf8"))).filter(([k]) => !k.startsWith("_")))
+  : {};
 
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36 ACVBS-showbot/1.0 (acvirtualboatshow.com; official show companion)";
 
@@ -245,8 +260,19 @@ function extractFromHtml(html, baseUrl) {
     photos.push(abs);
     if (photos.length >= 40) break;
   }
-  const descM = html.match(/<meta[^>]+(?:property|name)=["'](?:og:description|description)["'][^>]+content=["']([^"']+)["']/i);
-  const blurb = descM ? descM[1].replace(/&amp;/g, "&").replace(/&#0?39;|&rsquo;/g, "'").replace(/&quot;/g, '"').slice(0, 300) : "";
+  // Description: take the LONGEST of og:description / meta description /
+  // JSON-LD description (dealer platforms put the full writeup in JSON-LD).
+  const descCands = [];
+  for (const m of html.matchAll(/<meta[^>]+(?:property|name)=["'](?:og:description|description|twitter:description)["'][^>]+content=["']([^"']+)["']/gi)) descCands.push(m[1]);
+  for (const m of html.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    for (const d of m[1].matchAll(/"description"\s*:\s*"((?:[^"\\]|\\.)*)"/g)) {
+      try { descCands.push(JSON.parse('"' + d[1] + '"')); } catch { /* malformed escape */ }
+    }
+  }
+  const clean = (s) =>
+    s.replace(/&amp;/g, "&").replace(/&#0?39;|&rsquo;|&#8217;/g, "'").replace(/&quot;|&#8220;|&#8221;/g, '"')
+      .replace(/&lt;[^&]*&gt;|<[^>]+>/g, " ").replace(/\\n/g, "\n").replace(/[ \t]+/g, " ").trim();
+  const blurb = descCands.map(clean).filter((s) => s.length > 40 && !/^(home|inventory|boats for sale)\b/i.test(s)).sort((a, b) => b.length - a.length)[0]?.slice(0, 900) ?? "";
   const lenM = (html.match(/(\d{2}(?:\.\d)?)\s*(?:ft\b|')/i) || [])[1];
   return { photos, blurb, lengthFt: lenM ? Number(lenM) : null };
 }
@@ -283,8 +309,26 @@ async function enrich(boat) {
   // "sea-pro-245" from claiming "sea-pro-245-flxr-1.jpg".
   const mine = new RegExp("^" + boat.slug.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "-\\d+\\.(jpe?g|png|webp)$", "i");
   const existing = readdirSync(PHOTO_DIR).filter((f) => mine.test(f)).sort(byPhotoNum);
-  if (existing.length > 0 && !REFRESH) {
+  if (existing.length > 0 && !refreshWanted(boat.slug)) {
     boat.photos = existing.map((f) => "/boats/" + f);
+    // Photos are cached on disk, but text lives only in show-boats.json,
+    // which this run rebuilds: carry the previous run's text forward, and
+    // only hit the network when we have none yet.
+    const prev = PREV.get(boat.slug);
+    if (prev?.blurb) {
+      boat.blurb = prev.blurb;
+      boat.lengthFt = prev.lengthFt ?? boat.lengthFt;
+      return "cached";
+    }
+    if (boat.sourceUrl) {
+      const html = await fetchWithTimeout(boat.sourceUrl);
+      if (html) {
+        const ex = extractFromHtml(html, boat.sourceUrl);
+        boat.blurb = ex.blurb;
+        boat.lengthFt = ex.lengthFt ?? boat.lengthFt;
+        return "cached+text";
+      }
+    }
     return "cached";
   }
   const keepCached = () => {
@@ -292,9 +336,17 @@ async function enrich(boat) {
     return existing.length > 0 ? "kept-cached" : "no-photos";
   };
   if (!boat.sourceUrl) return existing.length ? keepCached() : "no-source";
-  const html = await fetchWithTimeout(boat.sourceUrl);
+  // Overridden boats may carry several candidate URLs; first that loads wins.
+  const urls = boat.sourceUrls ?? [boat.sourceUrl];
+  let html = null;
+  let base = boat.sourceUrl;
+  for (const u of urls) {
+    html = await fetchWithTimeout(u);
+    if (html) { base = u; break; }
+  }
   if (!html) return keepCached(); // bot-gated page: keep what we have
-  const { photos, blurb, lengthFt } = extractFromHtml(html, boat.sourceUrl);
+  boat.sourceUrl = base;
+  const { photos, blurb, lengthFt } = extractFromHtml(html, base);
   boat.blurb = blurb;
   boat.lengthFt = lengthFt;
 
@@ -333,7 +385,15 @@ async function enrich(boat) {
 async function main() {
   const { boats: rows, waiting } = parseRows();
   const boats = mergeShared(rows);
-  console.log(`parsed ${boats.length} selected boats across ${new Set(boats.flatMap((b) => b.dealers.map((d) => d.name))).size} dealers`);
+  for (const b of boats) {
+    const o = OVERRIDES[b.slug];
+    if (o) {
+      b.official = !!o.official;
+      b.sourceUrls = o.sourceUrls;
+      b.sourceUrl = o.sourceUrls[0];
+    }
+  }
+  console.log(`parsed ${boats.length} selected boats across ${new Set(boats.flatMap((b) => b.dealers.map((d) => d.name))).size} dealers (${Object.keys(OVERRIDES).length} source overrides)`);
 
   // Orphan sweep: photos whose slug no longer exists in the workbook (boat
   // renamed/removed) are deleted so renames can't leave stale imagery behind.
@@ -360,6 +420,12 @@ async function main() {
     }
   });
   await Promise.all(workers);
+
+  // Manual description overrides win over whatever the page served.
+  for (const b of boats) {
+    const o = OVERRIDES[b.slug];
+    if (o?.blurb) b.blurb = o.blurb;
+  }
 
   const waitingOut = Object.entries(waiting).map(([k, brands]) => ({
     dealer: (DEALER_META[k] ?? { name: k }).name,

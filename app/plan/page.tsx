@@ -1,7 +1,7 @@
 "use client";
 
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
-import { Eyebrow } from "@/components/ui";
+import { Eyebrow, PhonePill } from "@/components/ui";
 import { useIframeModal } from "@/components/IframeModal";
 
 const FONT = "var(--font-poppins), sans-serif";
@@ -37,7 +37,7 @@ function DineCard({ img, name, tag, phone, place }: { img: string; name: string;
         <div style={{ fontSize: 13.5, lineHeight: 1.5, color: "rgba(20,46,81,.7)" }}>{tag}</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 3, marginTop: 6, fontSize: 13, color: "rgba(20,46,81,.65)" }}>
           <span>📍 {place}</span>
-          <a href={"tel:" + phone.replace(/[^0-9]/g, "")} style={{ color: "var(--linkblue)", fontWeight: 600 }}>☎ {phone}</a>
+          <PhonePill phone={phone} />
         </div>
       </div>
     </div>

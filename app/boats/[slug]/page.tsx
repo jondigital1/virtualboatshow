@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
-import { DISPLAY, Eyebrow } from "@/components/ui";
+import { DISPLAY, Eyebrow, PhonePill } from "@/components/ui";
 import { useIframeModal } from "@/components/IframeModal";
 import { boatBySlug, boatTitle, showBoats } from "@/lib/showboats";
 
@@ -131,7 +131,13 @@ export default function ShowBoatVDP() {
                 </div>
               )}
               {boat.blurb && (
-                <p style={{ fontSize: 15, lineHeight: 1.65, color: "#4c6270", margin: "18px 0 0" }}>{boat.blurb}</p>
+                <div style={{ marginTop: 22 }}>
+                  <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 17, letterSpacing: ".02em", textTransform: "uppercase", color: "var(--navy)", margin: 0 }}>About this boat</h2>
+                  <span className="gold-rule" style={{ margin: "10px 0 0", width: 44, height: 3 }} />
+                  {boat.blurb.split(/\n+/).map((para, i) => (
+                    <p key={i} style={{ fontSize: 15, lineHeight: 1.68, color: "#4c6270", margin: "12px 0 0" }}>{para}</p>
+                  ))}
+                </div>
               )}
               <p style={{ fontSize: 12.5, color: "#8595a0", margin: "14px 0 0" }}>
                 Photos and details courtesy of {boat.dealers[0].name}{boat.shared ? " and " + boat.brand : ""}. Boats and locations are subject to change — confirm details with the dealer.
@@ -164,15 +170,11 @@ export default function ShowBoatVDP() {
                   <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "rgba(20,46,81,.55)" }}>{boat.dealers.length > 1 ? "Presented by" : "Presenting dealer"}</div>
                   <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 18, color: "var(--navy)", marginTop: 6 }}>{d.name}</div>
                   {d.loc && <div style={{ fontSize: 13.5, color: "#5a6c78", marginTop: 3 }}>{d.loc}</div>}
-                  <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 12 }}>
-                    {d.phone && (
-                      <a href={"tel:" + d.phone.replace(/[^0-9]/g, "")} className="btn-outline" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "#fff", color: "var(--navy)", fontWeight: 700, fontSize: 12, letterSpacing: ".05em", textTransform: "uppercase", padding: "11px 16px", borderRadius: 8, border: "1.5px solid var(--lightblue)" }}>
-                        ☎ Call
-                      </a>
-                    )}
-                    {boat.sourceUrl && !boat.shared && (
+                  <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 12, alignItems: "center" }}>
+                    {d.phone && <PhonePill phone={d.phone} />}
+                    {boat.sourceUrl && (boat.official || !boat.shared) && (
                       <a href={boat.sourceUrl} target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "#fff", color: "var(--navy)", fontWeight: 700, fontSize: 12, letterSpacing: ".05em", textTransform: "uppercase", padding: "11px 16px", borderRadius: 8, border: "1.5px solid rgba(20,46,81,.25)" }}>
-                        Full listing at the dealer →
+                        {boat.official ? `${boat.brand} model page →` : "Full listing at the dealer →"}
                       </a>
                     )}
                   </div>
@@ -185,9 +187,6 @@ export default function ShowBoatVDP() {
                 </a>
               )}
 
-              <div style={{ fontSize: 13.5, color: "#5a6c78", lineHeight: 1.6, background: "#fff", border: "1px dashed rgba(20,46,81,.2)", borderRadius: 12, padding: "13px 16px" }}>
-                Thinking about a trade? Mention your current boat when you talk to the dealer — starting the conversation before the show means it&rsquo;s ready to discuss at the dock.
-              </div>
             </div>
           </div>
 
