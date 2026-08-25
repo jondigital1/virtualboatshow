@@ -428,16 +428,23 @@ async function main() {
   }
 
   // House style for all outward-facing text (Jon 2026-08-25): no em dashes.
-  // Single choke point so fetched, carried-forward, and override text all
-  // pass through; also finishes entity cleanup harvests can leave behind.
-  for (const b of boats) {
-    if (!b.blurb) continue;
-    b.blurb = b.blurb
+  // Single choke point covering EVERY string that can reach the site from
+  // this pipeline, present and future boats alike: harvested/carried/override
+  // descriptions, workbook dealer notes (card badges), names, and the
+  // waiting-dealer strips. Also finishes entity cleanup harvests leave behind.
+  const noEmDash = (s) =>
+    String(s)
       .replace(/&hellip;|…/g, "...")
       .replace(/\s+—\s+/g, ", ")
       .replace(/—/g, "-")
       .trim();
+  for (const b of boats) {
+    if (b.blurb) b.blurb = noEmDash(b.blurb);
+    if (b.notes) b.notes = noEmDash(b.notes);
+    b.brand = noEmDash(b.brand);
+    b.model = noEmDash(b.model);
   }
+  for (const [k, brands] of Object.entries(waiting)) waiting[k] = brands.map(noEmDash);
 
   const waitingOut = Object.entries(waiting).map(([k, brands]) => ({
     dealer: (DEALER_META[k] ?? { name: k }).name,
