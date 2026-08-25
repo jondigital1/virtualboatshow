@@ -108,7 +108,7 @@ export default function PlanYourVisit() {
             </div>
             <span className="gold-rule" style={{ margin: "20px 0 0", background: "var(--lightblue)" }} />
             <p style={{ fontSize: "clamp(15.5px,1.2vw,17.5px)", lineHeight: 1.65, color: "rgba(20,46,81,.8)", margin: "20px 0 0", maxWidth: "44ch" }}>
-              Everything you need to plan your Atlantic City In-Water Boat Show experience — from show hours and parking to waterfront dining and where to stay.
+              Everything you need to plan your Atlantic City In-Water Boat Show experience, from show hours and parking to waterfront dining and where to stay.
             </p>
           </div>
           <div style={{ minWidth: 0 }}>

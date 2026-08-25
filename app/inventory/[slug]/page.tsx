@@ -440,7 +440,7 @@ function PaymentCalc() {
   const loan = Math.max(0, price - down);
   const r = apr / 1200;
   const monthly = price > 0 ? (r > 0 ? (loan * r) / (1 - Math.pow(1 + r, -term)) : loan / term) : 0;
-  const showMonthly = price > 0 ? "$" + fmt(monthly) : "—";
+  const showMonthly = price > 0 ? "$" + fmt(monthly) : "-";
 
   return (
     <div id="calc" style={{ marginTop: 24, background: "#142E51", color: "#fff", borderRadius: 18, padding: "clamp(24px,3vw,34px)", scrollMarginTop: 76 }}>
@@ -470,7 +470,7 @@ function PaymentCalc() {
           <div style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".14em", color: "rgba(255,255,255,.6)", textTransform: "uppercase" }}>Estimated payment</div>
           <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(38px,5vw,52px)", lineHeight: 1, margin: "10px 0 4px", color: "#fff" }}>{showMonthly}</div>
           <div style={{ fontFamily: MONO, fontSize: 12, color: "rgba(255,255,255,.6)" }}>per month</div>
-          <div style={{ borderTop: "1px solid rgba(255,255,255,.14)", margin: "20px 0 0", paddingTop: 16, display: "flex", justifyContent: "space-between", fontFamily: MONO, fontSize: 12, color: "rgba(255,255,255,.72)" }}><span>Amount financed</span><span style={{ color: "#fff", fontWeight: 700 }}>{price > 0 ? "$" + fmt(loan) : "—"}</span></div>
+          <div style={{ borderTop: "1px solid rgba(255,255,255,.14)", margin: "20px 0 0", paddingTop: 16, display: "flex", justifyContent: "space-between", fontFamily: MONO, fontSize: 12, color: "rgba(255,255,255,.72)" }}><span>Amount financed</span><span style={{ color: "#fff", fontWeight: 700 }}>{price > 0 ? "$" + fmt(loan) : "-"}</span></div>
           <Link href="#request" className="h-brighten" style={{ display: "block", marginTop: 18, background: "var(--accent)", color: "#142E51", fontWeight: 700, fontSize: 14.5, padding: 13, borderRadius: 12, textAlign: "center" }}>Get pre-qualified →</Link>
         </div>
       </div>

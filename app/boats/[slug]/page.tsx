@@ -52,7 +52,7 @@ export default function ShowBoatVDP() {
         <Nav active="/inventory" />
         <section style={{ background: "#fff", padding: "clamp(60px,10vw,120px) 24px", textAlign: "center" }}>
           <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 28, color: "var(--navy)", margin: 0 }}>We couldn&rsquo;t find that boat.</h1>
-          <p style={{ color: "#5a6c78", margin: "12px 0 22px" }}>The lineup changes as dealers confirm their boats — it may have been updated.</p>
+          <p style={{ color: "#5a6c78", margin: "12px 0 22px" }}>The lineup changes as dealers confirm their boats, so it may have been updated.</p>
           <Link href="/inventory" className="h-brighten" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--navy)", color: "#fff", fontWeight: 700, fontSize: 13, letterSpacing: ".05em", textTransform: "uppercase", padding: "13px 22px", borderRadius: 8 }}>Browse Boats at the Show →</Link>
         </section>
         <Footer />
@@ -140,7 +140,7 @@ export default function ShowBoatVDP() {
                 </div>
               )}
               <p style={{ fontSize: 12.5, color: "#8595a0", margin: "14px 0 0" }}>
-                Photos and details courtesy of {boat.dealers[0].name}{boat.shared ? " and " + boat.brand : ""}. Boats and locations are subject to change — confirm details with the dealer.
+                Photos and details courtesy of {boat.dealers[0].name}{boat.shared ? " and " + boat.brand : ""}. Boats and locations are subject to change. Confirm details with the dealer.
               </p>
             </div>
 
@@ -231,7 +231,7 @@ export default function ShowBoatVDP() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={boat.photos[lightbox]}
-                alt={`${title} — photo ${lightbox + 1} of ${count}`}
+                alt={`${title}, photo ${lightbox + 1} of ${count}`}
                 onClick={() => setZoomed((z) => !z)}
                 style={zoomed
                   ? { width: "170%", maxWidth: "none", display: "block", cursor: "zoom-out", margin: "0 auto" }

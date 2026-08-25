@@ -11,11 +11,11 @@ const FONT = "var(--font-poppins), sans-serif";
 const FAQ_DATA: [string, string][] = [
   ["Should I buy a new or used boat?", "New boats bring full factory warranties and the latest tech; used boats stretch your budget and hold value when they’re well kept. At the show you can weigh both side by side and compare honestly before you ever board."],
   ["What do engine hours actually tell me?", "Hours are the odometer of the water. Under about 100 a year is light use, but documented service history matters even more. Your dockside walkthrough is the time to ask the dealer for maintenance records."],
-  ["Can I take the boat out before I buy?", "Nothing replaces time on the water. Ask the dealer at the show — many will arrange a sea trial where available, so you can feel how she handles before you commit to anything."],
+  ["Can I take the boat out before I buy?", "Nothing replaces time on the water. Ask the dealer at the show. Many will arrange a sea trial where available, so you can feel how she handles before you commit to anything."],
   ["What does a boat really cost to own beyond the sticker?", "Plan for insurance, storage or a slip, fuel, winterizing, registration, and routine maintenance. A good rule of thumb is roughly 10% of the purchase price each year. Ask each dealer to break the numbers down for your specific boat."],
   ["How does boat financing work, and should I get pre-qualified?", "Marine loans commonly run 10 to 20 years with 10-20% down. Getting pre-qualified before the show tells you your true budget and speeds everything up. Several lenders exhibit on-site."],
-  ["Is the “Boat Show Price” really a better deal?", "Show pricing is negotiated for the event. Talking to the dealer at the dock is how you get it — pricing details are confirmed with the dealer at the show."],
-  ["Can I trade in or sell my current boat?", "Absolutely. Talk to the dealer for the boat you're interested in — starting the conversation before the show means your trade-in is ready to discuss when you arrive."],
+  ["Is the “Boat Show Price” really a better deal?", "Show pricing is negotiated for the event. Talking to the dealer at the dock is how you get it, and pricing details are confirmed with the dealer at the show."],
+  ["Can I trade in or sell my current boat?", "Absolutely. Talk to the dealer for the boat you're interested in. Starting the conversation before the show means your trade-in is ready to discuss when you arrive."],
   ["What’s included: trailer, electronics, warranty?", "It varies boat to boat, so confirm what’s on the sticker: trailer, electronics package, and any remaining factory or extended warranty. Your walkthrough is the moment to get every inclusion in writing."],
 ];
 
@@ -121,7 +121,7 @@ export default function Inventory() {
           {list.length === 0 && (
             <div style={{ textAlign: "center", padding: "60px 20px", border: "1px dashed rgba(20,46,81,.2)", borderRadius: 18 }}>
               <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 21, color: "var(--navy)" }}>No boats match those filters.</div>
-              <p style={{ color: "#5a6c78", margin: "10px 0 18px" }}>Try widening your search — new boats are added as dealers confirm their show lineups.</p>
+              <p style={{ color: "#5a6c78", margin: "10px 0 18px" }}>Try widening your search. New boats are added as dealers confirm their show lineups.</p>
               <button onClick={clearAll} className="btn-invert" style={{ background: "#142E51", color: "#fff", fontWeight: 700, fontSize: 14, padding: "12px 20px", borderRadius: 999, border: "none", cursor: "pointer" }}>Clear all filters</button>
             </div>
           )}
@@ -134,7 +134,7 @@ export default function Inventory() {
           {waitingDealers.length > 0 && (
             <div style={{ marginTop: 34 }}>
               <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 18, color: "var(--navy)", textTransform: "uppercase", letterSpacing: ".02em", margin: 0 }}>More lineups on the way</h2>
-              <p style={{ fontSize: 14, color: "#5a6c78", margin: "6px 0 14px" }}>These dealers are at the show — their feature boats are being finalized.</p>
+              <p style={{ fontSize: 14, color: "#5a6c78", margin: "6px 0 14px" }}>These dealers are at the show, and their feature boats are being finalized.</p>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 {waitingDealers.map((w) => (
                   <span key={w.dealer} style={{ background: "#fff", border: "1px solid rgba(20,46,81,.14)", borderRadius: 12, padding: "10px 14px", fontSize: 13, color: "#33454f" }}>

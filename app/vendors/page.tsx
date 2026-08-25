@@ -124,7 +124,7 @@ export default function Vendors() {
             {dealers.map((d) => dirCard(d, false))}
           </div>
           {dealers.length === 0 && (
-            <p style={{ fontSize: 14.5, color: "#4c6270", marginTop: 20 }}>No dealers match &ldquo;{q}&rdquo; — try a different name or town.</p>
+            <p style={{ fontSize: 14.5, color: "#4c6270", marginTop: 20 }}>No dealers match &ldquo;{q}&rdquo;. Try a different name or town.</p>
           )}
         </div>
       </section>
@@ -153,7 +153,7 @@ export default function Vendors() {
             {vendors.map((v) => dirCard(v, true))}
           </div>
           {vendors.length === 0 && (
-            <p style={{ fontSize: 14.5, color: "rgba(255,255,255,.65)", marginTop: 20 }}>No exhibitors match &ldquo;{q}&rdquo; — try a different name or town.</p>
+            <p style={{ fontSize: 14.5, color: "rgba(255,255,255,.65)", marginTop: 20 }}>No exhibitors match &ldquo;{q}&rdquo;. Try a different name or town.</p>
           )}
         </div>
       </section>

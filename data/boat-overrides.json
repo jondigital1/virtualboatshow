@@ -1,6 +1,6 @@
 {
   "_comment": "Per-boat source overrides: boats whose workbook link is a search page or brand homepage pull photos/description from the manufacturer's model page instead. official:true relabels the VDP outbound link as the brand model page. Applied by scripts/import-show-boats.mjs after parsing; survives daily syncs.",
-  "monterey-34-elite": { "official": true, "sourceUrls": ["https://www.montereyboats.com/ELITE-34-OB-2026-10-1167951.html"], "blurb": "The Elite 34 is the next evolution of Monterey's award-winning Elite Series — an upper-premium outboard model with expanded entertaining space, elevated helm ergonomics, and extended offshore capability, launching in Summer 2026. See it make its debut on the water in Atlantic City with Coty Marine." },
+  "monterey-34-elite": { "official": true, "sourceUrls": ["https://www.montereyboats.com/ELITE-34-OB-2026-10-1167951.html"], "blurb": "The Elite 34 is the next evolution of Monterey's award-winning Elite Series: an upper-premium outboard model with expanded entertaining space, elevated helm ergonomics, and extended offshore capability, launching in Summer 2026. See it make its debut on the water in Atlantic City with Coty Marine." },
   "grady-white-freedom-345": { "official": true, "sourceUrls": ["https://www.gradywhite.com/models/freedom-345/"] },
   "grady-white-canyon-266": { "official": true, "sourceUrls": ["https://www.gradywhite.com/models/canyon-266/"] },
   "cobia-245-cc": { "official": true, "sourceUrls": ["https://www.cobiaboats.com/boats/center-console/245-cc"] },

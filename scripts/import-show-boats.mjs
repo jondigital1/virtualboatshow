@@ -427,6 +427,18 @@ async function main() {
     if (o?.blurb) b.blurb = o.blurb;
   }
 
+  // House style for all outward-facing text (Jon 2026-08-25): no em dashes.
+  // Single choke point so fetched, carried-forward, and override text all
+  // pass through; also finishes entity cleanup harvests can leave behind.
+  for (const b of boats) {
+    if (!b.blurb) continue;
+    b.blurb = b.blurb
+      .replace(/&hellip;|…/g, "...")
+      .replace(/\s+—\s+/g, ", ")
+      .replace(/—/g, "-")
+      .trim();
+  }
+
   const waitingOut = Object.entries(waiting).map(([k, brands]) => ({
     dealer: (DEALER_META[k] ?? { name: k }).name,
     brands: [...new Set(brands)],

@@ -194,7 +194,7 @@ export default function Home() {
               ))}
             </div>
             <p style={{ fontFamily: FONT, fontSize: 12.5, color: "#8595a0", margin: "16px 0 0" }}>
-              A rotating selection from the show lineup — every participating dealer shares this space equally.
+              A rotating selection from the show lineup. Every participating dealer shares this space equally.
             </p>
           </div>
         </section>
