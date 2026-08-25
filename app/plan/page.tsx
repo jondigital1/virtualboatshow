@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { Eyebrow, PhonePill } from "@/components/ui";
 import { useIframeModal } from "@/components/IframeModal";
@@ -48,6 +49,14 @@ function DineCard({ img, name, tag, phone, place, group }: { img: string; name: 
 
 export default function PlanYourVisit() {
   const { open: openTickets } = useIframeModal();
+  // Hotel search dates, prefilled with the show weekend and editable.
+  const [checkin, setCheckin] = useState("2026-09-10");
+  const [checkout, setCheckout] = useState("2026-09-13");
+  const openHotels = () => {
+    const ci = checkin.replace(/-/g, "");
+    const co = checkout.replace(/-/g, "");
+    openTickets(`https://visitatlanticcity.bookdirect.net/#/lodgings/ctab/540?checkin=${ci}&checkout=${co}`, "Hotels & Stays");
+  };
 
   const cards: InfoCard[] = [
     {
@@ -170,8 +179,31 @@ export default function PlanYourVisit() {
             The show is four days, and the city around it doesn&rsquo;t slow down. Browse what Atlantic City has going on without ever leaving this site.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,300px),1fr))", gap: 18 }}>
+            {/* Hotels tile: editable dates, prefilled with the show weekend */}
+            <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+              <button onClick={openHotels} style={{ padding: 0, border: "none", background: "none", cursor: "pointer", display: "block" }} aria-label="Browse hotels">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/show/tile-hotels.jpg" alt="" loading="lazy" style={{ width: "100%", aspectRatio: "16/9", objectFit: "cover", display: "block" }} />
+              </button>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8, padding: "16px 18px 18px", flex: 1 }}>
+                <span style={{ fontFamily: FONT, fontWeight: 800, fontSize: 17, color: "var(--navy)" }}>Hotels &amp; Stays</span>
+                <span style={{ fontFamily: FONT, fontSize: 13.5, lineHeight: 1.55, color: "#5a6c78" }}>Rooms go fast on show weekend. Pick your dates and browse what&rsquo;s open.</span>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", marginTop: 4 }}>
+                  <label style={{ display: "flex", flexDirection: "column", gap: 3, fontFamily: FONT, fontSize: 10.5, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", color: "rgba(20,46,81,.6)" }}>
+                    Check-in
+                    <input type="date" value={checkin} onChange={(e) => setCheckin(e.target.value)} style={{ fontFamily: FONT, fontSize: 13, color: "var(--navy)", border: "1px solid rgba(20,46,81,.2)", borderRadius: 8, padding: "7px 9px", background: "var(--bluetint)" }} />
+                  </label>
+                  <label style={{ display: "flex", flexDirection: "column", gap: 3, fontFamily: FONT, fontSize: 10.5, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", color: "rgba(20,46,81,.6)" }}>
+                    Check-out
+                    <input type="date" value={checkout} onChange={(e) => setCheckout(e.target.value)} style={{ fontFamily: FONT, fontSize: 13, color: "var(--navy)", border: "1px solid rgba(20,46,81,.2)", borderRadius: 8, padding: "7px 9px", background: "var(--bluetint)" }} />
+                  </label>
+                </div>
+                <button onClick={openHotels} style={{ display: "inline-flex", alignItems: "center", gap: 7, fontFamily: FONT, fontWeight: 700, fontSize: 11.5, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--linkblue)", background: "none", border: "none", cursor: "pointer", padding: 0, marginTop: "auto", paddingTop: 8 }}>
+                  Browse Hotels <span aria-hidden>→</span>
+                </button>
+              </div>
+            </div>
             {[
-              { t: "Hotels & Stays", d: "Rooms go fast on show weekend. Browse hotels with the show dates already plugged in.", u: "https://visitatlanticcity.bookdirect.net/#/lodgings/ctab/540?checkin=20260910&checkout=20260913", img: "/show/tile-hotels.jpg" },
               { t: "Beaches & Boardwalk", d: "The famous boardwalk and wide, clean beaches start a few minutes from the marina.", u: "https://www.visitatlanticcity.com/things-to-do/beaches-boardwalk/", img: "/show/tile-beaches.jpg" },
               { t: "Shopping", d: "Boutiques, brand-name outlets, and tax-free clothing. Some of the best shopping on the coast.", u: "https://www.visitatlanticcity.com/things-to-do/shopping/", img: "/show/tile-shopping.jpg" },
               { t: "Casinos", d: "Nine casinos in town, one of them right at the show. Try your luck when the docks close.", u: "https://www.visitatlanticcity.com/things-to-do/casinos/", img: "/show/tile-casinos.jpg" },
