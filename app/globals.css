@@ -139,6 +139,15 @@ input, textarea, button, select { font-family: inherit; }
   .map-grid { grid-template-columns: 1fr !important; }
 }
 
+/* Explore cards: text | photo split on desktop, stacked on phones where a
+   half-width text column is too cramped for titles and buttons. */
+.explore-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 190px; }
+@media (max-width: 560px) {
+  .explore-split { grid-template-columns: 1fr; }
+  /* !important: the img carries an inline height:100% for the desktop split */
+  .explore-split > img { height: 170px !important; }
+}
+
 /* Featured rail: fixed column counts (3/2/1) so the 6 cards always fill
    complete rows at every width; an auto-fill grid packs 4-up on wide
    screens and strands 2 cards on a second row. */

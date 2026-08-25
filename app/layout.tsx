@@ -13,13 +13,16 @@ const poppins = Poppins({
   display: "swap",
 });
 
+const DESCRIPTION =
+  "The official virtual companion to the Atlantic City In-Water Boat Show. Browse boats and Marine Marketplace exhibitors, save your favorites, and plan your visit. Sept 10-13, 2026 · Farley State Marina, Atlantic City.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://acvirtualboatshow.com"),
   title: {
     default: "Atlantic City In-Water Boat Show · Sept 10-13, 2026",
     template: "%s · AC In-Water Boat Show",
   },
-  description:
-    "The official virtual companion to the Atlantic City In-Water Boat Show. Browse boats and Marine Marketplace exhibitors, save your favorites, and plan your visit. Sept 10-13, 2026 · Farley State Marina, Atlantic City.",
+  description: DESCRIPTION,
   keywords: [
     "Atlantic City boat show",
     "in-water boat show",
@@ -27,6 +30,20 @@ export const metadata: Metadata = {
     "marine marketplace",
     "boat show tickets",
   ],
+  openGraph: {
+    type: "website",
+    url: "https://acvirtualboatshow.com",
+    siteName: "Atlantic City In-Water Boat Show",
+    title: "Atlantic City In-Water Boat Show · Sept 10-13, 2026",
+    description: DESCRIPTION,
+    images: [{ url: "/og-show.jpg", width: 1200, height: 630, alt: "Boats filling Farley State Marina at the Atlantic City In-Water Boat Show" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Atlantic City In-Water Boat Show · Sept 10-13, 2026",
+    description: DESCRIPTION,
+    images: ["/og-show.jpg"],
+  },
 };
 
 export default function RootLayout({

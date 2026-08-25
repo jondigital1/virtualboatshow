@@ -323,7 +323,6 @@ function VDPBody({ listing, v }: { listing: Listing; v: V }) {
               <div style={{ fontFamily: MONO, fontSize: 10.5, color: "#8595a0", textAlign: "center", marginTop: 8 }}>Message the seller on the live listing</div>
               <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
                 <button onClick={scrollToRequest} className="btn-outline" style={{ flex: 1, textAlign: "center", background: "#fff", color: "#142E51", fontWeight: 700, fontSize: 14, padding: "12px 8px", borderRadius: 12, border: "1px solid rgba(20,46,81,.18)", cursor: "pointer", fontFamily: "inherit" }}>Book a walkthrough</button>
-                <button onClick={() => openModal(`/sell?embed=1&dealer=${encodeURIComponent(v.dealer)}&boat=${encodeURIComponent(name)}`, "Value your trade-in")} className="btn-outline" style={{ flex: 1, textAlign: "center", background: "#fff", color: "#142E51", fontWeight: 700, fontSize: 14, padding: "12px 8px", borderRadius: 12, border: "1px solid rgba(20,46,81,.18)", cursor: "pointer", fontFamily: "inherit" }}>Value My Vessel</button>
               </div>
             </div>
 

@@ -98,7 +98,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,340px),1fr))", gap: 20, marginTop: 36 }}>
             {/* Browse Boats card */}
             <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: 190 }}>
+              <div className="explore-split">
                 <div style={{ padding: "24px 22px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 12 }}>
                   <h3 style={{ fontFamily: FONT, fontWeight: 800, fontSize: 19, letterSpacing: ".01em", margin: 0, color: "var(--navy)", textTransform: "uppercase" }}>Browse Boats at the Show</h3>
                   <p style={{ fontSize: 14.5, lineHeight: 1.55, color: "rgba(20,46,81,.7)", margin: 0 }}>Explore boats scheduled to be on display from participating dealers and brands.</p>
@@ -123,7 +123,7 @@ export default function Home() {
 
             {/* Marine Marketplace card */}
             <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: 190 }}>
+              <div className="explore-split">
                 <div style={{ padding: "24px 22px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 12 }}>
                   <h3 style={{ fontFamily: FONT, fontWeight: 800, fontSize: 19, letterSpacing: ".01em", margin: 0, color: "var(--navy)", textTransform: "uppercase" }}>Browse Marine Marketplace</h3>
                   <p style={{ fontSize: 14.5, lineHeight: 1.55, color: "rgba(20,46,81,.7)", margin: 0 }}>Discover marine products, services and exhibitors at the show.</p>

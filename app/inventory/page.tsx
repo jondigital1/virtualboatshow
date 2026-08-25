@@ -186,7 +186,7 @@ function ShowBoatCard({ b, fav, onFav }: { b: ShowBoat; fav: boolean; onFav: () 
   const touchX = useRef<number | null>(null);
   const many = b.photos.length > 1;
   const step = (d: number) => setIdx((i) => (i + d + b.photos.length) % b.photos.length);
-  const arrowStyle = (side: "left" | "right"): React.CSSProperties => ({ position: "absolute", [side]: 6, top: "50%", transform: "translateY(-50%)", zIndex: 3, width: 28, height: 28, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.92)", color: "var(--navy)", cursor: "pointer", fontSize: 15, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(20,46,81,.25)" });
+  const arrowStyle = (side: "left" | "right"): React.CSSProperties => ({ position: "absolute", [side]: 6, top: "50%", transform: "translateY(-50%)", zIndex: 3, width: 32, height: 32, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.92)", color: "var(--navy)", cursor: "pointer", fontSize: 17, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(20,46,81,.25)" });
   return (
     <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
       <div
