@@ -74,13 +74,19 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{ minWidth: 0, position: "relative" }}>
+          <div style={{ minWidth: 0, position: "relative", borderRadius: 6, overflow: "hidden" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/show/hero-marina.jpg"
-              alt="Boats and dealer tents on the water at the Atlantic City In-Water Boat Show"
-              style={{ display: "block", width: "100%", height: "auto", borderRadius: 4 }}
+              src="/show/hero-show.jpg"
+              alt="A Beneteau Antares 9 on the water in front of the Golden Nugget at the Atlantic City In-Water Boat Show"
+              style={{ display: "block", width: "100%", height: "auto" }}
             />
+            {/* brand wave accent along the waterline, echoing the logo */}
+            <svg aria-hidden viewBox="0 0 1600 120" preserveAspectRatio="none" style={{ position: "absolute", left: 0, right: 0, bottom: -1, width: "100%", height: "clamp(34px,6vw,64px)", display: "block" }}>
+              <path d="M0,78 C300,18 620,118 900,70 C1180,26 1420,88 1600,52 L1600,120 L0,120 Z" fill="#75BAE4" opacity="0.9" />
+              <path d="M0,96 C320,44 640,132 940,88 C1220,50 1440,104 1600,74 L1600,120 L0,120 Z" fill="#FDB717" />
+              <path d="M0,112 C340,76 700,138 1020,104 C1280,80 1470,116 1600,98 L1600,120 L0,120 Z" fill="#fff" />
+            </svg>
           </div>
         </div>
       </section>
