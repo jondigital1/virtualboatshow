@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
+import { ShowMap as OfficialShowMap } from "@/components/ShowMap";
 import { DISPLAY, MONO, Eyebrow } from "@/components/ui";
 
 const FONT = "var(--font-poppins), sans-serif";
@@ -61,8 +62,7 @@ export default function ShowMap() {
       <section style={{ background: "#fff", padding: "clamp(22px,2.5vw,32px) clamp(18px,3vw,44px) clamp(44px,5vw,68px)" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ background: "#fff", border: "1px solid rgba(20,46,81,.14)", borderRadius: 16, overflow: "hidden", boxShadow: "0 28px 60px -34px rgba(20,46,81,.4)" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/show/show-map-2026.png" alt="Official 2026 Atlantic City In-Water Boat Show visitor map: docks, Marine Marketplace, entrances, parking and amenities" style={{ display: "block", width: "100%", height: "auto" }} />
+            <OfficialShowMap />
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 10, background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.35)", borderRadius: 10, padding: "11px 16px", marginTop: 18 }}>
             <span aria-hidden style={{ width: 18, height: 18, borderRadius: "50%", background: "var(--lightblue)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, flex: "0 0 auto" }}>i</span>

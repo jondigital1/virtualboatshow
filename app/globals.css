@@ -148,6 +148,16 @@ input, textarea, button, select { font-family: inherit; }
   .explore-split > img { height: 170px !important; }
 }
 
+/* Official show map (components/ShowMap.tsx): landscape SVG on desktop,
+   tall SVG on phones. Both scale via viewBox inside their wrapper. */
+.show-map-wide svg,
+.show-map-mobile svg { display: block; width: 100%; height: auto; }
+.show-map-mobile { display: none; }
+@media (max-width: 640px) {
+  .show-map-wide { display: none; }
+  .show-map-mobile { display: block; }
+}
+
 /* Featured rail: fixed column counts (3/2/1) so the 6 cards always fill
    complete rows at every width; an auto-fill grid packs 4-up on wide
    screens and strands 2 cards on a second row. */

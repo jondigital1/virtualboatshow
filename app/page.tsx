@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
+import { ShowMap } from "@/components/ShowMap";
 import { Eyebrow } from "@/components/ui";
 import { pickFeatured, boatTitle, type ShowBoat } from "@/lib/showboats";
 import { pickExhibitors, initials, type Row as Exhibitor } from "@/lib/exhibitors";
@@ -226,8 +227,7 @@ export default function Home() {
             </div>
 
             <div style={{ background: "#fff", border: "1px solid rgba(20,46,81,.14)", borderRadius: 16, overflow: "hidden", boxShadow: "0 24px 54px -32px rgba(20,46,81,.35)" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/show/show-map-2026.png" alt="Official 2026 Atlantic City In-Water Boat Show visitor map" style={{ display: "block", width: "100%", height: "auto" }} />
+              <ShowMap />
             </div>
           </div>
 
