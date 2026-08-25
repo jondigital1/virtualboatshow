@@ -60,15 +60,18 @@ AC show logo first (horizontal), smaller "Powered by Buoy" lockup second, then:
 - Simple value prop line the client likes: "Browse boats. Save your favorites. Plan your route. See them at the show."
 - Trade-in explainers + repeated appointment/deal CTAs move deeper (VDP-level), off the main journey.
 
-## Open questions (Jon / client)
+## Open questions — status (2026-08-25)
 
-1. Boat Show brand sheet → which Google fonts?
-2. "Get Tickets" destination URL?
-3. Official 2026 visitor map asset (the figure embeds a low-res copy)?
-4. Marine Marketplace exhibitor data: booth numbers, categories, logos — source?
-5. Dock/slip locations for show-bound boats — do we have this data?
-6. Does the show gate (password) stay during the refresh?
-7. Marina/water/AC photography — licensed sources?
+1. Fonts: ANSWERED — match the mockups; Poppins sitewide until brand sheet arrives (Giselle, nice-to-have).
+2. Get Tickets: ANSWERED — existing Interactive Ticketing modal is correct (components/IframeModal.tsx).
+3. Official 2026 map: WAITING ON GISELLE — low-res mockup crop live at public/show/show-map-2026.png; swap when original arrives.
+4. Exhibitor booth #s/categories/logos: WAITING ON GISELLE.
+5. Dock/slip assignments: WAITING ON GISELLE.
+6. Show gate: ANSWERED — removed 2026-08-25 (component preserved in components/ShowGate.tsx).
+7. Photography: WAITING ON GISELLE — mockup crops live in public/show/ as stand-ins.
+8. NEW (Jon): per-dealer text/SMS number for listings — WAITING ON GISELLE; sparsely staffed dealerships during show week. Build a "Text the dealer" action on VDPs when data lands.
+
+Full request list: GISELLE-LIST.md / GISELLE-LIST.pdf in this folder.
 
 ## Assets in this folder
 
