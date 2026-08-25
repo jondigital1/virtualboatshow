@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { Eyebrow } from "@/components/ui";
 import { pickFeatured, boatTitle, type ShowBoat } from "@/lib/showboats";
+import { pickExhibitors, initials, type Row as Exhibitor } from "@/lib/exhibitors";
 
 const FONT = "var(--font-poppins), sans-serif";
 const SECTION_PAD = "clamp(56px,7vw,96px) clamp(18px,5vw,56px)";
@@ -39,15 +40,15 @@ export default function Home() {
   // reshuffles — each dealer gets equal turns at the featured real estate.
   const [featured, setFeatured] = useState<ShowBoat[]>([]);
   const [thumbs, setThumbs] = useState<ShowBoat[]>([]);
+  const [exhibitors, setExhibitors] = useState<Exhibitor[]>([]);
 
   useEffect(() => {
     const picks = pickFeatured(10);
     setFeatured(picks.slice(0, 6));
     const rest = picks.slice(6, 10);
     setThumbs(rest.length === 4 ? rest : picks.slice(0, 4));
+    setExhibitors(pickExhibitors(4));
   }, []);
-
-  const marketplaceCats = ["Electronics", "Engines & Service", "Docking", "Insurance", "Gear"];
 
   return (
     <>
@@ -133,11 +134,17 @@ export default function Home() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/show/explore-marketplace.jpg" alt="Exhibitor tents at the Marine Marketplace" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", padding: "0 16px 16px" }}>
-                {marketplaceCats.map((c) => (
-                  <span key={c} style={{ fontFamily: FONT, fontWeight: 600, fontSize: 11.5, letterSpacing: ".04em", textTransform: "uppercase", color: "var(--navy)", background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.4)", borderRadius: 999, padding: "7px 13px" }}>{c}</span>
-                ))}
-              </div>
+              {exhibitors.length > 0 && (
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8, padding: "0 16px 16px" }}>
+                  {exhibitors.map((v) => (
+                    <Link key={v.n} href="/vendors" title={v.n} style={{ aspectRatio: "4/3", borderRadius: 8, border: "1px solid rgba(117,186,228,.4)", background: "var(--bluetint)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, padding: "8px 6px", textAlign: "center", minWidth: 0 }}>
+                      <span style={{ width: 34, height: 34, borderRadius: "50%", background: "var(--navy)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT, fontWeight: 800, fontSize: 12.5, flex: "0 0 auto" }}>{initials(v.n)}</span>
+                      <span style={{ fontFamily: FONT, fontWeight: 700, fontSize: 11, lineHeight: 1.25, color: "var(--navy)", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{v.n}</span>
+                      <span style={{ fontFamily: FONT, fontWeight: 500, fontSize: 9.5, color: "rgba(20,46,81,.55)", textTransform: "uppercase", letterSpacing: ".05em" }}>{[v.c, v.s].filter((x) => x && x !== "N/A").join(", ")}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
