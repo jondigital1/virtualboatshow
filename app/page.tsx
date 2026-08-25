@@ -235,6 +235,22 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SPONSOR ACKNOWLEDGMENT — slim strip, full wall lives at /sponsors */}
+      <section style={{ background: "#fff", borderTop: "1px solid rgba(20,46,81,.08)", padding: "clamp(28px,3.5vw,44px) clamp(18px,5vw,56px)" }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
+          <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: "rgba(20,46,81,.55)" }}>Thank you to our 2026 sponsors</div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "clamp(22px,4vw,48px)", flexWrap: "wrap", marginTop: 20 }}>
+            {["golden-nugget", "boating", "salt-water-sportsman", "yachting", "pursuit", "press-of-atlantic-city"].map((slug) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={slug} src={`/sponsors/${slug}.png`} alt="" loading="lazy" style={{ height: 40, maxWidth: 130, objectFit: "contain", opacity: 0.85 }} />
+            ))}
+          </div>
+          <Link href="/sponsors" style={{ display: "inline-block", marginTop: 18, fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--linkblue)" }}>
+            Meet all our sponsors <span aria-hidden>→</span>
+          </Link>
+        </div>
+      </section>
+
       {/* POWERED BY BUOY — the one block where Buoy identity leads */}
       <section id="buoy" style={{ scrollMarginTop: 82, background: "var(--bluetint)", padding: "clamp(48px,6vw,80px) clamp(18px,5vw,56px)" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", gap: "clamp(28px,5vw,64px)", flexWrap: "wrap" }}>

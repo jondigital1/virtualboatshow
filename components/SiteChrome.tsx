@@ -173,6 +173,7 @@ export function Footer() {
           <Link href="/vendors" className="link-muted" style={{ color: "rgba(255,255,255,.55)" }}>Marine Marketplace</Link>
           <Link href="/map" className="link-muted" style={{ color: "rgba(255,255,255,.55)" }}>Find Them at the Show</Link>
           <Link href="/plan" className="link-muted" style={{ color: "rgba(255,255,255,.55)" }}>Plan Your Visit</Link>
+          <Link href="/sponsors" className="link-muted" style={{ color: "rgba(255,255,255,.55)" }}>Sponsors</Link>
         </div>
       </div>
     </footer>
