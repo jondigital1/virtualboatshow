@@ -180,3 +180,9 @@ select { -webkit-appearance: none; appearance: none; background-image: url("data
 @media (max-width: 680px) { .dock-grid { grid-template-columns: 1fr; } }
 .dock-results { margin-top: 6px; max-height: 380px; overflow-y: auto; }
 @media (max-width: 680px) { .dock-results { max-height: none; overflow-y: visible; } }
+
+/* Visually hidden, still read aloud. Used by the blurred show-price block. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}

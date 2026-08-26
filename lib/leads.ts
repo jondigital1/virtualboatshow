@@ -6,7 +6,7 @@
  * /api/leads route, which just logs and returns ok. When the CRM is chosen
  * (Apollo, HubSpot, etc.), wire it in ONE place: app/api/leads/route.ts.
  */
-export type LeadType = "trade-in" | "sell-boat" | "vendor-inquiry" | "prequalify" | "ticket-unlock";
+export type LeadType = "trade-in" | "sell-boat" | "vendor-inquiry" | "prequalify" | "ticket-unlock" | "price-request";
 
 export interface LeadPayload {
   type: LeadType;

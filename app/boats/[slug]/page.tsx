@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow, PhonePill } from "@/components/ui";
-import { useIframeModal } from "@/components/IframeModal";
+import { BoatShowPrice } from "@/components/BoatShowPrice";
+import { placementFor } from "@/lib/docks";
 import { boatBySlug, boatTitle, showBoats } from "@/lib/showboats";
 
 const FONT = "var(--font-poppins), sans-serif";
@@ -15,7 +16,6 @@ export default function ShowBoatVDP() {
   const rawSlug = params?.slug;
   const slug = Array.isArray(rawSlug) ? rawSlug[0] : rawSlug;
   const boat = slug ? boatBySlug(slug) : undefined;
-  const { open: openTickets } = useIframeModal();
   const [photo, setPhoto] = useState(0);
   const [lightbox, setLightbox] = useState(-1); // -1 closed, else photo index
   const [zoomed, setZoomed] = useState(false);
@@ -61,6 +61,7 @@ export default function ShowBoatVDP() {
   }
 
   const title = boatTitle(boat);
+  const placement = boat.dealers[0] ? placementFor(boat.dealers[0].name) : undefined;
   const others = showBoats.filter((b) => b.slug !== boat.slug && b.dealers.some((d) => boat.dealers.some((bd) => bd.name === d.name)) && b.photos.length > 0).slice(0, 3);
 
   return (
@@ -154,15 +155,28 @@ export default function ShowBoatVDP() {
                 ) : null}
               </div>
 
+              <BoatShowPrice boat={title} dealer={boat.dealers[0]?.name ?? "the dealer"} />
+
               <div style={{ background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.4)", borderRadius: 14, padding: "16px 18px" }}>
-                <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--navy)" }}>See it at the show</div>
-                <div style={{ fontSize: 14, color: "#33454f", marginTop: 8, lineHeight: 1.6 }}>
-                  September 10–13, 2026 · Farley State Marina<br />
-                  Dock &amp; slip location announced before the show
-                </div>
-                <button onClick={() => openTickets()} className="h-brighten" style={{ display: "inline-flex", alignItems: "center", gap: 7, marginTop: 12, background: "var(--navy)", color: "#fff", fontWeight: 700, fontSize: 12, letterSpacing: ".06em", textTransform: "uppercase", padding: "12px 18px", borderRadius: 8, border: "none", cursor: "pointer", fontFamily: "inherit" }}>
-                  Get Tickets →
-                </button>
+                <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--navy)" }}>Where to find it</div>
+                {placement ? (
+                  <>
+                    <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 18, color: "var(--navy)", marginTop: 7 }}>
+                      {placement.dock === "Land" ? placement.where : `${placement.dock} · ${placement.where}`}
+                    </div>
+                    <div style={{ fontSize: 13.5, color: "#5a6c78", marginTop: 3 }}>
+                      {placement.dock === "Land" ? "Land display" : "On the docks"} · Farley State Marina
+                    </div>
+                  </>
+                ) : (
+                  <div style={{ fontSize: 14, color: "#33454f", marginTop: 8, lineHeight: 1.6 }}>
+                    Dock &amp; slip location announced before the show
+                  </div>
+                )}
+                <div style={{ fontSize: 13.5, color: "#5a6c78", marginTop: 7 }}>September 10&ndash;13, 2026</div>
+                <Link href="/map" style={{ display: "inline-block", marginTop: 12, fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--linkblue)" }}>
+                  Find it on the map <span aria-hidden>&rarr;</span>
+                </Link>
               </div>
 
               {boat.dealers.map((d) => (

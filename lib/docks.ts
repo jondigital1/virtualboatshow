@@ -97,3 +97,20 @@ export const pct = (dock: Dock, from: number, to: number) => {
     width: ((to - from + 1) / total) * 100,
   };
 };
+
+/**
+ * Boat records and the dock notes spell some dealers differently. Keep this an
+ * explicit alias list rather than fuzzy matching, so an unlisted dealer shows
+ * nothing instead of silently resolving to the wrong berth.
+ */
+const ALIASES: Record<string, string> = {
+  "Clarks Landing Yacht Sales & Marina": "Clarks Landing Yacht Sales",
+  "Comstock Yacht Sales & Marina": "Comstock Yacht Sales",
+  "G Winter's Sailing Center": "G Winter's / Riverside Marina",
+  "Riverside Marina & Yacht Sales": "G Winter's / Riverside Marina",
+};
+
+export function placementFor(dealer: string): Placement | undefined {
+  const key = ALIASES[dealer] ?? dealer;
+  return PLACEMENTS.find((p) => p.name === key);
+}
