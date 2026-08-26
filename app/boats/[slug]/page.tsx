@@ -187,7 +187,7 @@ export default function ShowBoatVDP() {
 
             {/* SIDE PANEL */}
             <div className="vdp-rail">
-              <BoatShowPrice boat={title} dealer={boat.dealers[0]?.name ?? "the dealer"} />
+              <BoatShowPrice boat={boat} dealer={boat.dealers[0]?.name ?? "the dealer"} />
 
               <div style={{ background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.4)", borderRadius: 14, padding: "16px 18px" }}>
                 <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--navy)" }}>Where to find it</div>

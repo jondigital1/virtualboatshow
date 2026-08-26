@@ -5,6 +5,8 @@ import { useMemo, useRef, useState } from "react";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow } from "@/components/ui";
 import { showBoats, waitingDealers, boatTitle, allBrands, allDealers, type ShowBoat } from "@/lib/showboats";
+import { DocksideWalkthrough } from "@/components/DocksideWalkthrough";
+import { placementFor } from "@/lib/docks";
 
 const FONT = "var(--font-poppins), sans-serif";
 
@@ -179,6 +181,12 @@ function ShowBoatCard({ b }: { b: ShowBoat }) {
   const [idx, setIdx] = useState(0);
   const touchX = useRef<number | null>(null);
   const many = b.photos.length > 1;
+  const placement = b.dealers[0] ? placementFor(b.dealers[0].name) : undefined;
+  const berth = placement
+    ? placement.dock === "Land"
+      ? `${placement.where} · land display`
+      : `${placement.dock} · ${placement.where}`
+    : "Dock & slip announced before the show";
   const step = (d: number) => setIdx((i) => (i + d + b.photos.length) % b.photos.length);
   const arrowStyle = (side: "left" | "right"): React.CSSProperties => ({ position: "absolute", [side]: 6, top: "50%", transform: "translateY(-50%)", zIndex: 3, width: 32, height: 32, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.92)", color: "var(--navy)", cursor: "pointer", fontSize: 17, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(20,46,81,.25)" });
   return (
@@ -237,12 +245,15 @@ function ShowBoatCard({ b }: { b: ShowBoat }) {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12.5, color: "#5a6c78" }}>
           <span>⚓ {dealerLine}</span>
-          <span>📍 Dock &amp; slip announced before the show</span>
+          <span>📍 {berth}</span>
         </div>
-        <div style={{ marginTop: "auto", paddingTop: 10, borderTop: "1px solid rgba(20,46,81,.08)" }}>
+        <div style={{ marginTop: "auto", paddingTop: 10, borderTop: "1px solid rgba(20,46,81,.08)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
           <Link href={href} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--linkblue)" }}>
             View Boat <span aria-hidden>→</span>
           </Link>
+          {b.dealers[0] && (
+            <DocksideWalkthrough boat={b} dealer={{ name: b.dealers[0].name }} source="inventory-card" variant="compact" />
+          )}
         </div>
       </div>
     </div>
