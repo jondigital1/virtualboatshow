@@ -6,7 +6,13 @@
  * /api/leads route, which just logs and returns ok. When the CRM is chosen
  * (Apollo, HubSpot, etc.), wire it in ONE place: app/api/leads/route.ts.
  */
-export type LeadType = "trade-in" | "sell-boat" | "vendor-inquiry" | "prequalify" | "ticket-unlock" | "price-request" | "dockside-walkthrough";
+/**
+ * Only the two types below are reachable from a form. "trade-in",
+ * "sell-boat", "prequalify", "ticket-unlock", and "price-request" were removed
+ * with the features that used them; leaving them here made the system look
+ * like it had five silent forms when it had one.
+ */
+export type LeadType = "dockside-walkthrough" | "vendor-inquiry";
 
 export interface LeadPayload {
   type: LeadType;

@@ -39,9 +39,26 @@ export default function Vendors() {
   const setField = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm((s) => ({ ...s, [k]: e.target.value }));
   const cur = DECK[deck];
 
-  const onSubmit = (e: React.FormEvent) => {
+  const [sending, setSending] = useState(false);
+  const [formErr, setFormErr] = useState("");
+
+  // Was fire-and-forget: it showed the thank-you screen whether or not the
+  // request succeeded, so a failed enquiry looked identical to a delivered one.
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    submitLead({ type: "vendor-inquiry", interest, ...form });
+    if (!form.name.trim()) return setFormErr("Enter your name.");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email.trim())) return setFormErr("Enter a valid email address.");
+    setFormErr("");
+    setSending(true);
+    const { ok } = await submitLead({
+      type: "vendor-inquiry",
+      interest,
+      ...form,
+      pageUrl: typeof window !== "undefined" ? window.location.href : "",
+      referrer: typeof document !== "undefined" ? document.referrer : "",
+    });
+    setSending(false);
+    if (!ok) return setFormErr("Something went wrong. Try again, or email customerinquiry@acvirtualboatshow.com.");
     setSubmitted(true);
   };
 

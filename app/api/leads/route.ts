@@ -193,6 +193,73 @@ async function walkthrough(d: Record<string, unknown>) {
   return NextResponse.json({ ok: true, delivered: true });
 }
 
+/**
+ * Partnership enquiries from /vendors. These go to the show inbox rather than
+ * to a dealer: they are people asking to exhibit or sponsor, not shoppers.
+ *
+ * marketing_opt_in is true here without a checkbox, and deliberately so: the
+ * entire purpose of the form is to ask us to get in touch, which is consent by
+ * any reasonable reading. A shopper browsing boats is a different situation,
+ * which is why that form asks explicitly.
+ *
+ * The message body is emailed but not stored. It is free text a human acts on,
+ * and keeping it out of the database avoids holding correspondence we have no
+ * process for.
+ */
+async function vendorInquiry(d: Record<string, unknown>) {
+  const company = clean(d.company, CAP.text);
+  const name = clean(d.name, CAP.name);
+  const email = clean(d.email, CAP.email);
+  const interest = clean(d.interest, CAP.text);
+  const message = clean(d.message, 4000);
+
+  if (!name || !validEmail(email)) {
+    return NextResponse.json({ ok: false, error: "name and a valid email are required" }, { status: 400 });
+  }
+
+  const leadId = await insertLead({
+    type: "vendor-inquiry",
+    source: "vendors-page",
+    dealer_name: company || null,
+    page_url: clean(d.pageUrl, 500) || null,
+    referrer: clean(d.referrer, 500) || null,
+    daypart: interest || null,
+    contact_hash: contactHash(email),
+    marketing_opt_in: true,
+    first_name: name,
+    last_name: null,
+    email,
+    phone: clean(d.phone, CAP.phone) || null,
+  });
+
+  if (!mailConfigured()) {
+    console.log("[lead:vendor:unconfigured]", JSON.stringify(safeSummary(d, { stored: Boolean(leadId) })));
+    return NextResponse.json({ ok: true, delivered: false });
+  }
+
+  const result = await send({
+    to: [COPY_TO],
+    replyTo: email,
+    subject: `Partnership enquiry — ${company || name}`,
+    text: [
+      `New enquiry from the Marine Marketplace page.`,
+      ``,
+      `Interested in: ${interest || "not specified"}`,
+      `Company:       ${company || "not given"}`,
+      `Name:          ${name}`,
+      `Email:         ${email}`,
+      ``,
+      message ? `Message:\n${message}` : `(no message)`,
+      ``,
+      `Reply to this email to reach them directly.`,
+    ].join("\n"),
+  });
+
+  if (leadId) await markDelivered(leadId, result.ok, result.ok ? undefined : result.error);
+  console.log("[lead:vendor]", JSON.stringify(safeSummary(d, { stored: Boolean(leadId), delivered: result.ok })));
+  return NextResponse.json({ ok: true, delivered: result.ok });
+}
+
 export async function POST(req: Request) {
   let data: Record<string, unknown>;
   try {
@@ -208,6 +275,7 @@ export async function POST(req: Request) {
   }
 
   if (data.type === "dockside-walkthrough") return walkthrough(data);
+  if (data.type === "vendor-inquiry") return vendorInquiry(data);
 
   console.log("[lead]", JSON.stringify(safeSummary(data)));
   return NextResponse.json({ ok: true, delivered: false });
