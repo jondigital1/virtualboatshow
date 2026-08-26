@@ -45,3 +45,6 @@ dev-server.log
 
 .vercel
 .env*
+
+# Backstop source, re-downloaded by the daily sync each run
+design-specs/rebrand/2026-Boats-for-Jon.xlsx
