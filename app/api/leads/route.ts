@@ -219,7 +219,9 @@ async function vendorInquiry(d: Record<string, unknown>) {
 
   const leadId = await insertLead({
     type: "vendor-inquiry",
-    source: "vendors-page",
+    // Caller-supplied source wins so test submissions stay identifiable;
+    // the form itself sends nothing, hence the default.
+    source: clean(d.source, CAP.text) || "vendors-page",
     dealer_name: company || null,
     page_url: clean(d.pageUrl, 500) || null,
     referrer: clean(d.referrer, 500) || null,
