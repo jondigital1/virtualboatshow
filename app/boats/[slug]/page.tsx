@@ -161,30 +161,6 @@ export default function ShowBoatVDP() {
 
             </div>
 
-            {/* DESCRIPTION — its own grid item so it can sit below the rail on phones */}
-            <div className="vdp-about">
-              {boat.blurb && (
-                <div style={{ marginTop: 22 }}>
-                  <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 17, letterSpacing: ".02em", textTransform: "uppercase", color: "var(--navy)", margin: 0 }}>About this boat</h2>
-                  <span className="gold-rule" style={{ margin: "10px 0 0", width: 44, height: 3 }} />
-                  <div className={showBlurb ? undefined : "vdp-blurb-clamp"}>
-                    {boat.blurb.split(/\n+/).map((para, i) => (
-                      <p key={i} style={{ fontSize: 15, lineHeight: 1.68, color: "#4c6270", margin: "12px 0 0" }}>{para}</p>
-                    ))}
-                  </div>
-                  <button
-                    onClick={() => setShowBlurb((v) => !v)}
-                    style={{ marginTop: 10, background: "none", border: "none", padding: 0, cursor: "pointer", fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--linkblue)" }}
-                  >
-                    {showBlurb ? "Show less" : "Read more"} <span aria-hidden>{showBlurb ? "\u2191" : "\u2193"}</span>
-                  </button>
-                </div>
-              )}
-              <p style={{ fontSize: 12.5, color: "#8595a0", margin: "14px 0 0" }}>
-                Photos and details courtesy of {boat.dealers[0].name}{boat.shared ? " and " + boat.brand : ""}. Boats and locations are subject to change. Confirm details with the dealer.
-              </p>
-            </div>
-
             {/* SIDE PANEL */}
             <div className="vdp-rail">
               <BoatShowPrice boat={boat} dealer={boat.dealers[0]?.name ?? "the dealer"} />
@@ -228,6 +204,31 @@ export default function ShowBoatVDP() {
                 </div>
               ))}
 
+            </div>
+
+            {/* DESCRIPTION — after the rail in the DOM so reading order matches
+                the order phones display, rather than relying on CSS order. */}
+            <div className="vdp-about">
+              {boat.blurb && (
+                <div style={{ marginTop: 22 }}>
+                  <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 17, letterSpacing: ".02em", textTransform: "uppercase", color: "var(--navy)", margin: 0 }}>About this boat</h2>
+                  <span className="gold-rule" style={{ margin: "10px 0 0", width: 44, height: 3 }} />
+                  <div className={showBlurb ? undefined : "vdp-blurb-clamp"}>
+                    {boat.blurb.split(/\n+/).map((para, i) => (
+                      <p key={i} style={{ fontSize: 15, lineHeight: 1.68, color: "#4c6270", margin: "12px 0 0" }}>{para}</p>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => setShowBlurb((v) => !v)}
+                    style={{ marginTop: 10, background: "none", border: "none", padding: 0, cursor: "pointer", fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--linkblue)" }}
+                  >
+                    {showBlurb ? "Show less" : "Read more"} <span aria-hidden>{showBlurb ? "\u2191" : "\u2193"}</span>
+                  </button>
+                </div>
+              )}
+              <p style={{ fontSize: 12.5, color: "#8595a0", margin: "14px 0 0" }}>
+                Photos and details courtesy of {boat.dealers[0].name}{boat.shared ? " and " + boat.brand : ""}. Boats and locations are subject to change. Confirm details with the dealer.
+              </p>
             </div>
           </div>
 

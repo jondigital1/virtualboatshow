@@ -205,9 +205,12 @@ select { -webkit-appearance: none; appearance: none; background-image: url("data
 .vdp-about { grid-column: 1; grid-row: 2; min-width: 0; }
 @media (max-width: 900px) {
   .vdp-grid { grid-template-columns: 1fr; }
-  .vdp-media { grid-column: 1; grid-row: auto; order: 1; }
-  .vdp-rail { grid-column: 1; grid-row: auto; order: 2; }
-  .vdp-about { grid-column: 1; grid-row: auto; order: 3; }
+  /* Source order is already gallery, rail, description, so a single column
+     needs no reordering. An earlier version used CSS order here, which moved
+     the blocks visually but not in the DOM: sighted users met the price block
+     before the description while keyboard and screen-reader users met it
+     after. */
+  .vdp-media, .vdp-rail, .vdp-about { grid-column: 1; grid-row: auto; }
 }
 
 /* Dealer descriptions run long and are mostly marketing boilerplate; show a
