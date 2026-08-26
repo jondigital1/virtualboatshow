@@ -172,20 +172,9 @@ export default function ShowBoatVDP() {
                   {d.loc && <div style={{ fontSize: 13.5, color: "#5a6c78", marginTop: 3 }}>{d.loc}</div>}
                   <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 12, alignItems: "center" }}>
                     {d.phone && <PhonePill phone={d.phone} />}
-                    {boat.sourceUrl && (boat.official || !boat.shared) && (
-                      <a href={boat.sourceUrl} target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "#fff", color: "var(--navy)", fontWeight: 700, fontSize: 12, letterSpacing: ".05em", textTransform: "uppercase", padding: "11px 16px", borderRadius: 8, border: "1.5px solid rgba(20,46,81,.25)" }}>
-                        {boat.official ? `${boat.brand} model page →` : "Full listing at the dealer →"}
-                      </a>
-                    )}
                   </div>
                 </div>
               ))}
-
-              {boat.brandUrl && (
-                <a href={boat.brandUrl} target="_blank" rel="noopener noreferrer" style={{ fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--linkblue)" }}>
-                  Explore {boat.brand} →
-                </a>
-              )}
 
             </div>
           </div>

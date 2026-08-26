@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { ShowMap as OfficialShowMap } from "@/components/ShowMap";
+import { DockList } from "@/components/DockList";
 import { DISPLAY, MONO, Eyebrow } from "@/components/ui";
 
 const FONT = "var(--font-poppins), sans-serif";
@@ -68,6 +69,8 @@ export default function ShowMap() {
             <span aria-hidden style={{ width: 18, height: 18, borderRadius: "50%", background: "var(--lightblue)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, flex: "0 0 auto" }}>i</span>
             <span style={{ fontSize: 13.5, color: "rgba(20,46,81,.75)" }}>Map is subject to change. Please check with show staff for the most up-to-date information.</span>
           </div>
+
+          <DockList />
 
           {/* how the map + directory work together */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,260px),1fr))", gap: 18, marginTop: 34 }}>

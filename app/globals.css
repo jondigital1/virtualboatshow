@@ -172,3 +172,11 @@ input[type=range]::-moz-range-thumb { width: 19px; height: 19px; border-radius: 
 
 /* native select arrow tidy-up */
 select { -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238595a0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; }
+
+/* Dock assignments (components/DockList.tsx): the three groups run as
+   columns across the full width on desktop and stack vertically on phones. */
+.dock-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 22px; align-items: start; }
+@media (max-width: 1000px) { .dock-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 680px) { .dock-grid { grid-template-columns: 1fr; } }
+.dock-results { margin-top: 6px; max-height: 380px; overflow-y: auto; }
+@media (max-width: 680px) { .dock-results { max-height: none; overflow-y: visible; } }
