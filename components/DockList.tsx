@@ -1,8 +1,5 @@
-"use client";
-
-import { useState } from "react";
 import { DISPLAY, MONO, Eyebrow } from "@/components/ui";
-import { DOCKS, LAND, PLACEMENTS, type Dock } from "@/lib/docks";
+import { DOCKS, LAND, type Dock } from "@/lib/docks";
 
 const FONT = "var(--font-poppins), sans-serif";
 
@@ -52,10 +49,6 @@ function DockGroup({ dock }: { dock: Dock }) {
 }
 
 export function DockList() {
-  const [q, setQ] = useState("");
-  const term = q.trim().toLowerCase();
-  const rows = PLACEMENTS.filter((p) => !term || p.name.toLowerCase().includes(term));
-
   return (
     <div style={{ marginTop: 34 }}>
       <Eyebrow>Where to find them</Eyebrow>
@@ -78,34 +71,6 @@ export function DockList() {
             </div>
           ))}
         </Group>
-      </div>
-
-      <div style={{ ...cardStyle, marginTop: 16 }}>
-        <label htmlFor="dock-search" style={{ fontFamily: MONO, fontWeight: 600, fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: "rgba(20,46,81,.55)" }}>
-          Find an exhibitor
-        </label>
-        <input
-          id="dock-search"
-          type="text"
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Start typing a name"
-          style={{ width: "100%", marginTop: 9, background: "var(--bluetint)", border: "1px solid rgba(20,46,81,.14)", borderRadius: 10, padding: "12px 14px", fontSize: 15, color: "var(--navy)", fontFamily: "inherit" }}
-        />
-        <div className="dock-results">
-          {rows.map((p, i) => (
-            <div key={p.name} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 0", borderTop: "1px solid rgba(20,46,81,.07)" }}>
-              <span style={{ flex: 1, fontSize: 14, color: "var(--navy)", minWidth: 0 }}>{p.name}</span>
-              <span style={{ fontFamily: MONO, fontSize: 10.5, fontWeight: 600, letterSpacing: ".06em", textTransform: "uppercase", background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.5)", color: "var(--linkblue)", borderRadius: 999, padding: "4px 10px", whiteSpace: "nowrap" }}>
-                {p.dock}
-              </span>
-              <span style={{ fontFamily: MONO, fontSize: 12, color: "rgba(20,46,81,.6)", minWidth: 88, textAlign: "right", whiteSpace: "nowrap" }}>{p.where}</span>
-            </div>
-          ))}
-          {!rows.length && (
-            <div style={{ fontSize: 14, color: "rgba(20,46,81,.6)", padding: "12px 0" }}>No exhibitor by that name.</div>
-          )}
-        </div>
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 10, background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.35)", borderRadius: 10, padding: "11px 16px", marginTop: 16 }}>

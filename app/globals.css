@@ -178,8 +178,6 @@ select { -webkit-appearance: none; appearance: none; background-image: url("data
 .dock-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 22px; align-items: start; }
 @media (max-width: 1000px) { .dock-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 680px) { .dock-grid { grid-template-columns: 1fr; } }
-.dock-results { margin-top: 6px; max-height: 380px; overflow-y: auto; }
-@media (max-width: 680px) { .dock-results { max-height: none; overflow-y: visible; } }
 
 /* Visually hidden, still read aloud. Used by the blurred show-price block. */
 .sr-only {
