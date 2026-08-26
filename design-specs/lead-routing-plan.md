@@ -23,8 +23,18 @@ DONE and verified in production:
 - End-to-end test through the live endpoint: SPF, DKIM, and DMARC all PASS,
   message delivered to the inbox, not spam.
 
-STILL TO DO: dealer addresses, Supabase storage, consent checkbox, privacy
-policy, the cron digest, and the other five lead types.
+Supabase project `virtualboatshow` (separate from anything Buoy). Table,
+constraint, RLS, and `lead_stats` view created. Env vars set and marked
+Sensitive in Vercel, so values cannot be read back by CLI or dashboard —
+verify storage through the function log's `stored` field, not local queries.
+
+Verified with two live submissions: both stored and delivered, consent gate
+behaved correctly (contact columns null without opt-in, populated with it),
+and the fallback routed to the show inbox because no dealer has an address
+yet. Test rows deleted; table is empty.
+
+STILL TO DO: dealer addresses, privacy policy, the cron digest, and the other
+five lead types.
 
 Tighten DMARC from `p=none` to `p=quarantine` after a week or two of clean
 reports, not before.
