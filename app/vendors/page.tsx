@@ -14,7 +14,7 @@ function deco(r: Row) {
 }
 
 const DECK = [
-  ["01 · The audience", "40,000+ boaters, one weekend", "The Atlantic City In-Water Boat Show draws serious, high-intent buyers, and Buoy puts your brand in front of them online for weeks before the docks even open."],
+  ["01 · The audience", "15,000+ boaters, one weekend", "The Atlantic City In-Water Boat Show draws serious, high-intent buyers, and Buoy puts your brand in front of them online for weeks before the docks even open."],
   ["02 · Why partner", "Meet buyers ready to spend", "These aren’t window shoppers. Show visitors come to compare, finance, and buy, with the average purchase well into five and six figures."],
   ["03 · Packages", "From booths to title sponsorship", "Dealer slips, vendor booths, sponsored map pins, banner placements, stage time, and full title sponsorship, scaled to fit your goals and budget."],
   ["04 · Digital reach", "Always-on placement on Buoy", "Every package includes year-round exposure across the marketplace, boat detail pages, and the interactive show map, not just the weekend of the show."],
