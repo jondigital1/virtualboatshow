@@ -154,8 +154,6 @@ export default function Home() {
               )}
             </div>
           </div>
-
-          <InfoBar>Lineup, products and locations are subject to change.</InfoBar>
         </div>
       </section>
 
@@ -193,9 +191,6 @@ export default function Home() {
                 </Link>
               ))}
             </div>
-            <p style={{ fontFamily: FONT, fontSize: 12.5, color: "#8595a0", margin: "16px 0 0" }}>
-              A rotating selection from the show lineup. Every participating dealer shares this space equally.
-            </p>
           </div>
         </section>
       )}

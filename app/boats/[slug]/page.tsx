@@ -20,6 +20,7 @@ export default function ShowBoatVDP() {
   const [photo, setPhoto] = useState(0);
   const [lightbox, setLightbox] = useState(-1); // -1 closed, else photo index
   const [zoomed, setZoomed] = useState(false);
+  const [showBlurb, setShowBlurb] = useState(false);
   const touchX = useRef<number | null>(null);
   const count = boat?.photos.length ?? 0;
 
@@ -93,9 +94,9 @@ export default function ShowBoatVDP() {
             <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,3.4vw,44px)", lineHeight: 1.05, letterSpacing: "-.018em", margin: "8px 0 0", color: "var(--navy)", textWrap: "balance" }}>{title}</h1>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "minmax(min(100%,400px),3fr) minmax(280px,2fr)", gap: "clamp(22px,3vw,40px)", marginTop: 16, alignItems: "start" }} className="map-grid">
+          <div className="vdp-grid">
             {/* GALLERY */}
-            <div style={{ minWidth: 0 }}>
+            <div className="vdp-media">
               <div
                 style={{ position: "relative", aspectRatio: "16/10", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(20,46,81,.12)", background: "linear-gradient(160deg,#e8eef3,#dfe7ee)", touchAction: "pan-y" }}
                 onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
@@ -158,13 +159,25 @@ export default function ShowBoatVDP() {
                 </div>
               )}
 
+            </div>
+
+            {/* DESCRIPTION — its own grid item so it can sit below the rail on phones */}
+            <div className="vdp-about">
               {boat.blurb && (
                 <div style={{ marginTop: 22 }}>
                   <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 17, letterSpacing: ".02em", textTransform: "uppercase", color: "var(--navy)", margin: 0 }}>About this boat</h2>
                   <span className="gold-rule" style={{ margin: "10px 0 0", width: 44, height: 3 }} />
-                  {boat.blurb.split(/\n+/).map((para, i) => (
-                    <p key={i} style={{ fontSize: 15, lineHeight: 1.68, color: "#4c6270", margin: "12px 0 0" }}>{para}</p>
-                  ))}
+                  <div className={showBlurb ? undefined : "vdp-blurb-clamp"}>
+                    {boat.blurb.split(/\n+/).map((para, i) => (
+                      <p key={i} style={{ fontSize: 15, lineHeight: 1.68, color: "#4c6270", margin: "12px 0 0" }}>{para}</p>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => setShowBlurb((v) => !v)}
+                    style={{ marginTop: 10, background: "none", border: "none", padding: 0, cursor: "pointer", fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--linkblue)" }}
+                  >
+                    {showBlurb ? "Show less" : "Read more"} <span aria-hidden>{showBlurb ? "\u2191" : "\u2193"}</span>
+                  </button>
                 </div>
               )}
               <p style={{ fontSize: 12.5, color: "#8595a0", margin: "14px 0 0" }}>
@@ -173,7 +186,7 @@ export default function ShowBoatVDP() {
             </div>
 
             {/* SIDE PANEL */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div className="vdp-rail">
               <BoatShowPrice boat={title} dealer={boat.dealers[0]?.name ?? "the dealer"} />
 
               <div style={{ background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.4)", borderRadius: 14, padding: "16px 18px" }}>

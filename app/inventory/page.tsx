@@ -125,11 +125,6 @@ export default function Inventory() {
             </div>
           )}
 
-          <div style={{ display: "flex", alignItems: "center", gap: 10, background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.35)", borderRadius: 10, padding: "11px 16px", marginTop: 26 }}>
-            <span aria-hidden style={{ width: 18, height: 18, borderRadius: "50%", background: "var(--lightblue)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, flex: "0 0 auto" }}>i</span>
-            <span style={{ fontSize: 13.5, color: "rgba(20,46,81,.75)" }}>Boats and locations are subject to change. Please check with the dealer for the most up-to-date information.</span>
-          </div>
-
           {waitingDealers.length > 0 && (
             <div style={{ marginTop: 34 }}>
               <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 18, color: "var(--navy)", textTransform: "uppercase", letterSpacing: ".02em", margin: 0 }}>More lineups on the way</h2>
