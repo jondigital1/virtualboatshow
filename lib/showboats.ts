@@ -31,6 +31,8 @@ export type ShowBoat = {
   photos: string[];
   blurb: string;
   lengthFt: number | null;
+  /** Manufacturer credited when their photos filled a thin dealer gallery. */
+  photoCredit?: string | null;
 };
 
 export type WaitingDealer = { dealer: string; brands: string[] };

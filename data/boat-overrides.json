@@ -1,5 +1,5 @@
 {
-  "_comment": "Per-boat source overrides: boats whose workbook link is a search page or brand homepage pull photos/description from the manufacturer's model page instead. official:true relabels the VDP outbound link as the brand model page. primaryPhoto:N promotes photo N to the front when the source page leads with a schematic, a trailer close-up or a dark render. Applied by scripts/import-show-boats.mjs after parsing; survives daily syncs.",
+  "_comment": "Per-boat source overrides: boats whose workbook link is a search page or brand homepage pull photos/description from the manufacturer's model page instead. official:true relabels the VDP outbound link as the brand model page. primaryPhoto:N promotes photo N to the front when the source page leads with a schematic, a trailer close-up or a dark render. photoFallback {url,token,credit} tops up a thin gallery from the manufacturer's model page; token must appear in the filename so another model's hero shot cannot land on this boat. Applied by scripts/import-show-boats.mjs after parsing; survives daily syncs.",
   "monterey-34-elite": {
     "official": true,
     "sourceUrls": [
@@ -96,5 +96,40 @@
   },
   "formula-360-cbr": {
     "blurb": "The Formula 360 Crossover Bowrider does two jobs without compromise: open-bow day boating and genuine performance cruising, with overnight-capable cabin space below and Formula's signature build quality throughout."
+  },
+  "world-cat-235-te-center-console": {
+    "photoFallback": {
+      "url": "https://worldcat.com/models/235te/",
+      "token": "235",
+      "credit": "World Cat"
+    }
+  },
+  "world-cat-325-dual-console": {
+    "photoFallback": {
+      "url": "https://worldcat.com/models/325dc/",
+      "token": "325",
+      "credit": "World Cat"
+    }
+  },
+  "world-cat-280-center-console": {
+    "photoFallback": {
+      "url": "https://worldcat.com/models/280cc-x/",
+      "token": "280",
+      "credit": "World Cat"
+    }
+  },
+  "steiger-craft-31-fisherman": {
+    "photoFallback": {
+      "url": "https://www.steigercraft.com/31-fisherman/",
+      "token": "31-fisherman",
+      "credit": "Steiger Craft"
+    }
+  },
+  "steiger-craft-255-miami": {
+    "photoFallback": {
+      "url": "https://www.steigercraft.com/255-miami/",
+      "token": "255",
+      "credit": "Steiger Craft"
+    }
   }
 }

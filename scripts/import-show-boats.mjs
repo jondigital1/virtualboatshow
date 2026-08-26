@@ -218,6 +218,8 @@ function mergeShared(boats) {
       photos: [],
       blurb: "",
       lengthFt: lengthFromModel(b.model),
+      /** Set when manufacturer photos were used to fill a thin gallery. */
+      photoCredit: null,
     };
     if (key) byKey.set(key, rec);
     out.push(rec);
@@ -416,6 +418,80 @@ async function enrich(boat) {
   return "ok";
 }
 
+/** Galleries below this are considered thin enough to top up. */
+const MIN_GALLERY = 4;
+
+/**
+ * Fill a thin gallery from the manufacturer's model page.
+ *
+ * Several dealer sites lazy-load their galleries, so a harvest returns one or
+ * two images however well the page is written. Where the manufacturer publishes
+ * a real model page, its photos are better than nothing.
+ *
+ * Two rules make this safe rather than harmful:
+ *
+ *  - A model TOKEN is required and the filename must contain it. Manufacturer
+ *    pages carry hero images for their whole range, so an unfiltered harvest of
+ *    worldcat.com/models/235te/ hands you 400 CC X and 325 CC photos and puts
+ *    another boat on this boat's page. That is worse than a thin gallery.
+ *  - Manufacturer shots go AFTER any real dealer photos, never in front, and
+ *    the boat is flagged so the page can credit them honestly. They show the
+ *    model, not the hull arriving at the show.
+ */
+async function topUpFromManufacturer(boat) {
+  const o = OVERRIDES[boat.slug];
+  const fb = o?.photoFallback;
+  if (!fb?.url || !fb?.token) return null;
+  if (boat.photos.length >= MIN_GALLERY) return null;
+
+  const html = await fetchWithTimeout(fb.url);
+  if (!html) return null;
+
+  const junk = /favicon|logo|icon|sprite|placeholder|badge|pixel|site-identity/i;
+  const seen = new Set();
+  const candidates = [];
+  for (const m of html.matchAll(/https?:\/\/[^"'\s)]+?\.(?:jpg|jpeg|png|webp)/gi)) {
+    const raw = m[0];
+    if (junk.test(raw)) continue;
+    // Same size-variant dedupe the main harvest uses.
+    const key = raw.split("?")[0].replace(/-\d{2,4}x\d{2,4}(?=\.\w+$)/, "");
+    const file = key.split("/").pop() ?? "";
+    if (!file.includes(fb.token)) continue;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    candidates.push(raw);
+  }
+  if (!candidates.length) return null;
+
+  const mine = new RegExp("^" + boat.slug.replace(/[.*+?^${}()|[\]\\]/g, "\\async function main() {") + "-\\d+\\.(jpe?g|png|webp)$", "i");
+  const existing = readdirSync(PHOTO_DIR).filter((f) => mine.test(f));
+  let next = existing.reduce((m, f) => Math.max(m, Number(f.match(/-(\d+)\.\w+$/)?.[1]) || 0), 0);
+
+  const added = [];
+  for (const p of candidates) {
+    if (boat.photos.length + added.length >= MAX_PHOTOS) break;
+    const buf = await fetchWithTimeout(p, 25000, true);
+    if (!buf || buf.length < 8000 || buf.length > 15_000_000) continue;
+    try {
+      const img = sharp(buf);
+      const meta = await img.metadata();
+      if (!meta.width || meta.width < 500 || (meta.height ?? 0) < 300) continue;
+      const out = await img.resize({ width: 1280, withoutEnlargement: true }).jpeg({ quality: 80, mozjpeg: true }).toBuffer();
+      const name = `${boat.slug}-${++next}.jpg`;
+      writeFileSync(join(PHOTO_DIR, name), out);
+      added.push("/boats/" + name);
+    } catch {
+      continue;
+    }
+    await new Promise((r) => setTimeout(r, 200));
+  }
+
+  if (!added.length) return null;
+  boat.photos = [...boat.photos, ...added];
+  boat.photoCredit = fb.credit ?? boat.brand;
+  return added.length;
+}
+
 async function main() {
   const { boats: rows, waiting } = parseRows();
   const boats = mergeShared(rows);
@@ -456,6 +532,13 @@ async function main() {
     }
   });
   await Promise.all(workers);
+
+  // Top up thin galleries from the manufacturer, one at a time: these are
+  // courtesy fetches against sites that did not ask for our traffic.
+  for (const b of boats) {
+    const n = await topUpFromManufacturer(b);
+    if (n) console.log(`topped up    ${b.brand} ${b.model} +${n} from ${b.photoCredit}`);
+  }
 
   // Manual description overrides win over whatever the page served.
   for (const b of boats) {
