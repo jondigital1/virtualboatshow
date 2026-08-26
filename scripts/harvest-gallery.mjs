@@ -15,6 +15,10 @@
  * return 403 to headless Chromium exactly as they do to fetch, so their boats
  * still need assets from the dealer.
  *
+ * First run on a machine needs the browser binaries:
+ *   npx.cmd playwright install chromium
+ * (npx.cmd, not npx: PowerShell's execution policy blocks the .ps1 shim.)
+ *
  * Usage:
  *   node scripts/harvest-gallery.mjs --thin          every boat under 4 photos
  *   node scripts/harvest-gallery.mjs --slugs=a,b,c   named boats
@@ -159,7 +163,17 @@ async function harvest(ctx, page, boat) {
   return { slug: boat.slug, status: "ok", before: existing.length, after: written.length };
 }
 
-const browser = await chromium.launch();
+// The default launch wants a separate chrome-headless-shell binary, which
+// some shells fail to see even when it is present and complete. The full
+// Chromium build is installed alongside it and works identically here, so
+// fall back to that rather than making the caller debug their environment.
+let browser;
+try {
+  browser = await chromium.launch();
+} catch (e) {
+  console.log("headless shell unavailable, using full chromium");
+  browser = await chromium.launch({ channel: "chromium" });
+}
 const ctx = await browser.newContext({
   viewport: { width: 1400, height: 1000 },
   locale: "en-US",
