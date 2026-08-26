@@ -147,3 +147,17 @@ export function pickExhibitors(n = 4): Row[] {
   }
   return pool.slice(0, n);
 }
+
+/**
+ * Boat records credit MarineMax as one dealer; the exhibitor directory lists
+ * their three locations separately, so DEALER_LOGOS has no plain "MarineMax"
+ * key. Alias rather than fuzzy-match, so an unknown dealer falls back to the
+ * monogram instead of borrowing someone else's logo.
+ */
+const LOGO_ALIASES: Record<string, string> = {
+  MarineMax: "MarineMax (Brick)",
+};
+
+export function logoFor(dealer: string): string | undefined {
+  return DEALER_LOGOS[dealer] ?? DEALER_LOGOS[LOGO_ALIASES[dealer] ?? ""];
+}
