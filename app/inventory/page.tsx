@@ -247,10 +247,15 @@ function ShowBoatCard({ b }: { b: ShowBoat }) {
             all "what this boat is and where to find it". */}
         <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12.5, color: "#5a6c78" }}>
           <span>⚓ {dealerLine}</span>
-          <span>📍 {berth}</span>
-          <Link href={href} style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 4, fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--linkblue)" }}>
-            View Boat <span aria-hidden>→</span>
-          </Link>
+          {/* View Boat shares the berth's line, pushed right. Baseline
+              alignment rather than centre so the two read as one line of type
+              despite the link being uppercase and bolder. */}
+          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
+            <span style={{ minWidth: 0 }}>📍 {berth}</span>
+            <Link href={href} style={{ flex: "0 0 auto", whiteSpace: "nowrap", fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--linkblue)" }}>
+              View Boat <span aria-hidden>→</span>
+            </Link>
+          </div>
         </div>
         {/* The action gets the space below the rule to itself, centred both
             ways. marginTop auto pins it to the bottom so the button lands on
