@@ -267,7 +267,7 @@ export default function Vendors() {
                     </div>
                   </div>
                   <button type="submit" className="h-brighten" style={{ width: "100%", marginTop: 20, background: "var(--accent)", color: "#142E51", fontWeight: 700, fontSize: 16, padding: 16, borderRadius: 12, border: "none", cursor: "pointer" }}>Send inquiry →</button>
-                  <p style={{ fontSize: 12, color: "#8595a0", textAlign: "center", margin: "14px 0 0" }}>Prefer email? <a href="mailto:partners@acinwaterboatshow.com" style={{ fontWeight: 600 }}>partners@acinwaterboatshow.com</a></p>
+                  <p style={{ fontSize: 12, color: "#8595a0", textAlign: "center", margin: "14px 0 0" }}>Prefer email? <a href="mailto:customerinquiry@acvirtualboatshow.com" style={{ fontWeight: 600 }}>customerinquiry@acvirtualboatshow.com</a></p>
                 </form>
               )}
             </div>
