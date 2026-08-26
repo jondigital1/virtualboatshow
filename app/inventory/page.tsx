@@ -256,7 +256,7 @@ function ShowBoatCard({ b }: { b: ShowBoat }) {
             ways. marginTop auto pins it to the bottom so the button lands on
             the same line across a row however long the boat names run. */}
         {b.dealers[0] && (
-          <div style={{ marginTop: "auto", paddingTop: 12, borderTop: "1px solid rgba(20,46,81,.08)", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 62 }}>
+          <div style={{ marginTop: "auto", padding: "12px 0", borderTop: "1px solid rgba(20,46,81,.08)", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 62 }}>
             <DocksideWalkthrough boat={b} dealer={{ name: b.dealers[0].name }} source="inventory-card" variant="compact" />
           </div>
         )}
