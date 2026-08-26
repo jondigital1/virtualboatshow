@@ -300,7 +300,10 @@ export function DocksideWalkthrough({
                   onChange={(e) => setOptIn(e.target.checked)}
                   style={{ marginTop: 2, width: 16, height: 16, accentColor: "var(--navy)", flex: "0 0 auto" }}
                 />
-                <span>Send me show updates and boats like this. We never sell your details.</span>
+                <span>
+                  Send me show updates and boats like this. We never sell your details, and you can ask us to
+                  delete them any time. <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--linkblue)", fontWeight: 600 }} onClick={(e) => e.stopPropagation()}>Privacy</a>
+                </span>
               </label>
 
               {err && <div style={{ fontSize: 13, color: "#b3261e" }}>{err}</div>}

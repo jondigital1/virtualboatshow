@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/map`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE}/plan`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE}/sponsors`, changeFrequency: "weekly", priority: 0.5 },
+    { url: `${BASE}/privacy`, changeFrequency: "yearly", priority: 0.2 },
   ];
   const boats: MetadataRoute.Sitemap = showBoats.map((b) => ({
     url: `${BASE}/boats/${b.slug}`,

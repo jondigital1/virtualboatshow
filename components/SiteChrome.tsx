@@ -174,6 +174,7 @@ export function Footer() {
           <Link href="/map" className="link-muted" style={{ color: "rgba(255,255,255,.55)" }}>Find Them at the Show</Link>
           <Link href="/plan" className="link-muted" style={{ color: "rgba(255,255,255,.55)" }}>Plan Your Visit</Link>
           <Link href="/sponsors" className="link-muted" style={{ color: "rgba(255,255,255,.55)" }}>Sponsors</Link>
+          <Link href="/privacy" className="link-muted" style={{ color: "rgba(255,255,255,.55)" }}>Privacy</Link>
         </div>
       </div>
     </footer>
