@@ -229,8 +229,7 @@ export default function ShowBoatVDP() {
               <p style={{ fontSize: 12.5, color: "#8595a0", margin: "14px 0 0" }}>
                 Photos and details courtesy of {boat.dealers[0].name}{boat.shared ? " and " + boat.brand : ""}
                 {boat.photoCredit ? `, with additional photography from ${boat.photoCredit}` : ""}. Boats and
-                locations are subject to change. Manufacturer photography shows the model and may differ from
-                the boat on the dock. Confirm details with the dealer.
+                locations are subject to change. Confirm details with the dealer.
               </p>
             </div>
           </div>
