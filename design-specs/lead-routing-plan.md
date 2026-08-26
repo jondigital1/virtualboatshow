@@ -7,6 +7,28 @@ Request Price CTA that has since been removed on client instruction.
 because the failure mode is silent: a shopper completes the form, sees a
 confident confirmation, and the dealer never hears about it.
 
+## Status — updated 2026-08-26
+
+DONE and verified in production:
+
+- Resend account, domain `acvirtualboatshow.com` verified on the root.
+- DNS in **Cloudflare** (GoDaddy is registrar only — edits made in GoDaddy's
+  panel do nothing). SPF merged for Google Workspace and Resend in a single
+  record, DKIM for both selectors, DMARC at `p=none`.
+- Google Workspace mail live on the domain; `customerinquiry@` sends and
+  receives.
+- Vercel env: `RESEND_API_KEY`, `LEAD_FROM_EMAIL`, `LEAD_COPY_EMAIL`.
+- `app/api/leads/route.ts` delivers walkthrough leads, with reply-to set to
+  the shopper and a fallback to the show inbox when a dealer has no address.
+- End-to-end test through the live endpoint: SPF, DKIM, and DMARC all PASS,
+  message delivered to the inbox, not spam.
+
+STILL TO DO: dealer addresses, Supabase storage, consent checkbox, privacy
+policy, the cron digest, and the other five lead types.
+
+Tighten DMARC from `p=none` to `p=quarantine` after a week or two of clean
+reports, not before.
+
 ## What exists today
 
 - `components/DocksideWalkthrough.tsx` — the CTA, modal, and validation. Live.
