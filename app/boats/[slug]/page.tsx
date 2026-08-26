@@ -63,11 +63,12 @@ export default function ShowBoatVDP() {
 
   const title = boatTitle(boat);
   const placement = boat.dealers[0] ? placementFor(boat.dealers[0].name) : undefined;
-  // Length is deliberately absent: see scripts/import-show-boats.mjs. The
-  // figures are now derived from the model designation and are correct, but the
-  // tile stays out until we decide to bring it back. Year is set on 59 of 86
-  // boats, so the strip still renders what exists rather than padding gaps.
+  // Rendered conditionally, because the source data has real gaps: length is
+  // derived from the model designation (see scripts/import-show-boats.mjs) and
+  // is null for 3 boats whose naming does not encode it, and year is set on 59
+  // of 86. The strip shows what exists rather than padding with empty tiles.
   const specs: [string, string][] = [
+    boat.lengthFt ? ["Length", `${boat.lengthFt}' approx.`] : null,
     boat.year ? ["Year", String(boat.year)] : null,
     ["Brand", boat.brand],
     ["Dealer", boat.dealers[0]?.name ?? ""],
