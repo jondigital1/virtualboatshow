@@ -95,6 +95,7 @@ export function DocksideWalkthrough({
     day: "",
     daypart: "Not sure yet",
   });
+  const [optIn, setOptIn] = useState(false);
 
   useEffect(() => captureAttribution(), []);
 
@@ -148,6 +149,7 @@ export function DocksideWalkthrough({
     const { ok } = await submitLead({
       type: "dockside-walkthrough",
       ...form,
+      marketingOptIn: optIn,
       // Boat and dealer travel with the lead so appointments can be reported
       // per boat and per dealer later. Stock number, HIN, and dealer ID are
       // deliberately absent: show boats carry none of them.
@@ -290,6 +292,16 @@ export function DocksideWalkthrough({
                   ))}
                 </div>
               </div>
+
+              <label style={{ display: "flex", alignItems: "flex-start", gap: 9, fontSize: 13, color: "rgba(20,46,81,.72)", lineHeight: 1.45, cursor: "pointer" }}>
+                <input
+                  type="checkbox"
+                  checked={optIn}
+                  onChange={(e) => setOptIn(e.target.checked)}
+                  style={{ marginTop: 2, width: 16, height: 16, accentColor: "var(--navy)", flex: "0 0 auto" }}
+                />
+                <span>Send me show updates and boats like this. We never sell your details.</span>
+              </label>
 
               {err && <div style={{ fontSize: 13, color: "#b3261e" }}>{err}</div>}
 

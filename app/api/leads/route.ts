@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { send, mailConfigured, COPY_TO } from "@/lib/mail";
+import { insertLead, markDelivered, contactHash } from "@/lib/leads-store";
 
 /**
  * Lead intake.
@@ -16,9 +17,10 @@ import { send, mailConfigured, COPY_TO } from "@/lib/mail";
  * request because an address had not come back yet is the one outcome worth
  * engineering around.
  *
- * Not yet stored: Supabase is next (see design-specs/lead-routing-plan.md).
- * Until then the BCC to the show inbox is the only archive, which is why it is
- * on every send.
+ * The lead is written to Supabase BEFORE the email goes out, so a delivery
+ * failure never loses it. Email is the notification; the row is the record.
+ * Contact details are stored only with consent, and a database constraint
+ * enforces that independently of this code.
  *
  * NEVER log the whole payload. These forms carry names, emails, and phone
  * numbers, and Vercel retains function logs: logging the body turns them into
@@ -32,6 +34,8 @@ const EMAILS_FILE = join(process.cwd(), "data", "dealer-emails.json");
 /** Field caps: this endpoint is public and triggers outbound email. */
 const CAP = { name: 120, email: 200, phone: 40, text: 200 };
 const clean = (v: unknown, max: number) => String(v ?? "").trim().slice(0, max);
+/** Consent is opt-in: anything other than an explicit true is a no. */
+const hasConsent = (d: Record<string, unknown>) => d.marketingOptIn === true;
 const validEmail = (v: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
 
 /** Non-identifying fields that are safe to write to the log. */
@@ -84,6 +88,38 @@ async function walkthrough(d: Record<string, unknown>) {
     return NextResponse.json({ ok: false, error: "name and a valid email are required" }, { status: 400 });
   }
 
+  const optIn = hasConsent(d);
+
+  // Stored first: if the email fails the lead still exists and can be replayed.
+  // Email is the notification, not the record.
+  const leadId = await insertLead({
+    type: "dockside-walkthrough",
+    source: clean(d.source, CAP.text) || null,
+    boat_slug: clean(d.boatId, CAP.text) || null,
+    boat_year: Number(d.year) || null,
+    boat_make: clean(d.make, CAP.text) || null,
+    boat_model: clean(d.model, CAP.text) || null,
+    dealer_name: dealer || null,
+    show_location: where || null,
+    show_day: /^\d{4}-\d{2}-\d{2}$/.test(day) ? day : null,
+    daypart: daypart || null,
+    page_url: pageUrl || null,
+    referrer: clean(d.referrer, 500) || null,
+    utm_source: clean(d.utmSource, CAP.text) || null,
+    utm_medium: clean(d.utmMedium, CAP.text) || null,
+    utm_campaign: clean(d.utmCampaign, CAP.text) || null,
+    utm_term: clean(d.utmTerm, CAP.text) || null,
+    utm_content: clean(d.utmContent, CAP.text) || null,
+    contact_hash: contactHash(email),
+    // Contact details only with consent. A database constraint enforces this
+    // too, so a mistake here is rejected rather than quietly stored.
+    marketing_opt_in: optIn,
+    first_name: optIn ? firstName : null,
+    last_name: optIn ? lastName : null,
+    email: optIn ? email : null,
+    phone: optIn ? phone || null : null,
+  });
+
   const dayLabel = DAYS[day] ?? day;
   const to = dealerEmails(dealer);
   const noAddress = to.length === 0;
@@ -124,6 +160,8 @@ async function walkthrough(d: Record<string, unknown>) {
     text: body,
   });
 
+  if (leadId) await markDelivered(leadId, result.ok, result.ok ? undefined : result.error);
+
   if (!result.ok) {
     console.log("[lead:walkthrough:failed]", result.error, JSON.stringify(safeSummary(d)));
     return NextResponse.json({ ok: true, delivered: false });
@@ -151,7 +189,7 @@ async function walkthrough(d: Record<string, unknown>) {
     ].filter((l) => l !== "").join("\n"),
   });
 
-  console.log("[lead:walkthrough:sent]", JSON.stringify(safeSummary(d, { toDealer: !noAddress })));
+  console.log("[lead:walkthrough:sent]", JSON.stringify(safeSummary(d, { toDealer: !noAddress, stored: Boolean(leadId) })));
   return NextResponse.json({ ok: true, delivered: true });
 }
 
