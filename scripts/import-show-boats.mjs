@@ -84,6 +84,32 @@ const cleanNum = (v) => {
   return Number.isFinite(n) ? n : 0;
 };
 
+/**
+ * Length from the model designation, which is how this industry names boats:
+ * a two-digit number is feet ("36XO" = 36), a three-digit number is feet plus
+ * tenths ("320 CC" = 32.0, "Ultra 275 SE" = 27.5, "SVX 191 OB" = 19.1).
+ *
+ * This beats scraping the listing page, which produced lengths that argued
+ * with the boat's own name: an Albemarle 45 read 58 ft and a Regal 36XO read
+ * 29, because the old regex took the first two-digit number followed by ft or
+ * an apostrophe ANYWHERE in the HTML, nav and inline scripts included.
+ *
+ * Deliberately conservative. Single digits are skipped because they are metric
+ * ("Antares 9" is 9 metres, not 9 feet) and four-digit designations are skipped
+ * because the convention splits feet and inches inconsistently. A null is the
+ * right answer when we cannot tell; a wrong number beside the model name is not.
+ */
+function lengthFromModel(model) {
+  for (const tok of String(model ?? "").match(/\d+/g) ?? []) {
+    if (/^(19|20)\d\d$/.test(tok)) continue; // model year, not a length
+    let ft = null;
+    if (tok.length === 2) ft = Number(tok);
+    else if (tok.length === 3) ft = Number(tok.slice(0, 2)) + Number(tok[2]) / 10;
+    if (ft !== null && ft >= 15 && ft <= 120) return ft;
+  }
+  return null;
+}
+
 const warnings = [];
 const warn = (msg) => {
   warnings.push(msg);
@@ -191,7 +217,7 @@ function mergeShared(boats) {
       dealers: [meta],
       photos: [],
       blurb: "",
-      lengthFt: null,
+      lengthFt: lengthFromModel(b.model),
     };
     if (key) byKey.set(key, rec);
     out.push(rec);
@@ -273,8 +299,11 @@ function extractFromHtml(html, baseUrl) {
     s.replace(/&amp;/g, "&").replace(/&#0?39;|&rsquo;|&#8217;/g, "'").replace(/&quot;|&#8220;|&#8221;/g, '"')
       .replace(/&lt;[^&]*&gt;|<[^>]+>/g, " ").replace(/\\n/g, "\n").replace(/[ \t]+/g, " ").trim();
   const blurb = descCands.map(clean).filter((s) => s.length > 40 && !/^(home|inventory|boats for sale)\b/i.test(s)).sort((a, b) => b.length - a.length)[0]?.slice(0, 900) ?? "";
-  const lenM = (html.match(/(\d{2}(?:\.\d)?)\s*(?:ft\b|')/i) || [])[1];
-  return { photos, blurb, lengthFt: lenM ? Number(lenM) : null };
+  // Fallback only, and only where the page labels the number. An unlabelled
+  // match anywhere in the document is what produced the bad lengths before.
+  const lenM = (html.match(/(?:length\s*(?:overall|over\s*all)?|\bLOA\b)\D{0,24}?(\d{2}(?:\.\d)?)\s*(?:ft\b|feet\b|')/i) || [])[1];
+  const len = lenM ? Number(lenM) : null;
+  return { photos, blurb, lengthFt: len !== null && len >= 15 && len <= 120 ? len : null };
 }
 
 async function fetchWithTimeout(url, ms = 20000, asBuffer = false) {
@@ -317,7 +346,9 @@ async function enrich(boat) {
     const prev = PREV.get(boat.slug);
     if (prev?.blurb) {
       boat.blurb = prev.blurb;
-      boat.lengthFt = prev.lengthFt ?? boat.lengthFt;
+      // prev can hold a value from the old bad scrape, so it is not trusted:
+      // only the model designation or a labelled scrape sets a length now.
+      boat.lengthFt = boat.lengthFt ?? null;
       return "cached";
     }
     if (boat.sourceUrl) {
@@ -325,7 +356,7 @@ async function enrich(boat) {
       if (html) {
         const ex = extractFromHtml(html, boat.sourceUrl);
         boat.blurb = ex.blurb;
-        boat.lengthFt = ex.lengthFt ?? boat.lengthFt;
+        boat.lengthFt = boat.lengthFt ?? ex.lengthFt;
         return "cached+text";
       }
     }
@@ -348,7 +379,7 @@ async function enrich(boat) {
   boat.sourceUrl = base;
   const { photos, blurb, lengthFt } = extractFromHtml(html, base);
   boat.blurb = blurb;
-  boat.lengthFt = lengthFt;
+  boat.lengthFt = boat.lengthFt ?? lengthFt;
 
   // Cache-busting: new harvests continue numbering after the old set so
   // replaced galleries get URLs no browser or CDN has ever cached.
