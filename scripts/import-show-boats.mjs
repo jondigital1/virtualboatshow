@@ -62,7 +62,7 @@ const DEALER_META = {
   "Formula Boats": { name: "Formula Boats", loc: "Decatur, IN", phone: "(260) 724-9111" },
   "G. Winter's Sailing Center Inc.": { name: "G Winter's Sailing Center", loc: "Riverside, NJ", phone: "(856) 461-3555" },
   "Irwin": { name: "Irwin Marine Center", loc: "Red Bank, NJ", phone: "(732) 741-0003" },
-  "MarineMax": { name: "MarineMax", loc: "Brick / Somers Point / Ocean View, NJ", phone: "(732) 840-2100" },
+  "MarineMax": { name: "MarineMax", loc: "Brick / Somers Point / Ocean View, NJ", phone: "(732) 451-3995" },
   "New Jersey Outboards": { name: "New Jersey Outboards", loc: "Bayville, NJ", phone: "(732) 505-3002" },
   "Riptide": { name: "Riptide Marine Center", loc: "Bayville, NJ", phone: "(732) 228-7202" },
   "Riverside Marina & Yacht Sales": { name: "Riverside Marina & Yacht Sales", loc: "Riverside, NJ", phone: "(856) 461-1077" },
