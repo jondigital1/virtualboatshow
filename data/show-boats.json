@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T01:09:37.890Z",
+  "generatedAt": "2026-08-26T11:43:49.147Z",
   "boatCount": 86,
   "boats": [
     {
@@ -635,6 +635,7 @@
         }
       ],
       "photos": [
+        "/boats/monterey-34-elite-9.jpg",
         "/boats/monterey-34-elite-1.jpg",
         "/boats/monterey-34-elite-2.jpg",
         "/boats/monterey-34-elite-3.jpg",
@@ -643,7 +644,6 @@
         "/boats/monterey-34-elite-6.jpg",
         "/boats/monterey-34-elite-7.jpg",
         "/boats/monterey-34-elite-8.jpg",
-        "/boats/monterey-34-elite-9.jpg",
         "/boats/monterey-34-elite-10.jpg",
         "/boats/monterey-34-elite-11.jpg",
         "/boats/monterey-34-elite-12.jpg"
@@ -866,8 +866,8 @@
         }
       ],
       "photos": [
-        "/boats/regulator-31-1.jpg",
         "/boats/regulator-31-2.jpg",
+        "/boats/regulator-31-1.jpg",
         "/boats/regulator-31-3.jpg",
         "/boats/regulator-31-4.jpg",
         "/boats/regulator-31-5.jpg",

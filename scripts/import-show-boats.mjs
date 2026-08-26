@@ -461,6 +461,20 @@ async function main() {
   for (const b of boats) {
     const o = OVERRIDES[b.slug];
     if (o?.blurb) b.blurb = o.blurb;
+
+    // Dealer and manufacturer pages do not lead with their best shot: some
+    // open on a deck schematic, a trailer close-up, or a dark studio render,
+    // and that image becomes the card and the hero. primaryPhoto promotes a
+    // different one to the front by its file number.
+    //
+    // An override rather than renaming files on disk, because --refresh
+    // renumbers a gallery from scratch and would silently undo a rename.
+    if (o?.primaryPhoto) {
+      const want = `-${o.primaryPhoto}.`;
+      const i = b.photos.findIndex((p) => p.includes(want));
+      if (i > 0) b.photos.unshift(b.photos.splice(i, 1)[0]);
+      else if (i === -1) warn(`primaryPhoto ${o.primaryPhoto} not found for ${b.slug}; leaving order alone`);
+    }
   }
 
   // House style for all outward-facing text (Jon 2026-08-25): no em dashes.
