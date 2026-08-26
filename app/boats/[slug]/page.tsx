@@ -7,6 +7,7 @@ import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow, PhonePill } from "@/components/ui";
 import { BoatShowPrice } from "@/components/BoatShowPrice";
 import { placementFor } from "@/lib/docks";
+import { logoFor, initials } from "@/lib/exhibitors";
 import { boatBySlug, boatTitle, showBoats } from "@/lib/showboats";
 
 const FONT = "var(--font-poppins), sans-serif";
@@ -62,6 +63,14 @@ export default function ShowBoatVDP() {
 
   const title = boatTitle(boat);
   const placement = boat.dealers[0] ? placementFor(boat.dealers[0].name) : undefined;
+  // Only what the workbook actually gives us: year is set on 59 of 86 boats and
+  // length on 76, so the strip renders what exists rather than padding gaps.
+  const specs: [string, string][] = [
+    boat.lengthFt ? ["Length", `${boat.lengthFt}' approx.`] : null,
+    boat.year ? ["Year", String(boat.year)] : null,
+    ["Brand", boat.brand],
+    ["Dealer", boat.dealers[0]?.name ?? ""],
+  ].filter((x): x is [string, string] => Array.isArray(x) && Boolean(x[1]));
   const others = showBoats.filter((b) => b.slug !== boat.slug && b.dealers.some((d) => boat.dealers.some((bd) => bd.name === d.name)) && b.photos.length > 0).slice(0, 3);
 
   return (
@@ -75,6 +84,11 @@ export default function ShowBoatVDP() {
             <Link href="/inventory" style={{ color: "var(--linkblue)", fontWeight: 600 }}>Browse Boats</Link>
             <span style={{ margin: "0 8px" }}>/</span>
             <span>{title}</span>
+          </div>
+
+          <div style={{ marginTop: 18 }}>
+            <Eyebrow>{boat.brand}</Eyebrow>
+            <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,3.4vw,44px)", lineHeight: 1.05, letterSpacing: "-.018em", margin: "8px 0 0", color: "var(--navy)", textWrap: "balance" }}>{title}</h1>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "minmax(min(100%,400px),3fr) minmax(280px,2fr)", gap: "clamp(22px,3vw,40px)", marginTop: 16, alignItems: "start" }} className="map-grid">
@@ -131,6 +145,17 @@ export default function ShowBoatVDP() {
                   })}
                 </div>
               )}
+              {specs.length > 0 && (
+                <div className="spec-grid">
+                  {specs.map(([label, value]) => (
+                    <div key={label} style={{ background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.45)", borderRadius: 11, padding: "12px 14px", minWidth: 0 }}>
+                      <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 10, letterSpacing: ".1em", textTransform: "uppercase", color: "rgba(20,46,81,.55)" }}>{label}</div>
+                      <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 17, color: "var(--navy)", marginTop: 4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={value}>{value}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
               {boat.blurb && (
                 <div style={{ marginTop: 22 }}>
                   <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 17, letterSpacing: ".02em", textTransform: "uppercase", color: "var(--navy)", margin: 0 }}>About this boat</h2>
@@ -147,14 +172,6 @@ export default function ShowBoatVDP() {
 
             {/* SIDE PANEL */}
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-              <div>
-                <Eyebrow>{boat.brand}</Eyebrow>
-                <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(26px,3vw,38px)", lineHeight: 1.08, letterSpacing: "-.015em", margin: "8px 0 0", color: "var(--navy)" }}>{title}</h1>
-                {boat.lengthFt ? (
-                  <div style={{ fontFamily: FONT, fontSize: 14, color: "#5a6c78", marginTop: 8 }}>Approx. {boat.lengthFt}&rsquo; length overall</div>
-                ) : null}
-              </div>
-
               <BoatShowPrice boat={title} dealer={boat.dealers[0]?.name ?? "the dealer"} />
 
               <div style={{ background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.4)", borderRadius: 14, padding: "16px 18px" }}>
@@ -182,6 +199,12 @@ export default function ShowBoatVDP() {
               {boat.dealers.map((d) => (
                 <div key={d.name} style={{ background: "#fff", border: "1px solid rgba(20,46,81,.12)", borderRadius: 14, padding: "16px 18px" }}>
                   <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "rgba(20,46,81,.55)" }}>{boat.dealers.length > 1 ? "Presented by" : "Presenting dealer"}</div>
+                  {logoFor(d.name) ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={logoFor(d.name)} alt={`${d.name} logo`} style={{ display: "block", height: 40, width: "auto", maxWidth: "100%", objectFit: "contain", margin: "12px 0 2px" }} />
+                  ) : (
+                    <div aria-hidden style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: 10, background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.45)", fontFamily: DISPLAY, fontWeight: 800, fontSize: 15, color: "var(--navy)", margin: "12px 0 2px" }}>{initials(d.name)}</div>
+                  )}
                   <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 18, color: "var(--navy)", marginTop: 6 }}>{d.name}</div>
                   {d.loc && <div style={{ fontSize: 13.5, color: "#5a6c78", marginTop: 3 }}>{d.loc}</div>}
                   <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 12, alignItems: "center" }}>
