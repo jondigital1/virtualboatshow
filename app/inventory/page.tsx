@@ -243,18 +243,23 @@ function ShowBoatCard({ b }: { b: ShowBoat }) {
             <Link href={href} className="link-ink" style={{ color: "inherit" }}>{b.model}</Link>
           </h3>
         </div>
+        {/* Dealer, berth and View Boat sit together above the rule: they are
+            all "what this boat is and where to find it". */}
         <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12.5, color: "#5a6c78" }}>
           <span>⚓ {dealerLine}</span>
           <span>📍 {berth}</span>
-        </div>
-        <div style={{ marginTop: "auto", paddingTop: 10, borderTop: "1px solid rgba(20,46,81,.08)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
-          <Link href={href} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--linkblue)" }}>
+          <Link href={href} style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 4, fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--linkblue)" }}>
             View Boat <span aria-hidden>→</span>
           </Link>
-          {b.dealers[0] && (
-            <DocksideWalkthrough boat={b} dealer={{ name: b.dealers[0].name }} source="inventory-card" variant="compact" />
-          )}
         </div>
+        {/* The action gets the space below the rule to itself, centred both
+            ways. marginTop auto pins it to the bottom so the button lands on
+            the same line across a row however long the boat names run. */}
+        {b.dealers[0] && (
+          <div style={{ marginTop: "auto", paddingTop: 12, borderTop: "1px solid rgba(20,46,81,.08)", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 62 }}>
+            <DocksideWalkthrough boat={b} dealer={{ name: b.dealers[0].name }} source="inventory-card" variant="compact" />
+          </div>
+        )}
       </div>
     </div>
   );
