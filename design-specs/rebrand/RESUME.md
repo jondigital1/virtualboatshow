@@ -10,7 +10,7 @@ Show opens **2026-09-10**. Fourteen days.
 - **Inventory gate revived, per Jon.** /inventory only; boat pages stay open for share
   links. The gate screen is the client-picked teaser render from the Gate Options mock
   (artifact 0952ff10): four real boat cards, photos visible, names blurred, in normal
-  page chrome. Auto-lifts at **9 AM Eastern on Sept 10** (SHOW_OPENS in lib/gate.ts);
+  page chrome. Auto-lifts at **10 AM Eastern on Sept 10** (SHOW_OPENS in lib/gate.ts);
   per the owners, buying a ticket does NOT open inventory early and no copy may imply
   immediate access.
 - **Two-step ticket funnel.** The gate CTA opens a capture sheet (first name, email,

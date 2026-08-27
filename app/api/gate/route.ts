@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { contactHash, hasTicketKey } from "@/lib/leads-store";
 
 /**
@@ -11,7 +11,7 @@ import { contactHash, hasTicketKey } from "@/lib/leads-store";
  * stored row.
  *
  * This is knowingly an existence oracle for funnel emails. The stakes are a
- * boat lineup that opens to everyone at 9 AM on September 10 anyway, so the
+ * boat lineup that opens to everyone at 10 AM on September 10 anyway, so the
  * tradeoff is accepted here. Do not copy this pattern anywhere the answer
  * matters.
  */

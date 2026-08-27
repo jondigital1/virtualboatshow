@@ -4,7 +4,7 @@
  * Access gate for the INVENTORY pages only (wired in app/inventory/layout.tsx).
  *
  * Why it exists: the show owners do not want the full boat list browsable
- * before the show. Virtual inventory access opens to everyone at 9 AM on
+ * before the show. Virtual inventory access opens to everyone at 10 AM on
  * opening day. Before that, there are two keys:
  *
  *   1. The shopper's own email, earned by going to the ticket window through
@@ -18,10 +18,10 @@
  *
  * The locked view is the client-approved "teaser" render from the Gate
  * Options mock: four real boat photos in real inventory cards with the names
- * blurred out, then an "Opens September 10 at 9 AM" card carrying the ticket
+ * blurred out, then an "Opens September 10 at 10 AM" card carrying the ticket
  * funnel CTA and the email-or-code entry. It renders in the normal page
  * chrome, not as a modal, so a visitor (and a search crawler) lands on a page
- * that sells the show rather than a wall. At 9 AM Eastern on September 10 the
+ * that sells the show rather than a wall. At 10 AM Eastern on September 10 the
  * gate lifts by itself.
  *
  * A SOFT gate, by design and by audience. The code is stored as a SHA-256
@@ -111,7 +111,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    // Show day: the lineup opens to everyone at 9 AM Eastern.
+    // Show day: the lineup opens to everyone at 10 AM Eastern.
     if (Date.now() >= SHOW_OPENS) { setLocked(false); setReady(true); return; }
     // Already unlocked on this device, by code or by ticket email?
     const stored = localStorage.getItem(GATE_STORAGE_KEY);
@@ -237,9 +237,9 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
 
           <div style={{ maxWidth: 560, margin: "30px auto 0", background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.5)", borderRadius: 16, padding: "clamp(20px,3vw,28px)" }}>
             <div aria-hidden style={{ width: 42, height: 42, borderRadius: 12, background: "var(--navy)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🔒</div>
-            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 20, color: "var(--navy)", marginTop: 13 }}>Opens September 10 at 9 AM</div>
+            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 20, color: "var(--navy)", marginTop: 13 }}>Opens September 10 at 10 AM</div>
             <p style={{ fontSize: 14.5, color: "rgba(20,46,81,.72)", lineHeight: 1.55, margin: "7px 0 0" }}>
-              The full lineup goes live for everyone at 9 AM on opening day. Get your tickets here
+              The full lineup goes live for everyone at 10 AM on opening day. Get your tickets here
               first and you are in early: the email you use becomes your key to the boats.
             </p>
 
