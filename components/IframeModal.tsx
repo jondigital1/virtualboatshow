@@ -20,8 +20,12 @@ export function IframeModalProvider({ children }: { children: React.ReactNode })
   const [state, setState] = useState<ModalState>(null);
   // Shown after the TICKETING modal closes (any path: ✕, backdrop, Escape, or
   // the auto-close on purchase return). We cannot know from out here whether
-  // the buyer finished, so this is the one guaranteed moment to say "your
-  // email is your access code" while they are still looking at the screen.
+  // the buyer finished, so the card must read true for buyers AND abandoners:
+  // no "thanks for purchasing", and no access promises. Everyone here came
+  // through the capture sheet, so the one true promise is the opening-day
+  // email: the lineup opens to all at 10 AM on Sept 10 and we email them the
+  // moment it does. Emails do NOT unlock the gate; that design was reversed
+  // by Jon on 2026-08-27 and must not sneak back in through this copy.
   const [thanks, setThanks] = useState(false);
   const stateRef = useRef<ModalState>(null);
   stateRef.current = state;
@@ -165,10 +169,10 @@ export function IframeModalProvider({ children }: { children: React.ReactNode })
               </div>
               <span className="gold-rule" style={{ margin: "0 auto 16px" }} />
               <h2 style={{ fontFamily: "var(--font-bricolage), sans-serif", fontWeight: 800, fontSize: "clamp(22px,4.5vw,28px)", color: "var(--navy)", margin: "0 0 12px", lineHeight: 1.2 }}>
-                Thank you for purchasing your tickets online!
+                See you at the docks!
               </h2>
               <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: "rgba(20,46,81,.78)" }}>
-                One thing to remember: <strong style={{ color: "var(--navy)" }}>your email is your access code.</strong> Starting September 10 at 10 AM, enter the email you used at checkout to unlock the virtual show.
+                The full boat lineup opens to everyone on <strong style={{ color: "var(--navy)" }}>September 10 at 10 AM</strong>, and we will email you the moment it goes live.
               </p>
               <button onClick={() => setThanks(false)} style={{ marginTop: 20, background: "var(--navy)", color: "#fff", fontFamily: "inherit", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "13px 26px", borderRadius: 8, border: 0, cursor: "pointer" }}>
                 See you at the show
