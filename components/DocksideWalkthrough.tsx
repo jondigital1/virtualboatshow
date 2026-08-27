@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { track } from "@vercel/analytics";
 import { DISPLAY, MONO } from "@/components/ui";
@@ -209,10 +210,13 @@ export function DocksideWalkthrough({
         Plan a dockside walkthrough <span aria-hidden>&rarr;</span>
       </button>
 
-      {open && (
+      {/* Portaled to <body>: ancestors like .card-lift carry hover transforms,
+          and a transformed ancestor turns position:fixed into a caged
+          absolute — which trapped this dialog inside inventory cards. */}
+      {open && typeof document !== "undefined" && createPortal(
         <div
           onMouseDown={(e) => { if (e.target === e.currentTarget) close(); }}
-          style={{ position: "fixed", inset: 0, zIndex: 90, background: "rgba(20,46,81,.55)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16, overflowY: "auto" }}
+          style={{ position: "fixed", inset: 0, zIndex: 220, background: "rgba(20,46,81,.55)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16, overflowY: "auto" }}
         >
           <div
             ref={dialogRef}
@@ -322,7 +326,8 @@ export function DocksideWalkthrough({
               </p>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
