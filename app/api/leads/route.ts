@@ -343,17 +343,16 @@ async function buoyWaitlist(d: Record<string, unknown>, cors?: Record<string, st
  *
  * Runs BEFORE the shopper reaches Interactive Ticketing. Nobody on our side
  * controls that platform or sees its orders, so this handoff moment is the
- * only point we control, and it is where the value trades hands: the email
- * given here becomes the shopper's inventory gate key (checked by hash via
- * /api/gate). The key is granted at capture rather than at purchase on
- * purpose, so a missed return-redirect can never lock out someone who
- * actually bought. Proving purchases happens outside this code, by matching
- * these hashes against the purchaser export the show can pull from the
- * ticketing platform (scripts/import-ticket-keys.mjs feeds that back in).
+ * only point we control. Proving which sales came through this site happens
+ * by matching these rows against the purchaser export the show can pull from
+ * the ticketing platform.
+ *
+ * Capture grants NO inventory access: the gate stays shut until 10 AM on
+ * opening day for everyone but the internal code, per the owners.
  *
  * No email is sent. Contact details are stored only with the marketing
- * opt-in, enforced by the same database constraint as every other lead; the
- * hash alone powers the key, so declining marketing costs nothing.
+ * opt-in, enforced by the same database constraint as every other lead;
+ * without it only the anonymous contact fingerprint is kept.
  */
 async function ticketIntent(d: Record<string, unknown>) {
   const email = clean(d.email, CAP.email);

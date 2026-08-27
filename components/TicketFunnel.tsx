@@ -5,20 +5,23 @@
  *
  * The show does not control Interactive Ticketing and never sees its orders,
  * so the handoff is the only moment we control. This sheet is that moment:
- * the shopper leaves a first name and email, the email becomes their
- * inventory gate key on the spot (a local marker here, the hash server-side
- * for other devices), and the ticket window opens in the on-site modal
- * instead of sending them away. The key is granted at capture, not at
- * purchase, so a flaky return-redirect can never lock out a real buyer; an
- * abandoner who left a real email is a hot lead we are happy to let browse.
+ * the shopper leaves a first name and email for the show's records, and the
+ * ticket window opens in the on-site modal instead of sending them away.
+ * Matching these emails against the ticketing platform's purchaser export is
+ * how the show proves which sales came through this site.
+ *
+ * Capture grants NO inventory access. The gate stays shut until 10 AM on
+ * opening day for everyone but the internal code, per the owners; an
+ * unlock-at-capture design shipped briefly on 2026-08-27 and was reversed by
+ * Jon the same day.
  *
  * There is no skip link, per Jon (2026-08-27): every path to the ticket
  * window goes through the capture. The abandon rate on this sheet is the
  * number to watch for whether that wall costs ticket sales.
  *
  * Contact details are stored only when the marketing box is ticked (the
- * database constraint enforces this). The hash alone powers the key, so
- * declining marketing costs the shopper nothing.
+ * database constraint enforces this); otherwise only an anonymous
+ * fingerprint of the email is kept, for counting and purchase matching.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -28,20 +31,9 @@ import { useIframeModal } from "@/components/IframeModal";
 import { submitLead } from "@/lib/leads";
 import { readAttribution } from "@/lib/attribution";
 import { DISPLAY } from "@/components/ui";
-import { GATE_STORAGE_KEY, EMAIL_KEY_TOKEN } from "@/lib/gate";
 
 const FONT = "var(--font-poppins), sans-serif";
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-
-/** Tells any mounted gate to unlock without a reload. */
-export function announceGateUnlock() {
-  try {
-    localStorage.setItem(GATE_STORAGE_KEY, EMAIL_KEY_TOKEN);
-  } catch {
-    /* private mode: the unlock still works for this page via the event */
-  }
-  window.dispatchEvent(new Event("vbs-gate-unlocked"));
-}
 
 export function TicketFunnelButton({
   label = "Get your show tickets →",
@@ -76,7 +68,7 @@ export function TicketFunnelButton({
     if (!EMAIL_RE.test(email.trim())) return setErr("Enter a valid email address.");
 
     // Fire and forget: the lead write must never stand between a buyer and
-    // the ticket window. The local unlock and the modal do not wait for it.
+    // the ticket window. The modal does not wait for it.
     void submitLead({
       type: "ticket-intent",
       firstName: first.trim(),
@@ -90,9 +82,7 @@ export function TicketFunnelButton({
       ...readAttribution(),
     });
 
-    announceGateUnlock();
     track("ticket_funnel_submitted", { source, optIn: String(optIn) });
-    track("inventory_gate_unlocked", { method: "funnel" });
     setOpen(false);
     openTickets();
   }
@@ -122,8 +112,8 @@ export function TicketFunnelButton({
 
             <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 21, color: "var(--navy)", paddingRight: 34 }}>Grab your show tickets</div>
             <p style={{ fontFamily: FONT, fontSize: 14, lineHeight: 1.55, color: "rgba(20,46,81,.72)", margin: "8px 0 0" }}>
-              Tickets open in a moment. One thing first: the email you enter becomes your key to the
-              full boat lineup, open for you today, ahead of the public opening on September 10.
+              Tickets open in a moment. First, leave your name and email so the show knows you found
+              your boats here.
             </p>
 
             <form onSubmit={submit} style={{ marginTop: 16 }}>
@@ -152,7 +142,8 @@ export function TicketFunnelButton({
               </button>
 
               <p style={{ fontFamily: FONT, fontSize: 11.5, lineHeight: 1.5, color: "#7c8b96", margin: "12px 0 0", textAlign: "center" }}>
-                Your email is only your gate key unless you tick the box. See our{" "}
+                Unless you tick the box, we keep only an anonymous fingerprint of your email, never
+                the address. See our{" "}
                 <a href="/privacy" style={{ color: "var(--linkblue)", fontWeight: 600 }}>privacy policy</a>.
               </p>
             </form>

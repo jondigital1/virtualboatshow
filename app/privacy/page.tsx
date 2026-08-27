@@ -66,8 +66,7 @@ export default function Privacy() {
             We ask for personal details in two places. The dockside walkthrough form on a boat page asks for
             your first and last name, mobile number, email address, the day you plan to attend, and whether you
             expect to come in the morning or the afternoon. And on your way to the ticket window we ask for a
-            first name and email address; that email becomes your key to the boat lineup, so the site can
-            recognise it and let you back in on any device.
+            first name and email address, which lets the show recognise its own referrals among ticket sales.
           </p>
           <p style={p}>
             We do not ask you to create an account, and we do not have one to create.
@@ -111,8 +110,7 @@ export default function Privacy() {
           </p>
           <p style={p}>
             In both cases we store a one-way fingerprint of your email address. It cannot be turned back into an
-            address, and we use it only to avoid counting one person as several, and to recognise your email
-            when you use it to unlock the boat lineup.
+            address, and we use it only to avoid counting one person as several.
           </p>
 
           <h2 style={h2}>Services we rely on</h2>

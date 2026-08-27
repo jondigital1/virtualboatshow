@@ -4,17 +4,13 @@
  * Access gate for the INVENTORY pages only (wired in app/inventory/layout.tsx).
  *
  * Why it exists: the show owners do not want the full boat list browsable
- * before the show. Virtual inventory access opens to everyone at 10 AM on
- * opening day. Before that, there are two keys:
- *
- *   1. The shopper's own email, earned by going to the ticket window through
- *      the on-site funnel (components/TicketFunnel.tsx). The email unlocks
- *      this device immediately and any other device via /api/gate, which
- *      checks a server-side hash. Purchaser emails imported from the
- *      ticketing platform's exports work the same way
- *      (scripts/import-ticket-keys.mjs).
- *   2. The internal access code, for staff and show use only, never
- *      distributed to shoppers. Same field, no separate UI.
+ * before the show. Virtual inventory access opens to everyone at 10 AM
+ * Eastern on opening day, and before that the ONLY key is the internal
+ * access code (staff and show use, never distributed to shoppers). Buying
+ * tickets does not open the gate: the ticket funnel collects a name and
+ * email for the show's records, and deliberately grants no access (a
+ * capture-unlocks design shipped briefly on 2026-08-27 and was reversed by
+ * Jon the same day).
  *
  * The locked view is the client-approved "teaser" render from the Gate
  * Options mock: four real boat photos in real inventory cards with the names
@@ -44,7 +40,7 @@ import { DISPLAY, Eyebrow } from "@/components/ui";
 import { showBoats, type ShowBoat } from "@/lib/showboats";
 import { placementFor } from "@/lib/docks";
 import { TicketFunnelButton } from "@/components/TicketFunnel";
-import { GATE_STORAGE_KEY, EMAIL_KEY_TOKEN, GATE_PASSWORD_HASH, SHOW_OPENS } from "@/lib/gate";
+import { GATE_STORAGE_KEY, GATE_PASSWORD_HASH, SHOW_OPENS } from "@/lib/gate";
 
 const FONT = "var(--font-poppins), sans-serif";
 
@@ -113,9 +109,9 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
     if (typeof window === "undefined") return;
     // Show day: the lineup opens to everyone at 10 AM Eastern.
     if (Date.now() >= SHOW_OPENS) { setLocked(false); setReady(true); return; }
-    // Already unlocked on this device, by code or by ticket email?
-    const stored = localStorage.getItem(GATE_STORAGE_KEY);
-    if (stored === GATE_PASSWORD_HASH || stored === EMAIL_KEY_TOKEN) { setLocked(false); setReady(true); return; }
+    // Already unlocked on this device with the code? (The old email-key
+    // marker is deliberately NOT honoured: capture never grants access.)
+    if (localStorage.getItem(GATE_STORAGE_KEY) === GATE_PASSWORD_HASH) { setLocked(false); setReady(true); return; }
 
     // Unlock via URL: /inventory?code=THECODE unlocks without typing, so the
     // show can hand a link or QR to whoever it chooses. Same secret as the
@@ -142,14 +138,6 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
     setReady(true);
   }, []);
 
-  // The ticket funnel announces its unlock so the gate opens behind the
-  // ticket window without a reload.
-  useEffect(() => {
-    const onUnlock = () => { setLeaving(true); setTimeout(() => setLocked(false), 480); };
-    window.addEventListener("vbs-gate-unlocked", onUnlock);
-    return () => window.removeEventListener("vbs-gate-unlocked", onUnlock);
-  }, []);
-
   useEffect(() => {
     if (locked && ready) track("inventory_gate_shown");
   }, [locked, ready]);
@@ -173,27 +161,11 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
     setError(null);
     const v = value.trim();
 
-    // One field, two keys: an email checks the ticket-funnel list server-side
-    // by hash; anything else is tried as the internal code, locally.
+    // People will try their ticket email out of habit; tell them the truth
+    // instead of a generic wrong-code error.
     if (v.includes("@")) {
-      let ok = false;
-      try {
-        const res = await fetch("/api/gate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: v }),
-        });
-        ok = res.ok && Boolean(((await res.json()) as { ok?: boolean }).ok);
-      } catch {
-        ok = false;
-      }
-      if (ok) {
-        try { localStorage.setItem(GATE_STORAGE_KEY, EMAIL_KEY_TOKEN); } catch { /* private mode */ }
-        unlock("email");
-        return;
-      }
       track("inventory_gate_failed", { kind: "email" });
-      setError("We could not find that email. Use the one you gave when getting your tickets, or grab tickets above.");
+      setError("The lineup opens for everyone at 10 AM on September 10. Access before then needs the show's access code.");
       setBusy(false);
       inputRef.current?.select();
       return;
@@ -239,8 +211,8 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
             <div aria-hidden style={{ width: 42, height: 42, borderRadius: 12, background: "var(--navy)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🔒</div>
             <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 20, color: "var(--navy)", marginTop: 13 }}>Opens September 10 at 10 AM</div>
             <p style={{ fontSize: 14.5, color: "rgba(20,46,81,.72)", lineHeight: 1.55, margin: "7px 0 0" }}>
-              The full lineup goes live for everyone at 10 AM on opening day. Get your tickets here
-              first and you are in early: the email you use becomes your key to the boats.
+              The full lineup goes live for everyone at 10 AM on opening day, September 10. Until
+              then, grab your tickets so you are ready for the docks.
             </p>
 
             <TicketFunnelButton
@@ -255,25 +227,24 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
                 className="h-lift"
                 style={{ width: "100%", marginTop: 11, padding: "13px 20px", fontSize: 15, fontWeight: 700, fontFamily: FONT, color: "var(--navy)", background: "transparent", border: "1.5px solid rgba(20,46,81,.28)", borderRadius: 999, cursor: "pointer" }}
               >
-                Already have access?
+                Have an access code?
               </button>
             ) : (
               <form onSubmit={submit} style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(20,46,81,.12)" }}>
                 <label htmlFor="show-pw" style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#5f7180" }}>
-                  Your ticket email or access code
+                  Enter your access code
                 </label>
                 <input
                   id="show-pw"
                   ref={inputRef}
-                  type="text"
+                  type="password"
                   value={value}
                   onChange={(e) => { setValue(e.target.value); if (error) setError(null); }}
-                  autoComplete="email"
+                  autoComplete="off"
                   autoCapitalize="none"
-                  inputMode="email"
                   aria-invalid={Boolean(error)}
                   aria-describedby={error ? "show-pw-err" : undefined}
-                  placeholder="Email or access code"
+                  placeholder="Access code"
                   style={{
                     width: "100%",
                     marginTop: 8,
