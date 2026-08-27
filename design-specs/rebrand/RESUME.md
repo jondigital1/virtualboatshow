@@ -1,4 +1,37 @@
-# Resume checkpoint — 2026-08-26, ~3am (long session: airport, flight, layover, home)
+# Resume checkpoint — 2026-08-27, midday (gate + ticket funnel session)
+
+Show opens **2026-09-10**. Fourteen days.
+
+## What changed 2026-08-27
+
+- **Mobile scheduler bug fixed.** The walkthrough dialog was caged inside inventory
+  cards (card-lift hover transform turns position:fixed into a caged absolute; iOS
+  leaves hover stuck after tap). Portaled to document.body.
+- **Inventory gate revived, per Jon.** /inventory only; boat pages stay open for share
+  links. The gate screen is the client-picked teaser render from the Gate Options mock
+  (artifact 0952ff10): four real boat cards, photos visible, names blurred, in normal
+  page chrome. Auto-lifts at **9 AM Eastern on Sept 10** (SHOW_OPENS in lib/gate.ts);
+  per the owners, buying a ticket does NOT open inventory early and no copy may imply
+  immediate access.
+- **Two-step ticket funnel.** The gate CTA opens a capture sheet (first name, email,
+  optional opt-in covering show updates + Buoy launch), then the ticket window opens in
+  the on-site IframeModal (return-redirect tracked). **The captured email becomes the
+  shopper's gate key at capture**: local marker instantly, any other device via
+  /api/gate hash lookup. Skip link = no capture, no key. `letsboat` is internal-only
+  now (same field takes email or code). Contact stored only with opt-in (DB constraint);
+  hash alone powers the key. scripts/import-ticket-keys.mjs ingests purchaser-email
+  exports from Interactive Ticketing so buyers from other channels get keys too.
+  scripts/set-gate-password.mjs now edits lib/gate.ts, and gate constants live there.
+- **Privacy policy** updated for the second collection point.
+- Daily sync added Tiara 34LS (Comstock) on schedule; 87 boats now.
+
+Asks for the show: (1) point Interactive Ticketing's post-purchase return URL at
+acvirtualboatshow.com (return detection + closes the modal); (2) periodic purchaser
+email export for import-ticket-keys.
+
+---
+
+# Prior checkpoint — 2026-08-26, ~3am (long session: airport, flight, layover, home)
 
 Show opens **2026-09-10**. Fifteen days.
 
