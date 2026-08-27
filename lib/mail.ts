@@ -31,6 +31,12 @@ export type Mail = {
   /** Set so the dealer can reply straight to the boater. */
   replyTo?: string;
   bcc?: string[];
+  /** Full From, e.g. "Atlantic City In-Water Boat Show <updates@...>".
+   *  Announcements must NOT come from customerinquiry@: a recipient who never
+   *  made an inquiry reads that address as someone else's mail. */
+  from?: string;
+  /** Extra SMTP headers, e.g. List-Unsubscribe for one-click compliance. */
+  headers?: Record<string, string>;
 };
 
 export async function send(mail: Mail): Promise<{ ok: boolean; error?: string }> {
@@ -43,12 +49,13 @@ export async function send(mail: Mail): Promise<{ ok: boolean; error?: string }>
       method: "POST",
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        from: `Atlantic City In-Water Boat Show <${FROM}>`,
+        from: mail.from ?? `Atlantic City In-Water Boat Show <${FROM}>`,
         to: mail.to,
         bcc: mail.bcc,
         reply_to: mail.replyTo,
         subject: mail.subject,
         text: mail.text,
+        headers: mail.headers,
       }),
     });
     if (!res.ok) return { ok: false, error: `resend ${res.status}: ${await res.text()}` };

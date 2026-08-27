@@ -84,6 +84,66 @@ export async function insertLead(row: LeadRow): Promise<string | null> {
   }
 }
 
+export type Recipient = { first_name: string | null; email: string; contact_hash: string | null };
+
+/**
+ * Everyone the opening-day email goes to: ticket-funnel leads who ticked the
+ * required box (which is what stored their email at all). Deduped by contact
+ * fingerprint keeping the newest row, so a person who came through twice gets
+ * one email. Returns null when the store is unreachable, which callers must
+ * treat as "do not send", never as "nobody to send to".
+ */
+export async function listOpeningDayRecipients(): Promise<Recipient[] | null> {
+  if (!storeConfigured()) return null;
+  try {
+    const res = await fetch(
+      `${URL_BASE}/rest/v1/leads?type=eq.ticket-intent&marketing_opt_in=is.true&email=not.is.null&select=first_name,email,contact_hash&order=created_at.desc&limit=5000`,
+      { headers: { apikey: KEY, Authorization: `Bearer ${KEY}` } }
+    );
+    if (!res.ok) return null;
+    const rows = (await res.json()) as Recipient[];
+    const seen = new Set<string>();
+    const out: Recipient[] = [];
+    for (const r of rows) {
+      const k = r.contact_hash ?? r.email.trim().toLowerCase();
+      if (seen.has(k)) continue;
+      seen.add(k);
+      out.push(r);
+    }
+    return out;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * All contact fingerprints recorded under a marker type ("unsubscribe",
+ * "opening-day-sent"). Null on failure so callers fail safe: a send that
+ * cannot load the unsubscribe list must not run.
+ */
+export async function listHashesByType(type: string): Promise<Set<string> | null> {
+  if (!storeConfigured()) return null;
+  try {
+    const res = await fetch(
+      `${URL_BASE}/rest/v1/leads?type=eq.${encodeURIComponent(type)}&select=contact_hash&limit=10000`,
+      { headers: { apikey: KEY, Authorization: `Bearer ${KEY}` } }
+    );
+    if (!res.ok) return null;
+    const rows = (await res.json()) as { contact_hash: string | null }[];
+    return new Set(rows.map((r) => r.contact_hash).filter((h): h is string => Boolean(h)));
+  } catch {
+    return null;
+  }
+}
+
+/** Appends a marker row (unsubscribe, opening-day-sent) carrying only the
+ *  fingerprint: the consent constraint stays satisfied because no contact
+ *  details are included. */
+export async function recordMarker(type: string, contact_hash: string, source: string): Promise<boolean> {
+  const id = await insertLead({ type, source, contact_hash, marketing_opt_in: false });
+  return Boolean(id);
+}
+
 /** Records the outcome of the dealer notification against an existing row. */
 export async function markDelivered(id: string, delivered: boolean, error?: string): Promise<void> {
   if (!storeConfigured() || !id) return;

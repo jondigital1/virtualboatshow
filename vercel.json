@@ -1,5 +1,8 @@
 {
   "rewrites": [
     { "source": "/buoy-api/:path*", "destination": "https://api.buoylist.com/:path*" }
+  ],
+  "crons": [
+    { "path": "/api/opening-day-send", "schedule": "0 14 10 9 *" }
   ]
 }
