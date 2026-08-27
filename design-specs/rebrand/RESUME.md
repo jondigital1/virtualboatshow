@@ -24,6 +24,12 @@ Show opens **2026-09-10**. Fourteen days.
   constraint); otherwise fingerprint only.
   scripts/set-gate-password.mjs now edits lib/gate.ts, and gate constants live there.
 - **Privacy policy** updated for the second collection point.
+- **/tickets ad landing page** (noindexed, out of sitemap): the capture form inline on
+  its own URL for paid ticket-intent traffic, source "tickets-page". The form is the
+  shared TicketCaptureForm (also used by the popup sheet), so copy and rules cannot
+  drift. Deep link /inventory?tickets=1 auto-opens the sheet over the gate. Meta ads
+  planned; pixel NOT yet installed (waiting on Jon's Pixel ID), and the privacy policy
+  must gain an advertising-cookies section in the same commit as any pixel.
 - **Funnel checkbox is REQUIRED** (never pre-ticked) and promises exactly two emails:
   show access live, and Buoy launch. Every funnel lead stores name + email.
 - **Opening-day send built and armed.** Vercel cron hits /api/opening-day-send at
