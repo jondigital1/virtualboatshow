@@ -79,8 +79,9 @@ function TeaserCard({ b }: { b: ShowBoat }) {
   return (
     <div style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column" }}>
       <div style={{ position: "relative", aspectRatio: "16/11", background: "linear-gradient(160deg,#e8eef3,#dfe7ee)" }}>
+        {/* Eager on purpose: these four are the gate page's above-the-fold hero. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={b.photos[0]} alt="" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+        <img src={b.photos[0]} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
       </div>
       <div style={{ padding: "13px 14px 15px", display: "flex", flexDirection: "column", gap: 5, userSelect: "none" }}>
         <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "rgba(20,46,81,.55)", filter: "blur(3.5px)" }}>
