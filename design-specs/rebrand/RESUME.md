@@ -134,6 +134,11 @@ Kill it formally or schedule it, but decide before spending anything more on SEO
 - Supabase project `virtualboatshow`, separate from anything Buoy. RLS enabled with **no
   policies** — that is deliberate, not an oversight; the anon key ships to browsers and
   only the service-role key writes.
+- **Cross-origin callers of /api/leads MUST use the www host**
+  (https://www.acvirtualboatshow.com/api/leads). The apex answers with a 308 to www, and
+  browsers reject redirects during CORS preflight, so apex callers fail silently. Found
+  by the buoy-homepage session 2026-08-27 (buoyboatingtemporary commit 0dfd33a); the
+  buoy crew-list form posts type `buoy-waitlist` here and is verified working.
 - Use an obviously fake `source` value on any test submission so cleanup stays a
   one-liner.
 - Two pre-existing lint errors in `app/inventory/page.tsx` lines 31-32
