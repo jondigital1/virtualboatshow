@@ -66,7 +66,8 @@ export default function Privacy() {
             We ask for personal details in two places. The dockside walkthrough form on a boat page asks for
             your first and last name, mobile number, email address, the day you plan to attend, and whether you
             expect to come in the morning or the afternoon. And on your way to the ticket window we ask for a
-            first name and email address, which lets the show recognise its own referrals among ticket sales.
+            first name and email address, used to send the two updates you agree to there and to let the show
+            recognise its own referrals among ticket sales.
           </p>
           <p style={p}>
             We do not ask you to create an account, and we do not have one to create.
@@ -94,9 +95,8 @@ export default function Privacy() {
 
           <h2 style={h2}>What we keep, and what we do not</h2>
           <p style={p}>
-            Both forms have a checkbox asking whether we may send you marketing email; the ticket form&rsquo;s
-            also covers hearing from Buoy, the boating app behind this site, when it launches. That checkbox
-            decides what we store:
+            The walkthrough form has a checkbox asking whether we may send you show updates. That checkbox is
+            optional, and it decides what we store:
           </p>
           <p style={li}>
             <strong style={{ color: "var(--navy)" }}>If you leave it unticked</strong>, we keep a record of the
@@ -107,6 +107,12 @@ export default function Privacy() {
           <p style={li}>
             <strong style={{ color: "var(--navy)" }}>If you tick it</strong>, we also keep your name, email, and
             phone so we can contact you about the show.
+          </p>
+          <p style={p}>
+            The ticket form works differently: its box is required to continue, and it says exactly what you
+            are agreeing to, an email when show access goes live and an email when Buoy launches. We keep your
+            first name and email address to send them, and every email we send includes a one-click
+            unsubscribe.
           </p>
           <p style={p}>
             In both cases we store a one-way fingerprint of your email address. It cannot be turned back into an

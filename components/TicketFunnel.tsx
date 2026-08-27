@@ -19,9 +19,12 @@
  * window goes through the capture. The abandon rate on this sheet is the
  * number to watch for whether that wall costs ticket sales.
  *
- * Contact details are stored only when the marketing box is ticked (the
- * database constraint enforces this); otherwise only an anonymous
- * fingerprint of the email is kept, for counting and purchase matching.
+ * The checkbox is REQUIRED, per Jon (2026-08-27): it is an explicit
+ * acknowledgment, not an optional opt-in, and it must be an actual click
+ * (never pre-ticked). It promises exactly two emails, one when show access
+ * goes live and one when Buoy launches, so every funnel lead stores name and
+ * email (the consent constraint is satisfied because the box is always
+ * ticked) and those two sends are now real commitments someone must make.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -66,6 +69,7 @@ export function TicketFunnelButton({
     e.preventDefault();
     if (!first.trim()) return setErr("Enter your first name.");
     if (!EMAIL_RE.test(email.trim())) return setErr("Enter a valid email address.");
+    if (!optIn) return setErr("Tick the box to continue to tickets.");
 
     // Fire and forget: the lead write must never stand between a buyer and
     // the ticket window. The modal does not wait for it.
@@ -127,9 +131,9 @@ export function TicketFunnelButton({
               <input id="tf-email" type="email" value={email} onChange={(e) => { setEmail(e.target.value); setErr(null); }} autoComplete="email" autoCapitalize="none" inputMode="email" style={{ width: "100%", margin: "6px 0 0", padding: "13px 15px", fontSize: 16, fontFamily: "inherit", color: "var(--navy)", background: "#fff", border: `2px solid ${err && !EMAIL_RE.test(email.trim()) && first.trim() ? "#c0392b" : "rgba(20,46,81,.18)"}`, borderRadius: 12, outline: "none" }} />
 
               <label style={{ display: "flex", gap: 9, alignItems: "flex-start", margin: "14px 0 0", cursor: "pointer" }}>
-                <input type="checkbox" checked={optIn} onChange={(e) => setOptIn(e.target.checked)} style={{ marginTop: 3, width: 16, height: 16, accentColor: "var(--navy)" }} />
+                <input type="checkbox" checked={optIn} aria-required="true" onChange={(e) => { setOptIn(e.target.checked); setErr(null); }} style={{ marginTop: 3, width: 16, height: 16, accentColor: "var(--navy)" }} />
                 <span style={{ fontFamily: FONT, fontSize: 12.5, lineHeight: 1.5, color: "rgba(20,46,81,.72)" }}>
-                  Email me show updates, and let Buoy, the boating app behind this site, tell me when it launches.
+                  Email me when show access goes live, and when Buoy, the boating app behind this site, launches.
                 </span>
               </label>
 
@@ -142,8 +146,7 @@ export function TicketFunnelButton({
               </button>
 
               <p style={{ fontFamily: FONT, fontSize: 11.5, lineHeight: 1.5, color: "#7c8b96", margin: "12px 0 0", textAlign: "center" }}>
-                Unless you tick the box, we keep only an anonymous fingerprint of your email, never
-                the address. See our{" "}
+                Required to continue. Unsubscribe any time with one click. See our{" "}
                 <a href="/privacy" style={{ color: "var(--linkblue)", fontWeight: 600 }}>privacy policy</a>.
               </p>
             </form>
