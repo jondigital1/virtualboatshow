@@ -122,6 +122,12 @@ Kill it formally or schedule it, but decide before spending anything more on SEO
 - No em dashes in outward-facing copy (importer sanitizes).
 - **DNS is authoritative in Cloudflare. GoDaddy is registrar only** — edits made in
   GoDaddy's panel do nothing. Cloudflare also proxies the domain.
+- **Email is Google Workspace, NOT Cloudflare Email Routing** (MX = smtp.google.com).
+  Never enable Cloudflare Email Routing; it would break the mailboxes. Two users:
+  admin@ and customerinquiry@ (Jon, super admin). updates@ is an ALIAS on the
+  customerinquiry@ user (added 2026-08-27, verified by test delivery). Outbound
+  announcement mail sends from updates@ via Resend (domain-verified, so any local
+  part can send); replies and direct mail both land in the customerinquiry@ inbox.
 - Vercel env vars are marked **Sensitive**, so values cannot be read back by CLI or
   dashboard. Verify storage through `vercel logs --json` and the `stored` field, not
   local queries.
