@@ -10,11 +10,11 @@ const pw = process.argv[2];
 if (!pw) { console.error('usage: node scripts/set-gate-password.mjs "new password"'); process.exit(1); }
 
 const hash = crypto.createHash("sha256").update(pw.trim().toLowerCase()).digest("hex");
-const file = "components/ShowGate.tsx";
+const file = "lib/gate.ts";
 let src = fs.readFileSync(file, "utf8");
-const re = /const PASSWORD_HASH = "[0-9a-f]{64}";/;
-if (!re.test(src)) { console.error("could not find PASSWORD_HASH in " + file); process.exit(1); }
-src = src.replace(re, `const PASSWORD_HASH = "${hash}";`);
+const re = /const GATE_PASSWORD_HASH = "[0-9a-f]{64}";/;
+if (!re.test(src)) { console.error("could not find GATE_PASSWORD_HASH in " + file); process.exit(1); }
+src = src.replace(re, `const GATE_PASSWORD_HASH = "${hash}";`);
 fs.writeFileSync(file, src);
 
 console.log(`gate password set to: ${pw.trim().toLowerCase()}`);

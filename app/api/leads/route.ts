@@ -38,6 +38,26 @@ const clean = (v: unknown, max: number) => String(v ?? "").trim().slice(0, max);
 const hasConsent = (d: Record<string, unknown>) => d.marketingOptIn === true;
 const validEmail = (v: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
 
+/**
+ * buoyboating.com posts its crew-list signups here (buoyWaitlist below), so
+ * its origins must be allowed to read the response. Same-origin traffic never
+ * matches, so nothing changes for the show's own forms.
+ */
+const CROSS_ORIGINS = new Set([
+  "https://www.buoyboating.com",
+  "https://buoyboating.com",
+  "http://localhost:3000", // buoyboating astro dev
+]);
+const corsHeaders = (req: Request): Record<string, string> | undefined => {
+  const origin = req.headers.get("origin");
+  return origin && CROSS_ORIGINS.has(origin)
+    ? { "Access-Control-Allow-Origin": origin, Vary: "Origin" }
+    : undefined;
+};
+
+/** Where crew-list signups are announced. The lead row is the actual list. */
+const WAITLIST_TO = process.env.BUOY_WAITLIST_EMAIL ?? "jon@buoyboating.com";
+
 /** Non-identifying fields that are safe to write to the log. */
 const LOGGABLE = [
   "type", "boatId", "make", "model", "year", "dealerName", "showLocation",
@@ -262,23 +282,141 @@ async function vendorInquiry(d: Record<string, unknown>) {
   return NextResponse.json({ ok: true, delivered: result.ok });
 }
 
+/**
+ * Crew-list signups from buoyboating.com. Cross-origin on purpose: the
+ * marketing site is static, and this project already has record-first lead
+ * storage and mail, so the waitlist lives here instead of growing a second
+ * backend.
+ *
+ * marketing_opt_in is true without a checkbox for the same reason as
+ * vendorInquiry: the form's one purpose is "email me when buoy launches."
+ * No confirmation email goes out. The page promises exactly one email ever
+ * (the launch announcement), and the first thing a signup receives should
+ * not be a second email, least of all from a boat show address.
+ */
+async function buoyWaitlist(d: Record<string, unknown>, cors?: Record<string, string>) {
+  const name = clean(d.name, CAP.name);
+  const email = clean(d.email, CAP.email);
+
+  if (!name || !validEmail(email)) {
+    return NextResponse.json({ ok: false, error: "name and a valid email are required" }, { status: 400, headers: cors });
+  }
+
+  const leadId = await insertLead({
+    type: "buoy-waitlist",
+    source: clean(d.source, CAP.text) || "buoyboating.com",
+    page_url: clean(d.pageUrl, 500) || null,
+    referrer: clean(d.referrer, 500) || null,
+    contact_hash: contactHash(email),
+    marketing_opt_in: true,
+    first_name: name,
+    last_name: null,
+    email,
+  });
+
+  if (!mailConfigured()) {
+    console.log("[lead:buoy-waitlist:unconfigured]", JSON.stringify(safeSummary(d, { stored: Boolean(leadId) })));
+    return NextResponse.json({ ok: true, delivered: false }, { headers: cors });
+  }
+
+  const result = await send({
+    to: [WAITLIST_TO],
+    replyTo: email,
+    subject: `Crew list — ${name}`,
+    text: [
+      `New crew-list signup from buoyboating.com.`,
+      ``,
+      `Name:  ${name}`,
+      `Email: ${email}`,
+      ``,
+      `The signup is stored with the other leads (type buoy-waitlist).`,
+    ].join("\n"),
+  });
+
+  if (leadId) await markDelivered(leadId, result.ok, result.ok ? undefined : result.error);
+  console.log("[lead:buoy-waitlist]", JSON.stringify(safeSummary(d, { stored: Boolean(leadId), delivered: result.ok })));
+  return NextResponse.json({ ok: true, delivered: result.ok }, { headers: cors });
+}
+
+/**
+ * Ticket-funnel capture, step one of the two-step push to the ticket window.
+ *
+ * Runs BEFORE the shopper reaches Interactive Ticketing. Nobody on our side
+ * controls that platform or sees its orders, so this handoff moment is the
+ * only point we control, and it is where the value trades hands: the email
+ * given here becomes the shopper's inventory gate key (checked by hash via
+ * /api/gate). The key is granted at capture rather than at purchase on
+ * purpose, so a missed return-redirect can never lock out someone who
+ * actually bought. Proving purchases happens outside this code, by matching
+ * these hashes against the purchaser export the show can pull from the
+ * ticketing platform (scripts/import-ticket-keys.mjs feeds that back in).
+ *
+ * No email is sent. Contact details are stored only with the marketing
+ * opt-in, enforced by the same database constraint as every other lead; the
+ * hash alone powers the key, so declining marketing costs nothing.
+ */
+async function ticketIntent(d: Record<string, unknown>) {
+  const email = clean(d.email, CAP.email);
+  if (!validEmail(email)) {
+    return NextResponse.json({ ok: false, error: "a valid email is required" }, { status: 400 });
+  }
+  const optIn = hasConsent(d);
+  const leadId = await insertLead({
+    type: "ticket-intent",
+    source: clean(d.source, CAP.text) || "ticket-funnel",
+    page_url: clean(d.pageUrl, 500) || null,
+    referrer: clean(d.referrer, 500) || null,
+    utm_source: clean(d.utmSource, CAP.text) || null,
+    utm_medium: clean(d.utmMedium, CAP.text) || null,
+    utm_campaign: clean(d.utmCampaign, CAP.text) || null,
+    utm_term: clean(d.utmTerm, CAP.text) || null,
+    utm_content: clean(d.utmContent, CAP.text) || null,
+    contact_hash: contactHash(email),
+    marketing_opt_in: optIn,
+    first_name: optIn ? clean(d.firstName, CAP.name) || null : null,
+    last_name: null,
+    email: optIn ? email : null,
+  });
+  console.log("[lead:ticket-intent]", JSON.stringify(safeSummary(d, { stored: Boolean(leadId) })));
+  return NextResponse.json({ ok: true });
+}
+
+/** Preflight for the cross-origin waitlist posts; a bare 204 for everyone else. */
+export async function OPTIONS(req: Request) {
+  const cors = corsHeaders(req);
+  return new Response(null, {
+    status: 204,
+    headers: cors
+      ? {
+          ...cors,
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Max-Age": "86400",
+        }
+      : undefined,
+  });
+}
+
 export async function POST(req: Request) {
+  const cors = corsHeaders(req);
   let data: Record<string, unknown>;
   try {
     data = (await req.json()) as Record<string, unknown>;
   } catch {
-    return NextResponse.json({ ok: false, error: "invalid json" }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "invalid json" }, { status: 400, headers: cors });
   }
 
   // Honeypot: a real person never fills this, bots fill everything. Accept and
   // drop, so the bot sees success and does not retry with a different shape.
   if (typeof data.website === "string" && data.website.trim()) {
-    return NextResponse.json({ ok: true, delivered: false });
+    return NextResponse.json({ ok: true, delivered: false }, { headers: cors });
   }
 
   if (data.type === "dockside-walkthrough") return walkthrough(data);
   if (data.type === "vendor-inquiry") return vendorInquiry(data);
+  if (data.type === "buoy-waitlist") return buoyWaitlist(data, cors);
+  if (data.type === "ticket-intent") return ticketIntent(data);
 
   console.log("[lead]", JSON.stringify(safeSummary(data)));
-  return NextResponse.json({ ok: true, delivered: false });
+  return NextResponse.json({ ok: true, delivered: false }, { headers: cors });
 }

@@ -63,9 +63,11 @@ export default function Privacy() {
 
           <h2 style={h2}>What you give us</h2>
           <p style={p}>
-            The only place we ask for personal details is the dockside walkthrough form on a boat page. It asks
-            for your first and last name, mobile number, email address, the day you plan to attend, and whether
-            you expect to come in the morning or the afternoon.
+            We ask for personal details in two places. The dockside walkthrough form on a boat page asks for
+            your first and last name, mobile number, email address, the day you plan to attend, and whether you
+            expect to come in the morning or the afternoon. And on your way to the ticket window we ask for a
+            first name and email address; that email becomes your key to the boat lineup, so the site can
+            recognise it and let you back in on any device.
           </p>
           <p style={p}>
             We do not ask you to create an account, and we do not have one to create.
@@ -73,10 +75,10 @@ export default function Privacy() {
 
           <h2 style={h2}>What we record automatically</h2>
           <p style={p}>
-            When you submit that form we also record the boat and dealer you were looking at, their dock or slip
-            assignment, the page address, the page you arrived from, and any campaign tags in the link you
-            followed. This is how we tell a dealer which boat someone is coming to see, and how we understand
-            which boats draw interest.
+            When you submit either form we also record the page address, the page you arrived from, and any
+            campaign tags in the link you followed; the walkthrough form additionally records the boat and
+            dealer you were looking at and their dock or slip assignment. This is how we tell a dealer which
+            boat someone is coming to see, and how we understand which boats draw interest.
           </p>
 
           <h2 style={h2}>Who sees your details</h2>
@@ -93,8 +95,9 @@ export default function Privacy() {
 
           <h2 style={h2}>What we keep, and what we do not</h2>
           <p style={p}>
-            The form has a checkbox asking whether we may send you show updates. That checkbox decides what we
-            store:
+            Both forms have a checkbox asking whether we may send you marketing email; the ticket form&rsquo;s
+            also covers hearing from Buoy, the boating app behind this site, when it launches. That checkbox
+            decides what we store:
           </p>
           <p style={li}>
             <strong style={{ color: "var(--navy)" }}>If you leave it unticked</strong>, we keep a record of the
@@ -108,7 +111,8 @@ export default function Privacy() {
           </p>
           <p style={p}>
             In both cases we store a one-way fingerprint of your email address. It cannot be turned back into an
-            address, and we use it only to avoid counting one person as several.
+            address, and we use it only to avoid counting one person as several, and to recognise your email
+            when you use it to unlock the boat lineup.
           </p>
 
           <h2 style={h2}>Services we rely on</h2>

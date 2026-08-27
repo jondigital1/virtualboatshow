@@ -84,6 +84,26 @@ export async function insertLead(row: LeadRow): Promise<string | null> {
   }
 }
 
+/**
+ * True when this contact hash has come through the ticket funnel (or a
+ * purchaser-email import) before. Powers the inventory gate's email unlock on
+ * any device. Only membership is revealed: the row never leaves the server,
+ * and the caller supplies a hash, not an address.
+ */
+export async function hasTicketKey(hash: string): Promise<boolean> {
+  if (!storeConfigured() || !hash) return false;
+  try {
+    const res = await fetch(
+      `${URL_BASE}/rest/v1/leads?contact_hash=eq.${encodeURIComponent(hash)}&type=eq.ticket-intent&select=id&limit=1`,
+      { headers: { apikey: KEY, Authorization: `Bearer ${KEY}` } }
+    );
+    if (!res.ok) return false;
+    return ((await res.json()) as unknown[]).length > 0;
+  } catch {
+    return false;
+  }
+}
+
 /** Records the outcome of the dealer notification against an existing row. */
 export async function markDelivered(id: string, delivered: boolean, error?: string): Promise<void> {
   if (!storeConfigured() || !id) return;

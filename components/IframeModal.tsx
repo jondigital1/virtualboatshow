@@ -1,10 +1,10 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
-
+import { track } from "@vercel/analytics";
 /** Default target: the Interactive Ticketing purchase flow. Calling
  *  open() with no args uses this, so the ticket CTAs stay a bare open(). */
-const TICKETS_URL = "https://secure.interactiveticketing.com/1.43/1f654c/#/select";
+import { TICKETS_URL } from "@/lib/gate";
 
 type ModalState = { url: string; title: string } | null;
 type Ctx = { open: (url?: string, title?: string) => void; close: () => void };
@@ -42,7 +42,10 @@ export function IframeModalProvider({ children }: { children: React.ReactNode })
       const href = el.contentWindow?.location.href;
       // Readable === same-origin === the flow came back to our site. The initial
       // ticketing load throws here (cross-origin) and is correctly ignored.
-      if (href && href.startsWith(window.location.origin)) close();
+      if (href && href.startsWith(window.location.origin)) {
+        track("ticket_purchase_return", { via: "redirect" });
+        close();
+      }
     } catch {
       /* still on the ticketing domain, not finished */
     }
@@ -56,7 +59,10 @@ export function IframeModalProvider({ children }: { children: React.ReactNode })
       if (!e.origin.includes("interactiveticketing.com")) return;
       const d = e.data as unknown;
       const type = typeof d === "object" && d ? String((d as Record<string, unknown>).type ?? "") : "";
-      if (/^(purchase[_-]?complete|order[_-]?complete|checkout[_-]?complete|success)$/i.test(type)) close();
+      if (/^(purchase[_-]?complete|order[_-]?complete|checkout[_-]?complete|success)$/i.test(type)) {
+        track("ticket_purchase_return", { via: "message" });
+        close();
+      }
     };
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);

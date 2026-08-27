@@ -7,12 +7,13 @@
  * (Apollo, HubSpot, etc.), wire it in ONE place: app/api/leads/route.ts.
  */
 /**
- * Only the two types below are reachable from a form. "trade-in",
- * "sell-boat", "prequalify", "ticket-unlock", and "price-request" were removed
- * with the features that used them; leaving them here made the system look
- * like it had five silent forms when it had one.
+ * Only the types below are reachable from a form. "trade-in", "sell-boat",
+ * "prequalify", "ticket-unlock", and "price-request" were removed with the
+ * features that used them; leaving them here made the system look like it had
+ * five silent forms when it had one. "ticket-intent" is the ticket funnel's
+ * capture step, whose email doubles as the inventory gate key.
  */
-export type LeadType = "dockside-walkthrough" | "vendor-inquiry";
+export type LeadType = "dockside-walkthrough" | "vendor-inquiry" | "ticket-intent";
 
 export interface LeadPayload {
   type: LeadType;
