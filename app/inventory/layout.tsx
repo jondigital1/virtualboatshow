@@ -1,10 +1,13 @@
+import { ShowGate } from "@/components/ShowGate";
+
 /**
- * The ticket-holder password gate was removed 2026-08-25 per client review:
- * the virtual show is the public digital extension of the AC In-Water Boat
- * Show and must be openly browsable (and search-indexable). The gate
- * component is preserved at components/ShowGate.tsx if it's ever needed
- * again — wrap {children} with <ShowGate> to restore it.
+ * The inventory sits behind the access gate (components/ShowGate.tsx).
+ *
+ * History: gated at launch, opened 2026-08-25 per client review, gated again
+ * 2026-08-27 per client direction. Boat detail pages stay open on purpose so
+ * per-boat share links keep working; a shared boat shows at most three other
+ * boats from the same dealer, never the full list.
  */
 export default function InventoryLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return <ShowGate>{children}</ShowGate>;
 }

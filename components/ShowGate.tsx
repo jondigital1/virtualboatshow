@@ -11,20 +11,24 @@
  *
  * A SOFT gate, by design and by audience. The code is stored as a SHA-256 hash
  * (not plaintext), so a casual visitor cannot read it in the page source. A
- * determined technical person could still reach the data (the marketplace API is
- * public via the /buoy-api rewrite), but that is not the threat model: the point
- * is to deter normal pre-shopping, not to defend against scrapers. For a true
- * lock, the Buoy API would have to require auth.
+ * determined technical person could still reach the data (the boat list ships
+ * in the client bundle, and boat detail pages stay open so share links keep
+ * working), but that is not the threat model: the point is to deter normal
+ * pre-shopping, not to defend against scrapers.
+ *
+ * Codes are case-insensitive: this component and the script both lowercase
+ * before hashing, so a flyer that styles the code as LetsBoat still unlocks.
  *
  * To change the code: node scripts/set-gate-password.mjs "yournewcode"
  */
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { track } from "@vercel/analytics";
 import { DISPLAY, MONO } from "@/components/ui";
 
 // SHA-256 of the current show password. Changed via scripts/set-gate-password.mjs.
-const PASSWORD_HASH = "0030709f87345d58abcbfe087969ae324cc4f33bf1056fb71d2e130954979d7b";
+const PASSWORD_HASH = "ef48cbbb34d2e019141accae5972292b7de037898c7c282ede77614badee82f3";
 const STORAGE_KEY = "ac-show-access-2026";
 const TICKETS_URL = "https://secure.interactiveticketing.com/1.43/1f654c/#/select";
 
@@ -56,10 +60,11 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
     // is exactly as "secure" as a shared code, which is the right level here.
     const code = new URLSearchParams(window.location.search).get("code");
     if (code) {
-      sha256(code.trim()).then((hash) => {
+      sha256(code.trim().toLowerCase()).then((hash) => {
         if (hash === PASSWORD_HASH) {
           localStorage.setItem(STORAGE_KEY, PASSWORD_HASH);
           setLocked(false);
+          track("inventory_gate_unlocked", { method: "link" });
         }
         // Strip ?code= from the address bar either way, so it is not left visible
         // or copied into a share by accident.
@@ -76,6 +81,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
   // Hold the page still behind the gate, and focus the field.
   useEffect(() => {
     if (locked && ready) {
+      track("inventory_gate_shown");
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       inputRef.current?.focus();
@@ -88,12 +94,14 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
     if (busy) return;
     setBusy(true);
     setError(false);
-    const hash = await sha256(value.trim());
+    const hash = await sha256(value.trim().toLowerCase());
     if (hash === PASSWORD_HASH) {
       localStorage.setItem(STORAGE_KEY, PASSWORD_HASH);
+      track("inventory_gate_unlocked", { method: "typed" });
       setLeaving(true);
       setTimeout(() => setLocked(false), 480); // let the fade-out play
     } else {
+      track("inventory_gate_failed");
       setError(true);
       setBusy(false);
       inputRef.current?.select();
@@ -191,6 +199,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
                 value={value}
                 onChange={(e) => { setValue(e.target.value); if (error) setError(false); }}
                 autoComplete="off"
+                autoCapitalize="none"
                 aria-invalid={error}
                 aria-describedby={error ? "show-pw-err" : undefined}
                 placeholder="Enter your access code"
