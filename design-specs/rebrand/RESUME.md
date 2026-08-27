@@ -14,13 +14,14 @@ Show opens **2026-09-10**. Fourteen days.
   per the owners, buying a ticket does NOT open inventory early and no copy may imply
   immediate access.
 - **Two-step ticket funnel.** The gate CTA opens a capture sheet (first name, email,
-  optional opt-in covering show updates + Buoy launch), then the ticket window opens in
-  the on-site IframeModal (return-redirect tracked). **The captured email becomes the
-  shopper's gate key at capture**: local marker instantly, any other device via
-  /api/gate hash lookup. Skip link = no capture, no key. `letsboat` is internal-only
-  now (same field takes email or code). Contact stored only with opt-in (DB constraint);
-  hash alone powers the key. scripts/import-ticket-keys.mjs ingests purchaser-email
-  exports from Interactive Ticketing so buyers from other channels get keys too.
+  optional opt-in covering show updates + Buoy launch; no skip link, per Jon), then the
+  ticket window opens in the on-site IframeModal (return-redirect tracked).
+  **Capture grants NO inventory access**: an email-as-gate-key design shipped briefly
+  and was reversed by Jon the same day. Before 10 AM on Sept 10 the ONLY unlock is the
+  `letsboat` code; the gate field is code-only, and an email typed there gets a message
+  naming the opening time. Captured emails feed the database and referral matching
+  against Interactive Ticketing purchaser exports. Contact stored only with opt-in (DB
+  constraint); otherwise fingerprint only.
   scripts/set-gate-password.mjs now edits lib/gate.ts, and gate constants live there.
 - **Privacy policy** updated for the second collection point.
 - Daily sync added Tiara 34LS (Comstock) on schedule; 87 boats now.
