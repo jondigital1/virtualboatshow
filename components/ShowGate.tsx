@@ -4,18 +4,21 @@
  * Access gate for the INVENTORY pages only (wired in app/inventory/layout.tsx).
  *
  * Why it exists: the show owners do not want prospective attendees browsing the
- * full boat list before they have bought a ticket, on the theory that seeing it
- * all online removes the reason to come. So the inventory sits behind a code the
- * show hands to ticket buyers, and the gate itself sells the ticket to anyone
- * who does not have one yet.
+ * full boat list before the show, on the theory that seeing it all online
+ * removes the reason to come. Virtual inventory access opens to everyone at
+ * 9 AM on opening day. Until then the inventory sits behind an access code the
+ * show hands out at its own discretion, and the gate sells show tickets.
+ *
+ * IMPORTANT, per the owners: buying a ticket does NOT unlock the inventory
+ * early, so no copy here may promise access "now" or tie the code to a ticket
+ * purchase. The card names the exact opening moment instead.
  *
  * The locked view is the client-approved "teaser" render from the Gate Options
  * mock: four real boat photos in real inventory cards with the names blurred
- * out, then an Opens September 10 card carrying the tickets CTA and the code
- * entry. It renders in the normal page chrome, not as a modal, so a visitor
- * (and a search crawler) lands on a page that sells the show rather than a
- * wall. On September 10 the gate lifts by itself: the lineup opens to everyone
- * when the show does, which is what the card promises.
+ * out, then an "Opens September 10 at 9 AM" card carrying the tickets CTA and
+ * the code entry. It renders in the normal page chrome, not as a modal, so a
+ * visitor (and a search crawler) lands on a page that sells the show rather
+ * than a wall. At 9 AM Eastern on September 10 the gate lifts by itself.
  *
  * A SOFT gate, by design and by audience. The code is stored as a SHA-256 hash
  * (not plaintext), so a casual visitor cannot read it in the page source. A
@@ -44,9 +47,9 @@ const PASSWORD_HASH = "ef48cbbb34d2e019141accae5972292b7de037898c7c282ede77614ba
 const STORAGE_KEY = "ac-show-access-2026";
 const TICKETS_URL = "https://secure.interactiveticketing.com/1.43/1f654c/#/select";
 
-// The gate lifts when the show opens: midnight Eastern into opening day. If the
-// owners want the exact opening hour instead, change only this constant.
-const SHOW_OPENS = Date.parse("2026-09-10T00:00:00-04:00");
+// The gate lifts when virtual inventory access opens: 9 AM Eastern on opening
+// day, per the show owners. Change only this constant if that ever moves.
+const SHOW_OPENS = Date.parse("2026-09-10T09:00:00-04:00");
 
 // The four boats from the approved mock. Photos show, names stay blurred.
 const TEASER_SLUGS = ["cobia-320-cc", "regal-36xo", "pursuit-s-358", "albemarle-30-express"];
@@ -116,10 +119,12 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
     // Already unlocked on this device?
     if (localStorage.getItem(STORAGE_KEY) === PASSWORD_HASH) { setLocked(false); setReady(true); return; }
 
-    // Unlock via URL: the ticketing platform's post-purchase redirect points here
-    // as /inventory?code=THECODE, so a buyer lands straight in the open inventory
-    // without typing anything. Same secret as the manual field, so a shared link
-    // is exactly as "secure" as a shared code, which is the right level here.
+    // Unlock via URL: /inventory?code=THECODE unlocks without typing, so the
+    // show can hand out a link or QR to whoever it chooses to let in early.
+    // Same secret as the manual field, so a shared link is exactly as "secure"
+    // as a shared code, which is the right level here. Do NOT wire this into
+    // the ticketing platform's post-purchase redirect: buying a ticket does
+    // not come with early inventory access.
     const code = new URLSearchParams(window.location.search).get("code");
     if (code) {
       sha256(code.trim().toLowerCase()).then((hash) => {
@@ -195,10 +200,11 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
 
           <div style={{ maxWidth: 560, margin: "30px auto 0", background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.5)", borderRadius: 16, padding: "clamp(20px,3vw,28px)" }}>
             <div aria-hidden style={{ width: 42, height: 42, borderRadius: 12, background: "var(--navy)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🔒</div>
-            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 20, color: "var(--navy)", marginTop: 13 }}>Opens September 10</div>
+            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 20, color: "var(--navy)", marginTop: 13 }}>Opens September 10 at 9 AM</div>
             <p style={{ fontSize: 14.5, color: "rgba(20,46,81,.72)", lineHeight: 1.55, margin: "7px 0 0" }}>
-              The lineup opens to everyone when the show does. Ticket holders get in now and can plan
-              their visit before they arrive.
+              The full lineup, with every photo, dock and slip, and dockside walkthrough booking, goes
+              live for everyone at 9 AM on opening day. Until then, grab your tickets so you are ready
+              for the docks.
             </p>
 
             <a
@@ -208,7 +214,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
               className="h-lift"
               style={{ display: "block", textAlign: "center", marginTop: 18, padding: "15px 20px", fontSize: 16, fontWeight: 700, fontFamily: FONT, color: "var(--navy)", background: "var(--gold)", borderRadius: 999, textDecoration: "none" }}
             >
-              Get tickets for access →
+              Get your show tickets →
             </a>
 
             {!showCode ? (
@@ -218,7 +224,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
                 className="h-lift"
                 style={{ width: "100%", marginTop: 11, padding: "13px 20px", fontSize: 15, fontWeight: 700, fontFamily: FONT, color: "var(--navy)", background: "transparent", border: "1.5px solid rgba(20,46,81,.28)", borderRadius: 999, cursor: "pointer" }}
               >
-                I already have tickets
+                Have an access code?
               </button>
             ) : (
               <form onSubmit={submit} style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(20,46,81,.12)" }}>
@@ -255,7 +261,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
                 />
                 {error && (
                   <div id="show-pw-err" role="alert" style={{ color: "#c0392b", fontSize: 14, marginTop: 9, fontWeight: 600 }}>
-                    That code isn&apos;t right. Check your ticket confirmation and try again.
+                    That code isn&apos;t right. Check it and try again.
                   </div>
                 )}
                 <button
@@ -269,9 +275,6 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
               </form>
             )}
 
-            <p style={{ fontFamily: FONT, fontSize: 12, color: "#7c8b96", margin: "14px 0 0", textAlign: "center" }}>
-              Scanned a code at the show? You are already in.
-            </p>
           </div>
         </div>
       </section>
