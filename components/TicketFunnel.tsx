@@ -12,10 +12,9 @@
  * purchase, so a flaky return-redirect can never lock out a real buyer; an
  * abandoner who left a real email is a hot lead we are happy to let browse.
  *
- * A skip link goes straight to tickets with no capture. The ticket revenue is
- * the show's, not ours, and a hard wall in front of their checkout is how
- * features get killed; the skip rate tells us whether this step earns its
- * place.
+ * There is no skip link, per Jon (2026-08-27): every path to the ticket
+ * window goes through the capture. The abandon rate on this sheet is the
+ * number to watch for whether that wall costs ticket sales.
  *
  * Contact details are stored only when the marketing box is ticked (the
  * database constraint enforces this). The hash alone powers the key, so
@@ -69,12 +68,6 @@ export function TicketFunnelButton({
   const close = () => {
     track("ticket_funnel_abandoned", { source });
     setOpen(false);
-  };
-
-  const skip = () => {
-    track("ticket_funnel_skipped", { source });
-    setOpen(false);
-    openTickets();
   };
 
   function submit(e: React.FormEvent) {
@@ -156,10 +149,6 @@ export function TicketFunnelButton({
 
               <button type="submit" className="h-lift" style={{ width: "100%", marginTop: 14, padding: "14px 20px", fontSize: 16, fontWeight: 700, fontFamily: FONT, color: "var(--navy)", background: "var(--gold)", border: "none", borderRadius: 999, cursor: "pointer" }}>
                 Continue to tickets →
-              </button>
-
-              <button type="button" onClick={skip} style={{ display: "block", width: "100%", marginTop: 10, padding: 4, fontFamily: FONT, fontSize: 12.5, fontWeight: 600, color: "#7c8b96", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
-                or go straight to tickets
               </button>
 
               <p style={{ fontFamily: FONT, fontSize: 11.5, lineHeight: 1.5, color: "#7c8b96", margin: "12px 0 0", textAlign: "center" }}>
