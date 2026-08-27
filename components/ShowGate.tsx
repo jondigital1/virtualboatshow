@@ -223,7 +223,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
             {!showEntry ? (
               <button
                 type="button"
-                onClick={() => setShowEntry(true)}
+                onClick={() => { track("inventory_gate_entry_revealed"); setShowEntry(true); }}
                 className="h-lift"
                 style={{ width: "100%", marginTop: 11, padding: "13px 20px", fontSize: 15, fontWeight: 700, fontFamily: FONT, color: "var(--navy)", background: "transparent", border: "1.5px solid rgba(20,46,81,.28)", borderRadius: 999, cursor: "pointer" }}
               >

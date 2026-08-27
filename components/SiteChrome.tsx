@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { useIframeModal } from "@/components/IframeModal";
+import { track } from "@vercel/analytics";
+import { TicketFunnelButton } from "@/components/TicketFunnel";
 
 const FONT = "var(--font-poppins), sans-serif";
 
@@ -43,16 +44,17 @@ export function AnnouncementBar() {
  *  visitor links, then the Get Tickets CTA. White per the brand system. */
 export function Nav({ active }: { active?: string }) {
   const [open, setOpen] = useState(false);
-  const { open: openTickets } = useIframeModal();
 
-  const ticketBtn = (extra?: React.CSSProperties) => (
-    <button
-      onClick={() => { setOpen(false); openTickets(); }}
+  // Every ticket path goes through the capture funnel, per Jon: no bare
+  // openTickets() CTAs anywhere. Source labels tell nav and menu apart.
+  const ticketBtn = (extra?: React.CSSProperties, source = "nav") => (
+    <TicketFunnelButton
+      label="Get Tickets"
+      source={source}
       className="h-brighten"
-      style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7, background: "var(--navy)", color: "#fff", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "12px 20px", borderRadius: 8, border: "none", cursor: "pointer", fontFamily: "inherit", ...extra }}
-    >
-      Get Tickets
-    </button>
+      onOpen={() => setOpen(false)}
+      style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7, background: "var(--navy)", color: "#fff", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "12px 20px", borderRadius: 8, fontFamily: "inherit", ...extra }}
+    />
   );
 
   return (
@@ -94,7 +96,7 @@ export function Nav({ active }: { active?: string }) {
           className="nav-hamburger"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
+          onClick={() => setOpen((o) => { if (!o) track("nav_menu_opened"); return !o; })}
           style={{ marginLeft: "auto", width: 42, height: 42, borderRadius: 10, background: "rgba(20,46,81,.05)", border: "1px solid rgba(20,46,81,.16)", color: "var(--navy)", fontSize: 18, cursor: "pointer", alignItems: "center", justifyContent: "center" }}
         >
           {open ? "✕" : "☰"}
@@ -112,7 +114,7 @@ export function Nav({ active }: { active?: string }) {
               </Link>
             );
           })}
-          {ticketBtn({ marginTop: 16, fontSize: 14, padding: "15px 18px", width: "100%" })}
+          {ticketBtn({ marginTop: 16, fontSize: 14, padding: "15px 18px", width: "100%" }, "nav-menu")}
         </div>
       )}
     </nav>

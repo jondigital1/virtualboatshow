@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { Eyebrow, PhonePill } from "@/components/ui";
 import { useIframeModal } from "@/components/IframeModal";
+import { TicketFunnelButton } from "@/components/TicketFunnel";
 
 const FONT = "var(--font-poppins), sans-serif";
 
@@ -40,7 +42,7 @@ function DineCard({ img, name, tag, phone, place, group }: { img: string; name: 
         <div style={{ fontSize: 13.5, lineHeight: 1.5, color: "rgba(20,46,81,.7)" }}>{tag}</div>
         <div style={{ fontSize: 12.5, color: "rgba(20,46,81,.55)" }}>{place}</div>
         <div style={{ marginTop: "auto", paddingTop: 8 }}>
-          <PhonePill phone={phone} />
+          <PhonePill phone={phone} name={name} />
         </div>
       </div>
     </div>
@@ -55,6 +57,7 @@ export default function PlanYourVisit() {
   const openHotels = () => {
     const ci = checkin.replace(/-/g, "");
     const co = checkout.replace(/-/g, "");
+    track("hotels_search_opened", { checkin, checkout });
     openTickets(`https://visitatlanticcity.bookdirect.net/#/lodgings/ctab/540?checkin=${ci}&checkout=${co}`, "Hotels & Stays");
   };
 
@@ -92,10 +95,11 @@ export default function PlanYourVisit() {
   const cardAction = (c: InfoCard) => {
     const style: React.CSSProperties = { display: "inline-flex", alignItems: "center", gap: 7, color: "var(--gold)", fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".07em", textTransform: "uppercase", background: "none", border: "none", cursor: "pointer", padding: 0 };
     if (c.action.kind === "tickets") {
-      return <button onClick={() => openTickets()} style={style}>{c.cta} <span aria-hidden>→</span></button>;
+      // Through the funnel like every other ticket path, never a bare open().
+      return <TicketFunnelButton label={`${c.cta} →`} source="plan-page" className="" style={style} />;
     }
     return (
-      <a href={c.action.href} target={c.action.external ? "_blank" : undefined} rel={c.action.external ? "noopener noreferrer" : undefined} style={style}>
+      <a href={c.action.href} target={c.action.external ? "_blank" : undefined} rel={c.action.external ? "noopener noreferrer" : undefined} onClick={() => track("plan_link_clicked", { title: c.title })} style={style}>
         {c.cta} <span aria-hidden>→</span>
       </a>
     );
@@ -212,7 +216,7 @@ export default function PlanYourVisit() {
             ].map((c) => (
               <button
                 key={c.t}
-                onClick={() => openTickets(c.u, c.t)}
+                onClick={() => { track("plan_tile_opened", { title: c.t }); openTickets(c.u, c.t); }}
                 className="card-lift"
                 style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", padding: 0, display: "flex", flexDirection: "column", alignItems: "stretch", textAlign: "left", cursor: "pointer", fontFamily: "inherit" }}
               >

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
+import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow, PhonePill } from "@/components/ui";
 import { BoatShowPrice } from "@/components/BoatShowPrice";
@@ -24,9 +25,20 @@ export default function ShowBoatVDP() {
   const touchX = useRef<number | null>(null);
   const count = boat?.photos.length ?? 0;
 
-  const stepMain = (d: number) => setPhoto((i) => (i + d + count) % count);
-  const stepLb = (d: number) => { setZoomed(false); setLightbox((i) => (i + d + count) % count); };
-  const openLb = (i: number) => { setZoomed(false); setLightbox(i); };
+  const stepMain = (d: number, via: string) => {
+    track("boat_photo_swiped", { boat: boat?.slug ?? slug ?? "", context: "vdp", via });
+    setPhoto((i) => (i + d + count) % count);
+  };
+  const stepLb = (d: number, via: string) => {
+    track("boat_photo_swiped", { boat: boat?.slug ?? slug ?? "", context: "lightbox", via });
+    setZoomed(false);
+    setLightbox((i) => (i + d + count) % count);
+  };
+  const openLb = (i: number, via: string) => {
+    track("lightbox_opened", { boat: boat?.slug ?? slug ?? "", via });
+    setZoomed(false);
+    setLightbox(i);
+  };
   const closeLb = () => { setLightbox(-1); setZoomed(false); };
 
   // Lightbox keyboard nav + background scroll lock.
@@ -34,8 +46,8 @@ export default function ShowBoatVDP() {
     if (lightbox < 0) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeLb();
-      else if (e.key === "ArrowRight") stepLb(1);
-      else if (e.key === "ArrowLeft") stepLb(-1);
+      else if (e.key === "ArrowRight") stepLb(1, "key");
+      else if (e.key === "ArrowLeft") stepLb(-1, "key");
     };
     window.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
@@ -103,12 +115,12 @@ export default function ShowBoatVDP() {
                 onTouchEnd={(e) => {
                   if (touchX.current === null || count < 2) return;
                   const dx = e.changedTouches[0].clientX - touchX.current;
-                  if (Math.abs(dx) > 40) stepMain(dx < 0 ? 1 : -1);
+                  if (Math.abs(dx) > 40) stepMain(dx < 0 ? 1 : -1, "swipe");
                   touchX.current = null;
                 }}
               >
                 {count > 0 ? (
-                  <button onClick={() => openLb(photo)} aria-label="Open photo viewer" style={{ position: "absolute", inset: 0, padding: 0, border: "none", background: "none", cursor: "zoom-in" }}>
+                  <button onClick={() => openLb(photo, "main")} aria-label="Open photo viewer" style={{ position: "absolute", inset: 0, padding: 0, border: "none", background: "none", cursor: "zoom-in" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={boat.photos[photo] ?? boat.photos[0]} alt={title} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
                   </button>
@@ -124,8 +136,8 @@ export default function ShowBoatVDP() {
                 )}
                 {count > 1 && (
                   <>
-                    <button aria-label="Previous photo" onClick={() => stepMain(-1)} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", width: 40, height: 40, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.93)", color: "var(--navy)", cursor: "pointer", fontSize: 21, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 10px rgba(20,46,81,.3)" }}>‹</button>
-                    <button aria-label="Next photo" onClick={() => stepMain(1)} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", width: 40, height: 40, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.93)", color: "var(--navy)", cursor: "pointer", fontSize: 21, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 10px rgba(20,46,81,.3)" }}>›</button>
+                    <button aria-label="Previous photo" onClick={() => stepMain(-1, "arrow")} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", width: 40, height: 40, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.93)", color: "var(--navy)", cursor: "pointer", fontSize: 21, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 10px rgba(20,46,81,.3)" }}>‹</button>
+                    <button aria-label="Next photo" onClick={() => stepMain(1, "arrow")} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", width: 40, height: 40, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.93)", color: "var(--navy)", cursor: "pointer", fontSize: 21, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 10px rgba(20,46,81,.3)" }}>›</button>
                     <span style={{ position: "absolute", bottom: 12, right: 12, fontFamily: FONT, fontWeight: 700, fontSize: 12, background: "rgba(20,46,81,.78)", color: "#fff", padding: "5px 11px", borderRadius: 999, pointerEvents: "none" }}>{photo + 1} / {count}</span>
                   </>
                 )}
@@ -137,7 +149,7 @@ export default function ShowBoatVDP() {
                   {boat.photos.slice(1, 4).map((p, i) => {
                     const isLast = i === 2 && count > 4;
                     return (
-                      <button key={p} onClick={() => openLb(i + 1)} aria-label={isLast ? `View all ${count} photos` : `Photo ${i + 2}`} style={{ position: "relative", aspectRatio: "16/10", borderRadius: 12, overflow: "hidden", border: "1px solid rgba(20,46,81,.12)", padding: 0, cursor: "pointer", background: "none" }}>
+                      <button key={p} onClick={() => openLb(i + 1, "thumb")} aria-label={isLast ? `View all ${count} photos` : `Photo ${i + 2}`} style={{ position: "relative", aspectRatio: "16/10", borderRadius: 12, overflow: "hidden", border: "1px solid rgba(20,46,81,.12)", padding: 0, cursor: "pointer", background: "none" }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={p} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
                         {isLast && (
@@ -199,7 +211,7 @@ export default function ShowBoatVDP() {
                   <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 18, color: "var(--navy)", marginTop: 6 }}>{d.name}</div>
                   {d.loc && <div style={{ fontSize: 13.5, color: "#5a6c78", marginTop: 3 }}>{d.loc}</div>}
                   <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 12, alignItems: "center" }}>
-                    {d.phone && <PhonePill phone={d.phone} />}
+                    {d.phone && <PhonePill phone={d.phone} name={d.name} />}
                   </div>
                 </div>
               ))}
@@ -219,7 +231,7 @@ export default function ShowBoatVDP() {
                     ))}
                   </div>
                   <button
-                    onClick={() => setShowBlurb((v) => !v)}
+                    onClick={() => setShowBlurb((v) => { if (!v) track("vdp_blurb_expanded", { boat: boat.slug }); return !v; })}
                     style={{ marginTop: 10, background: "none", border: "none", padding: 0, cursor: "pointer", fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--linkblue)" }}
                   >
                     {showBlurb ? "Show less" : "Read more"} <span aria-hidden>{showBlurb ? "\u2191" : "\u2193"}</span>
@@ -265,7 +277,7 @@ export default function ShowBoatVDP() {
           onTouchEnd={(e) => {
             if (touchX.current === null || zoomed) return;
             const dx = e.changedTouches[0].clientX - touchX.current;
-            if (Math.abs(dx) > 50) stepLb(dx < 0 ? 1 : -1);
+            if (Math.abs(dx) > 50) stepLb(dx < 0 ? 1 : -1, "swipe");
             touchX.current = null;
           }}
           style={{ position: "fixed", inset: 0, zIndex: 200, background: "rgba(9,20,38,.96)", display: "flex", alignItems: "center", justifyContent: "center" }}
@@ -276,7 +288,7 @@ export default function ShowBoatVDP() {
               <img
                 src={boat.photos[lightbox]}
                 alt={`${title}, photo ${lightbox + 1} of ${count}`}
-                onClick={() => setZoomed((z) => !z)}
+                onClick={() => setZoomed((z) => { if (!z) track("lightbox_zoomed", { boat: boat?.slug ?? "" }); return !z; })}
                 style={zoomed
                   ? { width: "170%", maxWidth: "none", display: "block", cursor: "zoom-out", margin: "0 auto" }
                   : { maxWidth: "100%", maxHeight: "100%", objectFit: "contain", display: "block", cursor: "zoom-in" }}
@@ -287,8 +299,8 @@ export default function ShowBoatVDP() {
           <button aria-label="Close viewer" onClick={closeLb} style={{ position: "fixed", top: 12, right: 14, width: 42, height: 42, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.14)", color: "#fff", fontSize: 19, cursor: "pointer" }}>✕</button>
           {count > 1 && !zoomed && (
             <>
-              <button aria-label="Previous photo" onClick={(e) => { e.stopPropagation(); stepLb(-1); }} style={{ position: "fixed", left: 14, top: "50%", transform: "translateY(-50%)", width: 46, height: 46, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.16)", color: "#fff", fontSize: 24, cursor: "pointer" }}>‹</button>
-              <button aria-label="Next photo" onClick={(e) => { e.stopPropagation(); stepLb(1); }} style={{ position: "fixed", right: 14, top: "50%", transform: "translateY(-50%)", width: 46, height: 46, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.16)", color: "#fff", fontSize: 24, cursor: "pointer" }}>›</button>
+              <button aria-label="Previous photo" onClick={(e) => { e.stopPropagation(); stepLb(-1, "arrow"); }} style={{ position: "fixed", left: 14, top: "50%", transform: "translateY(-50%)", width: 46, height: 46, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.16)", color: "#fff", fontSize: 24, cursor: "pointer" }}>‹</button>
+              <button aria-label="Next photo" onClick={(e) => { e.stopPropagation(); stepLb(1, "arrow"); }} style={{ position: "fixed", right: 14, top: "50%", transform: "translateY(-50%)", width: 46, height: 46, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.16)", color: "#fff", fontSize: 24, cursor: "pointer" }}>›</button>
             </>
           )}
           <span style={{ position: "fixed", bottom: 14, left: "50%", transform: "translateX(-50%)", fontFamily: FONT, fontSize: 12, color: "rgba(255,255,255,.55)" }}>Click photo to zoom · arrow keys to browse · Esc to close</span>

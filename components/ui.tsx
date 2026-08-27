@@ -1,4 +1,7 @@
+"use client";
+
 import type { CSSProperties, ReactNode } from "react";
+import { track } from "@vercel/analytics";
 
 export const DISPLAY = "var(--font-poppins), sans-serif";
 export const MONO = "var(--font-poppins), sans-serif";
@@ -16,13 +19,15 @@ export function Eyebrow({ children, style }: { children: ReactNode; style?: CSSP
 }
 
 /** Tap-to-call pill in show light-blue: signals the number dials directly
- *  from a phone. Used wherever a phone number appears. */
-export function PhonePill({ phone, style }: { phone: string; style?: CSSProperties }) {
+ *  from a phone. Used wherever a phone number appears. Every tap is a call
+ *  intent worth counting, so it reports who was being called and from where. */
+export function PhonePill({ phone, name, style }: { phone: string; name?: string; style?: CSSProperties }) {
   const digits = String(phone).replace(/[^0-9]/g, "");
   if (!digits) return null;
   return (
     <a
       href={"tel:" + digits}
+      onClick={() => track("call_clicked", { number: digits, name: name ?? "", page: typeof window !== "undefined" ? window.location.pathname : "" })}
       className="h-brighten"
       style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "var(--lightblue)", color: "var(--navy)", fontFamily: MONO, fontWeight: 700, fontSize: 13, letterSpacing: ".02em", padding: "8px 15px", borderRadius: 999, whiteSpace: "nowrap", ...style }}
     >

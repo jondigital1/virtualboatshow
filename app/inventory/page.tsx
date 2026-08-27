@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow } from "@/components/ui";
 import { showBoats, waitingDealers, boatTitle, allBrands, allDealers, type ShowBoat } from "@/lib/showboats";
@@ -48,7 +49,15 @@ export default function Inventory() {
     return l;
   }, [q, brand, dealer, sort]);
 
-  const clearAll = () => { setQ(""); setBrand("all"); setDealer("all"); };
+  const clearAll = () => { track("inventory_filtered", { kind: "clear", value: "" }); setQ(""); setBrand("all"); setDealer("all"); };
+
+  // Search is reported once the typing settles, never per keystroke.
+  useEffect(() => {
+    const query = q.trim();
+    if (!query) return;
+    const t = setTimeout(() => track("inventory_filtered", { kind: "search", value: query.slice(0, 60) }), 900);
+    return () => clearTimeout(t);
+  }, [q]);
 
   return (
     <>
@@ -85,15 +94,15 @@ export default function Inventory() {
               <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search boats, brands, models or dealers…" style={{ width: "100%", background: "#fff", border: "1px solid rgba(20,46,81,.16)", borderRadius: 10, padding: "13px 16px 13px 42px", fontSize: 15, color: "#142E51", fontFamily: FONT }} />
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: 12 }}>
-              <select value={brand} onChange={(e) => setBrand(e.target.value)} style={selectStyle} aria-label="Filter by brand">
+              <select value={brand} onChange={(e) => { setBrand(e.target.value); track("inventory_filtered", { kind: "brand", value: e.target.value }); }} style={selectStyle} aria-label="Filter by brand">
                 <option value="all">Brand: All</option>
                 {brands.map((b) => <option key={b} value={b}>{b}</option>)}
               </select>
-              <select value={dealer} onChange={(e) => setDealer(e.target.value)} style={selectStyle} aria-label="Filter by dealer">
+              <select value={dealer} onChange={(e) => { setDealer(e.target.value); track("inventory_filtered", { kind: "dealer", value: e.target.value }); }} style={selectStyle} aria-label="Filter by dealer">
                 <option value="all">Dealer: All</option>
                 {dealers.map((d) => <option key={d} value={d}>{d}</option>)}
               </select>
-              <select value={sort} onChange={(e) => setSort(e.target.value)} style={selectStyle} aria-label="Sort">
+              <select value={sort} onChange={(e) => { setSort(e.target.value); track("inventory_filtered", { kind: "sort", value: e.target.value }); }} style={selectStyle} aria-label="Sort">
                 <option value="featured">Sort: Featured</option>
                 <option value="brand">Brand A–Z</option>
                 <option value="year">Year: Newest</option>
@@ -154,7 +163,7 @@ export default function Inventory() {
               const open = faqOpen === i;
               return (
                 <div key={q2} style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden" }}>
-                  <button onClick={() => setFaqOpen(open ? -1 : i)} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, textAlign: "left", background: "none", border: "none", cursor: "pointer", padding: "20px clamp(18px,2vw,26px)" }}>
+                  <button onClick={() => { if (!open) track("faq_opened", { q: q2.slice(0, 60) }); setFaqOpen(open ? -1 : i); }} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, textAlign: "left", background: "none", border: "none", cursor: "pointer", padding: "20px clamp(18px,2vw,26px)" }}>
                     <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(16px,1.5vw,19px)", color: "#142E51", letterSpacing: "-.01em" }}>{q2}</span>
                     <span style={{ flex: "0 0 auto", width: 27, height: 27, borderRadius: "50%", background: open ? "var(--gold)" : "rgba(20,46,81,.06)", color: open ? "#142E51" : "#4c6270", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, lineHeight: 1, transform: open ? "rotate(45deg)" : "rotate(0deg)", transition: "transform .25s, background .2s" }}>+</span>
                   </button>
@@ -187,7 +196,10 @@ function ShowBoatCard({ b }: { b: ShowBoat }) {
       ? `${placement.where} · land display`
       : `${placement.dock} · ${placement.where}`
     : "Dock & slip announced before the show";
-  const step = (d: number) => setIdx((i) => (i + d + b.photos.length) % b.photos.length);
+  const step = (d: number, via: string) => {
+    track("boat_photo_swiped", { boat: b.slug, context: "card", via });
+    setIdx((i) => (i + d + b.photos.length) % b.photos.length);
+  };
   const arrowStyle = (side: "left" | "right"): React.CSSProperties => ({ position: "absolute", [side]: 6, top: "50%", transform: "translateY(-50%)", zIndex: 3, width: 32, height: 32, borderRadius: "50%", border: "none", background: "rgba(255,255,255,.92)", color: "var(--navy)", cursor: "pointer", fontSize: 17, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(20,46,81,.25)" });
   return (
     <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
@@ -197,7 +209,7 @@ function ShowBoatCard({ b }: { b: ShowBoat }) {
         onTouchEnd={(e) => {
           if (touchX.current === null || !many) return;
           const dx = e.changedTouches[0].clientX - touchX.current;
-          if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+          if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1, "swipe");
           touchX.current = null;
         }}
       >
@@ -215,8 +227,8 @@ function ShowBoatCard({ b }: { b: ShowBoat }) {
         </Link>
         {many && (
           <>
-            <button aria-label="Previous photo" onClick={() => step(-1)} style={arrowStyle("left")}>‹</button>
-            <button aria-label="Next photo" onClick={() => step(1)} style={arrowStyle("right")}>›</button>
+            <button aria-label="Previous photo" onClick={() => step(-1, "arrow")} style={arrowStyle("left")}>‹</button>
+            <button aria-label="Next photo" onClick={() => step(1, "arrow")} style={arrowStyle("right")}>›</button>
             {b.photos.length <= 8 ? (
               <span aria-hidden style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", zIndex: 2, display: "flex", gap: 5, pointerEvents: "none" }}>
                 {b.photos.map((_, i) => (

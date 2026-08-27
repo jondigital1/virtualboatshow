@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, MONO, Eyebrow } from "@/components/ui";
-import { useIframeModal } from "@/components/IframeModal";
+import { TicketFunnelButton } from "@/components/TicketFunnel";
 import { boatBySlug, boatTitle } from "@/lib/showboats";
 import { placementFor } from "@/lib/docks";
 import { SHOW_DAYS } from "@/components/DocksideWalkthrough";
@@ -26,8 +26,6 @@ function Confirmed() {
   const slug = params.get("boat") ?? "";
   const day = params.get("day") ?? "";
   const part = params.get("part") ?? "";
-  const { open: openTickets } = useIframeModal();
-
   const boat = slug ? boatBySlug(slug) : undefined;
   const dealer = boat?.dealers[0];
   const placement = dealer ? placementFor(dealer.name) : undefined;
@@ -86,9 +84,8 @@ function Confirmed() {
           <Link href="/map" className="h-brighten" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "var(--navy)", color: "#fff", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "14px 20px", borderRadius: 8 }}>
             View show map <span aria-hidden>&rarr;</span>
           </Link>
-          <button onClick={() => openTickets()} style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "transparent", color: "var(--navy)", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "14px 20px", borderRadius: 8, border: "1.5px solid rgba(20,46,81,.25)", cursor: "pointer", fontFamily: "inherit" }}>
-            Get tickets <span aria-hidden>&rarr;</span>
-          </button>
+          {/* Through the funnel like every other ticket path. */}
+          <TicketFunnelButton label="Get tickets →" source="walkthrough-confirmed" className="" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "transparent", color: "var(--navy)", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "14px 20px", borderRadius: 8, border: "1.5px solid rgba(20,46,81,.25)", fontFamily: "inherit" }} />
         </div>
 
         <div style={{ borderTop: "1px solid rgba(20,46,81,.12)", marginTop: 34, paddingTop: 22 }}>

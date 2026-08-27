@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { ShowMap } from "@/components/ShowMap";
 import { Eyebrow } from "@/components/ui";
@@ -263,6 +264,7 @@ export default function Home() {
             href="https://buoylist.com?utm_source=acvbs&utm_medium=referral"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track("buoy_referral_clicked", { page: "home" })}
             className="btn-outline"
             style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#fff", color: "var(--navy)", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "13px 22px", borderRadius: 8, border: "1.5px solid rgba(20,46,81,.3)", flex: "0 0 auto" }}
           >

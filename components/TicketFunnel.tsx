@@ -42,10 +42,15 @@ export function TicketFunnelButton({
   label = "Get your show tickets →",
   source,
   style,
+  className = "h-lift",
+  onOpen,
 }: {
   label?: string;
   source: string;
   style?: React.CSSProperties;
+  className?: string;
+  /** Called when the sheet opens; the nav uses it to close its menu. */
+  onOpen?: () => void;
 }) {
   const { open: openTickets } = useIframeModal();
   const [open, setOpen] = useState(false);
@@ -95,8 +100,8 @@ export function TicketFunnelButton({
     <>
       <button
         type="button"
-        className="h-lift"
-        onClick={() => { setOpen(true); track("ticket_funnel_opened", { source }); }}
+        className={className}
+        onClick={() => { setOpen(true); onOpen?.(); track("ticket_funnel_opened", { source }); }}
         style={{ fontFamily: FONT, cursor: "pointer", border: "none", ...style }}
       >
         {label}

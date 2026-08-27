@@ -1,5 +1,6 @@
 "use client";
 
+import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow } from "@/components/ui";
 import { HOST_VENUE, MEDIA_PARTNERS, SHOW_PARTNERS, type Sponsor } from "@/lib/sponsors";
@@ -13,6 +14,7 @@ function SponsorCard({ s, big }: { s: Sponsor; big?: boolean }) {
       href={s.url}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => track("sponsor_clicked", { sponsor: s.name })}
       className="card-lift-sm"
       style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, padding: big ? "34px 30px" : "26px 22px", display: "flex", flexDirection: "column", alignItems: "center", gap: 14, textAlign: "center" }}
     >

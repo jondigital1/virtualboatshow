@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, MONO, Eyebrow, PhonePill } from "@/components/ui";
 import { submitLead } from "@/lib/leads";
@@ -42,6 +43,14 @@ export default function Vendors() {
   const [sending, setSending] = useState(false);
   const [formErr, setFormErr] = useState("");
 
+  // Directory search is reported once the typing settles, never per keystroke.
+  useEffect(() => {
+    const query = q.trim();
+    if (!query) return;
+    const t = setTimeout(() => track("marketplace_searched", { value: query.slice(0, 60) }), 900);
+    return () => clearTimeout(t);
+  }, [q]);
+
   // Was fire-and-forget: it showed the thank-you screen whether or not the
   // request succeeded, so a failed enquiry looked identical to a delivered one.
   const onSubmit = async (e: React.FormEvent) => {
@@ -59,6 +68,7 @@ export default function Vendors() {
     });
     setSending(false);
     if (!ok) return setFormErr("Something went wrong. Try again, or email customerinquiry@acvirtualboatshow.com.");
+    track("vendor_inquiry_submitted", { interest });
     setSubmitted(true);
   };
 
@@ -80,7 +90,7 @@ export default function Vendors() {
       </div>
       {d.hasPhone && (
         <div style={{ marginTop: "auto" }}>
-          <PhonePill phone={d.phone} />
+          <PhonePill phone={d.phone} name={d.name} />
         </div>
       )}
     </div>
@@ -209,11 +219,11 @@ export default function Vendors() {
                   <p style={{ fontSize: 15, lineHeight: 1.6, color: "rgba(255,255,255,.76)", margin: 0, maxWidth: "44ch" }}>{cur[2]}</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <button onClick={() => setDeck((d) => (d - 1 + DECK.length) % DECK.length)} style={{ width: 40, height: 40, borderRadius: "50%", border: "1px solid rgba(255,255,255,.22)", background: "rgba(255,255,255,.06)", color: "#fff", fontSize: 17, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>←</button>
-                  <button onClick={() => setDeck((d) => (d + 1) % DECK.length)} className="h-brighten" style={{ width: 40, height: 40, borderRadius: "50%", border: "none", background: "var(--accent)", color: "#142E51", fontSize: 17, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>→</button>
+                  <button onClick={() => { track("vendor_deck_browsed", { via: "arrow" }); setDeck((d) => (d - 1 + DECK.length) % DECK.length); }} style={{ width: 40, height: 40, borderRadius: "50%", border: "1px solid rgba(255,255,255,.22)", background: "rgba(255,255,255,.06)", color: "#fff", fontSize: 17, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>←</button>
+                  <button onClick={() => { track("vendor_deck_browsed", { via: "arrow" }); setDeck((d) => (d + 1) % DECK.length); }} className="h-brighten" style={{ width: 40, height: 40, borderRadius: "50%", border: "none", background: "var(--accent)", color: "#142E51", fontSize: 17, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>→</button>
                   <div style={{ display: "flex", gap: 7, marginLeft: 8 }}>
                     {DECK.map((_, i) => (
-                      <button key={i} onClick={() => setDeck(i)} style={{ width: i === deck ? 22 : 8, height: 8, borderRadius: 999, border: "none", cursor: "pointer", padding: 0, background: i === deck ? "var(--accent)" : "rgba(255,255,255,.28)", transition: "width .2s, background .2s" }} />
+                      <button key={i} onClick={() => { track("vendor_deck_browsed", { via: "dot" }); setDeck(i); }} style={{ width: i === deck ? 22 : 8, height: 8, borderRadius: 999, border: "none", cursor: "pointer", padding: 0, background: i === deck ? "var(--accent)" : "rgba(255,255,255,.28)", transition: "width .2s, background .2s" }} />
                     ))}
                   </div>
                 </div>
@@ -267,7 +277,7 @@ export default function Vendors() {
                     </div>
                   </div>
                   <button type="submit" className="h-brighten" style={{ width: "100%", marginTop: 20, background: "var(--accent)", color: "#142E51", fontWeight: 700, fontSize: 16, padding: 16, borderRadius: 12, border: "none", cursor: "pointer" }}>Send inquiry →</button>
-                  <p style={{ fontSize: 12, color: "#8595a0", textAlign: "center", margin: "14px 0 0" }}>Prefer email? <a href="mailto:customerinquiry@acvirtualboatshow.com" style={{ fontWeight: 600 }}>customerinquiry@acvirtualboatshow.com</a></p>
+                  <p style={{ fontSize: 12, color: "#8595a0", textAlign: "center", margin: "14px 0 0" }}>Prefer email? <a href="mailto:customerinquiry@acvirtualboatshow.com" onClick={() => track("email_link_clicked", { page: "vendors" })} style={{ fontWeight: 600 }}>customerinquiry@acvirtualboatshow.com</a></p>
                 </form>
               )}
             </div>
