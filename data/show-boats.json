@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-26T14:28:07.005Z",
-  "boatCount": 86,
+  "generatedAt": "2026-08-27T12:10:25.625Z",
+  "boatCount": 87,
   "boats": [
     {
       "slug": "albemarle-45-carolinian-fisharound-express",
@@ -2835,6 +2835,28 @@
       "photoCredit": null
     },
     {
+      "slug": "tiara-yachts-34ls",
+      "brand": "Tiara Yachts",
+      "model": "34LS",
+      "year": 2026,
+      "priority": 2,
+      "notes": "NJ Boat Show Debut",
+      "shared": false,
+      "sourceUrl": "https://www.comstockyachtsales.com/inventory/2026-tiara-34-ls-brick-nj-08724-13506414i",
+      "brandUrl": "https://www.tiarayachts.com/",
+      "dealers": [
+        {
+          "name": "Comstock Yacht Sales & Marina",
+          "loc": "Brick, NJ",
+          "phone": "(732) 899-2500"
+        }
+      ],
+      "photos": [],
+      "blurb": "",
+      "lengthFt": 34,
+      "photoCredit": null
+    },
+    {
       "slug": "tidewater-282-cc-adventure",
       "brand": "TideWater",
       "model": "282 CC Adventure",
@@ -2992,14 +3014,14 @@
     {
       "dealer": "Irwin Marine Center",
       "brands": [
-        "Bennington Pontoons"
+        "Sailfish",
+        "Southport"
       ]
     },
     {
       "dealer": "Riptide Marine Center",
       "brands": [
-        "Sailfish",
-        "Southport"
+        "Bennington"
       ]
     },
     {
@@ -3013,7 +3035,7 @@
       "dealer": "Schrader Yacht Sales",
       "brands": [
         "Chris Craft",
-        "Ken Craft"
+        "Bay Rider"
       ]
     },
     {
@@ -3021,16 +3043,6 @@
       "brands": [
         "Cape Horn",
         "NorthCoast"
-      ]
-    },
-    {
-      "dealer": "Total Marine",
-      "brands": [
-        "Alara",
-        "Donzi",
-        "Fairline",
-        "Fountain",
-        "Twin Vee"
       ]
     },
     {

@@ -117,7 +117,7 @@ R29: P | C | 2027.0 | Regulator Boats | 1.0 | 31.0 | NEW | https://www.comstocky
 R30: X | X |  | Regulator Boats | X | 28.0 | Not Selected | X | X
 R31: P | C | 2027.0 | Regulator Boats | 2.0 | 24XO |  | https://www.comstockyachtsales.com/inventory/2027-regulator-24xo-brick-nj-08724-14400852i | https://www.regulatormarine.com/
 R32: P | C | 2027.0 | Tiara Yachts | 1.0 | 39LS | NJ Boat Show Debut | https://www.comstockyachtsales.com/inventory/2027-tiara-39-ls-brick-nj-08724-14371133i | https://www.tiarayachts.com/series/ls/models/39ls
-R33: P | C | 2026.0 |  | 2.0 | 34LS | NJ Boat Show Debut | https://www.comstockyachtsales.com/inventory/2026-tiara-34-ls-brick-nj-08724-13506414i | https://www.tiarayachts.com/
+R33: P | C | 2026.0 | Tiara Yachts | 2.0 | 34LS | NJ Boat Show Debut | https://www.comstockyachtsales.com/inventory/2026-tiara-34-ls-brick-nj-08724-13506414i | https://www.tiarayachts.com/
 R34: Coty Marine |  |  |  |  | DONE |  | DONE
 R35:  |  |  | Black Fin Boats | 0.0 | Waiting
 R36: P | C | 2027.0 | Key West Boats | 1.0 | 249 FS |  | https://www.cotymarine.com/inventory/2027-key-west-249-fs-toms-river-nj-08753-14455851i | https://keywestboats.com/
@@ -150,26 +150,26 @@ R62: P | C |  | Formula Boats | 2.0 | 310 BR |  | https://www.formulaboats.com/b
 R63: G. Winter's Sailing Center Inc.
 R64:  |  |  | Ranger Tugs Boats | 0.0 | Waiting
 R65: Irwin
-R66:  |  |  | Bennington Pontoons | 0.0 | Waiting
-R67: MarineMax
-R68: P | C |  | Boston Whaler Boats | 1.0 | 330 Outrage |  | SHARED BRAND - USE BRAND LINK | https://www.bostonwhaler.com/us/en/boats/outrage/330-outrage
-R69: P | C | 2026.0 | Cruisers Yachts | 1.0 | 42 GLS |  | https://www.marinemax.com/products/new-cruisers-yachts-42-gls-2026-marinemax-warehouse-mdl9069645 | https://www.cruisersyachts.com/
-R70: P | C | 2026.0 | Galeon Yachts | 1.0 | 335 GTO |  | https://www.marinemax.com/products/new-galeon-335-gto-2026-marinemax-warehouse-mdl9069066 | https://www.galeonyachts.us/
-R71: P | C | 2026.0 | Grady-White Boats | 1.0 | 321 Coastal Explorer |  | SHARED BRAND - USE BRAND LINK | https://www.gradywhite.com/models/321-ce/
-R72: P | C | 2026.0 | Saxdor Yachts | 1.0 | 400 GTC |  | https://www.marinemax.com/products/new-saxdor-400-gtc-2026-marinemax-warehouse-mdl9070137 | https://saxdoryachts.com/
-R73: P | C | 2025.0 | Scout Boats | 1.0 | 260 LXF |  | https://www.marinemax.com/products/new-scout-260-lxf-2025-marinemax-warehouse-mdl9059963 | https://www.scoutboats.com/
-R74: P | C | 2026.0 | Sea Ray Boats | 1.0 | 360 SLX OB |  | https://www.marinemax.com/products/new-sea-ray-slx-360-outboard-2026-marinemax-warehouse-mdl9072412 | https://www.searay.com/
-R75: New Jersey Outboards |  |  |  |  | DONE |  | DONE
-R76: X | X |  | Godfrey Pontoons | X | 2485 SDB Slide Boat |  | Not supplied
-R77: P | C | 2025.0 | Hurricane Deck Boats | 1.0 | Sundeck 2690 |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=17020803&p=1&make=hurricane&s=(Sort%20By)&d=D&fr=xnewinventory | https://www.hurricaneboats.com/en-us/sundeck/sundeck-2690/
-R78: P | C | 2026.0 | Parker Boats | 1.0 | 227 Explorer |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=17477433&p=1&make=parker&s=(Sort%20By)&d=D&t=new&fr=xnewinventory | https://parkerboats.com/models/227-explorer
-R79: P | C | 2026.0 | Parker Boats | 2.0 | 210 Coastal |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=18556735&p=1&make=parker&s=(Sort%20By)&d=D&fr=xnewinventory | https://parkerboats.com/models/210-coastal
-R80: P | C | 2027.0 | Sea Hunt Boats | 1.0 | Ultra 305 SE |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=17439438&p=2&make=sea%20hunt&s=(Sort%20By)&d=D&fr=xnewinventory | https://seahuntboats.com/boats/ultra/ultra-305se/
-R81: P | C | 2027.0 | Sea Hunt Boats | 2.0 | Ultra 275 SE |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=18972806&p=1&make=sea%20hunt&s=(Sort%20By)&d=D&fr=xnewinventory | https://seahuntboats.com/boats/ultra/ultra-275se/
-R82: P | C | 2027.0 | Sea Hunt Boats | 2.0 | Ultra 265 SE |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=18229996&p=1&make=sea%20hunt&s=(Sort%20By)&d=D&t=new&fr=xnewinventory | https://seahuntboats.com/boats/ultra/ultra-265se/
-R83: Riptide
-R84:  |  |  | Sailfish Boats | 0.0 | Waiting
-R85:  |  |  | Southport Boats | 0.0 | Waiting
+R66:  |  |  | Sailfish Boats | 0.0 | Waiting
+R67:  |  |  | Southport | 0.0 | Waiting
+R68: MarineMax
+R69: P | C |  | Boston Whaler Boats | 1.0 | 330 Outrage |  | SHARED BRAND - USE BRAND LINK | https://www.bostonwhaler.com/us/en/boats/outrage/330-outrage
+R70: P | C | 2026.0 | Cruisers Yachts | 1.0 | 42 GLS |  | https://www.marinemax.com/products/new-cruisers-yachts-42-gls-2026-marinemax-warehouse-mdl9069645 | https://www.cruisersyachts.com/
+R71: P | C | 2026.0 | Galeon Yachts | 1.0 | 335 GTO |  | https://www.marinemax.com/products/new-galeon-335-gto-2026-marinemax-warehouse-mdl9069066 | https://www.galeonyachts.us/
+R72: P | C | 2026.0 | Grady-White Boats | 1.0 | 321 Coastal Explorer |  | SHARED BRAND - USE BRAND LINK | https://www.gradywhite.com/models/321-ce/
+R73: P | C | 2026.0 | Saxdor Yachts | 1.0 | 400 GTC |  | https://www.marinemax.com/products/new-saxdor-400-gtc-2026-marinemax-warehouse-mdl9070137 | https://saxdoryachts.com/
+R74: P | C | 2025.0 | Scout Boats | 1.0 | 260 LXF |  | https://www.marinemax.com/products/new-scout-260-lxf-2025-marinemax-warehouse-mdl9059963 | https://www.scoutboats.com/
+R75: P | C | 2026.0 | Sea Ray Boats | 1.0 | 360 SLX OB |  | https://www.marinemax.com/products/new-sea-ray-slx-360-outboard-2026-marinemax-warehouse-mdl9072412 | https://www.searay.com/
+R76: New Jersey Outboards |  |  |  |  | DONE |  | DONE
+R77: X | X |  | Godfrey Pontoons | X | 2485 SDB Slide Boat |  | Not supplied
+R78: P | C | 2025.0 | Hurricane Deck Boats | 1.0 | Sundeck 2690 |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=17020803&p=1&make=hurricane&s=(Sort%20By)&d=D&fr=xnewinventory | https://www.hurricaneboats.com/en-us/sundeck/sundeck-2690/
+R79: P | C | 2026.0 | Parker Boats | 1.0 | 227 Explorer |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=17477433&p=1&make=parker&s=(Sort%20By)&d=D&t=new&fr=xnewinventory | https://parkerboats.com/models/227-explorer
+R80: P | C | 2026.0 | Parker Boats | 2.0 | 210 Coastal |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=18556735&p=1&make=parker&s=(Sort%20By)&d=D&fr=xnewinventory | https://parkerboats.com/models/210-coastal
+R81: P | C | 2027.0 | Sea Hunt Boats | 1.0 | Ultra 305 SE |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=17439438&p=2&make=sea%20hunt&s=(Sort%20By)&d=D&fr=xnewinventory | https://seahuntboats.com/boats/ultra/ultra-305se/
+R82: P | C | 2027.0 | Sea Hunt Boats | 2.0 | Ultra 275 SE |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=18972806&p=1&make=sea%20hunt&s=(Sort%20By)&d=D&fr=xnewinventory | https://seahuntboats.com/boats/ultra/ultra-275se/
+R83: P | C | 2027.0 | Sea Hunt Boats | 2.0 | Ultra 265 SE |  | https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=18229996&p=1&make=sea%20hunt&s=(Sort%20By)&d=D&t=new&fr=xnewinventory | https://seahuntboats.com/boats/ultra/ultra-265se/
+R84: Riptide
+R85:  |  |  | Bennington | 0.0 | Waiting
 R86: Riverside Marina & Yacht Sales
 R87:  |  |  | Brig Inflatables | 0.0 | Waiting
 R88:  |  |  | Jeanneau Boats | 0.0 | Waiting
@@ -181,7 +181,7 @@ R93: P | C | 2026.0 | Marex Boats | 2.0 | Marex 360 |  | https://sandyhookyachts
 R94: Schrader Yacht Sales Inc.
 R95:  |  |  | Chris Craft Boats | 0.0 | Waiting
 R96:  |  |  | Jupiter Boats
-R97:  |  |  | Ken Craft Boats | 0.0 | Waiting
+R97:  |  |  | Bay Rider | 0.0 | Waiting
 R98: Seaport Inlet Marina
 R99:  |  |  | Cape Horn Boats | 0.0 | Waiting
 R100:  |  |  | NorthCoast Boats | 0.0 | Waiting
@@ -231,13 +231,11 @@ R143:  | C | 2027.0 | Sea Pro | 2.0 | 262 DLX |  | https://www.stoneharbormarina
 R144:  | C | 2027.0 | Sea Pro - 4 | 1.0 | 245 FLXR |  | https://www.stoneharbormarina.com/search/condition-new/make-sea-pro
 R145:  | C | 2026.0 | Sea Pro | 2.0 | 265 FLX |  | https://www.stoneharbormarina.com/details/sea-pro/265-flx/2d811deb729e2c10e39cff706d30c2d1
 R146: Total Marine
-R147:  |  |  | Alara Boats | 0.0 | Waiting
-R148:  |  |  | Donzi Boats | 0.0 | Waiting
-R149:  |  |  | Fairline Boats | 0.0 | Waiting
-R150:  |  |  | Fountain Boats | 0.0 | Waiting
-R151:  |  |  | Twin Vee Boats | 0.0 | Waiting
-R152: Valhalla Boat Sales
-R153:  |  |  | Contender Boats | 0.0 | Waiting
-R154:  |  |  | Monterey Boats | 0.0 | Waiting
-R155:  |  |  | Sportsman Boats | 0.0 | Waiting
-R156:  |  |  | Valhalla Boats | 0.0 | Waiting
+R147:  |  |  | Alara Boats / Pontoons | 0.0 | A 20
+R148:  |  |  | Alara Boats / Pontoons | 0.0 | M 25
+R149:  |  |  | MJM Yachts | 0.0 | 38 X
+R150: Valhalla Boat Sales
+R151:  |  |  | Contender Boats | 0.0 | Waiting
+R152:  |  |  | Monterey Boats | 0.0 | Waiting
+R153:  |  |  | Sportsman Boats | 0.0 | Waiting
+R154:  |  |  | Valhalla Boats | 0.0 | Waiting
