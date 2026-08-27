@@ -24,6 +24,17 @@ Show opens **2026-09-10**. Fourteen days.
   constraint); otherwise fingerprint only.
   scripts/set-gate-password.mjs now edits lib/gate.ts, and gate constants live there.
 - **Privacy policy** updated for the second collection point.
+- **Funnel checkbox is REQUIRED** (never pre-ticked) and promises exactly two emails:
+  show access live, and Buoy launch. Every funnel lead stores name + email.
+- **Opening-day send built and armed.** Vercel cron hits /api/opening-day-send at
+  14:00 UTC Sept 10 (= 10 AM ET, the moment the gate lifts). Sends from
+  updates@acvirtualboatshow.com (NOT customerinquiry@), reply-to the monitored inbox,
+  List-Unsubscribe one-click headers, fingerprint-token unsubscribe at
+  /api/unsubscribe. Idempotent via opening-day-sent marker rows; refuses to run if
+  exclusion lists cannot load; fails closed without CRON_SECRET (set in Vercel prod;
+  local copy in vbs-website/.env.local, gitignored). Modes: ?dry=1 and ?test=EMAIL,
+  bearer-auth. Verified live: dry run, test email to Jon, unsubscribe 400/200 paths.
+  Remaining promise: the Buoy-launch email (early 2027, list exports from leads).
 - Daily sync added Tiara 34LS (Comstock) on schedule; 87 boats now.
 
 Asks for the show: (1) point Interactive Ticketing's post-purchase return URL at
