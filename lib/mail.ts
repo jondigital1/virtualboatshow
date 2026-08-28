@@ -53,7 +53,9 @@ export async function send(mail: Mail): Promise<{ ok: boolean; error?: string }>
         to: mail.to,
         bcc: mail.bcc,
         reply_to: mail.replyTo,
-        subject: mail.subject,
+        // Subjects can contain caller-assembled user input (boat, dealer,
+        // company names); strip line breaks so nothing can smuggle headers.
+        subject: mail.subject.replace(/[\r\n]+/g, " ").slice(0, 300),
         text: mail.text,
         headers: mail.headers,
       }),

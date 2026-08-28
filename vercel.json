@@ -1,6 +1,15 @@
 {
-  "rewrites": [
-    { "source": "/buoy-api/:path*", "destination": "https://api.buoylist.com/:path*" }
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Content-Security-Policy", "value": "frame-ancestors 'self'" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    }
   ],
   "crons": [
     { "path": "/api/opening-day-send", "schedule": "0 14 10 9 *" }

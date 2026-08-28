@@ -71,7 +71,11 @@ export function IframeModalProvider({ children }: { children: React.ReactNode })
   useEffect(() => {
     if (!isOpen) return;
     const onMsg = (e: MessageEvent) => {
-      if (!e.origin.includes("interactiveticketing.com")) return;
+      // Strict host check: a substring test would match
+      // interactiveticketing.com.evil.example, an actual bypass pattern.
+      let host = "";
+      try { host = new URL(e.origin).hostname; } catch { return; }
+      if (host !== "interactiveticketing.com" && !host.endsWith(".interactiveticketing.com")) return;
       const d = e.data as unknown;
       const type = typeof d === "object" && d ? String((d as Record<string, unknown>).type ?? "") : "";
       if (/^(purchase[_-]?complete|order[_-]?complete|checkout[_-]?complete|success)$/i.test(type)) {
@@ -134,7 +138,7 @@ export function IframeModalProvider({ children }: { children: React.ReactNode })
               src={state.url}
               title={state.title}
               style={{ flex: 1, width: "100%", border: 0 }}
-              allow="payment *; clipboard-write"
+              allow="payment; clipboard-write"
             />
           </div>
         </div>
