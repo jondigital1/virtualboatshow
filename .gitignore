@@ -48,3 +48,5 @@ dev-server.log
 
 # Backstop source, re-downloaded by the daily sync each run
 design-specs/rebrand/2026-Boats-for-Jon.xlsx
+
+design-specs/banner/banner.html
