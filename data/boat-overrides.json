@@ -1,36 +1,76 @@
 {
   "_comment": "Per-boat source overrides: boats whose workbook link is a search page or brand homepage pull photos/description from the manufacturer's model page instead. official:true relabels the VDP outbound link as the brand model page. primaryPhoto:N promotes photo N to the front when the source page leads with a schematic, a trailer close-up or a dark render. photoFallback {url,token,credit} tops up a thin gallery from the manufacturer's model page; token must appear in the filename so another model's hero shot cannot land on this boat. exclude:true drops the boat from the site entirely (no detail page, no sitemap entry, no listing) for boats the dealer has confirmed are NOT coming to the show; excludeReason records why. Excluded boats keep their photo files on disk so the exclusion can be reversed by deleting the entry. Applied by scripts/import-show-boats.mjs after parsing; survives daily syncs.",
-  "solara-310-cw": {
-    "exclude": true,
-    "excludeReason": "NOT AT SHOW - omitted from Clarks Landing's own complete at-show lineup (master workbook STATUS, Aug 30). Was live and crawlable until Aug 30."
+  "bennington-pontoons-20-s1sr-s-quad-bench": {
+    "photoFallback": {
+      "url": "https://www.benningtonmarine.com/en-us/s-series/s-one/",
+      "token": "20-s-quad-bench",
+      "credit": "Bennington"
+    }
   },
-  "parker-210-coastal": {
-    "exclude": true,
-    "excludeReason": "NOT AT SHOW - omitted from New Jersey Outboards' complete at-show lineup (Glenn Gioe stock list, Aug 27). Was live and crawlable until Aug 30."
+  "bennington-pontoons-22-mfb": {
+    "photoFallback": {
+      "url": "https://www.benningtonmarine.com/en-us/m-series/m/",
+      "token": "22mfb26",
+      "credit": "Bennington"
+    }
   },
-  "sea-hunt-ultra-265-se": {
-    "exclude": true,
-    "excludeReason": "NOT AT SHOW - omitted from New Jersey Outboards' complete at-show lineup (Glenn Gioe stock list, Aug 27). Was live and crawlable until Aug 30."
+  "bennington-pontoons-22-s1sb-s-swingback": {
+    "photoFallback": {
+      "url": "https://www.benningtonmarine.com/en-us/s-series/s-one/",
+      "token": "22-s-swingback",
+      "credit": "Bennington"
+    }
   },
-  "monterey-34-elite": {
-    "official": true,
-    "sourceUrls": [
-      "https://www.montereyboats.com/ELITE-34-OB-2026-10-1167951.html"
-    ],
-    "blurb": "The Elite 34 is the next evolution of Monterey's award-winning Elite Series: an upper-premium outboard model with expanded entertaining space, elevated helm ergonomics, and extended offshore capability, launching in Summer 2026. See it make its debut on the water in Atlantic City with Coty Marine.",
-    "primaryPhoto": 9
+  "bennington-pontoons-23-s1sb-s-swingback": {
+    "photoFallback": {
+      "url": "https://www.benningtonmarine.com/en-us/s-series/s/",
+      "token": "23ssb26",
+      "credit": "Bennington"
+    }
   },
-  "grady-white-freedom-345": {
-    "official": true,
-    "sourceUrls": [
-      "https://www.gradywhite.com/models/freedom-345/"
-    ]
+  "bennington-pontoons-24-msl-m-quad-bench": {
+    "photoFallback": {
+      "url": "https://www.benningtonmarine.com/en-us/m-series/m/",
+      "token": "24msl26",
+      "credit": "Bennington"
+    }
   },
-  "grady-white-canyon-266": {
-    "official": true,
-    "sourceUrls": [
-      "https://www.gradywhite.com/models/canyon-266/"
-    ]
+  "boston-whaler-220-dauntless": {
+    "blurb": "The 220 Dauntless is Boston Whaler's do-anything 22-footer: the unsinkable hull the brand is famous for, a fishing-ready cockpit, and comfortable bow seating that turns the same boat into a family cruiser by afternoon."
+  },
+  "boston-whaler-250-outrage-comstock": {
+    "photoFallback": {
+      "url": "https://www.bostonwhaler.com/us/en/boats/outrage/250-outrage",
+      "token": "BW-250-OR-",
+      "credit": "Boston Whaler"
+    }
+  },
+  "boston-whaler-250-outrage-marinemax": {
+    "photoFallback": {
+      "url": "https://www.bostonwhaler.com/us/en/boats/outrage/250-outrage",
+      "token": "BW-250-OR-",
+      "credit": "Boston Whaler"
+    }
+  },
+  "boston-whaler-280-vantage": {
+    "blurb": "The 280 Vantage is Boston Whaler's versatile dual console: one side console, one comfortable port lounge, and a layout that moves easily between fishing, cruising, and watersports, all on Whaler's unsinkable foundation."
+  },
+  "boston-whaler-330-outrage": {
+    "blurb": "The 330 Outrage is the newest boat in Boston Whaler's flagship offshore line: a center console built on Whaler's famously unsinkable hull, with a deep protected cockpit, serious fishing capability, and family comfort throughout. Atlantic City is its first New Jersey boat show, presented on the water by Comstock and MarineMax."
+  },
+  "chris-craft-calypso-32": {
+    "photoFallback": {
+      "url": "https://www.chriscraft.com/models/calypso-series/calypso-32",
+      "token": "calypso-32",
+      "credit": "Chris-Craft"
+    }
+  },
+  "chris-craft-catalina-28": {
+    "photoFallback": {
+      "url": "https://www.chriscraft.com/models/catalina-series/catalina-28",
+      "token": "catalina-28",
+      "credit": "Chris-Craft"
+    }
   },
   "cobia-245-cc": {
     "official": true,
@@ -50,12 +90,122 @@
       "https://www.evergladesboats.com/find-your-boat/center-consoles/375cc/"
     ]
   },
+  "finseeker-260-dual-console": {
+    "blurb": "The Finseeker 260 is a 26-foot dual console from Crownline's fishing-focused line, pairing genuine fishing features with the seating and comfort of a family day boat."
+  },
+  "formula-360-cbr": {
+    "blurb": "The Formula 360 Crossover Bowrider does two jobs without compromise: open-bow day boating and genuine performance cruising, with overnight-capable cabin space below and Formula's signature build quality throughout."
+  },
+  "grady-white-canyon-266": {
+    "official": true,
+    "sourceUrls": [
+      "https://www.gradywhite.com/models/canyon-266/"
+    ]
+  },
+  "grady-white-canyon-306-comstock": {
+    "photoFallback": {
+      "url": "https://www.gradywhite.com/models/center-consoles/canyon-306/",
+      "token": "Canyon306",
+      "credit": "Grady-White"
+    }
+  },
+  "grady-white-canyon-306-marinemax": {
+    "photoFallback": {
+      "url": "https://www.gradywhite.com/models/center-consoles/canyon-306/",
+      "token": "Canyon306",
+      "credit": "Grady-White"
+    }
+  },
+  "grady-white-canyon-336": {
+    "photoFallback": {
+      "url": "https://www.gradywhite.com/models/center-consoles/canyon-336/",
+      "token": "Canyon336",
+      "credit": "Grady-White"
+    }
+  },
+  "grady-white-freedom-345": {
+    "official": true,
+    "sourceUrls": [
+      "https://www.gradywhite.com/models/freedom-345/"
+    ]
+  },
+  "hurricane-deck-sundeck-2486-ob": {
+    "photoFallback": {
+      "url": "https://www.hurricaneboats.com/en-us/sundeck-2486-ob/specs/",
+      "token": "sundeck-2486-ob",
+      "credit": "Hurricane"
+    }
+  },
+  "hurricane-deck-sundeck-2600-ob": {
+    "photoFallback": {
+      "url": "https://www.hurricaneboats.com/en-us/sundeck/sundeck-2600/",
+      "token": "sundeck-2600",
+      "credit": "Hurricane"
+    }
+  },
+  "hurricane-deck-sundeck-2690-ob": {
+    "photoFallback": {
+      "url": "https://www.hurricaneboats.com/en-us/sundeck/sundeck-2690/",
+      "token": "sundeck-2690",
+      "credit": "Hurricane"
+    }
+  },
+  "key-west-249-fs": {
+    "blurb": "The Key West 249FS is a family sportsman that splits its time honestly: a fishing-first hull and cockpit with the bow seating and comfort that keep the whole crew aboard for the rest of the day."
+  },
+  "monterey-34-elite": {
+    "official": true,
+    "sourceUrls": [
+      "https://www.montereyboats.com/ELITE-34-OB-2026-10-1167951.html"
+    ],
+    "blurb": "The Elite 34 is the next evolution of Monterey's award-winning Elite Series: an upper-premium outboard model with expanded entertaining space, elevated helm ergonomics, and extended offshore capability, launching in Summer 2026. See it make its debut on the water in Atlantic City with Coty Marine.",
+    "primaryPhoto": 9
+  },
+  "navan-t-30-center-console": {
+    "blurb": "The Navan T30 is a Scandinavian-designed 30-foot adventure center console: deep protected seating, smart all-weather ergonomics, and twin Mercury outboards, built for running hard in real conditions."
+  },
+  "parker-210-coastal": {
+    "exclude": true,
+    "excludeReason": "NOT AT SHOW - omitted from New Jersey Outboards' complete at-show lineup (Glenn Gioe stock list, Aug 27). Was live and crawlable until Aug 30."
+  },
   "pursuit-s-288": {
     "official": true,
     "sourceUrls": [
       "https://www.pursuitboats.com/S288.php"
     ],
     "blurb": "The S 288 is Pursuit's compact sport center console: 30'0\" length overall with a 9'8\" beam, twin Yamaha outboards up to 600 hp, and a deep 24-degree transom deadrise for offshore work. The layout fits generous bow and aft seating, big stowage, and a sizable console with a step-down head, backed by 230 gallons of fuel and Pursuit's signature fit and finish."
+  },
+  "regulator-31": {
+    "blurb": "The Regulator 31 is a serious offshore center console with the deep-V Carolina ride Regulator is known for, twin Yamaha outboard power, and a tournament-grade fishing cockpit finished to yacht standards.",
+    "primaryPhoto": 2
+  },
+  "regulator-35": {
+    "blurb": "The Regulator 35 is the biggest boat Regulator builds: a canyon-running center console with Yamaha outboard power, massive fuel and fish capacity, and the legendary Carolina-flared ride that made the brand."
+  },
+  "sea-hunt-gamefish-25": {
+    "photoFallback": {
+      "url": "https://seahuntboats.com/boats/gamefish/gamefish-25/",
+      "token": "GF25_",
+      "credit": "Sea Hunt"
+    }
+  },
+  "sea-hunt-ultra-234": {
+    "photoFallback": {
+      "url": "https://seahuntboats.com/boats/ultra/ultra-234/",
+      "token": "Ultra_234_",
+      "credit": "Sea Hunt"
+    }
+  },
+  "sea-hunt-ultra-265-se": {
+    "exclude": true,
+    "excludeReason": "NOT AT SHOW - omitted from New Jersey Outboards' complete at-show lineup (Glenn Gioe stock list, Aug 27). Was live and crawlable until Aug 30."
+  },
+  "sea-hunt-ultra-275cb": {
+    "photoFallback": {
+      "url": "https://seahuntboats.com/boats/ultra/ultra-275sl/",
+      "token": "275COFFINBOX",
+      "credit": "Sea Hunt"
+    }
   },
   "sea-pro-245-flxr": {
     "official": true,
@@ -72,54 +222,44 @@
       "https://seapromfg.com/262-center-console/"
     ]
   },
+  "solara-310-cw": {
+    "exclude": true,
+    "excludeReason": "NOT AT SHOW - omitted from Clarks Landing's own complete at-show lineup (master workbook STATUS, Aug 30). Was live and crawlable until Aug 30."
+  },
   "steiger-craft-255-annapolis": {
     "official": true,
     "sourceUrls": [
       "https://www.steigercraft.com/255-annapolis/"
     ]
   },
-  "boston-whaler-330-outrage": {
-    "blurb": "The 330 Outrage is the newest boat in Boston Whaler's flagship offshore line: a center console built on Whaler's famously unsinkable hull, with a deep protected cockpit, serious fishing capability, and family comfort throughout. Atlantic City is its first New Jersey boat show, presented on the water by Comstock and MarineMax."
+  "steiger-craft-255-miami": {
+    "photoFallback": {
+      "url": "https://www.steigercraft.com/255-miami/",
+      "token": "255",
+      "credit": "Steiger Craft"
+    }
   },
-  "boston-whaler-220-dauntless": {
-    "blurb": "The 220 Dauntless is Boston Whaler's do-anything 22-footer: the unsinkable hull the brand is famous for, a fishing-ready cockpit, and comfortable bow seating that turns the same boat into a family cruiser by afternoon."
+  "steiger-craft-31-fisherman": {
+    "photoFallback": {
+      "url": "https://www.steigercraft.com/31-fisherman/",
+      "token": "31-fisherman",
+      "credit": "Steiger Craft"
+    }
   },
-  "boston-whaler-280-vantage": {
-    "blurb": "The 280 Vantage is Boston Whaler's versatile dual console: one side console, one comfortable port lounge, and a layout that moves easily between fishing, cruising, and watersports, all on Whaler's unsinkable foundation."
-  },
-  "regulator-31": {
-    "blurb": "The Regulator 31 is a serious offshore center console with the deep-V Carolina ride Regulator is known for, twin Yamaha outboard power, and a tournament-grade fishing cockpit finished to yacht standards.",
-    "primaryPhoto": 2
-  },
-  "regulator-35": {
-    "blurb": "The Regulator 35 is the biggest boat Regulator builds: a canyon-running center console with Yamaha outboard power, massive fuel and fish capacity, and the legendary Carolina-flared ride that made the brand."
+  "tiara-yachts-34ls": {
+    "photoFallback": {
+      "url": "https://www.tiarayachts.com/news/tiara-sport-launches-new-model-in-sport-series",
+      "token": "34ls",
+      "credit": "Tiara Yachts"
+    }
   },
   "tiara-yachts-39ls": {
     "blurb": "The 39 LS is Tiara's luxury sport day yacht: outboard power, a wide-open social cockpit with seating that converts around an outdoor galley, and the fit and finish Tiara has built its name on. It makes its New Jersey boat show debut in Atlantic City."
-  },
-  "navan-t-30-center-console": {
-    "blurb": "The Navan T30 is a Scandinavian-designed 30-foot adventure center console: deep protected seating, smart all-weather ergonomics, and twin Mercury outboards, built for running hard in real conditions."
-  },
-  "key-west-249-fs": {
-    "blurb": "The Key West 249FS is a family sportsman that splits its time honestly: a fishing-first hull and cockpit with the bow seating and comfort that keep the whole crew aboard for the rest of the day."
-  },
-  "finseeker-260-dual-console": {
-    "blurb": "The Finseeker 260 is a 26-foot dual console from Crownline's fishing-focused line, pairing genuine fishing features with the seating and comfort of a family day boat."
-  },
-  "formula-360-cbr": {
-    "blurb": "The Formula 360 Crossover Bowrider does two jobs without compromise: open-bow day boating and genuine performance cruising, with overnight-capable cabin space below and Formula's signature build quality throughout."
   },
   "world-cat-235-te-center-console": {
     "photoFallback": {
       "url": "https://worldcat.com/models/235te/",
       "token": "235",
-      "credit": "World Cat"
-    }
-  },
-  "world-cat-325-dual-console": {
-    "photoFallback": {
-      "url": "https://worldcat.com/models/325dc/",
-      "token": "325",
       "credit": "World Cat"
     }
   },
@@ -130,18 +270,11 @@
       "credit": "World Cat"
     }
   },
-  "steiger-craft-31-fisherman": {
+  "world-cat-325-dual-console": {
     "photoFallback": {
-      "url": "https://www.steigercraft.com/31-fisherman/",
-      "token": "31-fisherman",
-      "credit": "Steiger Craft"
-    }
-  },
-  "steiger-craft-255-miami": {
-    "photoFallback": {
-      "url": "https://www.steigercraft.com/255-miami/",
-      "token": "255",
-      "credit": "Steiger Craft"
+      "url": "https://worldcat.com/models/325dc/",
+      "token": "325",
+      "credit": "World Cat"
     }
   }
 }

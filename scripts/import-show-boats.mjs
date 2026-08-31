@@ -59,6 +59,15 @@ const OVERRIDES = existsSync(OVERRIDES_FILE)
   : {};
 
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36 ACVBS-showbot/1.0 (acvirtualboatshow.com; official show companion)";
+/**
+ * Some manufacturer sites (bostonwhaler.com among them) return 403 to anything
+ * that names itself a bot, on the HTML and on the images. Used only for the
+ * photoFallback path, where we are fetching a public product page whose own
+ * dealer network is asking us to show these boats. The showbot UA above stays
+ * the default everywhere else, because identifying ourselves is the better
+ * default when a site will accept it.
+ */
+const BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36";
 
 /** Workbook section header -> site dealer identity (matches /vendors data). */
 const DEALER_META = {
@@ -316,11 +325,11 @@ function extractFromHtml(html, baseUrl) {
   return { photos, blurb, lengthFt: len !== null && len >= 15 && len <= 120 ? len : null };
 }
 
-async function fetchWithTimeout(url, ms = 20000, asBuffer = false) {
+async function fetchWithTimeout(url, ms = 20000, asBuffer = false, ua = UA) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), ms);
   try {
-    const res = await fetch(url, { headers: { "User-Agent": UA, Accept: asBuffer ? "image/*" : "text/html,*/*" }, signal: ctrl.signal, redirect: "follow" });
+    const res = await fetch(url, { headers: { "User-Agent": ua, Accept: asBuffer ? "image/*" : "text/html,*/*" }, signal: ctrl.signal, redirect: "follow" });
     if (!res.ok) return null;
     return asBuffer ? Buffer.from(await res.arrayBuffer()) : await res.text();
   } catch {
@@ -452,33 +461,47 @@ async function topUpFromManufacturer(boat) {
   if (!fb?.url || !fb?.token) return null;
   if (boat.photos.length >= MIN_GALLERY) return null;
 
-  const html = await fetchWithTimeout(fb.url);
-  if (!html) return null;
+  const raw_html = await fetchWithTimeout(fb.url, 20000, false, BROWSER_UA);
+  if (!raw_html) return null;
+
+  // Bennington publishes its MY26 renders only inside an HTML-escaped JSON blob
+  // in a data-* attribute, so the URLs arrive with escaped slashes and entity
+  // encoded delimiters. Normalising first is what makes them matchable at all;
+  // it is harmless on pages that put their images in plain img tags.
+  const html = raw_html
+    .replace(/\\\//g, "/")
+    .replace(/&quot;/g, '"')
+    .replace(/&#0?39;|&apos;/g, "'")
+    .replace(/&amp;/g, "&");
 
   const junk = /favicon|logo|icon|sprite|placeholder|badge|pixel|site-identity/i;
   const seen = new Set();
   const candidates = [];
-  for (const m of html.matchAll(/https?:\/\/[^"'\s)]+?\.(?:jpg|jpeg|png|webp)/gi)) {
+  // The query string is part of the URL, not decoration: Grady-White serves its
+  // CDN images through a signed ?s= parameter and drops the request without it.
+  for (const m of html.matchAll(/https?:\/\/[^"'\s)<>\\]+?\.(?:jpg|jpeg|png|webp)(?:\?[^"'\s)<>\\]*)?/gi)) {
     const raw = m[0];
     if (junk.test(raw)) continue;
     // Same size-variant dedupe the main harvest uses.
     const key = raw.split("?")[0].replace(/-\d{2,4}x\d{2,4}(?=\.\w+$)/, "");
     const file = key.split("/").pop() ?? "";
-    if (!file.includes(fb.token)) continue;
+    // Case-insensitive: these CDNs serve lowercased copies of filenames whose
+    // originals are mixed case, so a literal match silently finds nothing.
+    if (!file.toLowerCase().includes(fb.token.toLowerCase())) continue;
     if (seen.has(key)) continue;
     seen.add(key);
     candidates.push(raw);
   }
   if (!candidates.length) return null;
 
-  const mine = new RegExp("^" + boat.slug.replace(/[.*+?^${}()|[\]\\]/g, "\\async function main() {") + "-\\d+\\.(jpe?g|png|webp)$", "i");
+  const mine = new RegExp("^" + boat.slug.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "-\\d+\\.(jpe?g|png|webp)$", "i");
   const existing = readdirSync(PHOTO_DIR).filter((f) => mine.test(f));
   let next = existing.reduce((m, f) => Math.max(m, Number(f.match(/-(\d+)\.\w+$/)?.[1]) || 0), 0);
 
   const added = [];
   for (const p of candidates) {
     if (boat.photos.length + added.length >= MAX_PHOTOS) break;
-    const buf = await fetchWithTimeout(p, 25000, true);
+    const buf = await fetchWithTimeout(p, 25000, true, BROWSER_UA);
     if (!buf || buf.length < 8000 || buf.length > 15_000_000) continue;
     try {
       const img = sharp(buf);

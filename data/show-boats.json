@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T02:05:07.121Z",
+  "generatedAt": "2026-08-31T02:39:37.965Z",
   "boatCount": 175,
   "boats": [
     {
@@ -2104,10 +2104,20 @@
           "phone": "(732) 899-2500"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/grady-white-canyon-306-comstock-1.jpg",
+        "/boats/grady-white-canyon-306-comstock-2.jpg",
+        "/boats/grady-white-canyon-306-comstock-3.jpg",
+        "/boats/grady-white-canyon-306-comstock-4.jpg",
+        "/boats/grady-white-canyon-306-comstock-5.jpg",
+        "/boats/grady-white-canyon-306-comstock-6.jpg",
+        "/boats/grady-white-canyon-306-comstock-7.jpg",
+        "/boats/grady-white-canyon-306-comstock-8.jpg",
+        "/boats/grady-white-canyon-306-comstock-9.jpg"
+      ],
       "blurb": "",
       "lengthFt": 30.6,
-      "photoCredit": null
+      "photoCredit": "Grady-White"
     },
     {
       "slug": "grady-white-canyon-306-marinemax",
@@ -2126,10 +2136,20 @@
           "phone": "(732) 451-3995"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/grady-white-canyon-306-marinemax-1.jpg",
+        "/boats/grady-white-canyon-306-marinemax-2.jpg",
+        "/boats/grady-white-canyon-306-marinemax-3.jpg",
+        "/boats/grady-white-canyon-306-marinemax-4.jpg",
+        "/boats/grady-white-canyon-306-marinemax-5.jpg",
+        "/boats/grady-white-canyon-306-marinemax-6.jpg",
+        "/boats/grady-white-canyon-306-marinemax-7.jpg",
+        "/boats/grady-white-canyon-306-marinemax-8.jpg",
+        "/boats/grady-white-canyon-306-marinemax-9.jpg"
+      ],
       "blurb": "",
       "lengthFt": 30.6,
-      "photoCredit": null
+      "photoCredit": "Grady-White"
     },
     {
       "slug": "grady-white-canyon-336",
@@ -2148,10 +2168,20 @@
           "phone": "(732) 451-3995"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/grady-white-canyon-336-1.jpg",
+        "/boats/grady-white-canyon-336-2.jpg",
+        "/boats/grady-white-canyon-336-3.jpg",
+        "/boats/grady-white-canyon-336-4.jpg",
+        "/boats/grady-white-canyon-336-5.jpg",
+        "/boats/grady-white-canyon-336-6.jpg",
+        "/boats/grady-white-canyon-336-7.jpg",
+        "/boats/grady-white-canyon-336-8.jpg",
+        "/boats/grady-white-canyon-336-9.jpg"
+      ],
       "blurb": "",
       "lengthFt": 33.6,
-      "photoCredit": null
+      "photoCredit": "Grady-White"
     },
     {
       "slug": "grady-white-freedom-235-comstock",
@@ -3853,10 +3883,23 @@
           "phone": "(732) 505-3002"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/sea-hunt-gamefish-25-1.jpg",
+        "/boats/sea-hunt-gamefish-25-2.jpg",
+        "/boats/sea-hunt-gamefish-25-3.jpg",
+        "/boats/sea-hunt-gamefish-25-4.jpg",
+        "/boats/sea-hunt-gamefish-25-5.jpg",
+        "/boats/sea-hunt-gamefish-25-6.jpg",
+        "/boats/sea-hunt-gamefish-25-7.jpg",
+        "/boats/sea-hunt-gamefish-25-8.jpg",
+        "/boats/sea-hunt-gamefish-25-9.jpg",
+        "/boats/sea-hunt-gamefish-25-10.jpg",
+        "/boats/sea-hunt-gamefish-25-11.jpg",
+        "/boats/sea-hunt-gamefish-25-12.jpg"
+      ],
       "blurb": "#1 Volume Boat Dealer in New Jersey. Family-owned since 2001, recognized by Yamaha Outboards as a Best-in-Class dealer for over 20 years.",
       "lengthFt": 25,
-      "photoCredit": null
+      "photoCredit": "Sea Hunt"
     },
     {
       "slug": "sea-hunt-ultra-219",
@@ -3945,10 +3988,23 @@
           "phone": "(732) 505-3002"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/sea-hunt-ultra-234-1.jpg",
+        "/boats/sea-hunt-ultra-234-2.jpg",
+        "/boats/sea-hunt-ultra-234-3.jpg",
+        "/boats/sea-hunt-ultra-234-4.jpg",
+        "/boats/sea-hunt-ultra-234-5.jpg",
+        "/boats/sea-hunt-ultra-234-6.jpg",
+        "/boats/sea-hunt-ultra-234-7.jpg",
+        "/boats/sea-hunt-ultra-234-8.jpg",
+        "/boats/sea-hunt-ultra-234-9.jpg",
+        "/boats/sea-hunt-ultra-234-10.jpg",
+        "/boats/sea-hunt-ultra-234-11.jpg",
+        "/boats/sea-hunt-ultra-234-12.jpg"
+      ],
       "blurb": "#1 Volume Boat Dealer in New Jersey. Family-owned since 2001, recognized by Yamaha Outboards as a Best-in-Class dealer for over 20 years.",
       "lengthFt": 23.4,
-      "photoCredit": null
+      "photoCredit": "Sea Hunt"
     },
     {
       "slug": "sea-hunt-ultra-235-se",
@@ -4072,10 +4128,23 @@
           "phone": "(732) 505-3002"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/sea-hunt-ultra-275cb-1.jpg",
+        "/boats/sea-hunt-ultra-275cb-2.jpg",
+        "/boats/sea-hunt-ultra-275cb-3.jpg",
+        "/boats/sea-hunt-ultra-275cb-4.jpg",
+        "/boats/sea-hunt-ultra-275cb-5.jpg",
+        "/boats/sea-hunt-ultra-275cb-6.jpg",
+        "/boats/sea-hunt-ultra-275cb-7.jpg",
+        "/boats/sea-hunt-ultra-275cb-8.jpg",
+        "/boats/sea-hunt-ultra-275cb-9.jpg",
+        "/boats/sea-hunt-ultra-275cb-10.jpg",
+        "/boats/sea-hunt-ultra-275cb-11.jpg",
+        "/boats/sea-hunt-ultra-275cb-12.jpg"
+      ],
       "blurb": "#1 Volume Boat Dealer in New Jersey. Family-owned since 2001, recognized by Yamaha Outboards as a Best-in-Class dealer for over 20 years.",
       "lengthFt": 27.5,
-      "photoCredit": null
+      "photoCredit": "Sea Hunt"
     },
     {
       "slug": "sea-hunt-ultra-305-se",
@@ -5012,8 +5081,21 @@
           "phone": "(732) 899-2500"
         }
       ],
-      "photos": [],
-      "blurb": "",
+      "photos": [
+        "/boats/tiara-yachts-34ls-1.jpg",
+        "/boats/tiara-yachts-34ls-2.jpg",
+        "/boats/tiara-yachts-34ls-3.jpg",
+        "/boats/tiara-yachts-34ls-4.jpg",
+        "/boats/tiara-yachts-34ls-5.jpg",
+        "/boats/tiara-yachts-34ls-6.jpg",
+        "/boats/tiara-yachts-34ls-7.jpg",
+        "/boats/tiara-yachts-34ls-8.jpg",
+        "/boats/tiara-yachts-34ls-9.jpg",
+        "/boats/tiara-yachts-34ls-10.jpg",
+        "/boats/tiara-yachts-34ls-11.jpg",
+        "/boats/tiara-yachts-34ls-12.jpg"
+      ],
+      "blurb": "Step aboard the all-new 2026 Tiara Yachts 34 LS-where luxury day boating meets first-class performance. This factory-fresh model features the highly desirable Fountain Blue hull with white bootstripe, powered by twin Mercury 300 XL engines with Joystick Piloting for effortless docking and smooth con",
       "lengthFt": 34,
       "photoCredit": null
     },
