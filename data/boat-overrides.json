@@ -1,5 +1,17 @@
 {
-  "_comment": "Per-boat source overrides: boats whose workbook link is a search page or brand homepage pull photos/description from the manufacturer's model page instead. official:true relabels the VDP outbound link as the brand model page. primaryPhoto:N promotes photo N to the front when the source page leads with a schematic, a trailer close-up or a dark render. photoFallback {url,token,credit} tops up a thin gallery from the manufacturer's model page; token must appear in the filename so another model's hero shot cannot land on this boat. Applied by scripts/import-show-boats.mjs after parsing; survives daily syncs.",
+  "_comment": "Per-boat source overrides: boats whose workbook link is a search page or brand homepage pull photos/description from the manufacturer's model page instead. official:true relabels the VDP outbound link as the brand model page. primaryPhoto:N promotes photo N to the front when the source page leads with a schematic, a trailer close-up or a dark render. photoFallback {url,token,credit} tops up a thin gallery from the manufacturer's model page; token must appear in the filename so another model's hero shot cannot land on this boat. exclude:true drops the boat from the site entirely (no detail page, no sitemap entry, no listing) for boats the dealer has confirmed are NOT coming to the show; excludeReason records why. Excluded boats keep their photo files on disk so the exclusion can be reversed by deleting the entry. Applied by scripts/import-show-boats.mjs after parsing; survives daily syncs.",
+  "solara-310-cw": {
+    "exclude": true,
+    "excludeReason": "NOT AT SHOW - omitted from Clarks Landing's own complete at-show lineup (master workbook STATUS, Aug 30). Was live and crawlable until Aug 30."
+  },
+  "parker-210-coastal": {
+    "exclude": true,
+    "excludeReason": "NOT AT SHOW - omitted from New Jersey Outboards' complete at-show lineup (Glenn Gioe stock list, Aug 27). Was live and crawlable until Aug 30."
+  },
+  "sea-hunt-ultra-265-se": {
+    "exclude": true,
+    "excludeReason": "NOT AT SHOW - omitted from New Jersey Outboards' complete at-show lineup (Glenn Gioe stock list, Aug 27). Was live and crawlable until Aug 30."
+  },
   "monterey-34-elite": {
     "official": true,
     "sourceUrls": [

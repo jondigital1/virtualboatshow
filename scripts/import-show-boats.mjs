@@ -494,7 +494,20 @@ async function topUpFromManufacturer(boat) {
 
 async function main() {
   const { boats: rows, waiting } = parseRows();
-  const boats = mergeShared(rows);
+  const parsed = mergeShared(rows);
+
+  // Boats the dealer has confirmed are NOT coming. Dropping them here keeps
+  // them out of the JSON, the sitemap and every listing in one move, and the
+  // exclusion survives the daily sync because it lives in boat-overrides.json
+  // rather than in the generated file. Note the orphan sweep below still runs
+  // against `parsed`, so an excluded boat keeps its photos on disk and deleting
+  // its override entry is enough to bring it back.
+  const boats = parsed.filter((b) => !OVERRIDES[b.slug]?.exclude);
+  for (const b of parsed) {
+    const o = OVERRIDES[b.slug];
+    if (o?.exclude) warn(`excluded, not at show: ${b.slug} (${o.excludeReason ?? "no reason recorded"})`);
+  }
+
   for (const b of boats) {
     const o = OVERRIDES[b.slug];
     if (o) {
@@ -509,7 +522,7 @@ async function main() {
 
   // Orphan sweep: photos whose slug no longer exists in the workbook (boat
   // renamed/removed) are deleted so renames can't leave stale imagery behind.
-  const live = boats.map((b) => new RegExp("^" + b.slug.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "-\\d+\\.(jpe?g|png|webp)$", "i"));
+  const live = parsed.map((b) => new RegExp("^" + b.slug.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "-\\d+\\.(jpe?g|png|webp)$", "i"));
   let orphans = 0;
   for (const f of readdirSync(PHOTO_DIR)) {
     if (!live.some((re) => re.test(f))) {

@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-08-27T12:10:25.625Z",
-  "boatCount": 87,
+  "boatCount": 84,
   "boats": [
     {
       "slug": "albemarle-45-carolinian-fisharound-express",
@@ -1205,41 +1205,6 @@
       "photoCredit": null
     },
     {
-      "slug": "solara-310-cw",
-      "brand": "Solara",
-      "model": "310 CW",
-      "year": 2026,
-      "priority": 1,
-      "notes": "",
-      "shared": false,
-      "sourceUrl": "https://www.clarkslanding.com/inventory/2026-solara-s-310-cw-sl029",
-      "brandUrl": "https://solaraboats.com/",
-      "dealers": [
-        {
-          "name": "Clarks Landing Yacht Sales & Marina",
-          "loc": "Point Pleasant, NJ",
-          "phone": "(732) 899-5559"
-        }
-      ],
-      "photos": [
-        "/boats/solara-310-cw-1.jpg",
-        "/boats/solara-310-cw-2.jpg",
-        "/boats/solara-310-cw-3.jpg",
-        "/boats/solara-310-cw-4.jpg",
-        "/boats/solara-310-cw-5.jpg",
-        "/boats/solara-310-cw-6.jpg",
-        "/boats/solara-310-cw-7.jpg",
-        "/boats/solara-310-cw-8.jpg",
-        "/boats/solara-310-cw-9.jpg",
-        "/boats/solara-310-cw-10.jpg",
-        "/boats/solara-310-cw-11.jpg",
-        "/boats/solara-310-cw-12.jpg"
-      ],
-      "blurb": "2026 SOLARA CLEARANCE EVENT Take advantage of factory-direct pricing and the biggest\nsavings of the year on our remaining 2026 Solara inventory before the 2027\nmodels arrive. SOLARA SPECIAL:\n• Factory-direct pricing\n• Two additional years of free factory warranty\n• Free five-year Yamaha engine warranty ADDITIONAL OFFERS INCLUDE:\n• Free seasonal slip at our full-service marina on the Manasquan River\n• Free fuel program, receive a check after closing\n• Free winter land storage\n• Immediate delivery available on select models\n• Free captain’s orientation\n• Free service department delivery turnover and complete walkthrough Schedule your private sea trial today. Sea trials are\navailable for qualified buyers. Once these boats are gone, these prices are gone.Solara S-310 Center Walkaround The S-310 Center Walkaround brings unmatched versatility in an agile and sporty platform. Built to excel at",
-      "lengthFt": 31,
-      "photoCredit": null
-    },
-    {
       "slug": "starcraft-svx-230-dc-ob",
       "brand": "Starcraft",
       "model": "SVX 230 DC OB",
@@ -2173,41 +2138,6 @@
       "photoCredit": null
     },
     {
-      "slug": "parker-210-coastal",
-      "brand": "Parker",
-      "model": "210 Coastal",
-      "year": 2026,
-      "priority": 2,
-      "notes": "",
-      "shared": false,
-      "sourceUrl": "https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=18556735&p=1&make=parker&s=(Sort%20By)&d=D&fr=xnewinventory",
-      "brandUrl": "https://parkerboats.com/models/210-coastal",
-      "dealers": [
-        {
-          "name": "New Jersey Outboards",
-          "loc": "Bayville, NJ",
-          "phone": "(732) 505-3002"
-        }
-      ],
-      "photos": [
-        "/boats/parker-210-coastal-1.jpg",
-        "/boats/parker-210-coastal-2.jpg",
-        "/boats/parker-210-coastal-3.jpg",
-        "/boats/parker-210-coastal-4.jpg",
-        "/boats/parker-210-coastal-5.jpg",
-        "/boats/parker-210-coastal-6.jpg",
-        "/boats/parker-210-coastal-7.jpg",
-        "/boats/parker-210-coastal-8.jpg",
-        "/boats/parker-210-coastal-9.jpg",
-        "/boats/parker-210-coastal-10.jpg",
-        "/boats/parker-210-coastal-11.jpg",
-        "/boats/parker-210-coastal-12.jpg"
-      ],
-      "blurb": "New Jersey Outboards is a Sea Hunt, Hurricane, Sweetwater, AquaPatio, SanPan, Yamaha marine dealership in Bayville, New Jersey and near Berkeley Township, Ocean Gate, Pine Beach and Beachwood. It features new and used boats, as well as parts, services and financing",
-      "lengthFt": 21,
-      "photoCredit": null
-    },
-    {
       "slug": "pursuit-dc-365",
       "brand": "Pursuit",
       "model": "DC 365",
@@ -2406,41 +2336,6 @@
       ],
       "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
       "lengthFt": 25.7,
-      "photoCredit": null
-    },
-    {
-      "slug": "sea-hunt-ultra-265-se",
-      "brand": "Sea Hunt",
-      "model": "Ultra 265 SE",
-      "year": 2027,
-      "priority": 2,
-      "notes": "",
-      "shared": false,
-      "sourceUrl": "https://www.njoutboards.com/default.asp?page=xNewInventoryDetail&id=18229996&p=1&make=sea%20hunt&s=(Sort%20By)&d=D&t=new&fr=xnewinventory",
-      "brandUrl": "https://seahuntboats.com/boats/ultra/ultra-265se/",
-      "dealers": [
-        {
-          "name": "New Jersey Outboards",
-          "loc": "Bayville, NJ",
-          "phone": "(732) 505-3002"
-        }
-      ],
-      "photos": [
-        "/boats/sea-hunt-ultra-265-se-1.jpg",
-        "/boats/sea-hunt-ultra-265-se-2.jpg",
-        "/boats/sea-hunt-ultra-265-se-3.jpg",
-        "/boats/sea-hunt-ultra-265-se-4.jpg",
-        "/boats/sea-hunt-ultra-265-se-5.jpg",
-        "/boats/sea-hunt-ultra-265-se-6.jpg",
-        "/boats/sea-hunt-ultra-265-se-7.jpg",
-        "/boats/sea-hunt-ultra-265-se-8.jpg",
-        "/boats/sea-hunt-ultra-265-se-9.jpg",
-        "/boats/sea-hunt-ultra-265-se-10.jpg",
-        "/boats/sea-hunt-ultra-265-se-11.jpg",
-        "/boats/sea-hunt-ultra-265-se-12.jpg"
-      ],
-      "blurb": "New Jersey Outboards is a Sea Hunt, Hurricane, Sweetwater, AquaPatio, SanPan, Yamaha marine dealership in Bayville, New Jersey and near Berkeley Township, Ocean Gate, Pine Beach and Beachwood. It features new and used boats, as well as parts, services and financing",
-      "lengthFt": 26.5,
       "photoCredit": null
     },
     {
@@ -3055,5 +2950,9 @@
       ]
     }
   ],
-  "warnings": []
+  "warnings": [
+    "excluded, not at show: solara-310-cw (NOT AT SHOW - omitted from Clarks Landing's own complete at-show lineup (master workbook STATUS, Aug 30). Was live and crawlable until Aug 30.)",
+    "excluded, not at show: parker-210-coastal (NOT AT SHOW - omitted from New Jersey Outboards' complete at-show lineup (Glenn Gioe stock list, Aug 27). Was live and crawlable until Aug 30.)",
+    "excluded, not at show: sea-hunt-ultra-265-se (NOT AT SHOW - omitted from New Jersey Outboards' complete at-show lineup (Glenn Gioe stock list, Aug 27). Was live and crawlable until Aug 30.)"
+  ]
 }
