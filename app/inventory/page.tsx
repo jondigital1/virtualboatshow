@@ -73,10 +73,10 @@ export default function Inventory() {
               <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,3.6vw,46px)", lineHeight: 1.06, letterSpacing: "-.015em", margin: "12px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>Browse Boats at the Show</h1>
               <span className="gold-rule" style={{ margin: "16px 0 0" }} />
               <p style={{ fontSize: 15.5, color: "#4c6270", margin: "16px 0 0", maxWidth: "52ch", lineHeight: 1.6 }}>
-                Explore the feature boats participating dealers are bringing to the Atlantic City In-Water Boat Show. These are the boats you can see in person during the show.
+                Explore the boats participating dealers are bringing to the Atlantic City In-Water Boat Show. These are the boats you can see in person during the show.
               </p>
               <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.4)", borderRadius: 999, padding: "9px 16px", marginTop: 18 }}>
-                <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: 12.5, color: "var(--navy)" }}>{showBoats.length} feature boats · {dealers.length} dealers · 250+ boats in the water at the show</span>
+                <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: 12.5, color: "var(--navy)" }}>{showBoats.length} boats · {dealers.length} dealers · 250+ boats in the water at the show</span>
               </div>
             </div>
             <div style={{ minWidth: 0 }}>

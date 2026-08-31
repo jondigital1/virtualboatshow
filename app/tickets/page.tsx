@@ -48,7 +48,7 @@ export default function TicketsLanding() {
             Grab your show tickets
           </h1>
           <p style={{ fontFamily: FONT, fontSize: 15.5, lineHeight: 1.6, color: "rgba(20,46,81,.75)", margin: "12px 0 0" }}>
-            September 10 to 13, 2026 at Farley State Marina. {showBoats.length} feature boats confirmed
+            September 10 to 13, 2026 at Farley State Marina. {showBoats.length} boats confirmed
             and counting.
           </p>
 

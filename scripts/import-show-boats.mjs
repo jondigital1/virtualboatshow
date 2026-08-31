@@ -1,9 +1,17 @@
 /**
- * Show-boat importer: turns Giselle's "2026 Feature Boats" workbook into
- * data/show-boats.json + photos in public/boats/.
+ * Show-boat importer: turns the show's boat workbook into data/show-boats.json
+ * + photos in public/boats/.
  *
- * Pipeline position: parse-feature-boats.ps1 -AsJson -> data/feature-boats-raw.json
- * -> this script -> data/show-boats.json (consumed by lib/showboats.ts).
+ * Pipeline position: master-to-raw.mjs -> data/master-boats-raw.json -> this
+ * script -> data/show-boats.json (consumed by lib/showboats.ts).
+ *
+ * SOURCE CHANGED 2026-08-30. This used to read Giselle's "2026 Feature Boats"
+ * workbook via parse-feature-boats.ps1, which is a curated subset and published
+ * 87 boats against a show of ~175. Giselle confirmed on 2026-08-26 that her
+ * X/1/2 marks record eblast selection only and that every boat should be
+ * listed, so the source is now the full master inventory. See
+ * scripts/master-to-raw.mjs. The old parse-feature-boats.ps1 path and
+ * data/feature-boats-raw.json are left in place but are no longer read.
  *
  * Selection rules (from the workbook's own conventions):
  *  - "Models To Do" sheet, one section per dealer (header row = dealer name).
@@ -33,7 +41,7 @@ const ONLY = new Set((process.argv.find((a) => a.startsWith("--only="))?.slice(7
 const refreshWanted = (slug) => REFRESH && (ONLY.size === 0 || ONLY.has(slug));
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const RAW = join(ROOT, "data", "feature-boats-raw.json");
+const RAW = join(ROOT, "data", "master-boats-raw.json");
 const OUT = join(ROOT, "data", "show-boats.json");
 const OVERRIDES_FILE = join(ROOT, "data", "boat-overrides.json");
 const PHOTO_DIR = join(ROOT, "public", "boats");
