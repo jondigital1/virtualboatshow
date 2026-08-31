@@ -107,6 +107,27 @@ const DEALER_META = {
 
 const slugify = (s) =>
   String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+/**
+ * Boats whose displayed model name was corrected to match the manufacturer, but
+ * whose URL must not move. Keyed "brand|model" using the NEW name.
+ *
+ * The slug is derived from brand and model, so a rename would silently take
+ * three things with it: the public URL, every photo file (named by slug, and
+ * swept as orphans once the slug no longer matches), and the boat's entry in
+ * boat-overrides.json, which is keyed by slug and holds its description and
+ * photo fallback. Pinning keeps the correction cosmetic, which is all it was
+ * meant to be. New boats are unaffected: this only names boats that already
+ * shipped under the old spelling.
+ */
+const PINNED_SLUGS = {
+  "Parker|180 Coastal": "parker-180-coastal-edition",
+  "Parker|230 Coastal Elite": "parker-230-coastal-edition",
+  "Parker|2100 Special Edition": "parker-2100-se-cc",
+  "Cutwater|C-248 C": "cutwater-248",
+  "World Cat|265DC-X": "world-cat-265-dual-console",
+  "Sea Pro|262 Offshore DLX": "sea-pro-262-dlx",
+};
 const cleanBrand = (b) => String(b).replace(/\s*-\s*\d+\s*$/, "").trim();
 const cleanNum = (v) => {
   const n = Number(v);
@@ -260,7 +281,7 @@ function mergeShared(boats) {
   // pairs, since an unmarked shared-brand row would look exactly like this.
   const byBase = new Map();
   for (const r of out) {
-    const base = slugify(r.brand + "-" + r.model);
+    const base = PINNED_SLUGS[`${r.brand}|${r.model}`] ?? slugify(r.brand + "-" + r.model);
     (byBase.get(base) ?? byBase.set(base, []).get(base)).push(r);
   }
   for (const [base, group] of byBase) {

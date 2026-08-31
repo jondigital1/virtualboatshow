@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T04:02:29.144Z",
+  "generatedAt": "2026-08-31T04:14:25.582Z",
   "boatCount": 175,
   "boats": [
     {
@@ -1300,41 +1300,6 @@
       "photoCredit": null
     },
     {
-      "slug": "cutwater-248",
-      "brand": "Cutwater",
-      "model": "248",
-      "year": 2026,
-      "priority": 2,
-      "notes": "",
-      "shared": false,
-      "sourceUrl": "https://www.clarkslanding.com/inventory/2026-Cutwater-c-248-coupe-cw073",
-      "brandUrl": "https://cutwaterboats.com/",
-      "dealers": [
-        {
-          "name": "Clarks Landing Yacht Sales & Marina",
-          "loc": "Point Pleasant, NJ",
-          "phone": "(732) 966-4902"
-        }
-      ],
-      "photos": [
-        "/boats/cutwater-248-1.jpg",
-        "/boats/cutwater-248-2.jpg",
-        "/boats/cutwater-248-3.jpg",
-        "/boats/cutwater-248-4.jpg",
-        "/boats/cutwater-248-5.jpg",
-        "/boats/cutwater-248-6.jpg",
-        "/boats/cutwater-248-7.jpg",
-        "/boats/cutwater-248-8.jpg",
-        "/boats/cutwater-248-9.jpg",
-        "/boats/cutwater-248-10.jpg",
-        "/boats/cutwater-248-11.jpg",
-        "/boats/cutwater-248-12.jpg"
-      ],
-      "blurb": "The Cutwater 248 is a single engine Downeast style cruiser, powered by a Yamaha F250 on a double-stepped hull with Laminar Flow Interrupters. Below are a private forward stateroom, a convertible dinette, a galley and an enclosed head. An opening aft bulkhead window turns the dinette into rear-facing cockpit seating.",
-      "lengthFt": 24.8,
-      "photoCredit": null
-    },
-    {
       "slug": "cutwater-288",
       "brand": "Cutwater",
       "model": "288",
@@ -1367,6 +1332,41 @@
       ],
       "blurb": "The Cutwater 288 carries twin Yamaha F250 outboards on a double-stepped deep-V hull with a stout 10 foot beam, and stays trailerable. Accommodation for six runs from a forward stateroom to a mid-berth and a private head with shower, with a full galley in the salon and rod holders, a livewell and a grill in the cockpit.",
       "lengthFt": 28.8,
+      "photoCredit": null
+    },
+    {
+      "slug": "cutwater-248",
+      "brand": "Cutwater",
+      "model": "C-248 C",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.clarkslanding.com/inventory/2026-Cutwater-c-248-coupe-cw073",
+      "brandUrl": "https://cutwaterboats.com/",
+      "dealers": [
+        {
+          "name": "Clarks Landing Yacht Sales & Marina",
+          "loc": "Point Pleasant, NJ",
+          "phone": "(732) 966-4902"
+        }
+      ],
+      "photos": [
+        "/boats/cutwater-248-1.jpg",
+        "/boats/cutwater-248-2.jpg",
+        "/boats/cutwater-248-3.jpg",
+        "/boats/cutwater-248-4.jpg",
+        "/boats/cutwater-248-5.jpg",
+        "/boats/cutwater-248-6.jpg",
+        "/boats/cutwater-248-7.jpg",
+        "/boats/cutwater-248-8.jpg",
+        "/boats/cutwater-248-9.jpg",
+        "/boats/cutwater-248-10.jpg",
+        "/boats/cutwater-248-11.jpg",
+        "/boats/cutwater-248-12.jpg"
+      ],
+      "blurb": "The Cutwater 248 is a single engine Downeast style cruiser, powered by a Yamaha F250 on a double-stepped hull with Laminar Flow Interrupters. Below are a private forward stateroom, a convertible dinette, a galley and an enclosed head. An opening aft bulkhead window turns the dinette into rear-facing cockpit seating.",
+      "lengthFt": 24.8,
       "photoCredit": null
     },
     {
@@ -2967,7 +2967,7 @@
     {
       "slug": "parker-180-coastal-edition",
       "brand": "Parker",
-      "model": "180 Coastal Edition",
+      "model": "180 Coastal",
       "year": 2026,
       "priority": 2,
       "notes": "",
@@ -3002,7 +3002,7 @@
     {
       "slug": "parker-2100-se-cc",
       "brand": "Parker",
-      "model": "2100 SE CC",
+      "model": "2100 Special Edition",
       "year": 2025,
       "priority": 2,
       "notes": "",
@@ -3061,7 +3061,7 @@
     {
       "slug": "parker-230-coastal-edition",
       "brand": "Parker",
-      "model": "230 Coastal Edition",
+      "model": "230 Coastal Elite",
       "year": 2026,
       "priority": 2,
       "notes": "",
@@ -4399,7 +4399,7 @@
     {
       "slug": "sea-pro-262-dlx",
       "brand": "Sea Pro",
-      "model": "262 DLX",
+      "model": "262 Offshore DLX",
       "year": 2027,
       "priority": 2,
       "notes": "",
@@ -5741,7 +5741,7 @@
     {
       "slug": "world-cat-265-dual-console",
       "brand": "World Cat",
-      "model": "265 Dual Console",
+      "model": "265DC-X",
       "year": 2026,
       "priority": 2,
       "notes": "",
