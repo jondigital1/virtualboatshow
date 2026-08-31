@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T04:14:25.582Z",
+  "generatedAt": "2026-08-31T04:27:58.302Z",
   "boatCount": 175,
   "boats": [
     {
@@ -124,8 +124,8 @@
         }
       ],
       "photos": [
-        "/boats/barletta-pontoons-aria-a22uc-1.jpg",
         "/boats/barletta-pontoons-aria-a22uc-2.jpg",
+        "/boats/barletta-pontoons-aria-a22uc-1.jpg",
         "/boats/barletta-pontoons-aria-a22uc-3.jpg",
         "/boats/barletta-pontoons-aria-a22uc-4.jpg",
         "/boats/barletta-pontoons-aria-a22uc-5.jpg",
@@ -229,8 +229,8 @@
         }
       ],
       "photos": [
-        "/boats/barletta-pontoons-lusso-l25uc-1.jpg",
         "/boats/barletta-pontoons-lusso-l25uc-2.jpg",
+        "/boats/barletta-pontoons-lusso-l25uc-1.jpg",
         "/boats/barletta-pontoons-lusso-l25uc-3.jpg",
         "/boats/barletta-pontoons-lusso-l25uc-4.jpg",
         "/boats/barletta-pontoons-lusso-l25uc-5.jpg",
@@ -264,11 +264,11 @@
         }
       ],
       "photos": [
+        "/boats/beneteau-dayboats-antares-9-5.jpg",
         "/boats/beneteau-dayboats-antares-9-1.jpg",
         "/boats/beneteau-dayboats-antares-9-2.jpg",
         "/boats/beneteau-dayboats-antares-9-3.jpg",
         "/boats/beneteau-dayboats-antares-9-4.jpg",
-        "/boats/beneteau-dayboats-antares-9-5.jpg",
         "/boats/beneteau-dayboats-antares-9-6.jpg",
         "/boats/beneteau-dayboats-antares-9-7.jpg",
         "/boats/beneteau-dayboats-antares-9-8.jpg",
@@ -547,6 +547,7 @@
         }
       ],
       "photos": [
+        "/boats/boston-whaler-240-vantage-comstock-10.jpg",
         "/boats/boston-whaler-240-vantage-comstock-1.jpg",
         "/boats/boston-whaler-240-vantage-comstock-2.jpg",
         "/boats/boston-whaler-240-vantage-comstock-3.jpg",
@@ -556,7 +557,6 @@
         "/boats/boston-whaler-240-vantage-comstock-7.jpg",
         "/boats/boston-whaler-240-vantage-comstock-8.jpg",
         "/boats/boston-whaler-240-vantage-comstock-9.jpg",
-        "/boats/boston-whaler-240-vantage-comstock-10.jpg",
         "/boats/boston-whaler-240-vantage-comstock-11.jpg",
         "/boats/boston-whaler-240-vantage-comstock-12.jpg"
       ],
@@ -617,12 +617,12 @@
         }
       ],
       "photos": [
+        "/boats/boston-whaler-250-outrage-comstock-6.jpg",
         "/boats/boston-whaler-250-outrage-comstock-1.jpg",
         "/boats/boston-whaler-250-outrage-comstock-2.jpg",
         "/boats/boston-whaler-250-outrage-comstock-3.jpg",
         "/boats/boston-whaler-250-outrage-comstock-4.jpg",
         "/boats/boston-whaler-250-outrage-comstock-5.jpg",
-        "/boats/boston-whaler-250-outrage-comstock-6.jpg",
         "/boats/boston-whaler-250-outrage-comstock-7.jpg",
         "/boats/boston-whaler-250-outrage-comstock-8.jpg",
         "/boats/boston-whaler-250-outrage-comstock-9.jpg",
@@ -652,12 +652,12 @@
         }
       ],
       "photos": [
+        "/boats/boston-whaler-250-outrage-marinemax-6.jpg",
         "/boats/boston-whaler-250-outrage-marinemax-1.jpg",
         "/boats/boston-whaler-250-outrage-marinemax-2.jpg",
         "/boats/boston-whaler-250-outrage-marinemax-3.jpg",
         "/boats/boston-whaler-250-outrage-marinemax-4.jpg",
         "/boats/boston-whaler-250-outrage-marinemax-5.jpg",
-        "/boats/boston-whaler-250-outrage-marinemax-6.jpg",
         "/boats/boston-whaler-250-outrage-marinemax-7.jpg",
         "/boats/boston-whaler-250-outrage-marinemax-8.jpg",
         "/boats/boston-whaler-250-outrage-marinemax-9.jpg",
@@ -687,6 +687,7 @@
         }
       ],
       "photos": [
+        "/boats/boston-whaler-280-vantage-comstock-10.jpg",
         "/boats/boston-whaler-280-vantage-comstock-1.jpg",
         "/boats/boston-whaler-280-vantage-comstock-2.jpg",
         "/boats/boston-whaler-280-vantage-comstock-3.jpg",
@@ -696,7 +697,6 @@
         "/boats/boston-whaler-280-vantage-comstock-7.jpg",
         "/boats/boston-whaler-280-vantage-comstock-8.jpg",
         "/boats/boston-whaler-280-vantage-comstock-9.jpg",
-        "/boats/boston-whaler-280-vantage-comstock-10.jpg",
         "/boats/boston-whaler-280-vantage-comstock-11.jpg",
         "/boats/boston-whaler-280-vantage-comstock-12.jpg"
       ],
@@ -998,11 +998,11 @@
         }
       ],
       "photos": [
+        "/boats/chris-craft-catalina-31-5.jpg",
         "/boats/chris-craft-catalina-31-1.jpg",
         "/boats/chris-craft-catalina-31-2.jpg",
         "/boats/chris-craft-catalina-31-3.jpg",
         "/boats/chris-craft-catalina-31-4.jpg",
-        "/boats/chris-craft-catalina-31-5.jpg",
         "/boats/chris-craft-catalina-31-6.jpg",
         "/boats/chris-craft-catalina-31-7.jpg",
         "/boats/chris-craft-catalina-31-8.jpg",
@@ -1107,10 +1107,10 @@
         }
       ],
       "photos": [
+        "/boats/cobia-285-cc-4.jpg",
         "/boats/cobia-285-cc-1.jpg",
         "/boats/cobia-285-cc-2.jpg",
         "/boats/cobia-285-cc-3.jpg",
-        "/boats/cobia-285-cc-4.jpg",
         "/boats/cobia-285-cc-5.jpg",
         "/boats/cobia-285-cc-6.jpg",
         "/boats/cobia-285-cc-7.jpg",
@@ -1142,8 +1142,8 @@
         }
       ],
       "photos": [
-        "/boats/cobia-305-cc-1.jpg",
         "/boats/cobia-305-cc-2.jpg",
+        "/boats/cobia-305-cc-1.jpg",
         "/boats/cobia-305-cc-3.jpg",
         "/boats/cobia-305-cc-4.jpg",
         "/boats/cobia-305-cc-5.jpg",
@@ -1212,10 +1212,10 @@
         }
       ],
       "photos": [
+        "/boats/crownline-298-xss-6.jpg",
         "/boats/crownline-298-xss-3.jpg",
         "/boats/crownline-298-xss-4.jpg",
         "/boats/crownline-298-xss-5.jpg",
-        "/boats/crownline-298-xss-6.jpg",
         "/boats/crownline-298-xss-7.jpg",
         "/boats/crownline-298-xss-8.jpg",
         "/boats/crownline-298-xss-9.jpg",
@@ -1247,8 +1247,8 @@
         }
       ],
       "photos": [
-        "/boats/crownline-318-xss-3.jpg",
         "/boats/crownline-318-xss-4.jpg",
+        "/boats/crownline-318-xss-3.jpg",
         "/boats/crownline-318-xss-5.jpg",
         "/boats/crownline-318-xss-6.jpg",
         "/boats/crownline-318-xss-7.jpg",
@@ -1317,10 +1317,10 @@
         }
       ],
       "photos": [
+        "/boats/cutwater-288-4.jpg",
         "/boats/cutwater-288-1.jpg",
         "/boats/cutwater-288-2.jpg",
         "/boats/cutwater-288-3.jpg",
-        "/boats/cutwater-288-4.jpg",
         "/boats/cutwater-288-5.jpg",
         "/boats/cutwater-288-6.jpg",
         "/boats/cutwater-288-7.jpg",
@@ -1387,8 +1387,8 @@
         }
       ],
       "photos": [
-        "/boats/de-antonio-yachts-de-antonio-d36-1.jpg",
         "/boats/de-antonio-yachts-de-antonio-d36-2.jpg",
+        "/boats/de-antonio-yachts-de-antonio-d36-1.jpg",
         "/boats/de-antonio-yachts-de-antonio-d36-3.jpg",
         "/boats/de-antonio-yachts-de-antonio-d36-4.jpg",
         "/boats/de-antonio-yachts-de-antonio-d36-5.jpg",
@@ -1531,6 +1531,7 @@
         }
       ],
       "photos": [
+        "/boats/everglades-335-cc-8.jpg",
         "/boats/everglades-335-cc-1.jpg",
         "/boats/everglades-335-cc-2.jpg",
         "/boats/everglades-335-cc-3.jpg",
@@ -1538,7 +1539,6 @@
         "/boats/everglades-335-cc-5.jpg",
         "/boats/everglades-335-cc-6.jpg",
         "/boats/everglades-335-cc-7.jpg",
-        "/boats/everglades-335-cc-8.jpg",
         "/boats/everglades-335-cc-9.jpg",
         "/boats/everglades-335-cc-10.jpg",
         "/boats/everglades-335-cc-11.jpg",
@@ -1566,10 +1566,10 @@
         }
       ],
       "photos": [
+        "/boats/everglades-367-cx-4.jpg",
         "/boats/everglades-367-cx-1.jpg",
         "/boats/everglades-367-cx-2.jpg",
         "/boats/everglades-367-cx-3.jpg",
-        "/boats/everglades-367-cx-4.jpg",
         "/boats/everglades-367-cx-5.jpg",
         "/boats/everglades-367-cx-6.jpg",
         "/boats/everglades-367-cx-7.jpg",
@@ -1675,8 +1675,8 @@
         }
       ],
       "photos": [
-        "/boats/finseeker-260-dual-console-1.jpg",
-        "/boats/finseeker-260-dual-console-2.jpg"
+        "/boats/finseeker-260-dual-console-2.jpg",
+        "/boats/finseeker-260-dual-console-1.jpg"
       ],
       "blurb": "The Finseeker 260 is a 26-foot dual console from Crownline's fishing-focused line, pairing genuine fishing features with the seating and comfort of a family day boat.",
       "lengthFt": 26,
@@ -1993,8 +1993,8 @@
         }
       ],
       "photos": [
-        "/boats/godfrey-pontoons-sweetwater-sw-2286-sb-1.jpg",
         "/boats/godfrey-pontoons-sweetwater-sw-2286-sb-2.jpg",
+        "/boats/godfrey-pontoons-sweetwater-sw-2286-sb-1.jpg",
         "/boats/godfrey-pontoons-sweetwater-sw-2286-sb-3.jpg",
         "/boats/godfrey-pontoons-sweetwater-sw-2286-sb-4.jpg",
         "/boats/godfrey-pontoons-sweetwater-sw-2286-sb-5.jpg",
@@ -2277,6 +2277,7 @@
         }
       ],
       "photos": [
+        "/boats/grady-white-freedom-235-comstock-8.jpg",
         "/boats/grady-white-freedom-235-comstock-1.jpg",
         "/boats/grady-white-freedom-235-comstock-2.jpg",
         "/boats/grady-white-freedom-235-comstock-3.jpg",
@@ -2284,7 +2285,6 @@
         "/boats/grady-white-freedom-235-comstock-5.jpg",
         "/boats/grady-white-freedom-235-comstock-6.jpg",
         "/boats/grady-white-freedom-235-comstock-7.jpg",
-        "/boats/grady-white-freedom-235-comstock-8.jpg",
         "/boats/grady-white-freedom-235-comstock-9.jpg",
         "/boats/grady-white-freedom-235-comstock-10.jpg",
         "/boats/grady-white-freedom-235-comstock-11.jpg",
@@ -2347,13 +2347,13 @@
         }
       ],
       "photos": [
+        "/boats/grady-white-freedom-285-comstock-7.jpg",
         "/boats/grady-white-freedom-285-comstock-1.jpg",
         "/boats/grady-white-freedom-285-comstock-2.jpg",
         "/boats/grady-white-freedom-285-comstock-3.jpg",
         "/boats/grady-white-freedom-285-comstock-4.jpg",
         "/boats/grady-white-freedom-285-comstock-5.jpg",
         "/boats/grady-white-freedom-285-comstock-6.jpg",
-        "/boats/grady-white-freedom-285-comstock-7.jpg",
         "/boats/grady-white-freedom-285-comstock-8.jpg",
         "/boats/grady-white-freedom-285-comstock-9.jpg",
         "/boats/grady-white-freedom-285-comstock-10.jpg",
@@ -2487,12 +2487,12 @@
         }
       ],
       "photos": [
+        "/boats/hurricane-deck-sd-2400-ob-6.jpg",
         "/boats/hurricane-deck-sd-2400-ob-1.jpg",
         "/boats/hurricane-deck-sd-2400-ob-2.jpg",
         "/boats/hurricane-deck-sd-2400-ob-3.jpg",
         "/boats/hurricane-deck-sd-2400-ob-4.jpg",
         "/boats/hurricane-deck-sd-2400-ob-5.jpg",
-        "/boats/hurricane-deck-sd-2400-ob-6.jpg",
         "/boats/hurricane-deck-sd-2400-ob-7.jpg",
         "/boats/hurricane-deck-sd-2400-ob-8.jpg",
         "/boats/hurricane-deck-sd-2400-ob-9.jpg"
@@ -2519,8 +2519,8 @@
         }
       ],
       "photos": [
-        "/boats/hurricane-deck-sundeck-217-ob-1.jpg",
         "/boats/hurricane-deck-sundeck-217-ob-2.jpg",
+        "/boats/hurricane-deck-sundeck-217-ob-1.jpg",
         "/boats/hurricane-deck-sundeck-217-ob-3.jpg",
         "/boats/hurricane-deck-sundeck-217-ob-4.jpg",
         "/boats/hurricane-deck-sundeck-217-ob-5.jpg",
@@ -2624,11 +2624,11 @@
         }
       ],
       "photos": [
+        "/boats/hurricane-deck-sundeck-2600-ob-5.jpg",
         "/boats/hurricane-deck-sundeck-2600-ob-1.jpg",
         "/boats/hurricane-deck-sundeck-2600-ob-2.jpg",
         "/boats/hurricane-deck-sundeck-2600-ob-3.jpg",
         "/boats/hurricane-deck-sundeck-2600-ob-4.jpg",
-        "/boats/hurricane-deck-sundeck-2600-ob-5.jpg",
         "/boats/hurricane-deck-sundeck-2600-ob-6.jpg",
         "/boats/hurricane-deck-sundeck-2600-ob-7.jpg",
         "/boats/hurricane-deck-sundeck-2600-ob-8.jpg",
@@ -2753,8 +2753,8 @@
         }
       ],
       "photos": [
-        "/boats/marex-marex-360-1.jpg",
         "/boats/marex-marex-360-2.jpg",
+        "/boats/marex-marex-360-1.jpg",
         "/boats/marex-marex-360-3.jpg",
         "/boats/marex-marex-360-4.jpg",
         "/boats/marex-marex-360-5.jpg",
@@ -2862,8 +2862,8 @@
         }
       ],
       "photos": [
-        "/boats/navan-c30-3.jpg",
         "/boats/navan-c30-4.jpg",
+        "/boats/navan-c30-3.jpg",
         "/boats/navan-c30-5.jpg",
         "/boats/navan-c30-6.jpg",
         "/boats/navan-c30-7.jpg",
@@ -2897,8 +2897,8 @@
         }
       ],
       "photos": [
-        "/boats/navan-s30-1.jpg",
-        "/boats/navan-s30-2.jpg"
+        "/boats/navan-s30-2.jpg",
+        "/boats/navan-s30-1.jpg"
       ],
       "blurb": "For decades, D&R Boat World has been New Jersey's go-to boat dealer in Green Brook and Toms River. Discover exciting brands and expert service today!",
       "lengthFt": 30,
@@ -2947,9 +2947,9 @@
         }
       ],
       "photos": [
+        "/boats/nimbus-t8-3.jpg",
         "/boats/nimbus-t8-1.jpg",
         "/boats/nimbus-t8-2.jpg",
-        "/boats/nimbus-t8-3.jpg",
         "/boats/nimbus-t8-4.jpg",
         "/boats/nimbus-t8-5.jpg",
         "/boats/nimbus-t8-6.jpg",
@@ -2982,8 +2982,8 @@
         }
       ],
       "photos": [
-        "/boats/parker-180-coastal-edition-1.jpg",
         "/boats/parker-180-coastal-edition-2.jpg",
+        "/boats/parker-180-coastal-edition-1.jpg",
         "/boats/parker-180-coastal-edition-3.jpg",
         "/boats/parker-180-coastal-edition-4.jpg",
         "/boats/parker-180-coastal-edition-5.jpg",
@@ -3100,12 +3100,12 @@
         }
       ],
       "photos": [
+        "/boats/parker-247-explorer-6.jpg",
         "/boats/parker-247-explorer-1.jpg",
         "/boats/parker-247-explorer-2.jpg",
         "/boats/parker-247-explorer-3.jpg",
         "/boats/parker-247-explorer-4.jpg",
         "/boats/parker-247-explorer-5.jpg",
-        "/boats/parker-247-explorer-6.jpg",
         "/boats/parker-247-explorer-7.jpg"
       ],
       "blurb": "The 247 Explorer steps up from the 227 with more range and fishing capacity: 141 gallons of fuel, a 400 horsepower rating, two in floor fish boxes with macerator and a windlass with 300 feet of rode. The cabin holds a twin berth with porta potty, and Seakeeper 450 Ride is standard.",
@@ -3154,8 +3154,8 @@
         }
       ],
       "photos": [
-        "/boats/parker-287-explorer-1.jpg",
         "/boats/parker-287-explorer-2.jpg",
+        "/boats/parker-287-explorer-1.jpg",
         "/boats/parker-287-explorer-3.jpg",
         "/boats/parker-287-explorer-4.jpg",
         "/boats/parker-287-explorer-5.jpg",
@@ -3259,8 +3259,8 @@
         }
       ],
       "photos": [
-        "/boats/pursuit-os-325-1.jpg",
         "/boats/pursuit-os-325-2.jpg",
+        "/boats/pursuit-os-325-1.jpg",
         "/boats/pursuit-os-325-3.jpg",
         "/boats/pursuit-os-325-4.jpg",
         "/boats/pursuit-os-325-5.jpg",
@@ -3294,11 +3294,11 @@
         }
       ],
       "photos": [
+        "/boats/pursuit-os-355-5.jpg",
         "/boats/pursuit-os-355-1.jpg",
         "/boats/pursuit-os-355-2.jpg",
         "/boats/pursuit-os-355-3.jpg",
         "/boats/pursuit-os-355-4.jpg",
-        "/boats/pursuit-os-355-5.jpg",
         "/boats/pursuit-os-355-6.jpg",
         "/boats/pursuit-os-355-7.jpg",
         "/boats/pursuit-os-355-8.jpg",
@@ -3494,12 +3494,12 @@
         }
       ],
       "photos": [
+        "/boats/regulator-25-6.jpg",
         "/boats/regulator-25-1.jpg",
         "/boats/regulator-25-2.jpg",
         "/boats/regulator-25-3.jpg",
         "/boats/regulator-25-4.jpg",
         "/boats/regulator-25-5.jpg",
-        "/boats/regulator-25-6.jpg",
         "/boats/regulator-25-7.jpg",
         "/boats/regulator-25-8.jpg",
         "/boats/regulator-25-9.jpg",
@@ -3529,12 +3529,12 @@
         }
       ],
       "photos": [
+        "/boats/regulator-28-6.jpg",
         "/boats/regulator-28-1.jpg",
         "/boats/regulator-28-2.jpg",
         "/boats/regulator-28-3.jpg",
         "/boats/regulator-28-4.jpg",
         "/boats/regulator-28-5.jpg",
-        "/boats/regulator-28-6.jpg",
         "/boats/regulator-28-7.jpg",
         "/boats/regulator-28-8.jpg",
         "/boats/regulator-28-9.jpg",
@@ -3564,12 +3564,12 @@
         }
       ],
       "photos": [
-        "/boats/regulator-31-2.jpg",
+        "/boats/regulator-31-6.jpg",
         "/boats/regulator-31-1.jpg",
+        "/boats/regulator-31-2.jpg",
         "/boats/regulator-31-3.jpg",
         "/boats/regulator-31-4.jpg",
         "/boats/regulator-31-5.jpg",
-        "/boats/regulator-31-6.jpg",
         "/boats/regulator-31-7.jpg",
         "/boats/regulator-31-8.jpg",
         "/boats/regulator-31-9.jpg",
@@ -3720,13 +3720,13 @@
         }
       ],
       "photos": [
+        "/boats/robalo-277-dual-console-9.jpg",
         "/boats/robalo-277-dual-console-3.jpg",
         "/boats/robalo-277-dual-console-4.jpg",
         "/boats/robalo-277-dual-console-5.jpg",
         "/boats/robalo-277-dual-console-6.jpg",
         "/boats/robalo-277-dual-console-7.jpg",
         "/boats/robalo-277-dual-console-8.jpg",
-        "/boats/robalo-277-dual-console-9.jpg",
         "/boats/robalo-277-dual-console-10.jpg",
         "/boats/robalo-277-dual-console-11.jpg",
         "/boats/robalo-277-dual-console-12.jpg",
@@ -4025,11 +4025,11 @@
         }
       ],
       "photos": [
+        "/boats/sea-hunt-gamefish-25-5.jpg",
         "/boats/sea-hunt-gamefish-25-1.jpg",
         "/boats/sea-hunt-gamefish-25-2.jpg",
         "/boats/sea-hunt-gamefish-25-3.jpg",
         "/boats/sea-hunt-gamefish-25-4.jpg",
-        "/boats/sea-hunt-gamefish-25-5.jpg",
         "/boats/sea-hunt-gamefish-25-6.jpg",
         "/boats/sea-hunt-gamefish-25-7.jpg",
         "/boats/sea-hunt-gamefish-25-8.jpg",
@@ -4060,10 +4060,10 @@
         }
       ],
       "photos": [
+        "/boats/sea-hunt-ultra-219-4.jpg",
         "/boats/sea-hunt-ultra-219-1.jpg",
         "/boats/sea-hunt-ultra-219-2.jpg",
         "/boats/sea-hunt-ultra-219-3.jpg",
-        "/boats/sea-hunt-ultra-219-4.jpg",
         "/boats/sea-hunt-ultra-219-5.jpg",
         "/boats/sea-hunt-ultra-219-6.jpg",
         "/boats/sea-hunt-ultra-219-7.jpg",
@@ -4095,9 +4095,9 @@
         }
       ],
       "photos": [
+        "/boats/sea-hunt-ultra-229-3.jpg",
         "/boats/sea-hunt-ultra-229-1.jpg",
         "/boats/sea-hunt-ultra-229-2.jpg",
-        "/boats/sea-hunt-ultra-229-3.jpg",
         "/boats/sea-hunt-ultra-229-4.jpg",
         "/boats/sea-hunt-ultra-229-5.jpg",
         "/boats/sea-hunt-ultra-229-6.jpg",
@@ -4165,9 +4165,9 @@
         }
       ],
       "photos": [
+        "/boats/sea-hunt-ultra-235-se-3.jpg",
         "/boats/sea-hunt-ultra-235-se-1.jpg",
         "/boats/sea-hunt-ultra-235-se-2.jpg",
-        "/boats/sea-hunt-ultra-235-se-3.jpg",
         "/boats/sea-hunt-ultra-235-se-4.jpg",
         "/boats/sea-hunt-ultra-235-se-5.jpg",
         "/boats/sea-hunt-ultra-235-se-6.jpg",
@@ -4200,9 +4200,9 @@
         }
       ],
       "photos": [
+        "/boats/sea-hunt-ultra-245-se-3.jpg",
         "/boats/sea-hunt-ultra-245-se-1.jpg",
         "/boats/sea-hunt-ultra-245-se-2.jpg",
-        "/boats/sea-hunt-ultra-245-se-3.jpg",
         "/boats/sea-hunt-ultra-245-se-4.jpg",
         "/boats/sea-hunt-ultra-245-se-5.jpg",
         "/boats/sea-hunt-ultra-245-se-6.jpg",
@@ -4235,9 +4235,9 @@
         }
       ],
       "photos": [
+        "/boats/sea-hunt-ultra-255-se-3.jpg",
         "/boats/sea-hunt-ultra-255-se-1.jpg",
         "/boats/sea-hunt-ultra-255-se-2.jpg",
-        "/boats/sea-hunt-ultra-255-se-3.jpg",
         "/boats/sea-hunt-ultra-255-se-4.jpg",
         "/boats/sea-hunt-ultra-255-se-5.jpg",
         "/boats/sea-hunt-ultra-255-se-6.jpg",
@@ -4305,8 +4305,8 @@
         }
       ],
       "photos": [
-        "/boats/sea-hunt-ultra-305-se-1.jpg",
         "/boats/sea-hunt-ultra-305-se-2.jpg",
+        "/boats/sea-hunt-ultra-305-se-1.jpg",
         "/boats/sea-hunt-ultra-305-se-3.jpg",
         "/boats/sea-hunt-ultra-305-se-4.jpg",
         "/boats/sea-hunt-ultra-305-se-5.jpg",
@@ -4596,9 +4596,9 @@
         }
       ],
       "photos": [
+        "/boats/sea-ray-250-sdx-ob-3.jpg",
         "/boats/sea-ray-250-sdx-ob-1.jpg",
         "/boats/sea-ray-250-sdx-ob-2.jpg",
-        "/boats/sea-ray-250-sdx-ob-3.jpg",
         "/boats/sea-ray-250-sdx-ob-4.jpg",
         "/boats/sea-ray-250-sdx-ob-5.jpg",
         "/boats/sea-ray-250-sdx-ob-6.jpg",
@@ -4736,9 +4736,9 @@
         }
       ],
       "photos": [
+        "/boats/sea-ray-320-sundancer-ob-3.jpg",
         "/boats/sea-ray-320-sundancer-ob-1.jpg",
         "/boats/sea-ray-320-sundancer-ob-2.jpg",
-        "/boats/sea-ray-320-sundancer-ob-3.jpg",
         "/boats/sea-ray-320-sundancer-ob-4.jpg",
         "/boats/sea-ray-320-sundancer-ob-5.jpg",
         "/boats/sea-ray-320-sundancer-ob-6.jpg",
@@ -5155,10 +5155,10 @@
         }
       ],
       "photos": [
+        "/boats/steiger-craft-255-miami-4.jpg",
         "/boats/steiger-craft-255-miami-1.jpg",
         "/boats/steiger-craft-255-miami-2.jpg",
         "/boats/steiger-craft-255-miami-3.jpg",
-        "/boats/steiger-craft-255-miami-4.jpg",
         "/boats/steiger-craft-255-miami-5.jpg",
         "/boats/steiger-craft-255-miami-6.jpg",
         "/boats/steiger-craft-255-miami-7.jpg",
@@ -5190,10 +5190,10 @@
         }
       ],
       "photos": [
+        "/boats/steiger-craft-31-fisherman-4.jpg",
         "/boats/steiger-craft-31-fisherman-1.jpg",
         "/boats/steiger-craft-31-fisherman-2.jpg",
         "/boats/steiger-craft-31-fisherman-3.jpg",
-        "/boats/steiger-craft-31-fisherman-4.jpg",
         "/boats/steiger-craft-31-fisherman-5.jpg",
         "/boats/steiger-craft-31-fisherman-6.jpg",
         "/boats/steiger-craft-31-fisherman-7.jpg",
@@ -5223,12 +5223,12 @@
         }
       ],
       "photos": [
+        "/boats/tiara-yachts-34ls-6.jpg",
         "/boats/tiara-yachts-34ls-1.jpg",
         "/boats/tiara-yachts-34ls-2.jpg",
         "/boats/tiara-yachts-34ls-3.jpg",
         "/boats/tiara-yachts-34ls-4.jpg",
         "/boats/tiara-yachts-34ls-5.jpg",
-        "/boats/tiara-yachts-34ls-6.jpg",
         "/boats/tiara-yachts-34ls-7.jpg",
         "/boats/tiara-yachts-34ls-8.jpg",
         "/boats/tiara-yachts-34ls-9.jpg",
@@ -5628,9 +5628,9 @@
         }
       ],
       "photos": [
+        "/boats/valhalla-v-33-3.jpg",
         "/boats/valhalla-v-33-1.jpg",
         "/boats/valhalla-v-33-2.jpg",
-        "/boats/valhalla-v-33-3.jpg",
         "/boats/valhalla-v-33-4.jpg",
         "/boats/valhalla-v-33-5.jpg",
         "/boats/valhalla-v-33-6.jpg",
@@ -5661,9 +5661,9 @@
         }
       ],
       "photos": [
+        "/boats/viking-yachts-50-c-3.jpg",
         "/boats/viking-yachts-50-c-1.jpg",
         "/boats/viking-yachts-50-c-2.jpg",
-        "/boats/viking-yachts-50-c-3.jpg",
         "/boats/viking-yachts-50-c-4.jpg",
         "/boats/viking-yachts-50-c-5.jpg",
         "/boats/viking-yachts-50-c-6.jpg",
@@ -5721,10 +5721,10 @@
         }
       ],
       "photos": [
+        "/boats/world-cat-235-te-center-console-4.jpg",
         "/boats/world-cat-235-te-center-console-1.jpg",
         "/boats/world-cat-235-te-center-console-2.jpg",
         "/boats/world-cat-235-te-center-console-3.jpg",
-        "/boats/world-cat-235-te-center-console-4.jpg",
         "/boats/world-cat-235-te-center-console-5.jpg",
         "/boats/world-cat-235-te-center-console-6.jpg",
         "/boats/world-cat-235-te-center-console-7.jpg",
@@ -5781,9 +5781,9 @@
         }
       ],
       "photos": [
+        "/boats/world-cat-280-center-console-3.jpg",
         "/boats/world-cat-280-center-console-1.jpg",
         "/boats/world-cat-280-center-console-2.jpg",
-        "/boats/world-cat-280-center-console-3.jpg",
         "/boats/world-cat-280-center-console-4.jpg",
         "/boats/world-cat-280-center-console-5.jpg",
         "/boats/world-cat-280-center-console-6.jpg",
@@ -5816,9 +5816,9 @@
         }
       ],
       "photos": [
+        "/boats/world-cat-325-dual-console-3.jpg",
         "/boats/world-cat-325-dual-console-1.jpg",
         "/boats/world-cat-325-dual-console-2.jpg",
-        "/boats/world-cat-325-dual-console-3.jpg",
         "/boats/world-cat-325-dual-console-4.jpg",
         "/boats/world-cat-325-dual-console-5.jpg",
         "/boats/world-cat-325-dual-console-6.jpg",

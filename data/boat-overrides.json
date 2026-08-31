@@ -1,5 +1,14 @@
 {
   "_comment": "Per-boat source overrides: boats whose workbook link is a search page or brand homepage pull photos/description from the manufacturer's model page instead. official:true relabels the VDP outbound link as the brand model page. primaryPhoto:N promotes photo N to the front when the source page leads with a schematic, a trailer close-up or a dark render. photoFallback {url,token,credit} tops up a thin gallery from the manufacturer's model page; token must appear in the filename so another model's hero shot cannot land on this boat. exclude:true drops the boat from the site entirely (no detail page, no sitemap entry, no listing) for boats the dealer has confirmed are NOT coming to the show; excludeReason records why. Excluded boats keep their photo files on disk so the exclusion can be reversed by deleting the entry. Applied by scripts/import-show-boats.mjs after parsing; survives daily syncs.",
+  "barletta-pontoons-aria-a22uc": {
+    "primaryPhoto": 2
+  },
+  "barletta-pontoons-lusso-l25uc": {
+    "primaryPhoto": 2
+  },
+  "beneteau-dayboats-antares-9": {
+    "primaryPhoto": 5
+  },
   "bennington-pontoons-20-s1sr-s-quad-bench": {
     "photoFallback": {
       "url": "https://www.benningtonmarine.com/en-us/s-series/s-one/",
@@ -38,6 +47,9 @@
   "boston-whaler-220-dauntless": {
     "blurb": "The 220 Dauntless is Boston Whaler's do-anything 22-footer: the unsinkable hull the brand is famous for, a fishing-ready cockpit, and comfortable bow seating that turns the same boat into a family cruiser by afternoon."
   },
+  "boston-whaler-240-vantage-comstock": {
+    "primaryPhoto": 10
+  },
   "boston-whaler-240-vantage-marinemax": {
     "photoFallback": {
       "url": "https://www.bostonwhaler.com/us/en/boats/vantage/240-vantage",
@@ -50,17 +62,22 @@
       "url": "https://www.bostonwhaler.com/us/en/boats/outrage/250-outrage",
       "token": "BW-250-OR-",
       "credit": "Boston Whaler"
-    }
+    },
+    "primaryPhoto": 6
   },
   "boston-whaler-250-outrage-marinemax": {
     "photoFallback": {
       "url": "https://www.bostonwhaler.com/us/en/boats/outrage/250-outrage",
       "token": "BW-250-OR-",
       "credit": "Boston Whaler"
-    }
+    },
+    "primaryPhoto": 6
   },
   "boston-whaler-280-vantage": {
     "blurb": "The 280 Vantage is Boston Whaler's versatile dual console: one side console, one comfortable port lounge, and a layout that moves easily between fishing, cruising, and watersports, all on Whaler's unsinkable foundation."
+  },
+  "boston-whaler-280-vantage-comstock": {
+    "primaryPhoto": 10
   },
   "boston-whaler-330-outrage": {
     "blurb": "The 330 Outrage is the newest boat in Boston Whaler's flagship offshore line: a center console built on Whaler's famously unsinkable hull, with a deep protected cockpit, serious fishing capability, and family comfort throughout. Atlantic City is its first New Jersey boat show, presented on the water by Comstock and MarineMax."
@@ -79,6 +96,9 @@
       "credit": "Chris-Craft"
     }
   },
+  "chris-craft-catalina-31": {
+    "primaryPhoto": 5
+  },
   "cobia-245-cc": {
     "official": true,
     "sourceUrls": [
@@ -86,17 +106,29 @@
     ],
     "blurb": "The 245 CC is Cobia's newest center console, built on the brand's dry ride hull with a 20 degree deadrise and Seakeeper Ride trim control as standard. It is rated for up to 350 horsepower. A tuna door, tackle storage and livewell handle the fishing; fold-down transom seating, a forward-opening console head and a removable bow insert handle the rest."
   },
+  "cobia-285-cc": {
+    "primaryPhoto": 4
+  },
+  "cobia-305-cc": {
+    "primaryPhoto": 2
+  },
   "crownline-298-xss": {
-    "blurb": "The 298 XSS is the single engine side of Crownline's pointed-nose XSS outboard line, a bowrider built for entertaining. A 23 degree deadrise hull runs on single Mercury outboard power, and the deck carries electric sun lounge seating, a powered swim step with boarding assist, twin Garmin screens and Wet Sounds audio."
+    "blurb": "The 298 XSS is the single engine side of Crownline's pointed-nose XSS outboard line, a bowrider built for entertaining. A 23 degree deadrise hull runs on single Mercury outboard power, and the deck carries electric sun lounge seating, a powered swim step with boarding assist, twin Garmin screens and Wet Sounds audio.",
+    "primaryPhoto": 6
   },
   "crownline-318-xss": {
-    "blurb": "The 318 XSS is the twin engine end of Crownline's pointed-nose XSS outboard line, built for long days with a crowd. Twin Mercury power, joystick piloting and an optional bow thruster handle close quarters, under a redesigned aluminum hard top with electric SureShade. Windlass and an electric flush head are standard."
+    "blurb": "The 318 XSS is the twin engine end of Crownline's pointed-nose XSS outboard line, built for long days with a crowd. Twin Mercury power, joystick piloting and an optional bow thruster handle close quarters, under a redesigned aluminum hard top with electric SureShade. Windlass and an electric flush head are standard.",
+    "primaryPhoto": 4
   },
   "cutwater-248": {
     "blurb": "The Cutwater 248 is a single engine Downeast style cruiser, powered by a Yamaha F250 on a double-stepped hull with Laminar Flow Interrupters. Below are a private forward stateroom, a convertible dinette, a galley and an enclosed head. An opening aft bulkhead window turns the dinette into rear-facing cockpit seating."
   },
   "cutwater-288": {
-    "blurb": "The Cutwater 288 carries twin Yamaha F250 outboards on a double-stepped deep-V hull with a stout 10 foot beam, and stays trailerable. Accommodation for six runs from a forward stateroom to a mid-berth and a private head with shower, with a full galley in the salon and rod holders, a livewell and a grill in the cockpit."
+    "blurb": "The Cutwater 288 carries twin Yamaha F250 outboards on a double-stepped deep-V hull with a stout 10 foot beam, and stays trailerable. Accommodation for six runs from a forward stateroom to a mid-berth and a private head with shower, with a full galley in the salon and rod holders, a livewell and a grill in the cockpit.",
+    "primaryPhoto": 4
+  },
+  "de-antonio-yachts-de-antonio-d36": {
+    "primaryPhoto": 2
   },
   "everglades-315-cc": {
     "official": true,
@@ -104,6 +136,12 @@
       "https://www.evergladesboats.com/find-your-boat/center-consoles/315cc/"
     ],
     "blurb": "The 315 CC is Everglades' 31-foot offshore center console, built on a variable deadrise deep V hull with patented RAMCAP closed-mold construction and structural foam flotation. The single-level cockpit gives 360 degree gunnel access, with split bow seating, aft mezzanine seating and a console head compartment."
+  },
+  "everglades-335-cc": {
+    "primaryPhoto": 8
+  },
+  "everglades-367-cx": {
+    "primaryPhoto": 4
   },
   "everglades-375-cc": {
     "official": true,
@@ -113,7 +151,8 @@
     "blurb": "The 375 CC is Everglades' 37-foot offshore center console, and the one whose console opens into an enclosed cabin: L-shaped seating that converts to a twin berth, plus a head with shower. On deck it keeps the single-level cockpit and mezzanine seating, with twin or triple outboard power."
   },
   "finseeker-260-dual-console": {
-    "blurb": "The Finseeker 260 is a 26-foot dual console from Crownline's fishing-focused line, pairing genuine fishing features with the seating and comfort of a family day boat."
+    "blurb": "The Finseeker 260 is a 26-foot dual console from Crownline's fishing-focused line, pairing genuine fishing features with the seating and comfort of a family day boat.",
+    "primaryPhoto": 2
   },
   "formula-360-cbr": {
     "blurb": "The Formula 360 Crossover Bowrider does two jobs without compromise: open-bow day boating and genuine performance cruising, with overnight-capable cabin space below and Formula's signature build quality throughout."
@@ -128,7 +167,8 @@
     "blurb": "The Sweetwater SW 2286 MT is the mid-table take on Godfrey's Entertainment layout: bow benches forward and a midship table ringed by four bar stools, keeping dining and conversation in the middle of the boat. It runs 23 feet 10 inches, carries up to 12 people and is rated to 300 horsepower."
   },
   "godfrey-pontoons-sweetwater-sw-2286-sb": {
-    "blurb": "The Sweetwater SW 2286 SB runs Godfrey's Split Bench floorplan: benches in the bow and benches at the stern with a center walk-through between them, plenty of under-seat storage and easy movement end to end. It measures 23 feet 10 inches and seats up to 16."
+    "blurb": "The Sweetwater SW 2286 SB runs Godfrey's Split Bench floorplan: benches in the bow and benches at the stern with a center walk-through between them, plenty of under-seat storage and easy movement end to end. It measures 23 feet 10 inches and seats up to 16.",
+    "primaryPhoto": 2
   },
   "godfrey-pontoons-sweetwater-sw-2286-sfl": {
     "blurb": "The Sweetwater SW 2286 SFL is the Lounge layout, built around a single flip lounge at the stern. The adjustable backrest faces forward for conversation, aft for the view, or lies flat as a sunbed, with two bench seats up in the bow. It runs 23 feet 10 inches and up to 300 horsepower."
@@ -163,12 +203,18 @@
       "credit": "Grady-White"
     }
   },
+  "grady-white-freedom-235-comstock": {
+    "primaryPhoto": 8
+  },
   "grady-white-freedom-235-marinemax": {
     "photoFallback": {
       "url": "https://www.gradywhite.com/models/freedom-235/",
       "token": "freedom-235",
       "credit": "Grady-White"
     }
+  },
+  "grady-white-freedom-285-comstock": {
+    "primaryPhoto": 7
   },
   "grady-white-freedom-345": {
     "official": true,
@@ -177,10 +223,12 @@
     ]
   },
   "hurricane-deck-sd-2400-ob": {
-    "blurb": "The SD 2400 OB is Hurricane's 24 foot SunDeck outboard, an open-layout deck boat aimed squarely at cruising and entertaining. It carries 12 people behind a full wrap-around windshield, with an integrated swim platform, bow and stern telescoping ladders and under-deck storage keeping the cockpit clear."
+    "blurb": "The SD 2400 OB is Hurricane's 24 foot SunDeck outboard, an open-layout deck boat aimed squarely at cruising and entertaining. It carries 12 people behind a full wrap-around windshield, with an integrated swim platform, bow and stern telescoping ladders and under-deck storage keeping the cockpit clear.",
+    "primaryPhoto": 6
   },
   "hurricane-deck-sundeck-217-ob": {
-    "blurb": "The SunDeck 217 OB fits a 14 person capacity into 21 feet 5 inches, which makes it the compact entertainer of Hurricane's SunDeck outboard range. Rated for 150 to 225 horsepower, it carries the series essentials: a full wrap-around windshield, integrated swim platform and telescoping ladders fore and aft."
+    "blurb": "The SunDeck 217 OB fits a 14 person capacity into 21 feet 5 inches, which makes it the compact entertainer of Hurricane's SunDeck outboard range. Rated for 150 to 225 horsepower, it carries the series essentials: a full wrap-around windshield, integrated swim platform and telescoping ladders fore and aft.",
+    "primaryPhoto": 2
   },
   "hurricane-deck-sundeck-235-ob": {
     "blurb": "The SunDeck 235 OB stretches to 23 feet 4 inches and seats 12. It is one of only two SunDeck models offered with Hurricane's adjustable captain's seat: fold the backrest down when the helm is not in use and the stern bench extends, turning the driving position into more lounge space."
@@ -199,7 +247,8 @@
       "token": "sundeck-2600",
       "credit": "Hurricane"
     },
-    "blurb": "The SunDeck 2600 OB is the yacht certified end of the range at 26 feet 5 inches, taking 250 to 400 horsepower for bigger water and longer runs. Standard kit runs to a full wrap-around windshield, enclosed head with sink, full swim platform and fresh water washdown, with a windlass anchor optional."
+    "blurb": "The SunDeck 2600 OB is the yacht certified end of the range at 26 feet 5 inches, taking 250 to 400 horsepower for bigger water and longer runs. Standard kit runs to a full wrap-around windshield, enclosed head with sink, full swim platform and fresh water washdown, with a windlass anchor optional.",
+    "primaryPhoto": 5
   },
   "hurricane-deck-sundeck-2690-ob": {
     "photoFallback": {
@@ -211,6 +260,9 @@
   "key-west-249-fs": {
     "blurb": "The Key West 249FS is a family sportsman that splits its time honestly: a fishing-first hull and cockpit with the bow seating and comfort that keep the whole crew aboard for the rest of the day."
   },
+  "marex-marex-360": {
+    "primaryPhoto": 2
+  },
   "monterey-34-elite": {
     "official": true,
     "sourceUrls": [
@@ -219,11 +271,21 @@
     "blurb": "The Elite 34 is the next evolution of Monterey's award-winning Elite Series: an upper-premium outboard model with expanded entertaining space, elevated helm ergonomics, and extended offshore capability, launching in Summer 2026. See it make its debut on the water in Atlantic City with Coty Marine.",
     "primaryPhoto": 9
   },
+  "navan-c30": {
+    "primaryPhoto": 4
+  },
+  "navan-s30": {
+    "primaryPhoto": 2
+  },
   "navan-t-30-center-console": {
     "blurb": "The Navan T30 is a Scandinavian-designed 30-foot adventure center console: deep protected seating, smart all-weather ergonomics, and twin Mercury outboards, built for running hard in real conditions."
   },
+  "nimbus-t8": {
+    "primaryPhoto": 3
+  },
   "parker-180-coastal-edition": {
-    "blurb": "The 180 Coastal Edition is the smallest boat in Parker's Coastal line, built on the shallow draft Modified-V hull that suits inshore fishing and easy days on the water. A flush deck bow, self bailing cockpit, 17.5 gallon insulated livewell, eight gunwale rod holders and a swim platform with retractable ladder are standard."
+    "blurb": "The 180 Coastal Edition is the smallest boat in Parker's Coastal line, built on the shallow draft Modified-V hull that suits inshore fishing and easy days on the water. A flush deck bow, self bailing cockpit, 17.5 gallon insulated livewell, eight gunwale rod holders and a swim platform with retractable ladder are standard.",
+    "primaryPhoto": 2
   },
   "parker-210-coastal": {
     "exclude": true,
@@ -239,13 +301,21 @@
     "blurb": "The 230 Coastal Edition is a 23 foot center console on Parker's shallow draft Modified-V hull, balancing inshore fishing against relaxed sandbar days. It carries a fiberglass hardtop with four rod rocket launcher, Wet Sounds stereo, trim tabs, eight gunwale rod holders and a livewell in the forward console seat."
   },
   "parker-247-explorer": {
-    "blurb": "The 247 Explorer steps up from the 227 with more range and fishing capacity: 141 gallons of fuel, a 400 horsepower rating, two in floor fish boxes with macerator and a windlass with 300 feet of rode. The cabin holds a twin berth with porta potty, and Seakeeper 450 Ride is standard."
+    "blurb": "The 247 Explorer steps up from the 227 with more range and fishing capacity: 141 gallons of fuel, a 400 horsepower rating, two in floor fish boxes with macerator and a windlass with 300 feet of rode. The cabin holds a twin berth with porta potty, and Seakeeper 450 Ride is standard.",
+    "primaryPhoto": 6
   },
   "parker-257-explorer": {
     "blurb": "The 257 Explorer widens the Explorer hull to a 9 foot 7 inch beam and adds a fully enclosed cabin with twin berths, 76 inches of pilothouse headroom and an electric head with holding tank. Rated to 500 horsepower with 179 gallons of fuel, it is built for serious anglers and carries up to 12."
   },
   "parker-287-explorer": {
-    "blurb": "The 287 Explorer is the largest boat in Parker's Explorer line at 27 feet 9 inches, rated to 700 horsepower with 232 gallons of fuel. It steps up to the Seakeeper 525 Ride system and offers 77 inches of pilothouse headroom, twin berths and an electric head, with a Garmin plotter and Wet Sounds stereo standard."
+    "blurb": "The 287 Explorer is the largest boat in Parker's Explorer line at 27 feet 9 inches, rated to 700 horsepower with 232 gallons of fuel. It steps up to the Seakeeper 525 Ride system and offers 77 inches of pilothouse headroom, twin berths and an electric head, with a Garmin plotter and Wet Sounds stereo standard.",
+    "primaryPhoto": 2
+  },
+  "pursuit-os-325": {
+    "primaryPhoto": 2
+  },
+  "pursuit-os-355": {
+    "primaryPhoto": 5
   },
   "pursuit-s-288": {
     "official": true,
@@ -254,9 +324,15 @@
     ],
     "blurb": "The S 288 is Pursuit's compact sport center console: 30'0\" length overall with a 9'8\" beam, twin Yamaha outboards up to 600 hp, and a deep 24-degree transom deadrise for offshore work. The layout fits generous bow and aft seating, big stowage, and a sizable console with a step-down head, backed by 230 gallons of fuel and Pursuit's signature fit and finish."
   },
+  "regulator-25": {
+    "primaryPhoto": 6
+  },
+  "regulator-28": {
+    "primaryPhoto": 6
+  },
   "regulator-31": {
     "blurb": "The Regulator 31 is a serious offshore center console with the deep-V Carolina ride Regulator is known for, twin Yamaha outboard power, and a tournament-grade fishing cockpit finished to yacht standards.",
-    "primaryPhoto": 2
+    "primaryPhoto": 6
   },
   "regulator-35": {
     "blurb": "The Regulator 35 is the biggest boat Regulator builds: a canyon-running center console with Yamaha outboard power, massive fuel and fish capacity, and the legendary Carolina-flared ride that made the brand."
@@ -267,6 +343,9 @@
   "robalo-257-dual-console": {
     "blurb": "The Robalo 257 Dual Console is a do-it-all 25 footer, with comfortable seating from bow to stern and deep storage compartments for long days exploring. Anglers get twin 50 gallon fish boxes and a 30 gallon aft livewell, under an oversized hardtop whose D-shaped frame clears the captain's sightlines."
   },
+  "robalo-277-dual-console": {
+    "primaryPhoto": 9
+  },
   "robalo-300-center-console": {
     "blurb": "The Robalo 300 Center Console balances comfort and offshore performance on a Michael Peters-designed hull, at home either trolling with hooks in the water or running rough seas after a trophy catch. A triple-wide helm stand, an oversized hardtop with a skylight and a freshwater shower are among the highlights."
   },
@@ -275,7 +354,14 @@
       "url": "https://seahuntboats.com/boats/gamefish/gamefish-25/",
       "token": "GF25_",
       "credit": "Sea Hunt"
-    }
+    },
+    "primaryPhoto": 5
+  },
+  "sea-hunt-ultra-219": {
+    "primaryPhoto": 4
+  },
+  "sea-hunt-ultra-229": {
+    "primaryPhoto": 3
   },
   "sea-hunt-ultra-234": {
     "photoFallback": {
@@ -284,6 +370,15 @@
       "credit": "Sea Hunt"
     },
     "blurb": "The Ultra 234 is Sea Hunt's 23'7\" single-engine center console, rigged as standard with a Yamaha F200, hydraulic steering and a 9\" Garmin GPSMAP at the helm. Bow backrests, bolsters and cushions wrap the forward seating, while T-top, bait tank and mezzanine leaning post options tilt it toward fishing."
+  },
+  "sea-hunt-ultra-235-se": {
+    "primaryPhoto": 3
+  },
+  "sea-hunt-ultra-245-se": {
+    "primaryPhoto": 3
+  },
+  "sea-hunt-ultra-255-se": {
+    "primaryPhoto": 3
   },
   "sea-hunt-ultra-265-se": {
     "exclude": true,
@@ -297,7 +392,8 @@
     }
   },
   "sea-hunt-ultra-305-se": {
-    "blurb": "The Ultra 305 SE sits at the top of Sea Hunt's Ultra range at 30'2\", standard with twin Yamaha F300s, electric steering, Yamaha autopilot and dual 17\" Garmin displays. An entertainment leaning post, telescoping bow table, dual side entry doors and a console head point it at long days offshore with company aboard."
+    "blurb": "The Ultra 305 SE sits at the top of Sea Hunt's Ultra range at 30'2\", standard with twin Yamaha F300s, electric steering, Yamaha autopilot and dual 17\" Garmin displays. An entertainment leaning post, telescoping bow table, dual side entry doors and a console head point it at long days offshore with company aboard.",
+    "primaryPhoto": 2
   },
   "sea-pro-225-flxr": {
     "blurb": "The 225 FLXR is Sea Pro's smaller sandbar boat: a removable stern sandbar table, a reversible leaning post, stern bench seating with reversible backrests and bow seating for a day anchored up. It draws 14 inches, carries nine and takes up to 250 horsepower. The R designates Seakeeper Ride in place of trim tabs."
@@ -318,6 +414,12 @@
       "https://seapromfg.com/262-center-console/"
     ],
     "blurb": "The 262 DLX is Sea Pro's 26-foot offshore center console in its upper trim, hand laid over 22.5 degrees of transom deadrise with 153 gallons of fuel and up to 500 horsepower. Against the Sport it adds digital switching, a premium fiberglass leaning post with tackle storage, a bait prep station with sink and a folding stern bench."
+  },
+  "sea-ray-250-sdx-ob": {
+    "primaryPhoto": 3
+  },
+  "sea-ray-320-sundancer-ob": {
+    "primaryPhoto": 3
   },
   "solara-310-cw": {
     "exclude": true,
@@ -343,21 +445,24 @@
       "url": "https://www.steigercraft.com/255-miami/",
       "token": "255",
       "credit": "Steiger Craft"
-    }
+    },
+    "primaryPhoto": 4
   },
   "steiger-craft-31-fisherman": {
     "photoFallback": {
       "url": "https://www.steigercraft.com/31-fisherman/",
       "token": "31-fisherman",
       "credit": "Steiger Craft"
-    }
+    },
+    "primaryPhoto": 4
   },
   "tiara-yachts-34ls": {
     "photoFallback": {
       "url": "https://www.tiarayachts.com/news/tiara-sport-launches-new-model-in-sport-series",
       "token": "34ls",
       "credit": "Tiara Yachts"
-    }
+    },
+    "primaryPhoto": 6
   },
   "tiara-yachts-39ls": {
     "blurb": "The 39 LS is Tiara's luxury sport day yacht: outboard power, a wide-open social cockpit with seating that converts around an outdoor galley, and the fit and finish Tiara has built its name on. It makes its New Jersey boat show debut in Atlantic City."
@@ -392,12 +497,19 @@
   "tidewater-302-cc-adventure": {
     "blurb": "The 302 CC Adventure is yacht certified on a 22 degree hull, with 230 gallons of fuel and a 700 horsepower rating. Wrap-around bow seating, a console lounge seat with armrests and a flush mount transom seat sit alongside an aquarium livewell leaning post, recessed rod racks and a macerated coffin box."
   },
+  "valhalla-v-33": {
+    "primaryPhoto": 3
+  },
+  "viking-yachts-50-c": {
+    "primaryPhoto": 3
+  },
   "world-cat-235-te-center-console": {
     "photoFallback": {
       "url": "https://worldcat.com/models/235te/",
       "token": "235",
       "credit": "World Cat"
-    }
+    },
+    "primaryPhoto": 4
   },
   "world-cat-265-dual-console": {
     "blurb": "The 265 Dual Console is World Cat's mid-size twin hull catamaran, built around stability, safety and performance for a day of fishing or family cruising. Standard equipment runs to a windlass with rode, a 30 gallon lighted livewell, a stand-up head with holding tank, a Corian bar and prep center with tackle storage. Seats up to 12."
@@ -407,13 +519,15 @@
       "url": "https://worldcat.com/models/280cc-x/",
       "token": "280",
       "credit": "World Cat"
-    }
+    },
+    "primaryPhoto": 3
   },
   "world-cat-325-dual-console": {
     "photoFallback": {
       "url": "https://worldcat.com/models/325dc/",
       "token": "325",
       "credit": "World Cat"
-    }
+    },
+    "primaryPhoto": 3
   }
 }
