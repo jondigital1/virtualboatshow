@@ -439,9 +439,6 @@ async function enrich(boat) {
   return "ok";
 }
 
-/** Galleries below this are considered thin enough to top up. */
-const MIN_GALLERY = 4;
-
 /**
  * Fill a thin gallery from the manufacturer's model page.
  *
@@ -616,7 +613,13 @@ async function topUpFromManufacturer(boat) {
   const o = OVERRIDES[boat.slug];
   const fb = o?.photoFallback;
   if (!fb?.url || !fb?.token) return null;
-  if (boat.photos.length >= MIN_GALLERY) return null;
+  // PINNED (Jon, 2026-08-30): a boat that already has photos is never touched
+  // again, however few it has. This used to top up any gallery under four,
+  // which meant a routine re-import to add new boats could silently change
+  // boats already live and already shown to their dealers. Five Bennington
+  // pontoons sit at one or two photos and are exactly the case this protects.
+  // Only a boat with nothing at all gets filled.
+  if (boat.photos.length > 0) return null;
 
   // Fast path first: Grady-White and Sea Hunt answer a plain fetch, and this
   // skips a browser launch for them.
