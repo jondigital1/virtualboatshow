@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow, PhonePill } from "@/components/ui";
@@ -59,20 +59,10 @@ export default function ShowBoatVDP() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lightbox < 0, count]);
 
-  if (!boat) {
-    return (
-      <>
-        <AnnouncementBar />
-        <Nav active="/inventory" />
-        <section style={{ background: "#fff", padding: "clamp(60px,10vw,120px) 24px", textAlign: "center" }}>
-          <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 28, color: "var(--navy)", margin: 0 }}>We couldn&rsquo;t find that boat.</h1>
-          <p style={{ color: "#5a6c78", margin: "12px 0 22px" }}>The lineup changes as dealers confirm their boats, so it may have been updated.</p>
-          <Link href="/inventory" className="h-brighten" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--navy)", color: "#fff", fontWeight: 700, fontSize: 13, letterSpacing: ".05em", textTransform: "uppercase", padding: "13px 22px", borderRadius: 8 }}>Browse Boats at the Show →</Link>
-        </section>
-        <Footer />
-      </>
-    );
-  }
+  // The layout has already 404'd an unknown slug server-side; this covers the
+  // client-side navigation case and hands both to the same not-found.tsx, so
+  // the copy lives in one place.
+  if (!boat) notFound();
 
   const title = boatTitle(boat);
   const placement = boat.dealers[0] ? placementFor(boat.dealers[0].name) : undefined;

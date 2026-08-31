@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { boatBySlug, boatTitle } from "@/lib/showboats";
 
 /**
@@ -36,6 +37,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default function BoatLayout({ children }: { children: React.ReactNode }) {
+/**
+ * The 404 is issued here rather than in the page, because the page is a client
+ * component and cannot set a response status.
+ *
+ * Every unknown slug used to answer HTTP 200 with a "we couldn't find that boat"
+ * body. That is a soft 404: search engines go on indexing withdrawn boats, and
+ * checking the site by status code proves nothing, because an invented slug
+ * looks exactly like a real one. It is how three not-at-show boats stayed live
+ * and crawlable without anyone noticing.
+ */
+export default async function BoatLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  if (!boatBySlug(slug)) notFound();
   return <>{children}</>;
 }
