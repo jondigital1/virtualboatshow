@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T02:39:37.965Z",
+  "generatedAt": "2026-08-31T02:54:42.645Z",
   "boatCount": 175,
   "boats": [
     {
@@ -298,10 +298,12 @@
           "phone": "(732) 228-7202"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/bennington-pontoons-20-s1sr-s-quad-bench-1.jpg"
+      ],
       "blurb": "Riptide Marine Center is a marine dealership located in Bayville, NJ. We carry boats from many manufacturers such as Carolina Skiff, Sea Chaser, Stingray Boats, Suzuki, and Yamaha. We also provide parts, service, and financing near the areas of Beachwood, Lacey Township, Toms River, Ocean Gate, and Forked River",
       "lengthFt": 20,
-      "photoCredit": null
+      "photoCredit": "Bennington"
     },
     {
       "slug": "bennington-pontoons-22-mfb",
@@ -320,10 +322,12 @@
           "phone": "(732) 228-7202"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/bennington-pontoons-22-mfb-1.jpg"
+      ],
       "blurb": "",
       "lengthFt": 22,
-      "photoCredit": null
+      "photoCredit": "Bennington"
     },
     {
       "slug": "bennington-pontoons-22-s1fc",
@@ -377,10 +381,12 @@
           "phone": "(732) 228-7202"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/bennington-pontoons-22-s1sb-s-swingback-1.jpg"
+      ],
       "blurb": "Riptide Marine Center is a marine dealership located in Bayville, NJ. We carry boats from many manufacturers such as Carolina Skiff, Sea Chaser, Stingray Boats, Suzuki, and Yamaha. We also provide parts, service, and financing near the areas of Beachwood, Lacey Township, Toms River, Ocean Gate, and Forked River",
       "lengthFt": 22,
-      "photoCredit": null
+      "photoCredit": "Bennington"
     },
     {
       "slug": "bennington-pontoons-23-s1sb-s-swingback",
@@ -399,10 +405,13 @@
           "phone": "(732) 228-7202"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/bennington-pontoons-23-s1sb-s-swingback-1.jpg",
+        "/boats/bennington-pontoons-23-s1sb-s-swingback-2.jpg"
+      ],
       "blurb": "Riptide Marine Center is a marine dealership located in Bayville, NJ. We carry boats from many manufacturers such as Carolina Skiff, Sea Chaser, Stingray Boats, Suzuki, and Yamaha. We also provide parts, service, and financing near the areas of Beachwood, Lacey Township, Toms River, Ocean Gate, and Forked River",
       "lengthFt": 23,
-      "photoCredit": null
+      "photoCredit": "Bennington"
     },
     {
       "slug": "bennington-pontoons-24-msl-m-quad-bench",
@@ -421,10 +430,12 @@
           "phone": "(732) 228-7202"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/bennington-pontoons-24-msl-m-quad-bench-1.jpg"
+      ],
       "blurb": "Riptide Marine Center is a marine dealership located in Bayville, NJ. We carry boats from many manufacturers such as Carolina Skiff, Sea Chaser, Stingray Boats, Suzuki, and Yamaha. We also provide parts, service, and financing near the areas of Beachwood, Lacey Township, Toms River, Ocean Gate, and Forked River",
       "lengthFt": 24,
-      "photoCredit": null
+      "photoCredit": "Bennington"
     },
     {
       "slug": "bennington-pontoons-25-qsba-q-swingback",
@@ -570,10 +581,23 @@
           "phone": "(732) 451-3995"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/boston-whaler-240-vantage-marinemax-1.jpg",
+        "/boats/boston-whaler-240-vantage-marinemax-2.jpg",
+        "/boats/boston-whaler-240-vantage-marinemax-3.jpg",
+        "/boats/boston-whaler-240-vantage-marinemax-4.jpg",
+        "/boats/boston-whaler-240-vantage-marinemax-5.jpg",
+        "/boats/boston-whaler-240-vantage-marinemax-6.jpg",
+        "/boats/boston-whaler-240-vantage-marinemax-7.jpg",
+        "/boats/boston-whaler-240-vantage-marinemax-8.jpg",
+        "/boats/boston-whaler-240-vantage-marinemax-9.jpg",
+        "/boats/boston-whaler-240-vantage-marinemax-10.jpg",
+        "/boats/boston-whaler-240-vantage-marinemax-11.jpg",
+        "/boats/boston-whaler-240-vantage-marinemax-12.jpg"
+      ],
       "blurb": "",
       "lengthFt": 24,
-      "photoCredit": null
+      "photoCredit": "Boston Whaler"
     },
     {
       "slug": "boston-whaler-250-outrage-comstock",
@@ -592,10 +616,23 @@
           "phone": "(732) 899-2500"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/boston-whaler-250-outrage-comstock-1.jpg",
+        "/boats/boston-whaler-250-outrage-comstock-2.jpg",
+        "/boats/boston-whaler-250-outrage-comstock-3.jpg",
+        "/boats/boston-whaler-250-outrage-comstock-4.jpg",
+        "/boats/boston-whaler-250-outrage-comstock-5.jpg",
+        "/boats/boston-whaler-250-outrage-comstock-6.jpg",
+        "/boats/boston-whaler-250-outrage-comstock-7.jpg",
+        "/boats/boston-whaler-250-outrage-comstock-8.jpg",
+        "/boats/boston-whaler-250-outrage-comstock-9.jpg",
+        "/boats/boston-whaler-250-outrage-comstock-10.jpg",
+        "/boats/boston-whaler-250-outrage-comstock-11.jpg",
+        "/boats/boston-whaler-250-outrage-comstock-12.jpg"
+      ],
       "blurb": "",
       "lengthFt": 25,
-      "photoCredit": null
+      "photoCredit": "Boston Whaler"
     },
     {
       "slug": "boston-whaler-250-outrage-marinemax",
@@ -614,10 +651,23 @@
           "phone": "(732) 451-3995"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/boston-whaler-250-outrage-marinemax-1.jpg",
+        "/boats/boston-whaler-250-outrage-marinemax-2.jpg",
+        "/boats/boston-whaler-250-outrage-marinemax-3.jpg",
+        "/boats/boston-whaler-250-outrage-marinemax-4.jpg",
+        "/boats/boston-whaler-250-outrage-marinemax-5.jpg",
+        "/boats/boston-whaler-250-outrage-marinemax-6.jpg",
+        "/boats/boston-whaler-250-outrage-marinemax-7.jpg",
+        "/boats/boston-whaler-250-outrage-marinemax-8.jpg",
+        "/boats/boston-whaler-250-outrage-marinemax-9.jpg",
+        "/boats/boston-whaler-250-outrage-marinemax-10.jpg",
+        "/boats/boston-whaler-250-outrage-marinemax-11.jpg",
+        "/boats/boston-whaler-250-outrage-marinemax-12.jpg"
+      ],
       "blurb": "",
       "lengthFt": 25,
-      "photoCredit": null
+      "photoCredit": "Boston Whaler"
     },
     {
       "slug": "boston-whaler-280-vantage-comstock",
@@ -877,10 +927,23 @@
           "phone": "(732) 899-8010"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/chris-craft-calypso-32-1.jpg",
+        "/boats/chris-craft-calypso-32-2.jpg",
+        "/boats/chris-craft-calypso-32-3.jpg",
+        "/boats/chris-craft-calypso-32-4.jpg",
+        "/boats/chris-craft-calypso-32-5.jpg",
+        "/boats/chris-craft-calypso-32-6.jpg",
+        "/boats/chris-craft-calypso-32-7.jpg",
+        "/boats/chris-craft-calypso-32-8.jpg",
+        "/boats/chris-craft-calypso-32-9.jpg",
+        "/boats/chris-craft-calypso-32-10.jpg",
+        "/boats/chris-craft-calypso-32-11.jpg",
+        "/boats/chris-craft-calypso-32-12.jpg"
+      ],
       "blurb": "",
       "lengthFt": 32,
-      "photoCredit": null
+      "photoCredit": "Chris-Craft"
     },
     {
       "slug": "chris-craft-catalina-28",
@@ -899,10 +962,23 @@
           "phone": "(732) 899-8010"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/chris-craft-catalina-28-1.jpg",
+        "/boats/chris-craft-catalina-28-2.jpg",
+        "/boats/chris-craft-catalina-28-3.jpg",
+        "/boats/chris-craft-catalina-28-4.jpg",
+        "/boats/chris-craft-catalina-28-5.jpg",
+        "/boats/chris-craft-catalina-28-6.jpg",
+        "/boats/chris-craft-catalina-28-7.jpg",
+        "/boats/chris-craft-catalina-28-8.jpg",
+        "/boats/chris-craft-catalina-28-9.jpg",
+        "/boats/chris-craft-catalina-28-10.jpg",
+        "/boats/chris-craft-catalina-28-11.jpg",
+        "/boats/chris-craft-catalina-28-12.jpg"
+      ],
       "blurb": "",
       "lengthFt": 28,
-      "photoCredit": null
+      "photoCredit": "Chris-Craft"
     },
     {
       "slug": "chris-craft-catalina-31",
@@ -2235,10 +2311,23 @@
           "phone": "(732) 451-3995"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/grady-white-freedom-235-marinemax-1.jpg",
+        "/boats/grady-white-freedom-235-marinemax-2.jpg",
+        "/boats/grady-white-freedom-235-marinemax-3.jpg",
+        "/boats/grady-white-freedom-235-marinemax-4.jpg",
+        "/boats/grady-white-freedom-235-marinemax-5.jpg",
+        "/boats/grady-white-freedom-235-marinemax-6.jpg",
+        "/boats/grady-white-freedom-235-marinemax-7.jpg",
+        "/boats/grady-white-freedom-235-marinemax-8.jpg",
+        "/boats/grady-white-freedom-235-marinemax-9.jpg",
+        "/boats/grady-white-freedom-235-marinemax-10.jpg",
+        "/boats/grady-white-freedom-235-marinemax-11.jpg",
+        "/boats/grady-white-freedom-235-marinemax-12.jpg"
+      ],
       "blurb": "",
       "lengthFt": 23.5,
-      "photoCredit": null
+      "photoCredit": "Grady-White"
     },
     {
       "slug": "grady-white-freedom-285-comstock",
@@ -2499,10 +2588,23 @@
           "phone": "(732) 505-3002"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/hurricane-deck-sundeck-2486-ob-1.jpg",
+        "/boats/hurricane-deck-sundeck-2486-ob-2.jpg",
+        "/boats/hurricane-deck-sundeck-2486-ob-3.jpg",
+        "/boats/hurricane-deck-sundeck-2486-ob-4.jpg",
+        "/boats/hurricane-deck-sundeck-2486-ob-5.jpg",
+        "/boats/hurricane-deck-sundeck-2486-ob-6.jpg",
+        "/boats/hurricane-deck-sundeck-2486-ob-7.jpg",
+        "/boats/hurricane-deck-sundeck-2486-ob-8.jpg",
+        "/boats/hurricane-deck-sundeck-2486-ob-9.jpg",
+        "/boats/hurricane-deck-sundeck-2486-ob-10.jpg",
+        "/boats/hurricane-deck-sundeck-2486-ob-11.jpg",
+        "/boats/hurricane-deck-sundeck-2486-ob-12.jpg"
+      ],
       "blurb": "#1 Volume Boat Dealer in New Jersey. Family-owned since 2001, recognized by Yamaha Outboards as a Best-in-Class dealer for over 20 years.",
       "lengthFt": null,
-      "photoCredit": null
+      "photoCredit": "Hurricane"
     },
     {
       "slug": "hurricane-deck-sundeck-2600-ob",
@@ -2521,10 +2623,23 @@
           "phone": "(732) 505-3002"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/hurricane-deck-sundeck-2600-ob-1.jpg",
+        "/boats/hurricane-deck-sundeck-2600-ob-2.jpg",
+        "/boats/hurricane-deck-sundeck-2600-ob-3.jpg",
+        "/boats/hurricane-deck-sundeck-2600-ob-4.jpg",
+        "/boats/hurricane-deck-sundeck-2600-ob-5.jpg",
+        "/boats/hurricane-deck-sundeck-2600-ob-6.jpg",
+        "/boats/hurricane-deck-sundeck-2600-ob-7.jpg",
+        "/boats/hurricane-deck-sundeck-2600-ob-8.jpg",
+        "/boats/hurricane-deck-sundeck-2600-ob-9.jpg",
+        "/boats/hurricane-deck-sundeck-2600-ob-10.jpg",
+        "/boats/hurricane-deck-sundeck-2600-ob-11.jpg",
+        "/boats/hurricane-deck-sundeck-2600-ob-12.jpg"
+      ],
       "blurb": "#1 Volume Boat Dealer in New Jersey. Family-owned since 2001, recognized by Yamaha Outboards as a Best-in-Class dealer for over 20 years.",
       "lengthFt": null,
-      "photoCredit": null
+      "photoCredit": "Hurricane"
     },
     {
       "slug": "hurricane-deck-sundeck-2690-ob",
@@ -2543,10 +2658,23 @@
           "phone": "(732) 505-3002"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/hurricane-deck-sundeck-2690-ob-1.jpg",
+        "/boats/hurricane-deck-sundeck-2690-ob-2.jpg",
+        "/boats/hurricane-deck-sundeck-2690-ob-3.jpg",
+        "/boats/hurricane-deck-sundeck-2690-ob-4.jpg",
+        "/boats/hurricane-deck-sundeck-2690-ob-5.jpg",
+        "/boats/hurricane-deck-sundeck-2690-ob-6.jpg",
+        "/boats/hurricane-deck-sundeck-2690-ob-7.jpg",
+        "/boats/hurricane-deck-sundeck-2690-ob-8.jpg",
+        "/boats/hurricane-deck-sundeck-2690-ob-9.jpg",
+        "/boats/hurricane-deck-sundeck-2690-ob-10.jpg",
+        "/boats/hurricane-deck-sundeck-2690-ob-11.jpg",
+        "/boats/hurricane-deck-sundeck-2690-ob-12.jpg"
+      ],
       "blurb": "",
       "lengthFt": null,
-      "photoCredit": null
+      "photoCredit": "Hurricane"
     },
     {
       "slug": "jupiter-32-cc",
@@ -2565,8 +2693,21 @@
           "phone": "(732) 899-8010"
         }
       ],
-      "photos": [],
-      "blurb": "",
+      "photos": [
+        "/boats/jupiter-32-cc-1.jpg",
+        "/boats/jupiter-32-cc-2.jpg",
+        "/boats/jupiter-32-cc-3.jpg",
+        "/boats/jupiter-32-cc-4.jpg",
+        "/boats/jupiter-32-cc-5.jpg",
+        "/boats/jupiter-32-cc-6.jpg",
+        "/boats/jupiter-32-cc-7.jpg",
+        "/boats/jupiter-32-cc-8.jpg",
+        "/boats/jupiter-32-cc-9.jpg",
+        "/boats/jupiter-32-cc-10.jpg",
+        "/boats/jupiter-32-cc-11.jpg",
+        "/boats/jupiter-32-cc-12.jpg"
+      ],
+      "blurb": "2026 Jupiter 32 powered with Twin Yamaha F350 Engines, with Helm Master Joystick and also equipped with Seakeeper RIDE system. Standard white gelcoat with Whisper Gray Gelcoat Underside of Hardtop. Dark Blue Boot Strip with Jupiter Logo, Dive Door port side Entry (inboard swing), Gunwale mounted Ro",
       "lengthFt": 32,
       "photoCredit": null
     },
@@ -5029,7 +5170,7 @@
       ],
       "blurb": "ENGINE: Twin Yamaha F150 This boat is the perfect day-trip fishing boat. And, with single outboard power, it’s fast and economical to run. The Steiger 255 is also affordable to buy when compared to other boats its size. Its 8",
       "lengthFt": 25.5,
-      "photoCredit": null
+      "photoCredit": "Steiger Craft"
     },
     {
       "slug": "steiger-craft-31-fisherman",
@@ -5062,7 +5203,7 @@
       ],
       "blurb": "ENGINE:Twin Yamaha F300 Steiger Craft 31 Fisherman Summary The Steiger Craft 31 Fisherman is a rugged, offshore-ready pilothouse fishing boat built for serious anglers who want strength, range, and protection from the elements. Key Features & Specifications Length & Beam: 31 ft long with a 10 ft beam. Fuel Capacity & Range: Around 325 g...",
       "lengthFt": 31,
-      "photoCredit": null
+      "photoCredit": "Steiger Craft"
     },
     {
       "slug": "tiara-yachts-34ls",
@@ -5097,7 +5238,7 @@
       ],
       "blurb": "Step aboard the all-new 2026 Tiara Yachts 34 LS-where luxury day boating meets first-class performance. This factory-fresh model features the highly desirable Fountain Blue hull with white bootstripe, powered by twin Mercury 300 XL engines with Joystick Piloting for effortless docking and smooth con",
       "lengthFt": 34,
-      "photoCredit": null
+      "photoCredit": "Tiara Yachts"
     },
     {
       "slug": "tiara-yachts-39ls",
@@ -5595,7 +5736,7 @@
       ],
       "blurb": "2026 World Cat 235TE – Tournament-Ready Catamaran ENGINE: Twin Yamaha Four Stroke White F150 The 2026 World Cat 235TE is a purpose-built center console designed for serious anglers seeking exceptional stability, performance, and comfort. With its catamaran hull design, this 23-foot vessel offers a smooth ride and ample space for both fishing expedi...",
       "lengthFt": 23.5,
-      "photoCredit": null
+      "photoCredit": "World Cat"
     },
     {
       "slug": "world-cat-265-dual-console",
@@ -5655,7 +5796,7 @@
       ],
       "blurb": "2027 World Cat 280CC-X Raising the Bar for Style and Performance The 280CC-X offers dramatic styling, superior performance, and the smooth ride you expect from World CatTM . Designed exclusively via CAD technology, the 280CC-X features luxurious appointments, generous seating for 11, and the latest technology that together make it your ideal choic...",
       "lengthFt": 28,
-      "photoCredit": null
+      "photoCredit": "World Cat"
     },
     {
       "slug": "world-cat-325-dual-console",
@@ -5690,7 +5831,7 @@
       ],
       "blurb": "2026 World Cat 325DC Comfort and luxury. Versatility and ruggedness. A spacious yacht for your family, and a high-performance sport boat for you. The 325DC offers it all – with style. With rakish lines and an attention to detail, the 325DC is designed to look good while bringing you years of fun and dependable service. And, since it’s a World Cat,...",
       "lengthFt": 32.5,
-      "photoCredit": null
+      "photoCredit": "World Cat"
     }
   ],
   "waiting": [],

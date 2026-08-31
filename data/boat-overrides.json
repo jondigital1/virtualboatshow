@@ -38,6 +38,13 @@
   "boston-whaler-220-dauntless": {
     "blurb": "The 220 Dauntless is Boston Whaler's do-anything 22-footer: the unsinkable hull the brand is famous for, a fishing-ready cockpit, and comfortable bow seating that turns the same boat into a family cruiser by afternoon."
   },
+  "boston-whaler-240-vantage-marinemax": {
+    "photoFallback": {
+      "url": "https://www.bostonwhaler.com/us/en/boats/vantage/240-vantage",
+      "token": "bw-24vnt-",
+      "credit": "Boston Whaler"
+    }
+  },
   "boston-whaler-250-outrage-comstock": {
     "photoFallback": {
       "url": "https://www.bostonwhaler.com/us/en/boats/outrage/250-outrage",
@@ -120,6 +127,13 @@
     "photoFallback": {
       "url": "https://www.gradywhite.com/models/center-consoles/canyon-336/",
       "token": "Canyon336",
+      "credit": "Grady-White"
+    }
+  },
+  "grady-white-freedom-235-marinemax": {
+    "photoFallback": {
+      "url": "https://www.gradywhite.com/models/freedom-235/",
+      "token": "freedom-235",
       "credit": "Grady-White"
     }
   },

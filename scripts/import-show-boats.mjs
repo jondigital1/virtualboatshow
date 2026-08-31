@@ -50,7 +50,7 @@ mkdirSync(PHOTO_DIR, { recursive: true });
 /** Previous run's text, carried forward for photo-cached boats. */
 const PREV = new Map(
   existsSync(OUT)
-    ? JSON.parse(readFileSync(OUT, "utf8")).boats.map((b) => [b.slug, { blurb: b.blurb, lengthFt: b.lengthFt }])
+    ? JSON.parse(readFileSync(OUT, "utf8")).boats.map((b) => [b.slug, { blurb: b.blurb, lengthFt: b.lengthFt, photoCredit: b.photoCredit }])
     : []
 );
 /** Per-boat source overrides (see data/boat-overrides.json). */
@@ -363,6 +363,10 @@ async function enrich(boat) {
     // which this run rebuilds: carry the previous run's text forward, and
     // only hit the network when we have none yet.
     const prev = PREV.get(boat.slug);
+    // The credit belongs to the photos, not the text, so it has to survive a
+    // cached run too. Without this a re-import silently relabels manufacturer
+    // photography as the dealer's, which is a claim we should not be making.
+    if (prev?.photoCredit) boat.photoCredit = prev.photoCredit;
     if (prev?.blurb) {
       boat.blurb = prev.blurb;
       // prev can hold a value from the old bad scrape, so it is not trusted:
@@ -455,20 +459,37 @@ const MIN_GALLERY = 4;
  *    the boat is flagged so the page can credit them honestly. They show the
  *    model, not the hull arriving at the show.
  */
-async function topUpFromManufacturer(boat) {
-  const o = OVERRIDES[boat.slug];
-  const fb = o?.photoFallback;
-  if (!fb?.url || !fb?.token) return null;
-  if (boat.photos.length >= MIN_GALLERY) return null;
+/**
+ * Keep the URLs whose FILENAME contains the token, deduped by size variant.
+ * Matching on the filename and never the path matters: Grady-White keeps a 306
+ * photo inside its /Freedom-235/ folder, so a path match imports the wrong boat.
+ */
+function filterByToken(urls, token) {
+  const junk = /favicon|logo|icon|sprite|placeholder|badge|pixel|site-identity/i;
+  const seen = new Set();
+  const out = [];
+  for (const raw of urls) {
+    if (junk.test(raw)) continue;
+    const key = raw.split("?")[0].replace(/-\d{2,4}x\d{2,4}(?=\.\w+$)/, "");
+    const file = key.split("/").pop() ?? "";
+    // Case-insensitive: these CDNs serve lowercased copies of filenames whose
+    // originals are mixed case, so a literal match silently finds nothing.
+    if (!file.toLowerCase().includes(token.toLowerCase())) continue;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(raw);
+  }
+  return out;
+}
 
-  const raw_html = await fetchWithTimeout(fb.url, 20000, false, BROWSER_UA);
-  if (!raw_html) return null;
-
+/** Image URLs on a page whose FILENAME contains the token. */
+function candidatesFrom(rawHtml, token) {
+  if (!rawHtml) return [];
   // Bennington publishes its MY26 renders only inside an HTML-escaped JSON blob
   // in a data-* attribute, so the URLs arrive with escaped slashes and entity
   // encoded delimiters. Normalising first is what makes them matchable at all;
   // it is harmless on pages that put their images in plain img tags.
-  const html = raw_html
+  const html = rawHtml
     .replace(/\\\//g, "/")
     .replace(/&quot;/g, '"')
     .replace(/&#0?39;|&apos;/g, "'")
@@ -476,7 +497,7 @@ async function topUpFromManufacturer(boat) {
 
   const junk = /favicon|logo|icon|sprite|placeholder|badge|pixel|site-identity/i;
   const seen = new Set();
-  const candidates = [];
+  const out = [];
   // The query string is part of the URL, not decoration: Grady-White serves its
   // CDN images through a signed ?s= parameter and drops the request without it.
   for (const m of html.matchAll(/https?:\/\/[^"'\s)<>\\]+?\.(?:jpg|jpeg|png|webp)(?:\?[^"'\s)<>\\]*)?/gi)) {
@@ -487,10 +508,133 @@ async function topUpFromManufacturer(boat) {
     const file = key.split("/").pop() ?? "";
     // Case-insensitive: these CDNs serve lowercased copies of filenames whose
     // originals are mixed case, so a literal match silently finds nothing.
-    if (!file.toLowerCase().includes(fb.token.toLowerCase())) continue;
+    if (!file.toLowerCase().includes(token.toLowerCase())) continue;
     if (seen.has(key)) continue;
     seen.add(key);
-    candidates.push(raw);
+    out.push(raw);
+  }
+  return out;
+}
+
+/**
+ * One shared headless browser for the pages a plain fetch cannot see.
+ * Launched lazily, so an import that needs no rendering never pays for it.
+ */
+let _browser = null, _ctx = null;
+async function browserContext() {
+  if (_ctx) return _ctx;
+  const { chromium } = await import("playwright");
+  _browser = await chromium.launch();
+  _ctx = await _browser.newContext({ userAgent: BROWSER_UA, viewport: { width: 1440, height: 900 } });
+  return _ctx;
+}
+async function closeBrowser() {
+  if (_browser) { await _browser.close().catch(() => {}); _browser = null; _ctx = null; }
+}
+
+/**
+ * Absolute image URLs from a rendered page. Scrolls once so lazy galleries
+ * populate.
+ *
+ * Reads the live DOM rather than the serialized HTML, for two reasons the
+ * blocked manufacturers demonstrate between them. Boston Whaler writes its
+ * gallery as root-relative /adobe/dynamicmedia/... paths, which a regex looking
+ * for http(s) never sees, so URLs are resolved against the page. Chris-Craft
+ * serves through Scene7, whose URLs carry no file extension at all
+ * (.../calypso-32-header-carousel-1?ts=...), so requiring one finds nothing.
+ * Taking whatever the img elements actually point at sidesteps both.
+ */
+async function renderAndDownload(url, token, limit) {
+  try {
+    const page = await (await browserContext()).newPage();
+    try {
+      await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      await page.waitForTimeout(2500);
+
+      // Downloading happens INSIDE the page. Boston Whaler's CDN answers 403 to
+      // Playwright's request context even with a Referer, but 200 to the page's
+      // own fetch, which is the session that already painted these images.
+      const got = await page.evaluate(async ({ token, limit }) => {
+        const abs = (u) => { try { return new URL(u, location.href).href; } catch { return null; } };
+        const urls = new Set();
+        for (const img of document.querySelectorAll("img")) {
+          for (const v of [img.currentSrc, img.getAttribute("src"), img.getAttribute("data-src")]) {
+            const a = v && abs(v); if (a) urls.add(a);
+          }
+          const ss = img.getAttribute("srcset");
+          if (ss) for (const part of ss.split(",")) {
+            const a = abs(part.trim().split(/\s+/)[0] ?? ""); if (a) urls.add(a);
+          }
+        }
+        for (const el of document.querySelectorAll("*")) {
+          const bg = getComputedStyle(el).backgroundImage;
+          if (bg && bg !== "none") for (const m of bg.matchAll(/url\(["']?([^"')]+)["']?\)/g)) {
+            const a = abs(m[1]); if (a) urls.add(a);
+          }
+        }
+
+        const junk = /favicon|logo|icon|sprite|placeholder|badge|pixel|site-identity/i;
+        const seen = new Set();
+        const picked = [];
+        for (const u of urls) {
+          if (junk.test(u)) continue;
+          const key = u.split("?")[0].replace(/-\d{2,4}x\d{2,4}(?=\.\w+$)/, "");
+          const file = key.split("/").pop() ?? "";
+          if (!file.toLowerCase().includes(token.toLowerCase())) continue;
+          if (seen.has(key)) continue;
+          seen.add(key);
+          picked.push(u);
+          if (picked.length >= limit) break;
+        }
+
+        const out = [];
+        for (const u of picked) {
+          try {
+            const r = await fetch(u);
+            if (!r.ok) continue;
+            const buf = new Uint8Array(await r.arrayBuffer());
+            if (buf.byteLength < 8000 || buf.byteLength > 15_000_000) continue;
+            let s = "";
+            for (let i = 0; i < buf.length; i += 8192) s += String.fromCharCode(...buf.subarray(i, i + 8192));
+            out.push({ url: u, b64: btoa(s) });
+          } catch { /* skip this image */ }
+        }
+        return out;
+      }, { token, limit });
+
+      return got.map((g) => ({ url: g.url, buf: Buffer.from(g.b64, "base64") }));
+    } finally {
+      await page.close().catch(() => {});
+    }
+  } catch {
+    return null;
+  }
+}
+
+async function topUpFromManufacturer(boat) {
+  const o = OVERRIDES[boat.slug];
+  const fb = o?.photoFallback;
+  if (!fb?.url || !fb?.token) return null;
+  if (boat.photos.length >= MIN_GALLERY) return null;
+
+  // Fast path first: Grady-White and Sea Hunt answer a plain fetch, and this
+  // skips a browser launch for them.
+  let candidates = candidatesFrom(await fetchWithTimeout(fb.url, 20000, false, BROWSER_UA), fb.token);
+  /** url -> bytes, when the images had to be pulled from inside a rendered page. */
+  let prefetched = null;
+
+  // Bennington, Hurricane and Boston Whaler return 403 to any server-side fetch
+  // whatever User-Agent it sends, and Chris-Craft builds its gallery in
+  // JavaScript, so the served HTML carries a single promo tile. A real browser
+  // is the only way to see those pages. None of the four disallow these paths
+  // in robots.txt; this renders a public product page the way a visitor would.
+  if (!candidates.length) {
+    const got = await renderAndDownload(fb.url, fb.token, MAX_PHOTOS);
+    if (got?.length) {
+      prefetched = new Map(got.map((g) => [g.url, g.buf]));
+      candidates = got.map((g) => g.url);
+    }
   }
   if (!candidates.length) return null;
 
@@ -501,7 +645,7 @@ async function topUpFromManufacturer(boat) {
   const added = [];
   for (const p of candidates) {
     if (boat.photos.length + added.length >= MAX_PHOTOS) break;
-    const buf = await fetchWithTimeout(p, 25000, true, BROWSER_UA);
+    const buf = prefetched ? prefetched.get(p) : await fetchWithTimeout(p, 25000, true, BROWSER_UA);
     if (!buf || buf.length < 8000 || buf.length > 15_000_000) continue;
     try {
       const img = sharp(buf);
@@ -582,6 +726,18 @@ async function main() {
   for (const b of boats) {
     const n = await topUpFromManufacturer(b);
     if (n) console.log(`topped up    ${b.brand} ${b.model} +${n} from ${b.photoCredit}`);
+  }
+  await closeBrowser();
+
+  // Backstop for the credit. A boat configured with a photoFallback has no
+  // dealer imagery to find (that is the whole reason it has one), so a gallery
+  // on such a boat is manufacturer photography and must say so. This repairs
+  // any run where the credit was set on an earlier pass and the photos then
+  // came back from the disk cache, which would otherwise present the
+  // manufacturer's shots as the dealer's own.
+  for (const b of boats) {
+    const fb = OVERRIDES[b.slug]?.photoFallback;
+    if (fb?.credit && b.photos.length && !b.photoCredit) b.photoCredit = fb.credit;
   }
 
   // Manual description overrides win over whatever the page served.
