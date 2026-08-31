@@ -261,7 +261,7 @@ export default function Home() {
             </p>
           </div>
           <a
-            href="https://buoylist.com?utm_source=acvbs&utm_medium=referral"
+            href="https://www.buoyboating.com?utm_source=acvbs&utm_medium=referral"
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("buoy_referral_clicked", { page: "home" })}
