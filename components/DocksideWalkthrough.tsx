@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { track } from "@vercel/analytics";
 import { DISPLAY, MONO } from "@/components/ui";
 import { submitLead } from "@/lib/leads";
-import { captureAttribution, readAttribution } from "@/lib/attribution";
+import { readAttribution } from "@/lib/attribution";
 import { placementFor } from "@/lib/docks";
 
 /**
@@ -94,8 +94,6 @@ export function DocksideWalkthrough({
     daypart: "Not sure yet",
   });
   const [optIn, setOptIn] = useState(false);
-
-  useEffect(() => captureAttribution(), []);
 
   // Abandonment: opened, touched a field, then left without submitting.
   const submitted = useRef(false);

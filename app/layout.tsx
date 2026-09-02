@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { IframeModalProvider } from "@/components/IframeModal";
 import { MetaPixel } from "@/components/MetaPixel";
+import { Attribution } from "@/components/Attribution";
 import { NAME_WITH_YEAR, SHORT_NAME, DATES_SHORT, WHEN_AND_WHERE, YEAR } from "@/lib/show";
 import "./globals.css";
 
@@ -67,6 +68,7 @@ export default function RootLayout({
         <IframeModalProvider>{children}</IframeModalProvider>
         <Analytics />
         <MetaPixel />
+        <Attribution />
       </body>
     </html>
   );

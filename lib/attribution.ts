@@ -6,6 +6,9 @@
  * load and read back at submit. Session-scoped on purpose: this is attribution
  * for a single visit, not a durable identifier, so it expires with the tab and
  * nothing is written to a cookie or to localStorage.
+ *
+ * captureAttribution() is called from the root by <Attribution />, not from
+ * individual forms. See that component for why.
  */
 
 const KEY = "acvbs.attribution";
@@ -40,6 +43,15 @@ export function captureAttribution(): void {
     for (const [key, param] of FIELDS) {
       const v = params.get(param);
       if (v) a[key] = v.slice(0, 200);
+    }
+    // Facebook stamps fbclid on every ad click. If the tags are missing from
+    // the ad's own URL, that parameter is still proof the visit came from a
+    // paid Facebook or Instagram click, and this is the only thing standing
+    // between a mistagged ad and a batch of leads no one can attribute. It
+    // never overwrites tags that are actually present.
+    if (params.has("fbclid") && !a.utmSource) {
+      a.utmSource = "facebook";
+      a.utmMedium = "paid-social";
     }
     // Referrers from our own domain are navigation, not acquisition.
     const ref = document.referrer;
