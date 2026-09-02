@@ -23,6 +23,11 @@
  *
  * Production only. Local runs submit the capture form during testing, and
  * those submissions would otherwise land in the real dataset as conversions.
+ *
+ * Related and easy to delete by accident: public/qojhzqxkrvnioc6f5m5whp22fskn43.html
+ * is Meta's domain verification file for acvirtualboatshow.com. The name is
+ * meaningless and the single line inside it must stay byte for byte as Meta
+ * issued it. Removing it un-verifies the domain.
  */
 
 import Script from "next/script";
