@@ -18,7 +18,7 @@ const FONT = "var(--font-poppins), sans-serif";
  * statement people rely on.
  */
 
-const UPDATED = "August 26, 2026";
+const UPDATED = "September 2, 2026";
 
 const h2: React.CSSProperties = {
   fontFamily: DISPLAY,
@@ -89,8 +89,9 @@ export default function Privacy() {
             practices, not ours.
           </p>
           <p style={p}>
-            We do not sell your personal information, and we do not pass it to dealers you did not choose or to
-            advertisers.
+            We do not sell your personal information, and we do not pass your name, email address, or phone
+            number to dealers you did not choose. We do advertise the show, and the section on cookies below
+            explains exactly what Meta learns when you arrive from one of those ads.
           </p>
 
           <h2 style={h2}>What we keep, and what we do not</h2>
@@ -125,6 +126,11 @@ export default function Privacy() {
             analytics. The analytics are aggregate and do not use cookies to follow you between sites.
           </p>
           <p style={li}>
+            <strong style={{ color: "var(--navy)" }}>Meta</strong> receives the advertising measurement
+            described under cookies below, when you reach us from a Facebook or Instagram ad or browse the site
+            afterwards.
+          </p>
+          <p style={li}>
             <strong style={{ color: "var(--navy)" }}>Supabase</strong> stores enquiries.
           </p>
           <p style={li}>
@@ -145,11 +151,23 @@ export default function Privacy() {
             Google receives your IP address when a page loads.
           </p>
 
-          <h2 style={h2}>Cookies</h2>
+          <h2 style={h2}>Cookies and advertising</h2>
           <p style={p}>
-            We do not set advertising or tracking cookies. If you arrive from a campaign link, the campaign tags
-            are held in your browser&rsquo;s session storage so they can travel with an enquiry you submit. They
-            are discarded when you close the tab.
+            We advertise the show on Facebook and Instagram, so this site carries the Meta pixel and we can see
+            which ads actually sold tickets. The pixel sets cookies in your browser and tells Meta which pages
+            you looked at here and whether you completed the ticket form. If you have a Facebook or Instagram
+            account, Meta can connect that activity to it. We do not send Meta your name, email address, or
+            phone number.
+          </p>
+          <p style={p}>
+            The pixel cannot see inside the ticket window, so it does not know whether you bought a ticket or
+            what you paid. You can limit what Meta does with this in your Facebook ad preferences, and most
+            browsers will block these cookies outright without breaking anything here.
+          </p>
+          <p style={p}>
+            Nothing else on this site sets an advertising cookie. If you arrive from a campaign link, the
+            campaign tags are held in your browser&rsquo;s session storage so they can travel with an enquiry
+            you submit. They are discarded when you close the tab.
           </p>
 
           <h2 style={h2}>How long we keep it</h2>
@@ -172,6 +190,11 @@ export default function Privacy() {
           <p style={p}>
             Depending on where you live you may have additional rights under laws such as the California Consumer
             Privacy Act or the GDPR. We will honour those requests at the address above.
+          </p>
+          <p style={p}>
+            California residents: passing browsing activity to Meta for advertising counts as
+            &ldquo;sharing&rdquo; under that state&rsquo;s law. Write to the address above to opt out, or block
+            the cookies in your browser, which takes effect immediately.
           </p>
 
           <h2 style={h2}>Children</h2>

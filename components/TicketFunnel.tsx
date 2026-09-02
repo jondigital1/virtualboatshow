@@ -35,6 +35,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { track } from "@vercel/analytics";
 import { useIframeModal } from "@/components/IframeModal";
+import { pixel } from "@/components/MetaPixel";
 import { submitLead } from "@/lib/leads";
 import { readAttribution } from "@/lib/attribution";
 import { DISPLAY } from "@/components/ui";
@@ -85,6 +86,9 @@ export function TicketCaptureForm({ source, onSubmitted, autoFocus = false }: { 
     });
 
     track("ticket_funnel_submitted", { source, optIn: String(optIn) });
+    // The deepest conversion the pixel can observe: checkout runs in a
+    // cross-origin iframe it cannot see into, so ads optimise against this.
+    pixel("Lead", { content_name: "ticket-capture", content_category: source });
     onSubmitted?.();
     openTickets();
   }
