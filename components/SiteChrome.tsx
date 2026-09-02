@@ -43,7 +43,13 @@ export function AnnouncementBar() {
 
 /** Sticky top nav: AC show logo first, "Powered by Buoy" credit second,
  *  visitor links, then the Get Tickets CTA. White per the brand system. */
-export function Nav({ active }: { active?: string }) {
+/**
+ * `bare` strips the nav links and the ticket button, leaving the logo lockup
+ * alone. Used on the paid landing page, where every nav item is a way to leave
+ * before buying. The logo stays because a page with no branding reads as a
+ * phishing form.
+ */
+export function Nav({ active, bare = false }: { active?: string; bare?: boolean }) {
   const [open, setOpen] = useState(false);
 
   // Every ticket path goes through the capture funnel, per Jon: no bare
@@ -74,7 +80,7 @@ export function Nav({ active }: { active?: string }) {
         </Link>
 
         {/* desktop links */}
-        <div className="nav-desktop" style={{ marginLeft: "auto", alignItems: "center", gap: 22, justifyContent: "flex-end" }}>
+        {!bare && <div className="nav-desktop" style={{ marginLeft: "auto", alignItems: "center", gap: 22, justifyContent: "flex-end" }}>
           <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
             {NAV_LINKS.map((l) => {
               const isActive = active === l.href;
@@ -90,10 +96,10 @@ export function Nav({ active }: { active?: string }) {
             })}
           </div>
           {ticketBtn()}
-        </div>
+        </div>}
 
         {/* mobile hamburger */}
-        <button
+        {!bare && <button
           className="nav-hamburger"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
@@ -101,11 +107,11 @@ export function Nav({ active }: { active?: string }) {
           style={{ marginLeft: "auto", width: 42, height: 42, borderRadius: 10, background: "rgba(20,46,81,.05)", border: "1px solid rgba(20,46,81,.16)", color: "var(--navy)", fontSize: 18, cursor: "pointer", alignItems: "center", justifyContent: "center" }}
         >
           {open ? "✕" : "☰"}
-        </button>
+        </button>}
       </div>
 
       {/* mobile dropdown panel */}
-      {open && (
+      {!bare && open && (
         <div className="nav-mobile-panel" style={{ flexDirection: "column", padding: "8px clamp(16px,4vw,44px) 20px", borderTop: "1px solid rgba(20,46,81,.1)", background: "rgba(255,255,255,.99)" }}>
           {NAV_LINKS.map((l) => {
             const isActive = active === l.href;

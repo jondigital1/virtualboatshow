@@ -55,6 +55,15 @@ export const VIRTUAL_NAME_WITH_YEAR = `${YEAR} ${VIRTUAL_NAME}`;
 /** "September 10-13, 2026 - Farley State Marina, Atlantic City" */
 export const WHEN_AND_WHERE = `${DATES_LONG}, ${YEAR} · ${VENUE}, ${CITY}`;
 
+/**
+ * Ticket pricing (Jon, 2026-09-02). Advance runs through the day before the
+ * show opens. Paid ads quote these, so the landing page has to quote the same
+ * numbers or the click arrives at a page that does not confirm its own offer.
+ */
+export const TICKET_ADVANCE = 15;
+export const TICKET_GATE = 22;
+export const TICKET_ADVANCE_UNTIL = "September 9";
+
 /** The four show days, for anything asking a visitor which day they are coming. */
 export const SHOW_DAYS: { value: string; label: string }[] = [
   { value: `${YEAR}-09-10`, label: "Thursday, Sept 10" },
