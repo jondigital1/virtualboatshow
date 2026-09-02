@@ -27,13 +27,10 @@ import { placementFor } from "@/lib/docks";
 
 const FONT = "var(--font-poppins), sans-serif";
 
-/** Show days. Sept 10-13, 2026 at Farley State Marina. */
-export const SHOW_DAYS = [
-  { value: "2026-09-10", label: "Thursday, Sept 10" },
-  { value: "2026-09-11", label: "Friday, Sept 11" },
-  { value: "2026-09-12", label: "Saturday, Sept 12" },
-  { value: "2026-09-13", label: "Sunday, Sept 13" },
-];
+/** Show days, from lib/show.ts so they roll over with the rest of the show.
+ *  Re-exported because several modules already import it from this file. */
+import { SHOW_DAYS } from "@/lib/show";
+export { SHOW_DAYS };
 
 const DAYPARTS = ["Morning", "Afternoon", "Not sure yet"];
 

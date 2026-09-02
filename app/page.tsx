@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { track } from "@vercel/analytics";
+import { YEAR, CITY, VENUE, DATES_LONG, eventJsonLd } from "@/lib/show";
+import { TICKETS_URL } from "@/lib/gate";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { ShowMap } from "@/components/ShowMap";
 import { Eyebrow } from "@/components/ui";
@@ -57,18 +59,39 @@ export default function Home() {
       <AnnouncementBar />
       <Nav active="/" />
 
+      {/* Event structured data: this is what lets a search result carry the
+          show's dates, venue and ticket link instead of a plain blue link.
+          Values come from lib/show.ts, so it rolls over with everything else. */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(eventJsonLd(TICKETS_URL, "https://www.acvirtualboatshow.com")),
+        }}
+      />
+
       {/* HERO — spacious, promotional, unmistakably AC In-Water Boat Show */}
       <section style={{ position: "relative", background: "#fff", overflow: "hidden" }}>
         <div style={{ maxWidth: 1340, margin: "0 auto", padding: "clamp(20px,3vw,40px) clamp(18px,4vw,44px) clamp(40px,5vw,64px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,380px),1fr))", gap: "clamp(20px,3vw,44px)", alignItems: "center" }}>
           <div style={{ minWidth: 0, paddingTop: "clamp(8px,2vw,28px)" }}>
             <Eyebrow>The Official Virtual Boat Show</Eyebrow>
-            <h1 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(34px,4.6vw,60px)", lineHeight: 1.08, letterSpacing: "-.015em", margin: "16px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
-              Explore the boats
+            {/* The h1 names the show and the year: it is the strongest signal
+                on the page, and a visitor landing cold could not previously
+                tell which year's show this was. The slogan keeps its gold
+                weight directly underneath. */}
+            <h1 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(30px,4vw,52px)", lineHeight: 1.08, letterSpacing: "-.015em", margin: "16px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
+              {YEAR} {CITY}
               <br />
-              <span style={{ color: "var(--gold)" }}>before you hit the docks.</span>
+              In-Water Boat Show
             </h1>
+            <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(20px,2.2vw,29px)", lineHeight: 1.15, letterSpacing: "-.01em", margin: "14px 0 0", color: "var(--gold)", textTransform: "uppercase" }}>
+              Explore the boats before you hit the docks.
+            </div>
             <span className="gold-rule" style={{ margin: "22px 0 0", background: "var(--lightblue)" }} />
-            <p style={{ maxWidth: 480, fontSize: "clamp(15.5px,1.2vw,17.5px)", lineHeight: 1.65, color: "rgba(20,46,81,.8)", margin: "22px 0 0" }}>
+            <p style={{ fontFamily: FONT, fontWeight: 700, fontSize: "clamp(14.5px,1.15vw,16.5px)", letterSpacing: ".04em", color: "var(--navy)", margin: "20px 0 0", textTransform: "uppercase" }}>
+              {DATES_LONG}, {YEAR} · {VENUE}
+            </p>
+            <p style={{ maxWidth: 480, fontSize: "clamp(15.5px,1.2vw,17.5px)", lineHeight: 1.65, color: "rgba(20,46,81,.8)", margin: "12px 0 0" }}>
               Browse participating dealers and available inventory, see what&rsquo;s coming to the docks, and plan your Atlantic City waterfront weekend.
             </p>
             <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(30px,3.4vw,44px)", letterSpacing: ".01em", margin: "30px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>

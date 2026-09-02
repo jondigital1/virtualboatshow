@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { track } from "@vercel/analytics";
 import { TicketFunnelButton } from "@/components/TicketFunnel";
+import { WHEN_AND_WHERE, DATES_LONG, YEAR, NAME } from "@/lib/show";
 
 const FONT = "var(--font-poppins), sans-serif";
 
@@ -34,7 +35,7 @@ export function AnnouncementBar() {
         padding: "9px 16px",
       }}
     >
-      September 10–13, 2026 · Farley State Marina, Atlantic City{" "}
+      {WHEN_AND_WHERE}{" "}
       <span style={{ color: "var(--gold)", whiteSpace: "nowrap" }}>· Let&rsquo;s Boat!</span>
     </div>
   );
@@ -140,7 +141,7 @@ export function Footer() {
         <Image src="/ac-logo-reversed.png" alt="Atlantic City In-Water Boat Show" width={280} height={77} style={{ display: "block", width: "clamp(220px,24vw,280px)", height: "auto" }} />
         <div style={{ display: "flex", alignItems: "center", gap: "clamp(24px,4vw,48px)", flexWrap: "wrap" }}>
           <div style={{ fontFamily: FONT, fontSize: 15, lineHeight: 1.6 }}>
-            <div style={{ color: "#fff", fontWeight: 600 }}>September 10–13, 2026</div>
+            <div style={{ color: "#fff", fontWeight: 600 }}>{DATES_LONG}, {YEAR}</div>
             <div>Atlantic City, New Jersey</div>
           </div>
           <span aria-hidden style={{ width: 1, height: 44, background: "rgba(255,255,255,.2)" }} />
@@ -169,7 +170,7 @@ export function Footer() {
           color: "rgba(255,255,255,.55)",
         }}
       >
-        <span>© 2026 Atlantic City In-Water Boat Show · Powered by Buoy</span>
+        <span>© {YEAR} {NAME} · Powered by Buoy</span>
         <div style={{ display: "flex", gap: 18, flexWrap: "wrap" }}>
           <Link href="/inventory" className="link-muted" style={{ color: "rgba(255,255,255,.55)" }}>Browse Boats</Link>
           <Link href="/vendors" className="link-muted" style={{ color: "rgba(255,255,255,.55)" }}>Marine Marketplace</Link>
