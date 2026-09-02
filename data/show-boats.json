@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T01:49:32.638Z",
+  "generatedAt": "2026-09-02T15:26:51.257Z",
   "boatCount": 188,
   "boats": [
     {
@@ -132,9 +132,6 @@
         "/boats/barletta-pontoons-aria-a22uc-6.jpg",
         "/boats/barletta-pontoons-aria-a22uc-7.jpg",
         "/boats/barletta-pontoons-aria-a22uc-8.jpg",
-        "/boats/barletta-pontoons-aria-a22uc-9.jpg",
-        "/boats/barletta-pontoons-aria-a22uc-10.jpg",
-        "/boats/barletta-pontoons-aria-a22uc-11.jpg",
         "/boats/barletta-pontoons-aria-a22uc-12.jpg"
       ],
       "blurb": "Construction 3/4\" Marine Decking Stainless Steel Flip-Up Cleats V.I.P. Technology (Vibration Isolation Pad) Battery Shutoff Switch Hybrid Crossmember Configuration Underbelly Skin Exterior Stainless Steel Flip-Up Cleats V.I.P. Technology (Vibration Isolation Pad) Battery Shutoff Switch Hybrid Crossmember Configuration Underbelly Skin Four (4) Plastic Exterior Fender Hangers LED Docking Lights Stainless Steel Starboard Stern Ladder DoggieDock View - Bow &amp; Port Gate Helm and Steering U-Flex EZ Steer Mechanical Steering High Back Helm Chair Fire Extinguisher DisclaimerThe Company offers the details of this vessel in good faith but cannot guarantee or warrant the accuracy of this information nor warrant the condition of the vessel. A buyer should instruct his agents, or his surveyors, to investigate such details as the buyer desires validated. This vessel is offered subject to prior sale",
@@ -165,12 +162,10 @@
         "/boats/barletta-pontoons-c24m-4.jpg",
         "/boats/barletta-pontoons-c24m-5.jpg",
         "/boats/barletta-pontoons-c24m-6.jpg",
-        "/boats/barletta-pontoons-c24m-7.jpg",
         "/boats/barletta-pontoons-c24m-8.jpg",
         "/boats/barletta-pontoons-c24m-9.jpg",
         "/boats/barletta-pontoons-c24m-10.jpg",
-        "/boats/barletta-pontoons-c24m-11.jpg",
-        "/boats/barletta-pontoons-c24m-12.jpg"
+        "/boats/barletta-pontoons-c24m-11.jpg"
       ],
       "blurb": "DisclaimerThe Company offers the details of this vessel in good faith but cannot guarantee or warrant the accuracy of this information nor warrant the condition of the vessel. A buyer should instruct his agents, or his surveyors, to investigate such details as the buyer desires validated. This vessel is offered subject to prior sale, price change, or withdrawal without notice.",
       "lengthFt": 24,
@@ -203,7 +198,6 @@
         "/boats/barletta-pontoons-cabrio-c22qc-7.jpg",
         "/boats/barletta-pontoons-cabrio-c22qc-8.jpg",
         "/boats/barletta-pontoons-cabrio-c22qc-9.jpg",
-        "/boats/barletta-pontoons-cabrio-c22qc-10.jpg",
         "/boats/barletta-pontoons-cabrio-c22qc-11.jpg",
         "/boats/barletta-pontoons-cabrio-c22qc-12.jpg"
       ],
@@ -238,7 +232,6 @@
         "/boats/barletta-pontoons-lusso-l25uc-7.jpg",
         "/boats/barletta-pontoons-lusso-l25uc-8.jpg",
         "/boats/barletta-pontoons-lusso-l25uc-9.jpg",
-        "/boats/barletta-pontoons-lusso-l25uc-10.jpg",
         "/boats/barletta-pontoons-lusso-l25uc-11.jpg",
         "/boats/barletta-pontoons-lusso-l25uc-12.jpg"
       ],
@@ -1406,7 +1399,6 @@
       ],
       "photos": [
         "/boats/cruisers-yachts-42-gls-ob-1.jpg",
-        "/boats/cruisers-yachts-42-gls-ob-2.jpg",
         "/boats/cruisers-yachts-42-gls-ob-3.jpg",
         "/boats/cruisers-yachts-42-gls-ob-4.jpg",
         "/boats/cruisers-yachts-42-gls-ob-5.jpg",
@@ -1929,7 +1921,6 @@
       ],
       "photos": [
         "/boats/galeon-yachts-335-gto-1.jpg",
-        "/boats/galeon-yachts-335-gto-2.jpg",
         "/boats/galeon-yachts-335-gto-3.jpg",
         "/boats/galeon-yachts-335-gto-4.jpg",
         "/boats/galeon-yachts-335-gto-5.jpg",
@@ -1964,7 +1955,6 @@
       ],
       "photos": [
         "/boats/galeon-yachts-375-gto-1.jpg",
-        "/boats/galeon-yachts-375-gto-2.jpg",
         "/boats/galeon-yachts-375-gto-3.jpg",
         "/boats/galeon-yachts-375-gto-4.jpg",
         "/boats/galeon-yachts-375-gto-5.jpg",
@@ -2311,7 +2301,6 @@
         "/boats/grady-white-canyon-306-comstock-5.jpg",
         "/boats/grady-white-canyon-306-comstock-6.jpg",
         "/boats/grady-white-canyon-306-comstock-7.jpg",
-        "/boats/grady-white-canyon-306-comstock-8.jpg",
         "/boats/grady-white-canyon-306-comstock-9.jpg"
       ],
       "blurb": "",
@@ -2343,7 +2332,6 @@
         "/boats/grady-white-canyon-306-marinemax-5.jpg",
         "/boats/grady-white-canyon-306-marinemax-6.jpg",
         "/boats/grady-white-canyon-306-marinemax-7.jpg",
-        "/boats/grady-white-canyon-306-marinemax-8.jpg",
         "/boats/grady-white-canyon-306-marinemax-9.jpg"
       ],
       "blurb": "",
@@ -3104,10 +3092,15 @@
           "phone": "(732) 681-3303"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/northcoast-255-1.jpg",
+        "/boats/northcoast-255-2.jpg",
+        "/boats/northcoast-255-3.jpg",
+        "/boats/northcoast-255-4.jpg"
+      ],
       "blurb": "",
       "lengthFt": 25.5,
-      "photoCredit": null
+      "photoCredit": "NorthCoast Boats"
     },
     {
       "slug": "northcoast-285",
@@ -3126,10 +3119,12 @@
           "phone": "(732) 681-3303"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/northcoast-285-1.jpg"
+      ],
       "blurb": "",
       "lengthFt": 28.5,
-      "photoCredit": null
+      "photoCredit": "NorthCoast Boats"
     },
     {
       "slug": "northcoast-315",
@@ -3148,10 +3143,15 @@
           "phone": "(732) 681-3303"
         }
       ],
-      "photos": [],
+      "photos": [
+        "/boats/northcoast-315-1.jpg",
+        "/boats/northcoast-315-2.jpg",
+        "/boats/northcoast-315-3.jpg",
+        "/boats/northcoast-315-4.jpg"
+      ],
       "blurb": "",
       "lengthFt": 31.5,
-      "photoCredit": null
+      "photoCredit": "NorthCoast Boats"
     },
     {
       "slug": "northcoast-415-ht",
@@ -3300,11 +3300,22 @@
         }
       ],
       "photos": [
-        "/boats/parker-230-coastal-edition-1.jpg"
+        "/boats/parker-230-coastal-edition-1.jpg",
+        "/boats/parker-230-coastal-edition-2.jpg",
+        "/boats/parker-230-coastal-edition-3.jpg",
+        "/boats/parker-230-coastal-edition-4.jpg",
+        "/boats/parker-230-coastal-edition-5.jpg",
+        "/boats/parker-230-coastal-edition-6.jpg",
+        "/boats/parker-230-coastal-edition-7.jpg",
+        "/boats/parker-230-coastal-edition-8.jpg",
+        "/boats/parker-230-coastal-edition-9.jpg",
+        "/boats/parker-230-coastal-edition-10.jpg",
+        "/boats/parker-230-coastal-edition-11.jpg",
+        "/boats/parker-230-coastal-edition-12.jpg"
       ],
       "blurb": "The 230 Coastal Edition is a 23 foot center console on Parker's shallow draft Modified-V hull, balancing inshore fishing against relaxed sandbar days. It carries a fiberglass hardtop with four rod rocket launcher, Wet Sounds stereo, trim tabs, eight gunwale rod holders and a livewell in the forward console seat.",
       "lengthFt": 23,
-      "photoCredit": null
+      "photoCredit": "Parker Boats"
     },
     {
       "slug": "parker-247-explorer",
@@ -3330,11 +3341,16 @@
         "/boats/parker-247-explorer-3.jpg",
         "/boats/parker-247-explorer-4.jpg",
         "/boats/parker-247-explorer-5.jpg",
-        "/boats/parker-247-explorer-7.jpg"
+        "/boats/parker-247-explorer-7.jpg",
+        "/boats/parker-247-explorer-8.jpg",
+        "/boats/parker-247-explorer-9.jpg",
+        "/boats/parker-247-explorer-10.jpg",
+        "/boats/parker-247-explorer-11.jpg",
+        "/boats/parker-247-explorer-12.jpg"
       ],
       "blurb": "The 247 Explorer steps up from the 227 with more range and fishing capacity: 141 gallons of fuel, a 400 horsepower rating, two in floor fish boxes with macerator and a windlass with 300 feet of rode. The cabin holds a twin berth with porta potty, and Seakeeper 450 Ride is standard.",
       "lengthFt": 24.7,
-      "photoCredit": null
+      "photoCredit": "Parker Boats"
     },
     {
       "slug": "parker-257-explorer",
@@ -3354,11 +3370,22 @@
         }
       ],
       "photos": [
-        "/boats/parker-257-explorer-1.jpg"
+        "/boats/parker-257-explorer-1.jpg",
+        "/boats/parker-257-explorer-2.jpg",
+        "/boats/parker-257-explorer-3.jpg",
+        "/boats/parker-257-explorer-4.jpg",
+        "/boats/parker-257-explorer-5.jpg",
+        "/boats/parker-257-explorer-6.jpg",
+        "/boats/parker-257-explorer-7.jpg",
+        "/boats/parker-257-explorer-8.jpg",
+        "/boats/parker-257-explorer-9.jpg",
+        "/boats/parker-257-explorer-10.jpg",
+        "/boats/parker-257-explorer-11.jpg",
+        "/boats/parker-257-explorer-12.jpg"
       ],
       "blurb": "The 257 Explorer widens the Explorer hull to a 9 foot 7 inch beam and adds a fully enclosed cabin with twin berths, 76 inches of pilothouse headroom and an electric head with holding tank. Rated to 500 horsepower with 179 gallons of fuel, it is built for serious anglers and carries up to 12.",
       "lengthFt": 25.7,
-      "photoCredit": null
+      "photoCredit": "Parker Boats"
     },
     {
       "slug": "parker-287-explorer",
@@ -3694,11 +3721,20 @@
       "photos": [
         "/boats/regulator-24xo-1.jpg",
         "/boats/regulator-24xo-2.jpg",
-        "/boats/regulator-24xo-3.jpg"
+        "/boats/regulator-24xo-3.jpg",
+        "/boats/regulator-24xo-4.jpg",
+        "/boats/regulator-24xo-5.jpg",
+        "/boats/regulator-24xo-6.jpg",
+        "/boats/regulator-24xo-7.jpg",
+        "/boats/regulator-24xo-8.jpg",
+        "/boats/regulator-24xo-9.jpg",
+        "/boats/regulator-24xo-10.jpg",
+        "/boats/regulator-24xo-11.jpg",
+        "/boats/regulator-24xo-12.jpg"
       ],
       "blurb": "In Stock Now at Our Brick Location.Factory options include: Yamaha F350 w/ Hydraulic Jackplate, 18 gallon freshwater system, Diamond Quilted Upholstery,Full Garmin Electronics, Transom Rod Holders,4 additional Forward Cup Holder/Rod Holders, , Gray Helm Pad w/ Black Regulator Logo, Edson Wheeln Port",
       "lengthFt": 24,
-      "photoCredit": null
+      "photoCredit": "Regulator Marine"
     },
     {
       "slug": "regulator-25",
@@ -3825,11 +3861,15 @@
       "photos": [
         "/boats/regulator-35-1.jpg",
         "/boats/regulator-35-2.png",
-        "/boats/regulator-35-3.jpg"
+        "/boats/regulator-35-3.jpg",
+        "/boats/regulator-35-4.jpg",
+        "/boats/regulator-35-5.jpg",
+        "/boats/regulator-35-6.jpg",
+        "/boats/regulator-35-7.jpg"
       ],
       "blurb": "The Regulator 35 is the biggest boat Regulator builds: a canyon-running center console with Yamaha outboard power, massive fuel and fish capacity, and the legendary Carolina-flared ride that made the brand.",
       "lengthFt": 35,
-      "photoCredit": null
+      "photoCredit": "Regulator Marine"
     },
     {
       "slug": "robalo-230-center-console",
@@ -3884,8 +3924,7 @@
         }
       ],
       "photos": [
-        "/boats/robalo-237-dual-console-1.jpg",
-        "/boats/robalo-237-dual-console-2.jpg"
+        "/boats/robalo-237-dual-console-1.jpg"
       ],
       "blurb": "D & R Boat World sells Boats in Green Brook, NJ featuring new and used Boats for sale, apparel, and accessories near Summit, and Linden",
       "lengthFt": 23.7,
@@ -3979,8 +4018,7 @@
         }
       ],
       "photos": [
-        "/boats/robalo-300-center-console-1.jpg",
-        "/boats/robalo-300-center-console-2.jpg"
+        "/boats/robalo-300-center-console-1.jpg"
       ],
       "blurb": "The Robalo 300 Center Console balances comfort and offshore performance on a Michael Peters-designed hull, at home either trolling with hooks in the water or running rough seas after a trophy catch. A triple-wide helm stand, an oversized hardtop with a skylight and a freshwater shower are among the highlights.",
       "lengthFt": 30,
@@ -4110,7 +4148,6 @@
       ],
       "photos": [
         "/boats/saxdor-yachts-340-gtwa-1.jpg",
-        "/boats/saxdor-yachts-340-gtwa-2.jpg",
         "/boats/saxdor-yachts-340-gtwa-3.jpg",
         "/boats/saxdor-yachts-340-gtwa-4.jpg",
         "/boats/saxdor-yachts-340-gtwa-5.jpg",
@@ -4145,7 +4182,6 @@
       ],
       "photos": [
         "/boats/saxdor-yachts-400-gtc-1.jpg",
-        "/boats/saxdor-yachts-400-gtc-2.jpg",
         "/boats/saxdor-yachts-400-gtc-3.jpg",
         "/boats/saxdor-yachts-400-gtc-4.jpg",
         "/boats/saxdor-yachts-400-gtc-5.jpg",
@@ -4180,7 +4216,6 @@
       ],
       "photos": [
         "/boats/scout-220-xsf-1.jpg",
-        "/boats/scout-220-xsf-2.jpg",
         "/boats/scout-220-xsf-3.jpg",
         "/boats/scout-220-xsf-4.jpg",
         "/boats/scout-220-xsf-5.jpg",
@@ -4215,7 +4250,6 @@
       ],
       "photos": [
         "/boats/scout-260-lxf-1.jpg",
-        "/boats/scout-260-lxf-2.jpg",
         "/boats/scout-260-lxf-3.jpg",
         "/boats/scout-260-lxf-4.jpg",
         "/boats/scout-260-lxf-5.jpg",
@@ -4250,7 +4284,6 @@
       ],
       "photos": [
         "/boats/scout-288-dorado-1.jpg",
-        "/boats/scout-288-dorado-2.jpg",
         "/boats/scout-288-dorado-3.jpg",
         "/boats/scout-288-dorado-4.jpg",
         "/boats/scout-288-dorado-5.jpg",
@@ -4285,7 +4318,6 @@
       ],
       "photos": [
         "/boats/scout-288-lxf-1.jpg",
-        "/boats/scout-288-lxf-2.jpg",
         "/boats/scout-288-lxf-3.jpg",
         "/boats/scout-288-lxf-4.jpg",
         "/boats/scout-288-lxf-5.jpg",
@@ -4320,7 +4352,6 @@
       ],
       "photos": [
         "/boats/scout-330-lxf-1.jpg",
-        "/boats/scout-330-lxf-2.jpg",
         "/boats/scout-330-lxf-3.jpg",
         "/boats/scout-330-lxf-4.jpg",
         "/boats/scout-330-lxf-5.jpg",
@@ -4891,7 +4922,6 @@
       ],
       "photos": [
         "/boats/sea-ray-230-sdx-ob-1.jpg",
-        "/boats/sea-ray-230-sdx-ob-2.jpg",
         "/boats/sea-ray-230-sdx-ob-3.jpg",
         "/boats/sea-ray-230-sdx-ob-4.jpg",
         "/boats/sea-ray-230-sdx-ob-5.jpg",
@@ -4927,7 +4957,6 @@
       "photos": [
         "/boats/sea-ray-250-sdx-ob-3.jpg",
         "/boats/sea-ray-250-sdx-ob-1.jpg",
-        "/boats/sea-ray-250-sdx-ob-2.jpg",
         "/boats/sea-ray-250-sdx-ob-4.jpg",
         "/boats/sea-ray-250-sdx-ob-5.jpg",
         "/boats/sea-ray-250-sdx-ob-6.jpg",
@@ -4961,7 +4990,6 @@
       ],
       "photos": [
         "/boats/sea-ray-270-sdx-ob-1.jpg",
-        "/boats/sea-ray-270-sdx-ob-2.jpg",
         "/boats/sea-ray-270-sdx-ob-3.jpg",
         "/boats/sea-ray-270-sdx-ob-4.jpg",
         "/boats/sea-ray-270-sdx-ob-5.jpg",
@@ -4996,7 +5024,6 @@
       ],
       "photos": [
         "/boats/sea-ray-280-slx-ob-1.jpg",
-        "/boats/sea-ray-280-slx-ob-2.jpg",
         "/boats/sea-ray-280-slx-ob-3.jpg",
         "/boats/sea-ray-280-slx-ob-4.jpg",
         "/boats/sea-ray-280-slx-ob-5.jpg",
@@ -5031,7 +5058,6 @@
       ],
       "photos": [
         "/boats/sea-ray-310-slx-ob-1.jpg",
-        "/boats/sea-ray-310-slx-ob-2.jpg",
         "/boats/sea-ray-310-slx-ob-3.jpg",
         "/boats/sea-ray-310-slx-ob-4.jpg",
         "/boats/sea-ray-310-slx-ob-5.jpg",
@@ -5067,7 +5093,6 @@
       "photos": [
         "/boats/sea-ray-320-sundancer-ob-3.jpg",
         "/boats/sea-ray-320-sundancer-ob-1.jpg",
-        "/boats/sea-ray-320-sundancer-ob-2.jpg",
         "/boats/sea-ray-320-sundancer-ob-4.jpg",
         "/boats/sea-ray-320-sundancer-ob-5.jpg",
         "/boats/sea-ray-320-sundancer-ob-6.jpg",
@@ -5101,7 +5126,6 @@
       ],
       "photos": [
         "/boats/sea-ray-360-slx-ob-1.jpg",
-        "/boats/sea-ray-360-slx-ob-2.jpg",
         "/boats/sea-ray-360-slx-ob-3.jpg",
         "/boats/sea-ray-360-slx-ob-4.jpg",
         "/boats/sea-ray-360-slx-ob-5.jpg",
@@ -5521,7 +5545,6 @@
       "photos": [
         "/boats/steiger-craft-255-miami-4.jpg",
         "/boats/steiger-craft-255-miami-1.jpg",
-        "/boats/steiger-craft-255-miami-2.jpg",
         "/boats/steiger-craft-255-miami-3.jpg",
         "/boats/steiger-craft-255-miami-5.jpg",
         "/boats/steiger-craft-255-miami-6.jpg",
@@ -5556,7 +5579,6 @@
       "photos": [
         "/boats/steiger-craft-31-fisherman-4.jpg",
         "/boats/steiger-craft-31-fisherman-1.jpg",
-        "/boats/steiger-craft-31-fisherman-2.jpg",
         "/boats/steiger-craft-31-fisherman-3.jpg",
         "/boats/steiger-craft-31-fisherman-5.jpg",
         "/boats/steiger-craft-31-fisherman-6.jpg",
@@ -5756,8 +5778,6 @@
         "/boats/tidewater-232-lxf-6.jpg",
         "/boats/tidewater-232-lxf-7.jpg",
         "/boats/tidewater-232-lxf-8.jpg",
-        "/boats/tidewater-232-lxf-9.jpg",
-        "/boats/tidewater-232-lxf-10.jpg",
         "/boats/tidewater-232-lxf-11.jpg"
       ],
       "blurb": "The 232 LXF shares the 23 foot 8 inch hull, 20 degree deadrise and 300 horsepower rating of the 232 CC Adventure, but sits in TideWater's LXF line, pitched as luxury and versatility for the whole family. A fixed stern bench seat and insulated stern cooler replace the center console's fold-down rear seat.",
@@ -6061,11 +6081,20 @@
       ],
       "photos": [
         "/boats/world-cat-230-dual-console-1.jpg",
-        "/boats/world-cat-230-dual-console-2.jpg"
+        "/boats/world-cat-230-dual-console-3.jpg",
+        "/boats/world-cat-230-dual-console-4.jpg",
+        "/boats/world-cat-230-dual-console-5.jpg",
+        "/boats/world-cat-230-dual-console-6.jpg",
+        "/boats/world-cat-230-dual-console-7.jpg",
+        "/boats/world-cat-230-dual-console-8.jpg",
+        "/boats/world-cat-230-dual-console-9.jpg",
+        "/boats/world-cat-230-dual-console-10.jpg",
+        "/boats/world-cat-230-dual-console-11.jpg",
+        "/boats/world-cat-230-dual-console-12.jpg"
       ],
       "blurb": "ENGINE: Twin Yamaha Four Stroke White F150 The World Cat 230 DC is a versatile mid-size dual console power catamaran designed for family outings, cruising, fishing, and exploring new horizons with comfort and confidence. It features World Cat’s signature stable, smooth, and drier ride thanks to its twin-hull design, a spacious 8’6",
       "lengthFt": 23,
-      "photoCredit": null
+      "photoCredit": "World Cat"
     },
     {
       "slug": "world-cat-235-te-center-console",
@@ -6087,7 +6116,6 @@
       "photos": [
         "/boats/world-cat-235-te-center-console-4.jpg",
         "/boats/world-cat-235-te-center-console-1.jpg",
-        "/boats/world-cat-235-te-center-console-2.jpg",
         "/boats/world-cat-235-te-center-console-3.jpg",
         "/boats/world-cat-235-te-center-console-5.jpg",
         "/boats/world-cat-235-te-center-console-6.jpg",
@@ -6120,8 +6148,7 @@
         }
       ],
       "photos": [
-        "/boats/world-cat-265-dual-console-1.jpg",
-        "/boats/world-cat-265-dual-console-2.jpg"
+        "/boats/world-cat-265-dual-console-1.jpg"
       ],
       "blurb": "The 265 Dual Console is World Cat's mid-size twin hull catamaran, built around stability, safety and performance for a day of fishing or family cruising. Standard equipment runs to a windlass with rode, a 30 gallon lighted livewell, a stand-up head with holding tank, a Corian bar and prep center with tackle storage. Seats up to 12.",
       "lengthFt": 26.5,
@@ -6147,7 +6174,6 @@
       "photos": [
         "/boats/world-cat-280-center-console-3.jpg",
         "/boats/world-cat-280-center-console-1.jpg",
-        "/boats/world-cat-280-center-console-2.jpg",
         "/boats/world-cat-280-center-console-4.jpg",
         "/boats/world-cat-280-center-console-5.jpg",
         "/boats/world-cat-280-center-console-6.jpg",
@@ -6182,7 +6208,6 @@
       "photos": [
         "/boats/world-cat-325-dual-console-3.jpg",
         "/boats/world-cat-325-dual-console-1.jpg",
-        "/boats/world-cat-325-dual-console-2.jpg",
         "/boats/world-cat-325-dual-console-4.jpg",
         "/boats/world-cat-325-dual-console-5.jpg",
         "/boats/world-cat-325-dual-console-6.jpg",

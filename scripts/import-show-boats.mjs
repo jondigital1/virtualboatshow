@@ -30,10 +30,14 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, unlinkSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 import sharp from "sharp";
 
 /** Max gallery photos stored per boat (page weight + repo size ceiling). */
 const MAX_PHOTOS = 12;
+/** Galleries below this get topped up from the manufacturer where an override
+ *  names one (Jon, 2026-09-02: aim for 8 to 12 photos a boat). */
+const PHOTO_TARGET = 8;
 /** --refresh: ignore the on-disk photo cache and re-harvest galleries. */
 const REFRESH = process.argv.includes("--refresh");
 /** --only=slug1,slug2: restrict --refresh to these boats (others stay cached). */
@@ -521,8 +525,14 @@ function filterByToken(urls, token) {
   return out;
 }
 
-/** Image URLs on a page whose FILENAME contains the token. */
-function candidatesFrom(rawHtml, token) {
+/**
+ * Image URLs on a page whose FILENAME contains the token.
+ *
+ * `base` resolves RELATIVE srcs. Without it this only ever saw absolute URLs,
+ * which silently skipped any manufacturer serving its gallery from a relative
+ * path: Parker's 1920px exterior shots were invisible for exactly that reason.
+ */
+function candidatesFrom(rawHtml, token, base = null) {
   if (!rawHtml) return [];
   // Bennington publishes its MY26 renders only inside an HTML-escaped JSON blob
   // in a data-* attribute, so the URLs arrive with escaped slashes and entity
@@ -537,6 +547,14 @@ function candidatesFrom(rawHtml, token) {
   const junk = /favicon|logo|icon|sprite|placeholder|badge|pixel|site-identity/i;
   const seen = new Set();
   const out = [];
+  /**
+   * Drop width/height resize directives, keeping the rest of the query.
+   * Regulator (Umbraco) links the same asset at several sizes; the first one
+   * seen used to win the dedupe, so a 360px thumbnail could beat the full
+   * image and then fail the quality floor, leaving the boat with nothing.
+   * Other params stay: Grady-White's CDN drops requests without its signed ?s=.
+   */
+  const unsized = (u) => u.replace(/([?&])(?:width|height)=\d+(&|$)/gi, "$1").replace(/[?&]$/, "");
   // The query string is part of the URL, not decoration: Grady-White serves its
   // CDN images through a signed ?s= parameter and drops the request without it.
   for (const m of html.matchAll(/https?:\/\/[^"'\s)<>\\]+?\.(?:jpg|jpeg|png|webp)(?:\?[^"'\s)<>\\]*)?/gi)) {
@@ -550,7 +568,21 @@ function candidatesFrom(rawHtml, token) {
     if (!file.toLowerCase().includes(token.toLowerCase())) continue;
     if (seen.has(key)) continue;
     seen.add(key);
-    out.push(raw);
+    out.push(unsized(raw));
+  }
+  if (base) {
+    // Second pass for RELATIVE srcs, resolved against the page URL.
+    for (const m of html.matchAll(/(?:src|data-src|data-lazy|data-original)=["']([^"']+\.(?:jpe?g|png|webp)(?:\?[^"']*)?)["']/gi)) {
+      let abs;
+      try { abs = new URL(m[1], base).href; } catch { continue; }
+      if (junk.test(abs)) continue;
+      const key = abs.split("?")[0].replace(/-\d{2,4}x\d{2,4}(?=\.\w+$)/, "");
+      const file = key.split("/").pop() ?? "";
+      if (!file.toLowerCase().includes(token.toLowerCase())) continue;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(abs);
+    }
   }
   return out;
 }
@@ -685,17 +717,23 @@ async function topUpFromManufacturer(boat) {
   const o = OVERRIDES[boat.slug];
   const fb = o?.photoFallback;
   if (!fb?.url || !fb?.token) return null;
-  // PINNED (Jon, 2026-08-30): a boat that already has photos is never touched
-  // again, however few it has. This used to top up any gallery under four,
-  // which meant a routine re-import to add new boats could silently change
-  // boats already live and already shown to their dealers. Five Bennington
-  // pontoons sit at one or two photos and are exactly the case this protects.
-  // Only a boat with nothing at all gets filled.
-  if (boat.photos.length > 0) return null;
+  // Gallery target. Jon pinned this to zero-only on 2026-08-30, after a
+  // re-import silently changed live boats, then reopened it on 2026-09-02:
+  // galleries should reach 8 to 12, and anything short of that is worth
+  // topping up from the manufacturer.
+  //
+  // Two things make that safe now in a way it was not before. The top-up
+  // APPENDS, so a dealer's own photography is never replaced or reordered,
+  // only extended. And every filled boat gets a photoCredit, so the page says
+  // where the extra images came from rather than passing them off as the
+  // dealer's. A boat still only fills if it has an explicit photoFallback
+  // entry naming a manufacturer page and a filename token, so nothing is
+  // topped up by guesswork.
+  if (boat.photos.length >= PHOTO_TARGET) return null;
 
   // Fast path first: Grady-White and Sea Hunt answer a plain fetch, and this
   // skips a browser launch for them.
-  let candidates = candidatesFrom(await fetchWithTimeout(fb.url, 20000, false, BROWSER_UA), fb.token);
+  let candidates = candidatesFrom(await fetchWithTimeout(fb.url, 20000, false, BROWSER_UA), fb.token, fb.url);
   /** url -> bytes, when the images had to be pulled from inside a rendered page. */
   let prefetched = null;
 
@@ -717,6 +755,14 @@ async function topUpFromManufacturer(boat) {
   const existing = readdirSync(PHOTO_DIR).filter((f) => mine.test(f));
   let next = existing.reduce((m, f) => Math.max(m, Number(f.match(/-(\d+)\.\w+$/)?.[1]) || 0), 0);
 
+  // Content hashes of what this boat already has. A top-up APPENDS, and a
+  // gallery that stays under the target gets topped up again on the next run,
+  // so without this the same manufacturer shots are re-added every import:
+  // three runs left NorthCoast 255 holding four images twice over.
+  const have = new Set(
+    existing.map((f) => createHash("sha1").update(readFileSync(join(PHOTO_DIR, f))).digest("hex"))
+  );
+
   const added = [];
   for (const p of candidates) {
     if (boat.photos.length + added.length >= MAX_PHOTOS) break;
@@ -727,6 +773,9 @@ async function topUpFromManufacturer(boat) {
       const meta = await img.metadata();
       if (!meta.width || meta.width < 500 || (meta.height ?? 0) < 300) continue;
       const out = await img.resize({ width: 1280, withoutEnlargement: true }).jpeg({ quality: 80, mozjpeg: true }).toBuffer();
+      const digest = createHash("sha1").update(out).digest("hex");
+      if (have.has(digest)) continue; // already in this boat's gallery
+      have.add(digest);
       const name = `${boat.slug}-${++next}.jpg`;
       writeFileSync(join(PHOTO_DIR, name), out);
       added.push("/boats/" + name);

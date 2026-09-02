@@ -286,6 +286,27 @@
   "nimbus-t8": {
     "primaryPhoto": 3
   },
+  "northcoast-255": {
+    "photoFallback": {
+      "url": "https://www.northcoastboats.com/255-2",
+      "token": "255",
+      "credit": "NorthCoast Boats"
+    }
+  },
+  "northcoast-285": {
+    "photoFallback": {
+      "url": "https://www.northcoastboats.com/285-ht-pilothouse",
+      "token": "285",
+      "credit": "NorthCoast Boats"
+    }
+  },
+  "northcoast-315": {
+    "photoFallback": {
+      "url": "https://www.northcoastboats.com/315-2",
+      "token": "315",
+      "credit": "NorthCoast Boats"
+    }
+  },
   "parker-180-coastal-edition": {
     "blurb": "The 180 Coastal Edition is the smallest boat in Parker's Coastal line, built on the shallow draft Modified-V hull that suits inshore fishing and easy days on the water. A flush deck bow, self bailing cockpit, 17.5 gallon insulated livewell, eight gunwale rod holders and a swim platform with retractable ladder are standard.",
     "primaryPhoto": 2
@@ -301,14 +322,29 @@
     "blurb": "The 227 Explorer is the compact end of Parker's Explorer range, a composite Sport Cabin for anglers and recreational boaters. A pilothouse shelters the helm, a twin berth sits forward, and the Seakeeper 450 Ride system is standard. It is rated to 300 horsepower and carries 105 gallons of fuel."
   },
   "parker-230-coastal-edition": {
-    "blurb": "The 230 Coastal Edition is a 23 foot center console on Parker's shallow draft Modified-V hull, balancing inshore fishing against relaxed sandbar days. It carries a fiberglass hardtop with four rod rocket launcher, Wet Sounds stereo, trim tabs, eight gunwale rod holders and a livewell in the forward console seat."
+    "blurb": "The 230 Coastal Edition is a 23 foot center console on Parker's shallow draft Modified-V hull, balancing inshore fishing against relaxed sandbar days. It carries a fiberglass hardtop with four rod rocket launcher, Wet Sounds stereo, trim tabs, eight gunwale rod holders and a livewell in the forward console seat.",
+    "photoFallback": {
+      "url": "https://parkerboats.com/models/230-coastal-elite",
+      "token": "230-coastal-elite",
+      "credit": "Parker Boats"
+    }
   },
   "parker-247-explorer": {
     "blurb": "The 247 Explorer steps up from the 227 with more range and fishing capacity: 141 gallons of fuel, a 400 horsepower rating, two in floor fish boxes with macerator and a windlass with 300 feet of rode. The cabin holds a twin berth with porta potty, and Seakeeper 450 Ride is standard.",
-    "primaryPhoto": 6
+    "primaryPhoto": 6,
+    "photoFallback": {
+      "url": "https://parkerboats.com/models/247-explorer",
+      "token": "247-explorer",
+      "credit": "Parker Boats"
+    }
   },
   "parker-257-explorer": {
-    "blurb": "The 257 Explorer widens the Explorer hull to a 9 foot 7 inch beam and adds a fully enclosed cabin with twin berths, 76 inches of pilothouse headroom and an electric head with holding tank. Rated to 500 horsepower with 179 gallons of fuel, it is built for serious anglers and carries up to 12."
+    "blurb": "The 257 Explorer widens the Explorer hull to a 9 foot 7 inch beam and adds a fully enclosed cabin with twin berths, 76 inches of pilothouse headroom and an electric head with holding tank. Rated to 500 horsepower with 179 gallons of fuel, it is built for serious anglers and carries up to 12.",
+    "photoFallback": {
+      "url": "https://parkerboats.com/models/257-explorer",
+      "token": "257-explorer",
+      "credit": "Parker Boats"
+    }
   },
   "parker-287-explorer": {
     "blurb": "The 287 Explorer is the largest boat in Parker's Explorer line at 27 feet 9 inches, rated to 700 horsepower with 232 gallons of fuel. It steps up to the Seakeeper 525 Ride system and offers 77 inches of pilothouse headroom, twin berths and an electric head, with a Garmin plotter and Wet Sounds stereo standard.",
@@ -327,6 +363,13 @@
     ],
     "blurb": "The S 288 is Pursuit's compact sport center console: 30'0\" length overall with a 9'8\" beam, twin Yamaha outboards up to 600 hp, and a deep 24-degree transom deadrise for offshore work. The layout fits generous bow and aft seating, big stowage, and a sizable console with a step-down head, backed by 230 gallons of fuel and Pursuit's signature fit and finish."
   },
+  "regulator-24xo": {
+    "photoFallback": {
+      "url": "https://www.regulatormarine.com/boats/24xo/",
+      "token": "regulator-24xo",
+      "credit": "Regulator Marine"
+    }
+  },
   "regulator-25": {
     "primaryPhoto": 6
   },
@@ -338,7 +381,12 @@
     "primaryPhoto": 6
   },
   "regulator-35": {
-    "blurb": "The Regulator 35 is the biggest boat Regulator builds: a canyon-running center console with Yamaha outboard power, massive fuel and fish capacity, and the legendary Carolina-flared ride that made the brand."
+    "blurb": "The Regulator 35 is the biggest boat Regulator builds: a canyon-running center console with Yamaha outboard power, massive fuel and fish capacity, and the legendary Carolina-flared ride that made the brand.",
+    "photoFallback": {
+      "url": "https://www.regulatormarine.com/boats/35/",
+      "token": "r35-",
+      "credit": "Regulator Marine"
+    }
   },
   "robalo-230-center-console": {
     "blurb": "The Robalo 230 Center Console is built around the Hydro Lift multi-angle hull design, pairing a serious offshore ride with a working fishing deck. Horizontal tubed rod storage, a 25 gallon live well and SeaStar tilt hydraulic steering are standard, with a telescopic ladder and grab handle on the swim platform."
@@ -505,6 +553,13 @@
   },
   "viking-yachts-50-c": {
     "primaryPhoto": 3
+  },
+  "world-cat-230-dual-console": {
+    "photoFallback": {
+      "url": "https://worldcat.com/models/230dc",
+      "token": "230dc",
+      "credit": "World Cat"
+    }
   },
   "world-cat-235-te-center-console": {
     "photoFallback": {
