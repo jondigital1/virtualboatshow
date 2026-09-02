@@ -79,10 +79,10 @@ export default function Home() {
                 on the page, and a visitor landing cold could not previously
                 tell which year's show this was. The slogan keeps its gold
                 weight directly underneath. */}
-            <h1 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(30px,4vw,52px)", lineHeight: 1.08, letterSpacing: "-.015em", margin: "16px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
+            <h1 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(29px,3.8vw,50px)", lineHeight: 1.08, letterSpacing: "-.015em", margin: "16px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
               {YEAR} {CITY}
               <br />
-              In-Water Boat Show
+              In-Water <span style={{ color: "var(--lightblue)" }}>Virtual</span> Boat Show
             </h1>
             <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(20px,2.2vw,29px)", lineHeight: 1.15, letterSpacing: "-.01em", margin: "14px 0 0", color: "var(--gold)", textTransform: "uppercase" }}>
               Explore the boats before you hit the docks.

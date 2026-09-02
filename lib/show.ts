@@ -42,6 +42,16 @@ export const DATES_SHORT = "Sept 10–13";
 
 /** "2026 Atlantic City In-Water Boat Show" */
 export const NAME_WITH_YEAR = `${YEAR} ${NAME}`;
+
+/**
+ * This website. The physical event is the "Atlantic City In-Water Boat Show";
+ * this site is its virtual companion, and Giselle's own dealer emails call it
+ * the "2026 Atlantic City In-Water Virtual Boat Show". Use this where the page
+ * is naming ITSELF (the homepage h1); use NAME / NAME_WITH_YEAR where it is
+ * naming the event that happens at the marina, including the Event schema.
+ */
+export const VIRTUAL_NAME = `${CITY} In-Water Virtual Boat Show`;
+export const VIRTUAL_NAME_WITH_YEAR = `${YEAR} ${VIRTUAL_NAME}`;
 /** "September 10-13, 2026 - Farley State Marina, Atlantic City" */
 export const WHEN_AND_WHERE = `${DATES_LONG}, ${YEAR} · ${VENUE}, ${CITY}`;
 
