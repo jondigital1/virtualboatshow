@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 import { showBoats } from "@/lib/showboats";
 
-const BASE = "https://acvirtualboatshow.com";
+/** www, not the apex: the apex 308-redirects here, and a sitemap full of
+ *  redirects wastes crawl budget and muddies which URL is canonical. */
+const BASE = "https://www.acvirtualboatshow.com";
 
 /** Sitemap for search engines: core pages plus every boat in the show.
  *  The boat list regenerates with each deploy, so daily inventory syncs

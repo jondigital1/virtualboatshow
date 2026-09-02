@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import { ShowGate } from "@/components/ShowGate";
+
+export const metadata: Metadata = {
+  title: "Browse Boats at the Show",
+  description:
+    "Every boat coming to the 2026 Atlantic City In-Water Boat Show, Sept 10-13 at Farley State Marina, with the dock and slip where each one is tied up.",
+  alternates: { canonical: "/inventory" },
+};
 
 /**
  * The inventory sits behind the access gate (components/ShowGate.tsx).

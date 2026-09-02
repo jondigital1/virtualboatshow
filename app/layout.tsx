@@ -18,12 +18,21 @@ const DESCRIPTION =
   "The official virtual companion to the Atlantic City In-Water Boat Show. Browse boats and Marine Marketplace exhibitors and plan your visit. Sept 10-13, 2026 · Farley State Marina, Atlantic City.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://acvirtualboatshow.com"),
+  // www is the canonical host: the apex 308-redirects to it, so every
+  // canonical, OG url and sitemap entry has to name www or they all point at
+  // a redirect.
+  metadataBase: new URL("https://www.acvirtualboatshow.com"),
+  // The year rides in the template, so every page states which show it belongs
+  // to. Boat pages read "2027 Sailfish 316 DC · AC In-Water Boat Show 2026",
+  // which correctly separates the hull's model year from the show's year.
   title: {
-    default: "Atlantic City In-Water Boat Show · Sept 10-13, 2026",
-    template: "%s · AC In-Water Boat Show",
+    default: "2026 Atlantic City In-Water Boat Show · Sept 10-13",
+    template: "%s · AC In-Water Boat Show 2026",
   },
   description: DESCRIPTION,
+  // Self-referencing canonical. Route layouts override it with their own path;
+  // without one, every page claimed to be the homepage.
+  alternates: { canonical: "/" },
   keywords: [
     "Atlantic City boat show",
     "in-water boat show",
@@ -33,15 +42,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://acvirtualboatshow.com",
+    url: "https://www.acvirtualboatshow.com",
     siteName: "Atlantic City In-Water Boat Show",
-    title: "Atlantic City In-Water Boat Show · Sept 10-13, 2026",
+    title: "2026 Atlantic City In-Water Boat Show · Sept 10-13",
     description: DESCRIPTION,
     images: [{ url: "/og-show.jpg", width: 1200, height: 630, alt: "Boats filling Farley State Marina at the Atlantic City In-Water Boat Show" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Atlantic City In-Water Boat Show · Sept 10-13, 2026",
+    title: "2026 Atlantic City In-Water Boat Show · Sept 10-13",
     description: DESCRIPTION,
     images: ["/og-show.jpg"],
   },
