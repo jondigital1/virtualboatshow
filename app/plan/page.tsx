@@ -6,6 +6,7 @@ import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { Eyebrow, PhonePill } from "@/components/ui";
 import { useIframeModal } from "@/components/IframeModal";
 import { TicketFunnelButton } from "@/components/TicketFunnel";
+import { START_DATE, END_DATE } from "@/lib/show";
 
 const FONT = "var(--font-poppins), sans-serif";
 
@@ -52,8 +53,8 @@ function DineCard({ img, name, tag, phone, place, group }: { img: string; name: 
 export default function PlanYourVisit() {
   const { open: openTickets } = useIframeModal();
   // Hotel search dates, prefilled with the show weekend and editable.
-  const [checkin, setCheckin] = useState("2026-09-10");
-  const [checkout, setCheckout] = useState("2026-09-13");
+  const [checkin, setCheckin] = useState(START_DATE);
+  const [checkout, setCheckout] = useState(END_DATE);
   const openHotels = () => {
     const ci = checkin.replace(/-/g, "");
     const co = checkout.replace(/-/g, "");

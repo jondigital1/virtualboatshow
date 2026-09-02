@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { NAME_WITH_YEAR, DATES_LONG, VENUE } from "@/lib/show";
 
 /**
  * /tickets is an ad landing page: it exists for paid campaigns, not for
@@ -7,8 +8,7 @@ import type { Metadata } from "next";
  */
 export const metadata: Metadata = {
   title: "Get Show Tickets",
-  description:
-    "Tickets to the Atlantic City In-Water Boat Show, September 10-13, 2026 at Farley State Marina. 250+ boats in the water.",
+  description: `Tickets to the ${NAME_WITH_YEAR}, ${DATES_LONG} at ${VENUE}. 250+ boats in the water.`,
   robots: { index: false, follow: false },
 };
 

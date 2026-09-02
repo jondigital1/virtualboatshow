@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import { NAME_WITH_YEAR, DATES_LONG, VENUE } from "@/lib/show";
 
 export const metadata: Metadata = {
   title: "Sponsors and Partners",
-  description:
-    "The host venue, media partners and show partners behind the 2026 Atlantic City In-Water Boat Show, September 10-13 at Farley State Marina.",
+  description: `The host venue, media partners and show partners behind the ${NAME_WITH_YEAR}, ${DATES_LONG} at ${VENUE}.`,
   alternates: { canonical: "/sponsors" },
 };
 

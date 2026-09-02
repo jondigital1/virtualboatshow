@@ -257,7 +257,7 @@ export default function Home() {
       {/* SPONSOR ACKNOWLEDGMENT — slim strip, full wall lives at /sponsors */}
       <section style={{ background: "#fff", borderTop: "1px solid rgba(20,46,81,.08)", padding: "clamp(28px,3.5vw,44px) clamp(18px,5vw,56px)" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
-          <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: "rgba(20,46,81,.55)" }}>Thank you to our 2026 sponsors</div>
+          <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: "rgba(20,46,81,.55)" }}>Thank you to our {YEAR} sponsors</div>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "clamp(22px,4vw,48px)", flexWrap: "wrap", marginTop: 20 }}>
             {["golden-nugget", "boating", "salt-water-sportsman", "yachting", "pursuit", "press-of-atlantic-city"].map((slug) => (
               // eslint-disable-next-line @next/next/no-img-element

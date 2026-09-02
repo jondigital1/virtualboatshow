@@ -20,6 +20,7 @@ import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow } from "@/components/ui";
 import { TicketCaptureForm } from "@/components/TicketFunnel";
 import { showBoats } from "@/lib/showboats";
+import { DATES_LONG, YEAR, VENUE } from "@/lib/show";
 
 const FONT = "var(--font-poppins), sans-serif";
 
@@ -48,8 +49,7 @@ export default function TicketsLanding() {
             Grab your show tickets
           </h1>
           <p style={{ fontFamily: FONT, fontSize: 15.5, lineHeight: 1.6, color: "rgba(20,46,81,.75)", margin: "12px 0 0" }}>
-            September 10 to 13, 2026 at Farley State Marina. {showBoats.length} boats confirmed
-            and counting.
+            {DATES_LONG}, {YEAR} at {VENUE}. {showBoats.length} boats confirmed and counting.
           </p>
 
           <ul style={{ listStyle: "none", padding: 0, margin: "18px 0 0", display: "flex", flexDirection: "column", gap: 8 }}>

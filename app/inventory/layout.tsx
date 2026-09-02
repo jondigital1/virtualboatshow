@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { ShowGate } from "@/components/ShowGate";
+import { NAME_WITH_YEAR, DATES_SHORT, VENUE } from "@/lib/show";
 
 export const metadata: Metadata = {
   title: "Browse Boats at the Show",
   description:
-    "Every boat coming to the 2026 Atlantic City In-Water Boat Show, Sept 10-13 at Farley State Marina, with the dock and slip where each one is tied up.",
+    `Every boat coming to the ${NAME_WITH_YEAR}, ${DATES_SHORT} at ${VENUE}, with the dock and slip where each one is tied up.`,
   alternates: { canonical: "/inventory" },
 };
 

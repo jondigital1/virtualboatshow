@@ -7,6 +7,7 @@ import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, MONO, Eyebrow, PhonePill } from "@/components/ui";
 import { submitLead } from "@/lib/leads";
 import { DEALERS, VENDORS, DEALER_LOGOS, initials, type Row } from "@/lib/exhibitors";
+import { SHORT_NAME, YEAR } from "@/lib/show";
 
 function deco(r: Row) {
   const loc = [r.c, r.s].filter((x) => x && x !== "N/A").join(", ");
@@ -229,7 +230,7 @@ export default function Vendors() {
                 </div>
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "16px clamp(20px,2.5vw,30px)", background: "#081726", flexWrap: "wrap" }}>
-                <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".05em", color: "rgba(255,255,255,.55)" }}>AC In-Water Boat Show · Partner Deck 2026</span>
+                <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".05em", color: "rgba(255,255,255,.55)" }}>{SHORT_NAME} · Partner Deck {YEAR}</span>
                 <a href="#inquiry-form" className="link-muted" style={{ fontWeight: 700, fontSize: 13.5, color: "var(--accent)" }}>Request the full deck →</a>
               </div>
             </div>
