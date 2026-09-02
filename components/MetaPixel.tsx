@@ -16,7 +16,10 @@
  * requests are not ticket sales.
  *
  * The id is public: it ships in the page source of every site running a pixel,
- * so it is a constant here rather than an environment variable.
+ * so it is a constant here rather than an environment variable. Switched on
+ * 2026-09-02 from 980094031711632, which had been created in the wrong
+ * business portfolio, to the dataset that sits alongside the verified domain
+ * and the ad account that pays for the traffic.
  *
  * Production only. Local runs submit the capture form during testing, and
  * those submissions would otherwise land in the real dataset as conversions.
@@ -26,7 +29,7 @@ import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-export const META_PIXEL_ID = "980094031711632";
+export const META_PIXEL_ID = "1662660159203547";
 
 const ENABLED = process.env.NODE_ENV === "production";
 
