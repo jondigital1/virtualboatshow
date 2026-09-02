@@ -40,7 +40,6 @@ import { DISPLAY, Eyebrow } from "@/components/ui";
 import { showBoats } from "@/lib/showboats";
 import { TicketFunnelButton } from "@/components/TicketFunnel";
 import { GATE_STORAGE_KEY, GATE_PASSWORD_HASH, SHOW_OPENS } from "@/lib/gate";
-import { YEAR } from "@/lib/show";
 
 const FONT = "var(--font-poppins), sans-serif";
 
@@ -60,10 +59,10 @@ const FONT = "var(--font-poppins), sans-serif";
  * behind the blur to find, and nothing to rot.
  */
 const TEASERS = [
-  { src: "/show/gate-teaser-1-onwater.jpg", brand: "Brand", model: "Model", berth: "Dock and slip" },
-  { src: "/show/gate-teaser-2-onwater.jpg", brand: "Brand", model: "Model name", berth: "Dock and slips" },
-  { src: "/show/gate-teaser-3-onwater.jpg", brand: "Brand", model: "Model", berth: "Dock and slip" },
-  { src: "/show/gate-teaser-4.jpg", brand: "Brand", model: "Model name", berth: "Dock and slips" },
+  { src: "/show/gate-teaser-1-onwater.jpg", w: ["42%", "68%", "54%"] },
+  { src: "/show/gate-teaser-2-onwater.jpg", w: ["50%", "80%", "62%"] },
+  { src: "/show/gate-teaser-3-onwater.jpg", w: ["38%", "62%", "50%"] },
+  { src: "/show/gate-teaser-4.jpg", w: ["47%", "75%", "58%"] },
 ];
 
 async function sha256(text: string): Promise<string> {
@@ -80,14 +79,14 @@ function TeaserCard({ t }: { t: (typeof TEASERS)[number] }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={t.src} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
       </div>
-      <div style={{ padding: "13px 14px 15px", display: "flex", flexDirection: "column", gap: 5, userSelect: "none" }} aria-hidden="true">
-        <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "rgba(20,46,81,.55)", filter: "blur(3.5px)" }}>
-          {t.brand} · {YEAR}
-        </div>
-        <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 17, lineHeight: 1.15, letterSpacing: "-.01em", color: "var(--navy)", filter: "blur(5px)" }}>
-          {t.model}
-        </div>
-        <div style={{ fontSize: 12.5, color: "#5a6c78", filter: "blur(4px)" }}>📍 {t.berth}</div>
+      {/* Withheld lines, drawn as bars rather than blurred words. Blurred text
+          still has to BE text: it ships in the source, and if the filter ever
+          fails to apply it reads as leftover placeholder copy. A bar cannot do
+          either. Widths vary per card so the grid does not look stamped. */}
+      <div style={{ padding: "15px 14px 17px", display: "flex", flexDirection: "column", gap: 9 }} aria-hidden="true">
+        <div style={{ height: 7, width: t.w[0], borderRadius: 4, background: "rgba(20,46,81,.13)" }} />
+        <div style={{ height: 13, width: t.w[1], borderRadius: 5, background: "rgba(20,46,81,.2)" }} />
+        <div style={{ height: 8, width: t.w[2], borderRadius: 4, background: "rgba(117,186,228,.42)" }} />
       </div>
     </div>
   );
