@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-31T04:27:58.302Z",
-  "boatCount": 175,
+  "generatedAt": "2026-09-02T01:49:32.638Z",
+  "boatCount": 188,
   "boats": [
     {
       "slug": "albemarle-27-dual-console",
@@ -876,6 +876,129 @@
       "photoCredit": null
     },
     {
+      "slug": "cape-horn-28",
+      "brand": "Cape Horn",
+      "model": "28",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": null,
+      "brandUrl": "https://www.capehornboats.com/",
+      "dealers": [
+        {
+          "name": "Seaport Inlet Marina",
+          "loc": "Belmar, NJ",
+          "phone": "(732) 681-3303"
+        }
+      ],
+      "photos": [],
+      "blurb": "",
+      "lengthFt": 28,
+      "photoCredit": null
+    },
+    {
+      "slug": "cape-horn-31",
+      "brand": "Cape Horn",
+      "model": "31",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": null,
+      "brandUrl": "https://www.capehornboats.com/",
+      "dealers": [
+        {
+          "name": "Seaport Inlet Marina",
+          "loc": "Belmar, NJ",
+          "phone": "(732) 681-3303"
+        }
+      ],
+      "photos": [],
+      "blurb": "",
+      "lengthFt": 31,
+      "photoCredit": null
+    },
+    {
+      "slug": "cape-horn-34",
+      "brand": "Cape Horn",
+      "model": "34",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": null,
+      "brandUrl": "https://www.capehornboats.com/",
+      "dealers": [
+        {
+          "name": "Seaport Inlet Marina",
+          "loc": "Belmar, NJ",
+          "phone": "(732) 681-3303"
+        }
+      ],
+      "photos": [],
+      "blurb": "",
+      "lengthFt": 34,
+      "photoCredit": null
+    },
+    {
+      "slug": "cape-horn-36",
+      "brand": "Cape Horn",
+      "model": "36",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": null,
+      "brandUrl": "https://www.capehornboats.com/",
+      "dealers": [
+        {
+          "name": "Seaport Inlet Marina",
+          "loc": "Belmar, NJ",
+          "phone": "(732) 681-3303"
+        }
+      ],
+      "photos": [],
+      "blurb": "",
+      "lengthFt": 36,
+      "photoCredit": null
+    },
+    {
+      "slug": "cape-horn-39xs",
+      "brand": "Cape Horn",
+      "model": "39XS",
+      "year": 2027,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.seaportinletmarina.com/new-boat-showrooms/cape-horn/2027-cape-horn-39xs-10283666/",
+      "brandUrl": "https://www.capehornboats.com/",
+      "dealers": [
+        {
+          "name": "Seaport Inlet Marina",
+          "loc": "Belmar, NJ",
+          "phone": "(732) 681-3303"
+        }
+      ],
+      "photos": [
+        "/boats/cape-horn-39xs-1.jpg",
+        "/boats/cape-horn-39xs-2.jpg",
+        "/boats/cape-horn-39xs-3.jpg",
+        "/boats/cape-horn-39xs-4.jpg",
+        "/boats/cape-horn-39xs-5.jpg",
+        "/boats/cape-horn-39xs-6.jpg",
+        "/boats/cape-horn-39xs-7.jpg",
+        "/boats/cape-horn-39xs-8.jpg",
+        "/boats/cape-horn-39xs-9.jpg",
+        "/boats/cape-horn-39xs-10.jpg",
+        "/boats/cape-horn-39xs-11.jpg",
+        "/boats/cape-horn-39xs-12.jpg"
+      ],
+      "blurb": "The 39XS is Cape Horn's near-40-foot offshore center console, built on the same proven hull as the 39T with an expanded layout. It carries the serious offshore systems the brand is known for, including a 1,600 quart insulated fish box, and the ride quality and dryness that make a Cape Horn a go-anywhere fishing platform.",
+      "lengthFt": 39,
+      "photoCredit": null
+    },
+    {
       "slug": "chris-craft-calypso-28",
       "brand": "Chris Craft",
       "model": "Calypso 28",
@@ -976,7 +1099,7 @@
         "/boats/chris-craft-catalina-28-11.jpg",
         "/boats/chris-craft-catalina-28-12.jpg"
       ],
-      "blurb": "",
+      "blurb": "2025 Catalina 28 with Deep Sapphire Metallic Pained Hull, with custom Silver Bullet boot stripe. Seakeeper Ride System, Standard Edition with Synthetic Teak on Bow anchor, covering boards, helm foot rest and swim platform. Hard top, LED lighting, speakers and windshield wiper. Aft Shade that is powe",
       "lengthFt": 28,
       "photoCredit": "Chris-Craft"
     },
@@ -2965,6 +3088,107 @@
       "photoCredit": null
     },
     {
+      "slug": "northcoast-255",
+      "brand": "NorthCoast",
+      "model": "255",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": null,
+      "brandUrl": "https://www.northcoastboats.com/",
+      "dealers": [
+        {
+          "name": "Seaport Inlet Marina",
+          "loc": "Belmar, NJ",
+          "phone": "(732) 681-3303"
+        }
+      ],
+      "photos": [],
+      "blurb": "",
+      "lengthFt": 25.5,
+      "photoCredit": null
+    },
+    {
+      "slug": "northcoast-285",
+      "brand": "NorthCoast",
+      "model": "285",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": null,
+      "brandUrl": "https://www.northcoastboats.com/",
+      "dealers": [
+        {
+          "name": "Seaport Inlet Marina",
+          "loc": "Belmar, NJ",
+          "phone": "(732) 681-3303"
+        }
+      ],
+      "photos": [],
+      "blurb": "",
+      "lengthFt": 28.5,
+      "photoCredit": null
+    },
+    {
+      "slug": "northcoast-315",
+      "brand": "NorthCoast",
+      "model": "315",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": null,
+      "brandUrl": "https://www.northcoastboats.com/",
+      "dealers": [
+        {
+          "name": "Seaport Inlet Marina",
+          "loc": "Belmar, NJ",
+          "phone": "(732) 681-3303"
+        }
+      ],
+      "photos": [],
+      "blurb": "",
+      "lengthFt": 31.5,
+      "photoCredit": null
+    },
+    {
+      "slug": "northcoast-415-ht",
+      "brand": "NorthCoast",
+      "model": "415 HT",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.seaportinletmarina.com/new-boat-showrooms/northcoast/2026-northcoast-415-ht-10003207/",
+      "brandUrl": "https://www.northcoastboats.com/",
+      "dealers": [
+        {
+          "name": "Seaport Inlet Marina",
+          "loc": "Belmar, NJ",
+          "phone": "(732) 681-3303"
+        }
+      ],
+      "photos": [
+        "/boats/northcoast-415-ht-1.jpg",
+        "/boats/northcoast-415-ht-2.jpg",
+        "/boats/northcoast-415-ht-3.jpg",
+        "/boats/northcoast-415-ht-4.jpg",
+        "/boats/northcoast-415-ht-5.jpg",
+        "/boats/northcoast-415-ht-6.jpg",
+        "/boats/northcoast-415-ht-7.jpg",
+        "/boats/northcoast-415-ht-8.jpg",
+        "/boats/northcoast-415-ht-9.jpg",
+        "/boats/northcoast-415-ht-10.jpg",
+        "/boats/northcoast-415-ht-11.jpg",
+        "/boats/northcoast-415-ht-12.jpg"
+      ],
+      "blurb": "The performance and feel of our hulls are the exception in the marketplace. NorthCoast underscores design/performance parameters with safe and sea-kindly proportions, “wolf in sheep’s clothing “speed, hydrodynamic efficiency. The NorthCoast 415HT’s unmistakable down east lines are sleek and purposeful with style. Whether you are fishing for Marlin, cruising the coast of Maine, or stopping into the Yacht Club for dinner, you will be proud to be the Owner. \nYou can easily board through the portside cockpit side door, or transom door, into a 102 Sq. Ft cockpit. Experience a true fishing machine or if you prefer, we offer an optional Cruising cockpit layout. An aft facing seat for two with a convenient cupholder in the armrest and built-in 27GAL cooler / storage below, leans against the aft full bulkhead with bi-folding windows and locking door. Check out the starboard side tackle, gear, rig",
+      "lengthFt": 41.5,
+      "photoCredit": null
+    },
+    {
       "slug": "parker-180-coastal-edition",
       "brand": "Parker",
       "model": "180 Coastal",
@@ -3760,6 +3984,111 @@
       ],
       "blurb": "The Robalo 300 Center Console balances comfort and offshore performance on a Michael Peters-designed hull, at home either trolling with hooks in the water or running rough seas after a trophy catch. A triple-wide helm stand, an oversized hardtop with a skylight and a freshwater shower are among the highlights.",
       "lengthFt": 30,
+      "photoCredit": null
+    },
+    {
+      "slug": "sailfish-245-dc",
+      "brand": "Sailfish",
+      "model": "245 DC",
+      "year": 2027,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.irwinmarinecenter.com/boats-for-sale/2027-sailfish-245-dc-red-bank-united-states-10238691/",
+      "brandUrl": "https://www.sailfishboats.com/",
+      "dealers": [
+        {
+          "name": "Irwin Marine Center",
+          "loc": "Red Bank, NJ",
+          "phone": "(732) 741-0003"
+        }
+      ],
+      "photos": [
+        "/boats/sailfish-245-dc-1.jpg",
+        "/boats/sailfish-245-dc-2.jpg",
+        "/boats/sailfish-245-dc-3.jpg",
+        "/boats/sailfish-245-dc-4.jpg",
+        "/boats/sailfish-245-dc-5.jpg",
+        "/boats/sailfish-245-dc-6.jpg",
+        "/boats/sailfish-245-dc-7.jpg",
+        "/boats/sailfish-245-dc-8.jpg",
+        "/boats/sailfish-245-dc-9.jpg",
+        "/boats/sailfish-245-dc-10.jpg",
+        "/boats/sailfish-245-dc-11.jpg",
+        "/boats/sailfish-245-dc-12.jpg"
+      ],
+      "blurb": "Now Available!Merc 300HP with Seakeeper Ride!Loaded and ready to go!Trailer also available!With comfortable seating for 12, a spacious step-down head and an optional cockpit galley, the 245 Dual Console is designed for active families as well as serious offshore anglers. Proven Sailtech Construction ensures lasting quality, while Sailfish’s exclusive VDS hull delivers a smooth, dry ride.",
+      "lengthFt": 24.5,
+      "photoCredit": null
+    },
+    {
+      "slug": "sailfish-252-cc",
+      "brand": "Sailfish",
+      "model": "252 CC",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.irwinmarinecenter.com/boats-for-sale/2026-sailfish-252-cc-red-bank-united-states-10238694/",
+      "brandUrl": "https://www.sailfishboats.com/",
+      "dealers": [
+        {
+          "name": "Irwin Marine Center",
+          "loc": "Red Bank, NJ",
+          "phone": "(732) 741-0003"
+        }
+      ],
+      "photos": [
+        "/boats/sailfish-252-cc-1.jpg",
+        "/boats/sailfish-252-cc-2.jpg",
+        "/boats/sailfish-252-cc-3.jpg",
+        "/boats/sailfish-252-cc-4.jpg",
+        "/boats/sailfish-252-cc-5.jpg",
+        "/boats/sailfish-252-cc-6.jpg",
+        "/boats/sailfish-252-cc-7.jpg",
+        "/boats/sailfish-252-cc-8.jpg",
+        "/boats/sailfish-252-cc-9.jpg",
+        "/boats/sailfish-252-cc-10.jpg",
+        "/boats/sailfish-252-cc-11.jpg",
+        "/boats/sailfish-252-cc-12.jpg"
+      ],
+      "blurb": "NEW 2026 252CC!TWIN 200 MERCURY VERADOSFULL SIMRAD SUITESeakeeper Ride!The 2026 Sailfish 252CC is the perfect blend of offshore performance, family comfort, and premium styling, making it one of the most versatile 25-foot center consoles on the market. Finished with a striking Whisper Gray hull and powered by twin Mercury 200 HP Verado outboards in the exclusive Warm Fusion color package, this boat delivers outstanding acceleration, exceptional fuel efficiency, and the confidence to fish or cruise wherever the day takes you.Equipped with a premium electronics package, the helm features dual 12-inch Simrad NSX multifunction displays, a Simrad VHF radio, and factory pre-wiring for radar, providing a clean installation and the flexibility to add even more capability. Sailfish",
+      "lengthFt": 25.2,
+      "photoCredit": null
+    },
+    {
+      "slug": "sailfish-316-dc",
+      "brand": "Sailfish",
+      "model": "316 DC",
+      "year": 2027,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.irwinmarinecenter.com/boats-for-sale/2027-sailfish-316-dc-red-bank-united-states-10240377/",
+      "brandUrl": "https://www.sailfishboats.com/",
+      "dealers": [
+        {
+          "name": "Irwin Marine Center",
+          "loc": "Red Bank, NJ",
+          "phone": "(732) 741-0003"
+        }
+      ],
+      "photos": [
+        "/boats/sailfish-316-dc-1.jpg",
+        "/boats/sailfish-316-dc-2.jpg",
+        "/boats/sailfish-316-dc-3.jpg",
+        "/boats/sailfish-316-dc-4.jpg",
+        "/boats/sailfish-316-dc-5.jpg",
+        "/boats/sailfish-316-dc-6.jpg",
+        "/boats/sailfish-316-dc-7.jpg",
+        "/boats/sailfish-316-dc-8.jpg",
+        "/boats/sailfish-316-dc-9.jpg",
+        "/boats/sailfish-316-dc-10.jpg",
+        "/boats/sailfish-316-dc-11.jpg",
+        "/boats/sailfish-316-dc-12.jpg"
+      ],
+      "blurb": "Just arrived!316DC with Merc 300's and JPO!Seakeeper RideThe 316 Dual Console is a versatile family fishing boat that checks all the boxes: comfort, safety, quality and reliability. Well-equipped for a range of activities, the 316 DC offers a roomy and social layout with convertible seating and loads of storage space. ...",
+      "lengthFt": 31.6,
       "photoCredit": null
     },
     {
@@ -4926,6 +5255,41 @@
       ],
       "blurb": "Special OffersFREE FUEL FOR THE SUMMER - Offer expires July 31, 2026.DOUBLE MANUFACTURER WARRANTY - Offer expires July 31, 2026.Call for details.The Solara S-310 Sport Bridge is where thoughtful design meets boundless adventure. This 31-foot vessel blends performance, comfort, and versatility-perfect for fishing at dawn, hosting friends at sunset, or cruising into the unknown. The cockpit is the heart of the action, featuring forward- and aft-facing transom seating, an opening aft bulkhead seat, and a clear-path swim platform with a dual-passthrough design for seamless movement. Whether gearing up for water sports or prepping fishing lines, the setup is built for ease. Rod holders, EVA traction decking, a raw water washdown, and optional outriggers ensure you’re ready for the big catch. Inside the climate-controlled cabin, luxury meets function. The helm puts you in full command with dua",
       "lengthFt": 31,
+      "photoCredit": null
+    },
+    {
+      "slug": "southport-30-fe",
+      "brand": "Southport",
+      "model": "30 FE",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.irwinmarinecenter.com/boats-for-sale/2026-southport-30-fe-red-bank-united-states-9992063/",
+      "brandUrl": "https://www.southportboats.com/",
+      "dealers": [
+        {
+          "name": "Irwin Marine Center",
+          "loc": "Red Bank, NJ",
+          "phone": "(732) 741-0003"
+        }
+      ],
+      "photos": [
+        "/boats/southport-30-fe-1.jpg",
+        "/boats/southport-30-fe-2.jpg",
+        "/boats/southport-30-fe-3.jpg",
+        "/boats/southport-30-fe-4.jpg",
+        "/boats/southport-30-fe-5.jpg",
+        "/boats/southport-30-fe-6.jpg",
+        "/boats/southport-30-fe-7.jpg",
+        "/boats/southport-30-fe-8.jpg",
+        "/boats/southport-30-fe-9.jpg",
+        "/boats/southport-30-fe-10.jpg",
+        "/boats/southport-30-fe-11.jpg",
+        "/boats/southport-30-fe-12.jpg"
+      ],
+      "blurb": "***NEW ARRIVAL*** \nFull Garmin Suite w/ 9217 displays \nRelease Ladder Back Helm Chairs \nVerado V10 350s with Joystick and A/P! \n \n \n&nbsp;Our LOADED 2026 30FE is ready for you next adventure! Aquarius Blue Hull/ Hardtop underside with Navy boot stripe will turn heads wherever you take her. Once aboard her teak accents and Release Ladder Back helm chairs will make you realize this is a vessel of a different caliber. &nbsp;Equipped with twin White Mercury Verado 350 (V10) outboard power with JPO and autopilot, she will cruise efficiently and make handling around the dock a dream! &nbsp;A full Garmin Suite w/ twin 9217 17\" displays, radar, VHF and AIS provide both safety and easy navigation! \nIn terms of fishing, this boat will fish just as good as it looks! Optioned with 22",
+      "lengthFt": 30,
       "photoCredit": null
     },
     {

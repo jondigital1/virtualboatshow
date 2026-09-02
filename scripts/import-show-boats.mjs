@@ -431,6 +431,15 @@ async function enrich(boat) {
     html = await fetchWithTimeout(u);
     if (html) { base = u; break; }
   }
+  // Blocked to a server-side fetch but open to a browser: render it (see
+  // renderHtml). Everything downstream is unchanged, so these pages yield the
+  // same photos and description as any other.
+  if (!html) {
+    for (const u of urls) {
+      html = await renderHtml(u);
+      if (html) { base = u; break; }
+    }
+  }
   if (!html) return keepCached(); // bot-gated page: keep what we have
   boat.sourceUrl = base;
   const { photos, blurb, lengthFt } = extractFromHtml(html, base);
@@ -560,6 +569,36 @@ async function browserContext() {
 }
 async function closeBrowser() {
   if (_browser) { await _browser.close().catch(() => {}); _browser = null; _ctx = null; }
+}
+
+/**
+ * Serialized HTML of a DEALER page a plain fetch cannot see.
+ *
+ * Some dealer platforms (the boatsgroup-hosted WordPress sites Irwin Marine
+ * Center and Seaport Inlet Marina run on) answer 403 to any server-side
+ * request whatever User-Agent it sends, while serving the same public listing
+ * normally to a browser. Rendering the page is what a visitor's browser does.
+ * Their robots.txt allows these listing paths: both disallow only wp-admin,
+ * plugin and per_page query-variant paths (checked 2026-09-01). The images
+ * themselves sit on an open CDN, so only the HTML needs a browser.
+ *
+ * Used ONLY after the plain fetch has already failed, so a normal import pays
+ * nothing for it.
+ */
+async function renderHtml(url) {
+  try {
+    const page = await (await browserContext()).newPage();
+    try {
+      await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      await page.waitForTimeout(2000);
+      return await page.content();
+    } finally {
+      await page.close().catch(() => {});
+    }
+  } catch {
+    return null;
+  }
 }
 
 /**

@@ -118,6 +118,7 @@ export const DEALER_LOGOS: Record<string, string> = {
   "Formula Boats": "/dealers/formula-boats.png",
   "G Winter's Sailing Center, Inc.": "/dealers/g-winters.png",
   "Henriques Yachts": "/dealers/henriques.png",
+  "Irwin Marine Center": "/dealers/irwin-marine-center.png",
   "MarineMax (Brick)": "/dealers/marinemax.png",
   "MarineMax (Somers Point)": "/dealers/marinemax.png",
   "MarineMax (Ocean View)": "/dealers/marinemax.png",

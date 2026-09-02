@@ -20,15 +20,17 @@
     "",
     "Addresses below are transcribed from the Dealer Contacts sheet of the 2026",
     "VBS Boat Inventory Master (r3), which records the source email for each.",
-    "Status at 2026-08-30: 6 of 14 dealers designated, covering 82 of 175 boats.",
+    "Status at 2026-09-01: 8 of 16 dealers designated, covering 95 of 188 boats.",
     "Format: \"Dealer Name\": [\"sales@example.com\"]"
   ],
 
   "Clarks Landing Yacht Sales & Marina": ["mlonghi@clarkslanding.com"],
   "Coastal Boat Sales": ["mikecoastalboatsalesnj@gmail.com"],
   "Comstock Yacht Sales & Marina": ["sales@comstockyachtsales.com"],
+  "Irwin Marine Center": ["Sales@sagamoreblue.com"],
   "MarineMax": ["richard.johanson@marinemax.com"],
   "Riptide Marine Center": ["dwmancini@comcast.net"],
+  "Seaport Inlet Marina": ["Christian.seaport@gmail.com"],
   "Sheltered Cove Marina": ["mark@shelteredcovemarina.com"],
 
   "Coty Marine": [],

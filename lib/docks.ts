@@ -107,6 +107,10 @@ const ALIASES: Record<string, string> = {
   "Clarks Landing Yacht Sales & Marina": "Clarks Landing Yacht Sales",
   "Comstock Yacht Sales & Marina": "Comstock Yacht Sales",
   "G Winter's Sailing Center": "G Winter's / Riverside Marina",
+  // The berth list names Irwin by its short name; the directory and every boat
+  // page use the full one. Without this the dock line on their boats would
+  // silently fall back to "announced before the show".
+  "Irwin Marine Center": "Irwin Marine",
   "Riverside Marina & Yacht Sales": "G Winter's / Riverside Marina",
 };
 
