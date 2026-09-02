@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T15:26:51.257Z",
+  "generatedAt": "2026-09-02T15:51:06.171Z",
   "boatCount": 188,
   "boats": [
     {
@@ -869,14 +869,14 @@
       "photoCredit": null
     },
     {
-      "slug": "cape-horn-28",
+      "slug": "cape-horn-28xs",
       "brand": "Cape Horn",
-      "model": "28",
-      "year": 2026,
+      "model": "28XS",
+      "year": 2027,
       "priority": 2,
       "notes": "",
       "shared": false,
-      "sourceUrl": null,
+      "sourceUrl": "https://www.seaportinletmarina.com/new-boat-showrooms/cape-horn/2027-cape-horn-28xs-10283662/",
       "brandUrl": "https://www.capehornboats.com/",
       "dealers": [
         {
@@ -885,20 +885,29 @@
           "phone": "(732) 681-3303"
         }
       ],
-      "photos": [],
-      "blurb": "",
+      "photos": [
+        "/boats/cape-horn-28xs-1.jpg",
+        "/boats/cape-horn-28xs-2.jpg",
+        "/boats/cape-horn-28xs-3.jpg",
+        "/boats/cape-horn-28xs-4.jpg",
+        "/boats/cape-horn-28xs-5.jpg",
+        "/boats/cape-horn-28xs-6.jpg",
+        "/boats/cape-horn-28xs-7.jpg",
+        "/boats/cape-horn-28xs-8.jpg"
+      ],
+      "blurb": "It is everything you expect from a Cape Horn, with class-leading offshore ability, good looks, and enhanced comfort for everyday usability. Inspired by the Tournament-ready 31T, the 28XS was designed to maximize engine output with an all-new hull design built on 37 years of experience. A large 102-quart rear cooler adds convenience for those bottom fishing trips when the bite is on, it doubles as an optional live well. The leaning post adds 50 gallons of live well to keep the largest of baits content. 37 rod holders are placed where needed. The fold down rear bench seat adds comfort to the ride. The hard-top design is standard equipment.",
       "lengthFt": 28,
       "photoCredit": null
     },
     {
-      "slug": "cape-horn-31",
+      "slug": "cape-horn-31t",
       "brand": "Cape Horn",
-      "model": "31",
-      "year": 2026,
+      "model": "31T",
+      "year": 2027,
       "priority": 2,
       "notes": "",
       "shared": false,
-      "sourceUrl": null,
+      "sourceUrl": "https://www.seaportinletmarina.com/new-boat-showrooms/cape-horn/2027-cape-horn-31t-10283655/",
       "brandUrl": "https://www.capehornboats.com/",
       "dealers": [
         {
@@ -907,20 +916,33 @@
           "phone": "(732) 681-3303"
         }
       ],
-      "photos": [],
-      "blurb": "",
+      "photos": [
+        "/boats/cape-horn-31t-1.jpg",
+        "/boats/cape-horn-31t-2.jpg",
+        "/boats/cape-horn-31t-3.jpg",
+        "/boats/cape-horn-31t-4.jpg",
+        "/boats/cape-horn-31t-5.jpg",
+        "/boats/cape-horn-31t-6.jpg",
+        "/boats/cape-horn-31t-7.jpg",
+        "/boats/cape-horn-31t-8.jpg",
+        "/boats/cape-horn-31t-9.jpg",
+        "/boats/cape-horn-31t-10.jpg",
+        "/boats/cape-horn-31t-11.jpg",
+        "/boats/cape-horn-31t-12.jpg"
+      ],
+      "blurb": "Climb into the console with over 6’2” of headroom and you quickly realize how much storage space the 31T delivers. Large compartments were added to the 31T’s front gun whales for a fresh approach to storage. These compartments give you plenty of storage space without having to get on your knees. The 31T has more standard fishing features than any other in this professional class, but chances are you already know that. With many changes this year in both design and style, the 31T deserves a second look before you ultimately meet one offshore.",
       "lengthFt": 31,
       "photoCredit": null
     },
     {
-      "slug": "cape-horn-34",
+      "slug": "cape-horn-34xs",
       "brand": "Cape Horn",
-      "model": "34",
-      "year": 2026,
+      "model": "34XS",
+      "year": 2027,
       "priority": 2,
       "notes": "",
       "shared": false,
-      "sourceUrl": null,
+      "sourceUrl": "https://www.seaportinletmarina.com/new-boat-showrooms/cape-horn/2027-cape-horn-34xs-10283664/",
       "brandUrl": "https://www.capehornboats.com/",
       "dealers": [
         {
@@ -929,20 +951,33 @@
           "phone": "(732) 681-3303"
         }
       ],
-      "photos": [],
-      "blurb": "",
+      "photos": [
+        "/boats/cape-horn-34xs-1.jpg",
+        "/boats/cape-horn-34xs-2.jpg",
+        "/boats/cape-horn-34xs-3.jpg",
+        "/boats/cape-horn-34xs-4.jpg",
+        "/boats/cape-horn-34xs-5.jpg",
+        "/boats/cape-horn-34xs-6.jpg",
+        "/boats/cape-horn-34xs-7.jpg",
+        "/boats/cape-horn-34xs-8.jpg",
+        "/boats/cape-horn-34xs-9.jpg",
+        "/boats/cape-horn-34xs-10.jpg",
+        "/boats/cape-horn-34xs-11.jpg",
+        "/boats/cape-horn-34xs-12.jpg"
+      ],
+      "blurb": "At over 35’ in length our design delivers a ride quality in dryness that can only be achieved with today’s modern technology. An unrivaled length to beam ratio makes running 100 miles offshore a pleasure. Getting there quickly is what its built for. An oversized hardtop provides a sleek and modern design. The large box above provides plenty of storage for all your gear. All will appreciate a host of lighting options, (6) flush mounted speakers and standard telescoping outriggers. Get the job done with the standard 41 rod holders, while a huge dash provides plenty of room for multiple large displays. Additional storage is discovered in the huge walk-in console. A drink cooler is offered beneath the flip up front seat that quickly transforms into a lounge seat with a flip-up footrest. A 7’ fully insulated fish box offers 700 quarts of frozen storage that is pumped overboard during cleanup.",
       "lengthFt": 34,
       "photoCredit": null
     },
     {
-      "slug": "cape-horn-36",
+      "slug": "cape-horn-36xs",
       "brand": "Cape Horn",
-      "model": "36",
-      "year": 2026,
+      "model": "36XS",
+      "year": 2027,
       "priority": 2,
       "notes": "",
       "shared": false,
-      "sourceUrl": null,
+      "sourceUrl": "https://www.seaportinletmarina.com/new-boat-showrooms/cape-horn/2027-cape-horn-36xs-10283665/",
       "brandUrl": "https://www.capehornboats.com/",
       "dealers": [
         {
@@ -951,8 +986,21 @@
           "phone": "(732) 681-3303"
         }
       ],
-      "photos": [],
-      "blurb": "",
+      "photos": [
+        "/boats/cape-horn-36xs-1.jpg",
+        "/boats/cape-horn-36xs-2.jpg",
+        "/boats/cape-horn-36xs-3.jpg",
+        "/boats/cape-horn-36xs-4.jpg",
+        "/boats/cape-horn-36xs-5.jpg",
+        "/boats/cape-horn-36xs-6.jpg",
+        "/boats/cape-horn-36xs-7.jpg",
+        "/boats/cape-horn-36xs-8.jpg",
+        "/boats/cape-horn-36xs-9.jpg",
+        "/boats/cape-horn-36xs-10.jpg",
+        "/boats/cape-horn-36xs-11.jpg",
+        "/boats/cape-horn-36xs-12.jpg"
+      ],
+      "blurb": "Expand your destination possibilities. Whether exploring the canyons or entertaining a group the 36XS has you covered. The helm station wraps the driver and passengers in bolstered seats and provides generous drawers and compartments for all tackle/storage needs. The rear facing seat conceals a huge 60 gal. live well. An additional 20 gal. well in the transom doubles as a storage box when needed. A large, rear fold-away bench and forward lounge entertain the crew. An optional vacu-flush head can be placed in the console next to the concealed pull out stainless sink. The EPS steering allows easy upgrade to joystick control. An oversized hardtop provides a sleek and modern design that easily accepts a second station if desired. The two large boxes above provide plenty of storage for all your gear. All will appreciate a host of lighting options, (6) flush mounted speakers and standard teles",
       "lengthFt": 36,
       "photoCredit": null
     },
@@ -3076,14 +3124,14 @@
       "photoCredit": null
     },
     {
-      "slug": "northcoast-255",
+      "slug": "northcoast-255-ht",
       "brand": "NorthCoast",
-      "model": "255",
+      "model": "255 HT",
       "year": 2026,
       "priority": 2,
       "notes": "",
       "shared": false,
-      "sourceUrl": null,
+      "sourceUrl": "https://www.seaportinletmarina.com/new-boat-showrooms/northcoast/2026-northcoast-255-ht-10003202/",
       "brandUrl": "https://www.northcoastboats.com/",
       "dealers": [
         {
@@ -3093,24 +3141,32 @@
         }
       ],
       "photos": [
-        "/boats/northcoast-255-1.jpg",
-        "/boats/northcoast-255-2.jpg",
-        "/boats/northcoast-255-3.jpg",
-        "/boats/northcoast-255-4.jpg"
+        "/boats/northcoast-255-ht-1.jpg",
+        "/boats/northcoast-255-ht-2.jpg",
+        "/boats/northcoast-255-ht-3.jpg",
+        "/boats/northcoast-255-ht-4.jpg",
+        "/boats/northcoast-255-ht-5.jpg",
+        "/boats/northcoast-255-ht-6.jpg",
+        "/boats/northcoast-255-ht-7.jpg",
+        "/boats/northcoast-255-ht-8.jpg",
+        "/boats/northcoast-255-ht-9.jpg",
+        "/boats/northcoast-255-ht-10.jpg",
+        "/boats/northcoast-255-ht-11.jpg",
+        "/boats/northcoast-255-ht-12.jpg"
       ],
-      "blurb": "",
+      "blurb": "Sporting classic lines with a private head the 255HT sleeps two (75” Length) and has 6’2”at the helm. With a wide-open layout in the pilothouse and cockpit, there is excellent visibility and substantial amount of room for fishing or cruising. NorthCoast 255HT has twenty-two-degree dead-rise able to run soft and dry across wave tops with a wide-open throttle of 56 miles per hour (with optional Twin 250’s). \n·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Highly functional for fishing and/or cruising \n·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cabin includes private head to starboard \n·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Available with Twin 200XSA | Twin 250XCB",
       "lengthFt": 25.5,
-      "photoCredit": "NorthCoast Boats"
+      "photoCredit": null
     },
     {
-      "slug": "northcoast-285",
+      "slug": "northcoast-285-ht",
       "brand": "NorthCoast",
-      "model": "285",
+      "model": "285 HT",
       "year": 2026,
       "priority": 2,
       "notes": "",
       "shared": false,
-      "sourceUrl": null,
+      "sourceUrl": "https://www.seaportinletmarina.com/new-boat-showrooms/northcoast/2026-northcoast-285-ht-10003200/",
       "brandUrl": "https://www.northcoastboats.com/",
       "dealers": [
         {
@@ -3120,21 +3176,32 @@
         }
       ],
       "photos": [
-        "/boats/northcoast-285-1.jpg"
+        "/boats/northcoast-285-ht-1.jpg",
+        "/boats/northcoast-285-ht-2.jpg",
+        "/boats/northcoast-285-ht-3.jpg",
+        "/boats/northcoast-285-ht-4.jpg",
+        "/boats/northcoast-285-ht-5.jpg",
+        "/boats/northcoast-285-ht-6.jpg",
+        "/boats/northcoast-285-ht-7.jpg",
+        "/boats/northcoast-285-ht-8.jpg",
+        "/boats/northcoast-285-ht-9.jpg",
+        "/boats/northcoast-285-ht-10.jpg",
+        "/boats/northcoast-285-ht-11.jpg",
+        "/boats/northcoast-285-ht-12.jpg"
       ],
-      "blurb": "",
+      "blurb": "NorthCoast 285 is rugged, versatile, and her fishing performance is exceptional. Classic design, with great lines, and layout that is all about coastal and offshore functionality.&nbsp;The 285 is built like a tank to handle the toughest testing grounds of the Atlantic- like Stellwagen Banks in New England (kind of like Wicked Tuna without the cameras and script.) Although her quality is seen, and felt, her real value is best experienced while others are scrambling back from the fishing grounds, as weather conditions can sometimes deteriorate, your confidence to keep fishing is founded in NorthCoast Boats solid reputation. \nTwin 300HP available with a wide open throttle of 57MPH! 10,372 lbs ready to fish- designed to plane quickly with less hp (Twin 250HP) outboards, the 23 degree dead rise and aggressive lifting strakes combine to deliver a quick, dry, and comfortable run to the fishing",
       "lengthFt": 28.5,
-      "photoCredit": "NorthCoast Boats"
+      "photoCredit": null
     },
     {
-      "slug": "northcoast-315",
+      "slug": "northcoast-315-ht",
       "brand": "NorthCoast",
-      "model": "315",
+      "model": "315 HT",
       "year": 2026,
       "priority": 2,
       "notes": "",
       "shared": false,
-      "sourceUrl": null,
+      "sourceUrl": "https://www.seaportinletmarina.com/new-boat-showrooms/northcoast/2026-northcoast-315-ht-10003199/",
       "brandUrl": "https://www.northcoastboats.com/",
       "dealers": [
         {
@@ -3144,14 +3211,22 @@
         }
       ],
       "photos": [
-        "/boats/northcoast-315-1.jpg",
-        "/boats/northcoast-315-2.jpg",
-        "/boats/northcoast-315-3.jpg",
-        "/boats/northcoast-315-4.jpg"
+        "/boats/northcoast-315-ht-1.jpg",
+        "/boats/northcoast-315-ht-2.jpg",
+        "/boats/northcoast-315-ht-3.jpg",
+        "/boats/northcoast-315-ht-4.jpg",
+        "/boats/northcoast-315-ht-5.jpg",
+        "/boats/northcoast-315-ht-6.jpg",
+        "/boats/northcoast-315-ht-7.jpg",
+        "/boats/northcoast-315-ht-8.jpg",
+        "/boats/northcoast-315-ht-9.jpg",
+        "/boats/northcoast-315-ht-10.jpg",
+        "/boats/northcoast-315-ht-11.jpg",
+        "/boats/northcoast-315-ht-12.jpg"
       ],
-      "blurb": "",
+      "blurb": "The NorthCoast 315HT continues the heritage of being exceptional and innovative in simplicity. Whether cruising your favorite River or weekending in the canyons, the new 315HT is the fastest, most capable and comfortable pilot house sport fishing boat in the field. The 315HT sports ideal proportions combining our NorthCoast sheer and the latest in coastal and offshore functionality.&nbsp;The 315HT will cross wave tops effortlessly. Her 23 degree dead-rise and responsiveness exemplify great hull design. The layout below is similar to the 285HT sleeping three with a separate, private head and three quarter beam athwartship aft berth (6’8”)- for ease of entry. \nNew features place the 315HT above the rest. Here are a hand full: 1.) We increased fuel to 316 gal and therefore range of 500 miles, depending upon speed, load and conditions. 2) Enhanced fish-ability by removal of the L-Shape Sette",
       "lengthFt": 31.5,
-      "photoCredit": "NorthCoast Boats"
+      "photoCredit": null
     },
     {
       "slug": "northcoast-415-ht",
