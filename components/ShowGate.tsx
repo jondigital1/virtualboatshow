@@ -62,7 +62,7 @@ const FONT = "var(--font-poppins), sans-serif";
 const TEASERS = [
   { src: "/show/gate-teaser-1.jpg", brand: "Brand", model: "Model", berth: "Dock and slip" },
   { src: "/show/gate-teaser-2.jpg", brand: "Brand", model: "Model name", berth: "Dock and slips" },
-  { src: "/show/gate-teaser-3.jpg", brand: "Brand", model: "Model", berth: "Dock and slip" },
+  { src: "/show/gate-teaser-3-onwater.jpg", brand: "Brand", model: "Model", berth: "Dock and slip" },
   { src: "/show/gate-teaser-4.jpg", brand: "Brand", model: "Model name", berth: "Dock and slips" },
 ];
 
