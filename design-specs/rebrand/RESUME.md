@@ -1,4 +1,54 @@
-# Resume checkpoint — 2026-08-27, midday (gate + ticket funnel session)
+# Resume checkpoint — 2026-09-01 (dealers, SEO, gate polish)
+
+Show opens **2026-09-10 at 10 AM**. Nine days. Site healthy, 188 boats, all
+deployed and verified on production; regression sweep clean.
+
+## What changed 2026-09-01
+
+- **Two dealers added, 175 to 188 boats.** Giselle forwarded Irwin Marine Center
+  (Tim Ryan) and Seaport Inlet Marina (Christian Matthews) on Sep 1. Seaport
+  claimed the TBD - Cape Horn NorthCoast tab (renamed Seaport Inlet, 9 boats);
+  Irwin got a new tab (4 boats). Both lead inboxes wired: **8 of 16 dealers
+  designated, covering 95 of 188 boats**. On-site text numbers are in r3 Dealer
+  Contacts for a future Text the Dealer option.
+  - **The Drive copy of r3 is stale** until Jon replaces it; the connector
+    cannot write file contents. The updated file was sent to him.
+  - **7 Seaport boats have no photos on purpose**: Christian gave bare model
+    numbers with no links, and Cape Horn sells XS and T variants at several of
+    those lengths. Guessing a manufacturer page could put the wrong hull on a
+    dealer page. Giselle needs links or variant confirmation.
+  - Open question for Giselle: Irwin got her OLDER template, which never asked
+    for a complete at-show lineup, so those 4 may be featured models only. A
+    July note also records Irwin carrying Regal, which Tim did not list.
+- **Importer renders bot-gated dealer pages.** Both dealer sites 403 every
+  server-side fetch while serving normally to a browser, so their boats imported
+  bare. `renderHtml()` in import-show-boats.mjs falls back to Playwright when a
+  plain fetch is refused; robots allows those paths.
+- **Deleted the daily sync task** (`vbs-feature-boats-daily-check`) at Jon's
+  direction, prompt file included. It still pointed at Giselle's superseded
+  workbook and could have overwritten r3's 188 boats with the old 87. Inventory
+  updates are manual now.
+- **Security audit**: Next 16.3.3 (9 advisories cleared, npm audit clean),
+  security headers, removed the dead /buoy-api open proxy, strict postMessage
+  origin check, mail subject sanitizing. `scripts/regression-check.mjs` sweeps
+  every route and is the pre-deploy check.
+- **SEO**: every page had the same title; now each has its own plus a canonical
+  (www, matching the sitemap, which had been listing apex redirects). Event
+  JSON-LD on the homepage.
+- **`lib/show.ts` owns the show year.** Rolling to 2027 is a one-file edit plus
+  that season's data. The homepage h1 now names the show:
+  **2026 Atlantic City In-Water Virtual Boat Show**. Two names held apart on
+  purpose: NAME is the physical event (titles, Event schema), VIRTUAL_NAME is
+  this website. Confirmed by Jon: no "Power" in the name.
+- **Gate teaser is decorative static art**, decoupled from inventory. It used to
+  ship brand, model, berth and the boat slug in the image URL behind a CSS blur
+  that hid nothing from the source; it also silently rotted when regal-36xo was
+  renamed and the backfill substituted another boat unnoticed. Now four curated
+  on-water photos under neutral filenames with grey bars for the withheld lines.
+
+---
+
+# Prior checkpoint — 2026-08-27, midday (gate + ticket funnel session)
 
 Show opens **2026-09-10**. Fourteen days.
 
