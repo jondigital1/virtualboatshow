@@ -37,56 +37,57 @@ import { useEffect, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow } from "@/components/ui";
-import { showBoats, type ShowBoat } from "@/lib/showboats";
-import { placementFor } from "@/lib/docks";
+import { showBoats } from "@/lib/showboats";
 import { TicketFunnelButton } from "@/components/TicketFunnel";
 import { GATE_STORAGE_KEY, GATE_PASSWORD_HASH, SHOW_OPENS } from "@/lib/gate";
+import { YEAR } from "@/lib/show";
 
 const FONT = "var(--font-poppins), sans-serif";
 
-// The four boats from the approved mock. Photos show, names stay blurred.
-const TEASER_SLUGS = ["cobia-320-cc", "regal-36xo", "pursuit-s-358", "albemarle-30-express"];
+/**
+ * The four teaser cards: photography from the approved mock, copied to neutral
+ * filenames.
+ *
+ * They are deliberately NOT read from inventory any more. Two reasons. The
+ * blur is a CSS filter, not redaction, so pulling live boats put their brand,
+ * model and berth in the page source in plain text, and served them from
+ * /boats/<slug>-1.jpg, which named the boat in the URL even if the text had
+ * been hidden. And the slug list rotted silently: regal-36xo stopped resolving
+ * when the master inventory rework renamed it to regal-36-xo, and the backfill
+ * quietly substituted another boat for months without anyone noticing.
+ *
+ * Static art plus placeholder labels gives the identical picture with nothing
+ * behind the blur to find, and nothing to rot.
+ */
+const TEASERS = [
+  { src: "/show/gate-teaser-1.jpg", brand: "Brand", model: "Model", berth: "Dock and slip" },
+  { src: "/show/gate-teaser-2.jpg", brand: "Brand", model: "Model name", berth: "Dock and slips" },
+  { src: "/show/gate-teaser-3.jpg", brand: "Brand", model: "Model", berth: "Dock and slip" },
+  { src: "/show/gate-teaser-4.jpg", brand: "Brand", model: "Model name", berth: "Dock and slips" },
+];
 
 async function sha256(text: string): Promise<string> {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-function teaserBoats(): ShowBoat[] {
-  const picked = TEASER_SLUGS
-    .map((s) => showBoats.find((b) => b.slug === s))
-    .filter((b): b is ShowBoat => Boolean(b && b.photos.length > 0));
-  // If a mock boat ever drops out of the sheet, backfill so the grid stays full.
-  for (const b of showBoats) {
-    if (picked.length >= 4) break;
-    if (b.photos.length > 0 && !picked.includes(b)) picked.push(b);
-  }
-  return picked.slice(0, 4);
-}
-
-/** A real inventory card with the identity blurred out. Purely decorative. */
-function TeaserCard({ b }: { b: ShowBoat }) {
-  const placement = b.dealers[0] ? placementFor(b.dealers[0].name) : undefined;
-  const berth = placement
-    ? placement.dock === "Land"
-      ? `${placement.where} · land display`
-      : `${placement.dock} · ${placement.where}`
-    : "Dock & slip announced before the show";
+/** A boat card with nothing identifying in it. Purely decorative. */
+function TeaserCard({ t }: { t: (typeof TEASERS)[number] }) {
   return (
     <div style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column" }}>
       <div style={{ position: "relative", aspectRatio: "16/11", background: "linear-gradient(160deg,#e8eef3,#dfe7ee)" }}>
         {/* Eager on purpose: these four are the gate page's above-the-fold hero. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={b.photos[0]} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+        <img src={t.src} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
       </div>
-      <div style={{ padding: "13px 14px 15px", display: "flex", flexDirection: "column", gap: 5, userSelect: "none" }}>
+      <div style={{ padding: "13px 14px 15px", display: "flex", flexDirection: "column", gap: 5, userSelect: "none" }} aria-hidden="true">
         <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "rgba(20,46,81,.55)", filter: "blur(3.5px)" }}>
-          {b.brand}{b.year ? ` · ${b.year}` : ""}
+          {t.brand} · {YEAR}
         </div>
         <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 17, lineHeight: 1.15, letterSpacing: "-.01em", color: "var(--navy)", filter: "blur(5px)" }}>
-          {b.model}
+          {t.model}
         </div>
-        <div style={{ fontSize: 12.5, color: "#5a6c78", filter: "blur(4px)" }}>📍 {berth}</div>
+        <div style={{ fontSize: 12.5, color: "#5a6c78", filter: "blur(4px)" }}>📍 {t.berth}</div>
       </div>
     </div>
   );
@@ -185,8 +186,6 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
 
   if (!locked) return <>{children}</>;
 
-  const boats = teaserBoats();
-
   return (
     <div style={{ visibility: ready ? "visible" : "hidden", opacity: leaving ? 0 : 1, transition: "opacity .45s ease" }}>
       <AnnouncementBar />
@@ -204,7 +203,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
 
           {/* The four approved teaser boats: real photos, identities blurred. */}
           <div className="gate-teasers" aria-hidden="true" style={{ marginTop: 26 }}>
-            {boats.map((b) => <TeaserCard key={b.slug} b={b} />)}
+            {TEASERS.map((t) => <TeaserCard key={t.src} t={t} />)}
           </div>
 
           <div style={{ maxWidth: 560, margin: "30px auto 0", background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.5)", borderRadius: 16, padding: "clamp(20px,3vw,28px)" }}>
