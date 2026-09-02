@@ -19,7 +19,9 @@ const ROUTES = [
   { path: "/inventory", must: ["Opens September 10 at 10 AM", "Feature boats"], sel: ".gate-teasers", label: "gate (locked)" },
   { path: "/inventory", must: ["results"], sel: 'select[aria-label="Filter by brand"]', unlock: true, minBoatLinks: 50, label: "inventory (unlocked)" },
   { path: "/boats/cobia-320-cc", must: ["Cobia 320", "dockside walkthrough", "Where to find it"], label: "boat page" },
-  { path: "/boats/not-a-real-boat", must: ["find that boat"], label: "boat 404" },
+  // Unknown slugs return a real 404 on purpose, so the 404 status is the pass
+  // condition here, not a failure.
+  { path: "/boats/not-a-real-boat", must: ["find that boat"], label: "boat 404", expect404: true },
   { path: "/vendors", must: ["Marine Marketplace"], label: "marketplace" },
   { path: "/map", must: ["Farley"], label: "map" },
   { path: "/plan", must: ["Hours & Tickets"], label: "plan" },
@@ -65,8 +67,10 @@ for (const r of ROUTES) {
     if (state.text.includes("\u2014")) note(r.label, "em dash found in visible text (house style)");
     for (const img of state.brokenImgs) note(r.label, `broken image ${img}`);
     for (const e of pageErrors) note(r.label, `page error: ${e}`);
-    for (const e of consoleErrors) note(r.label, `console error: ${e}`);
-    for (const b of badRequests) note(r.label, `failed request: ${b}`);
+    if (!r.expect404) {
+      for (const e of consoleErrors) note(r.label, `console error: ${e}`);
+      for (const b of badRequests) note(r.label, `failed request: ${b}`);
+    }
     console.log(`ok  ${r.label}`);
   } catch (e) {
     note(r.label, `load failed: ${String(e).slice(0, 160)}`);
