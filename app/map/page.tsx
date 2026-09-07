@@ -10,12 +10,8 @@ const FONT = "var(--font-poppins), sans-serif";
 
 const VENDORS = [
   { name: "Gioia Sails", mark: "GIOIA SAILS", category: "Sails & Rigging", tagline: "Custom sails, cut and tuned for your hull.", tint: "#eef4f8", ink: "#142E51" },
-  { name: "Bulldog Canvas", mark: "BULLDOG CANVAS", category: "Canvas & Covers", tagline: "Covers and enclosures built to last.", tint: "#f6f2e7", ink: "#142E51" },
-  { name: "Marks Marine Insurance", mark: "MARKS MARINE", category: "Boat Insurance", tagline: "Boat insurance coverage you can count on.", tint: "#e9eef7", ink: "#0b3f96" },
-  { name: "Monmouth Marine Engines", mark: "MONMOUTH ENGINES", category: "Engines & Repower", tagline: "Repower, service, and keep her running strong.", tint: "#eef4f8", ink: "#142E51" },
   { name: "Sea Tow Atlantic City", mark: "SEA TOW", category: "On-Water Assistance", tagline: "Help on the water is one call away, 24/7.", tint: "#f6f2e7", ink: "#142E51" },
   { name: "Harbor Outfitters", mark: "HARBOR OUTFITTERS", category: "Gear & Apparel", tagline: "Outfit the whole crew for the season.", tint: "#eef4f8", ink: "#142E51" },
-  { name: "Viking Eyewear", mark: "VIKING EYEWEAR", category: "Polarized Optics", tagline: "Cut the glare from bow to horizon.", tint: "#f6f2e7", ink: "#142E51" },
   { name: "Snap Dock", mark: "SNAP DOCK", category: "Docking & Boating Gear", tagline: "Modular docking systems that make boating easier.", tint: "#eef4f8", ink: "#142E51" },
 ];
 

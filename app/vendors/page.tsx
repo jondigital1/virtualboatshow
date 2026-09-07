@@ -24,7 +24,18 @@ const DECK = [
 ];
 
 const INTERESTS = ["Presenting dealer", "Vendor booth", "Sponsorship", "Advertising"];
-const STATS: [string, string][] = [["22", "BOAT DEALERS"], ["51", "VENDORS & EXHIBITORS"], ["73", "EXHIBITING COMPANIES"], ["11", "STATES REPRESENTED"]];
+/* Computed from the directory so these can never disagree with the lists
+ * below. They were hardcoded before 2026-09-06 and had to be re-typed every
+ * time the directory changed. Dealers count companies, not locations:
+ * MarineMax has three rows here and is one dealer. */
+const dealerCompanies = new Set(DEALERS.map((d) => d.n.replace(/\s*\([^)]*\)$/, "").trim())).size;
+const states = new Set([...DEALERS, ...VENDORS].map((r) => r.s).filter((st) => st && st !== "N/A")).size;
+const STATS: [string, string][] = [
+  [String(dealerCompanies), "BOAT DEALERS"],
+  [String(VENDORS.length), "VENDORS & EXHIBITORS"],
+  [String(dealerCompanies + VENDORS.length), "EXHIBITING COMPANIES"],
+  [String(states), "STATES REPRESENTED"],
+];
 
 const formInput: React.CSSProperties = { width: "100%", background: "#f7f6f1", border: "1px solid rgba(20,46,81,.14)", borderRadius: 11, padding: "13px 15px", fontSize: 15, color: "#142E51" };
 const formLabel: React.CSSProperties = { display: "block", fontSize: 12.5, fontWeight: 600, color: "#3d5260", marginBottom: 7, fontFamily: MONO, letterSpacing: ".04em" };
