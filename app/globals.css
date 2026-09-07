@@ -148,10 +148,11 @@ input, textarea, button, select { font-family: inherit; }
   .explore-split > img { height: 170px !important; }
 }
 
-/* Official show map (components/ShowMap.tsx): landscape SVG on desktop,
-   tall SVG on phones. Both scale via viewBox inside their wrapper. */
-.show-map-wide svg,
-.show-map-mobile svg { display: block; width: 100%; height: auto; }
+/* Official show map (components/ShowMap.tsx): Giselle's approved 2026 maps,
+   landscape on desktop, tall on phones. Served as WebP renders of her SVGs;
+   width/height attributes on the img keep the aspect ratio while loading. */
+.show-map-wide img,
+.show-map-mobile img { display: block; width: 100%; height: auto; }
 .show-map-mobile { display: none; }
 @media (max-width: 640px) {
   .show-map-wide { display: none; }

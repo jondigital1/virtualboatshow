@@ -11,7 +11,8 @@
  * of the show's identity:
  *   - data/*.json and the inventory workbook (a season's boats, replaced
  *     wholesale each year)
- *   - lib/docks.ts and lib/showmap.ts (that year's dock plan and map image)
+ *   - lib/docks.ts and public/show/show-map-*-2026.webp (that year's dock plan and
+ *     approved map images; rebuild via design-specs/show-map/build-map-assets.mjs)
  *   - lib/exhibitors.ts and lib/sponsors.ts (that year's exhibitor list)
  *   - dated comments recording when a decision was made, which are history
  *     and must not be rewritten
