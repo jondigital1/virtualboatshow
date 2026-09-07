@@ -43,6 +43,14 @@ const REFRESH = process.argv.includes("--refresh");
 /** --only=slug1,slug2: restrict --refresh to these boats (others stay cached). */
 const ONLY = new Set((process.argv.find((a) => a.startsWith("--only="))?.slice(7) ?? "").split(",").filter(Boolean));
 const refreshWanted = (slug) => REFRESH && (ONLY.size === 0 || ONLY.has(slug));
+/**
+ * --no-topup: skip the manufacturer top-up pass entirely. The top-up runs over
+ * every boat on every import, cached or not, so adding one dealer's boats
+ * would otherwise also retry the thin galleries elsewhere (six boats as of
+ * 2026-09-06) and change live listings Jon has frozen. Use this whenever the
+ * run is meant to add or fix specific boats and leave the rest exactly as is.
+ */
+const NO_TOPUP = process.argv.includes("--no-topup");
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const RAW = join(ROOT, "data", "master-boats-raw.json");
@@ -847,9 +855,13 @@ async function main() {
 
   // Top up thin galleries from the manufacturer, one at a time: these are
   // courtesy fetches against sites that did not ask for our traffic.
-  for (const b of boats) {
-    const n = await topUpFromManufacturer(b);
-    if (n) console.log(`topped up    ${b.brand} ${b.model} +${n} from ${b.photoCredit}`);
+  if (NO_TOPUP) {
+    console.log("top-up skipped (--no-topup)");
+  } else {
+    for (const b of boats) {
+      const n = await topUpFromManufacturer(b);
+      if (n) console.log(`topped up    ${b.brand} ${b.model} +${n} from ${b.photoCredit}`);
+    }
   }
   await closeBrowser();
 

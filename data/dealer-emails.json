@@ -23,22 +23,39 @@
     "Status at 2026-09-01: 8 of 16 dealers designated, covering 95 of 188 boats.",
     "Format: \"Dealer Name\": [\"sales@example.com\"]"
   ],
-
-  "Clarks Landing Yacht Sales & Marina": ["mlonghi@clarkslanding.com"],
-  "Coastal Boat Sales": ["mikecoastalboatsalesnj@gmail.com"],
-  "Comstock Yacht Sales & Marina": ["sales@comstockyachtsales.com"],
-  "Irwin Marine Center": ["Sales@sagamoreblue.com"],
-  "MarineMax": ["richard.johanson@marinemax.com"],
-  "Riptide Marine Center": ["dwmancini@comcast.net"],
-  "Seaport Inlet Marina": ["Christian.seaport@gmail.com"],
-  "Sheltered Cove Marina": ["mark@shelteredcovemarina.com"],
-
+  "Clarks Landing Yacht Sales & Marina": [
+    "mlonghi@clarkslanding.com"
+  ],
+  "Coastal Boat Sales": [
+    "mikecoastalboatsalesnj@gmail.com"
+  ],
+  "Comstock Yacht Sales & Marina": [
+    "sales@comstockyachtsales.com"
+  ],
   "Coty Marine": [],
   "D & R Boat World": [],
   "Formula Boats": [],
+  "Irwin Marine Center": [
+    "Sales@sagamoreblue.com"
+  ],
+  "MarineMax": [
+    "richard.johanson@marinemax.com"
+  ],
   "New Jersey Outboards": [],
+  "Riptide Marine Center": [
+    "dwmancini@comcast.net"
+  ],
   "Sandy Hook Yacht Sales": [],
   "Schrader Yacht Sales": [],
+  "Seaport Inlet Marina": [
+    "Christian.seaport@gmail.com"
+  ],
+  "Sheltered Cove Marina": [
+    "mark@shelteredcovemarina.com"
+  ],
   "South Jersey Yacht Sales": [],
-  "Stone Harbor Yacht Sales & Marina": []
+  "Stone Harbor Yacht Sales & Marina": [],
+  "Valhalla Yacht Sales": [
+    "eszambelak@valhallaboatsales.com"
+  ]
 }

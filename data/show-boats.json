@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-02T15:51:06.171Z",
-  "boatCount": 188,
+  "generatedAt": "2026-09-07T01:17:39.220Z",
+  "boatCount": 193,
   "boats": [
     {
       "slug": "albemarle-27-dual-console",
@@ -1356,6 +1356,41 @@
       ],
       "blurb": "Introducing the 2026 Cobia 320 CC, a stunning new center console boat that redefines luxury, performance, and versatility on the water. If you are searching for a center console boat for sale that combines cutting-edge technology, powerful engines, and exceptional comfort, the Cobia 320 CC is the perfect choice. With its impressive design, advanced features, and spacious layout, this Cobia boat for sale is ready to elevate your boating adventures to new heights.OverviewThe 2026 Cobia 320 CC stands out as a premier center console boat, boasting a length of 32 feet and a striking Bayside Blue solid hull. This new model is meticulously crafted to deliver both style and substance, making it an ideal vessel for families, fishing enthusiasts, and anyone who loves spending time on the water. The Cobia 320 CC’s sleek lines, modern profile, and attention to detail ensure that it turns heads at ev",
       "lengthFt": 32,
+      "photoCredit": null
+    },
+    {
+      "slug": "contender-39st",
+      "brand": "Contender",
+      "model": "39ST",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.valhallayachtsales.com/NEW-Inventory-2026-Contender-Boat-39ST-New-Gretna-NJ-18107720?ref=list",
+      "brandUrl": "https://www.contenderboats.com/",
+      "dealers": [
+        {
+          "name": "Valhalla Yacht Sales",
+          "loc": "New Gretna, NJ",
+          "phone": "(609) 296-2388"
+        }
+      ],
+      "photos": [
+        "/boats/contender-39st-1.jpg",
+        "/boats/contender-39st-2.jpg",
+        "/boats/contender-39st-3.jpg",
+        "/boats/contender-39st-4.jpg",
+        "/boats/contender-39st-5.jpg",
+        "/boats/contender-39st-6.jpg",
+        "/boats/contender-39st-7.jpg",
+        "/boats/contender-39st-8.jpg",
+        "/boats/contender-39st-9.jpg",
+        "/boats/contender-39st-10.jpg",
+        "/boats/contender-39st-11.jpg",
+        "/boats/contender-39st-12.jpg"
+      ],
+      "blurb": "39 Feet of adrenaline pumping, wave jumping, heart pounding, chest thumping center console created for range to get the grounds where less get to go, and speed so you have more time to locate those elusive target species.The 39 ST custom options are available to make your fishing boat your own. &nbsp;Design your boat’s electronics and console, rod holde...",
+      "lengthFt": 39,
       "photoCredit": null
     },
     {
@@ -3004,6 +3039,41 @@
       ]
     },
     {
+      "slug": "monterey-elite-27-ob",
+      "brand": "Monterey",
+      "model": "Elite 27 OB",
+      "year": 2027,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.valhallayachtsales.com/NEW-Inventory-2027-Monterey-Boat-ELITE-27-OB-New-Gretna-NJ-18961130?ref=list",
+      "brandUrl": "https://www.montereyboats.com/",
+      "dealers": [
+        {
+          "name": "Valhalla Yacht Sales",
+          "loc": "New Gretna, NJ",
+          "phone": "(609) 296-2388"
+        }
+      ],
+      "photos": [
+        "/boats/monterey-elite-27-ob-1.jpg",
+        "/boats/monterey-elite-27-ob-2.jpg",
+        "/boats/monterey-elite-27-ob-3.jpg",
+        "/boats/monterey-elite-27-ob-4.jpg",
+        "/boats/monterey-elite-27-ob-5.jpg",
+        "/boats/monterey-elite-27-ob-6.jpg",
+        "/boats/monterey-elite-27-ob-7.jpg",
+        "/boats/monterey-elite-27-ob-8.jpg",
+        "/boats/monterey-elite-27-ob-9.jpg",
+        "/boats/monterey-elite-27-ob-10.jpg",
+        "/boats/monterey-elite-27-ob-11.jpg",
+        "/boats/monterey-elite-27-ob-12.jpg"
+      ],
+      "blurb": "Valhalla Yacht Sales is a marine dealership with locations in Riviera Beach, FL and New Gretna, Brick Township, NJ. Offering multiple kind of services, near West Palm Beach, Fort Lauderdale, Atlantic City, Cape May, and Jupiter",
+      "lengthFt": 27,
+      "photoCredit": null
+    },
+    {
       "slug": "navan-c30",
       "brand": "Navan",
       "model": "C30",
@@ -3495,6 +3565,41 @@
       ],
       "blurb": "The 287 Explorer is the largest boat in Parker's Explorer line at 27 feet 9 inches, rated to 700 horsepower with 232 gallons of fuel. It steps up to the Seakeeper 525 Ride system and offers 77 inches of pilothouse headroom, twin berths and an electric head, with a Garmin plotter and Wet Sounds stereo standard.",
       "lengthFt": 28.7,
+      "photoCredit": null
+    },
+    {
+      "slug": "phenom-43",
+      "brand": "Phenom",
+      "model": "43",
+      "year": 2027,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.valhallayachtsales.com/NEW-Inventory-2027-Phenom-Boat-43-Center-Console-Riviera-Beach-FL-18976953?ref=list",
+      "brandUrl": "https://www.phenomyachts.com/",
+      "dealers": [
+        {
+          "name": "Valhalla Yacht Sales",
+          "loc": "New Gretna, NJ",
+          "phone": "(609) 296-2388"
+        }
+      ],
+      "photos": [
+        "/boats/phenom-43-1.jpg",
+        "/boats/phenom-43-2.jpg",
+        "/boats/phenom-43-3.jpg",
+        "/boats/phenom-43-4.jpg",
+        "/boats/phenom-43-5.jpg",
+        "/boats/phenom-43-6.jpg",
+        "/boats/phenom-43-7.jpg",
+        "/boats/phenom-43-8.jpg",
+        "/boats/phenom-43-9.jpg",
+        "/boats/phenom-43-10.jpg",
+        "/boats/phenom-43-11.jpg",
+        "/boats/phenom-43-12.jpg"
+      ],
+      "blurb": "2027 Phenom 43The Phenom 43 defines the pinnacle of hybrid center console design-where offshore dominance meets luxury cruising on a grand scale. Purpose-built with innovative engineering, elevated materials, and premium amenities, the Phenom 43 delivers an unrivaled experience for both the serious angler and the refined adventurer.The Phenom 43 of...",
+      "lengthFt": 43,
       "photoCredit": null
     },
     {
@@ -5392,6 +5497,41 @@
       "photoCredit": null
     },
     {
+      "slug": "sportsman-open-302",
+      "brand": "Sportsman",
+      "model": "Open 302",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.valhallayachtsales.com/NEW-Inventory-2026-Sportsman-Boat-Open-302-Center-Console-New-Gretna-NJ-18807462?ref=list",
+      "brandUrl": "https://www.sportsmanboatsmfg.com/",
+      "dealers": [
+        {
+          "name": "Valhalla Yacht Sales",
+          "loc": "New Gretna, NJ",
+          "phone": "(609) 296-2388"
+        }
+      ],
+      "photos": [
+        "/boats/sportsman-open-302-1.jpg",
+        "/boats/sportsman-open-302-2.jpg",
+        "/boats/sportsman-open-302-3.jpg",
+        "/boats/sportsman-open-302-4.jpg",
+        "/boats/sportsman-open-302-5.jpg",
+        "/boats/sportsman-open-302-6.jpg",
+        "/boats/sportsman-open-302-7.jpg",
+        "/boats/sportsman-open-302-8.jpg",
+        "/boats/sportsman-open-302-9.jpg",
+        "/boats/sportsman-open-302-10.jpg",
+        "/boats/sportsman-open-302-11.jpg",
+        "/boats/sportsman-open-302-12.jpg"
+      ],
+      "blurb": "The Open 302 has been designed from the ground up to be the complete boat package. Bringing you features and amenities never before seen; revolutionizing the segment. Starting with the extensive standard features list, like sea keeper ride, JL Audio speakers, Garmin MFD",
+      "lengthFt": 30.2,
+      "photoCredit": null
+    },
+    {
       "slug": "starcraft-deck-svx-190-dc-ob",
       "brand": "StarCraft Deck",
       "model": "SVX 190 DC OB",
@@ -6100,6 +6240,41 @@
       ],
       "blurb": "South Jersey Yacht Sales is your local yacht dealership we offer new and pre-owned yachts from top brands, with over 40 years of expertise in yacht sales and services.",
       "lengthFt": 33,
+      "photoCredit": null
+    },
+    {
+      "slug": "valhalla-v-41",
+      "brand": "Valhalla",
+      "model": "V-41",
+      "year": 2027,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.valhallayachtsales.com/NEW-Inventory-2027-Valhalla-Boat-V-41-Wrightsville-Beach-18961125?ref=list",
+      "brandUrl": "https://www.valhallaboatworks.com/",
+      "dealers": [
+        {
+          "name": "Valhalla Yacht Sales",
+          "loc": "New Gretna, NJ",
+          "phone": "(609) 296-2388"
+        }
+      ],
+      "photos": [
+        "/boats/valhalla-v-41-1.jpg",
+        "/boats/valhalla-v-41-2.jpg",
+        "/boats/valhalla-v-41-3.jpg",
+        "/boats/valhalla-v-41-4.jpg",
+        "/boats/valhalla-v-41-5.jpg",
+        "/boats/valhalla-v-41-6.jpg",
+        "/boats/valhalla-v-41-7.jpg",
+        "/boats/valhalla-v-41-8.jpg",
+        "/boats/valhalla-v-41-9.jpg",
+        "/boats/valhalla-v-41-10.jpg",
+        "/boats/valhalla-v-41-11.jpg",
+        "/boats/valhalla-v-41-12.jpg"
+      ],
+      "blurb": "The appeal of the flagship V-41 is strong and simple: She’s the best center console on the market from 40 to 45 feet. Answering the call with high-level fishability, speed, range and overall performance. This triple- or quad-powered offshore runner is poised to take the reins as the leading high-performance 40-plus-foot center console on the market...",
+      "lengthFt": 41,
       "photoCredit": null
     },
     {
