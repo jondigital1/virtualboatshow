@@ -24,7 +24,6 @@ import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY } from "@/components/ui";
 import { TicketCaptureForm } from "@/components/TicketFunnel";
-import { showBoats } from "@/lib/showboats";
 import { DATES_LONG, YEAR, VENUE, CITY, TICKET_ADVANCE, TICKET_GATE, TICKET_ADVANCE_UNTIL } from "@/lib/show";
 
 const FONT = "var(--font-poppins), sans-serif";
@@ -62,7 +61,7 @@ export default function TicketsLanding() {
             Grab your show tickets
           </h1>
           <p style={{ fontFamily: FONT, fontSize: 15.5, lineHeight: 1.6, color: "rgba(255,255,255,.85)", margin: "12px 0 0" }}>
-            {DATES_LONG}, {YEAR} at {VENUE}, {CITY}. {showBoats.length} boats confirmed and counting.
+            {DATES_LONG}, {YEAR} at {VENUE}, {CITY}. Hundreds of boats in the water and on land.
           </p>
 
           {/* The offer, in the same words the ad uses. */}
