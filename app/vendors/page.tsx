@@ -24,18 +24,6 @@ const DECK = [
 ];
 
 const INTERESTS = ["Presenting dealer", "Vendor booth", "Sponsorship", "Advertising"];
-/* Computed from the directory so these can never disagree with the lists
- * below. They were hardcoded before 2026-09-06 and had to be re-typed every
- * time the directory changed. Dealers count companies, not locations:
- * MarineMax has three rows here and is one dealer. */
-const dealerCompanies = new Set(DEALERS.map((d) => d.n.replace(/\s*\([^)]*\)$/, "").trim())).size;
-const states = new Set([...DEALERS, ...VENDORS].map((r) => r.s).filter((st) => st && st !== "N/A")).size;
-const STATS: [string, string][] = [
-  [String(dealerCompanies), "BOAT DEALERS"],
-  [String(VENDORS.length), "VENDORS & EXHIBITORS"],
-  [String(dealerCompanies + VENDORS.length), "EXHIBITING COMPANIES"],
-  [String(states), "STATES REPRESENTED"],
-];
 
 const formInput: React.CSSProperties = { width: "100%", background: "#f7f6f1", border: "1px solid rgba(20,46,81,.14)", borderRadius: 11, padding: "13px 15px", fontSize: 15, color: "#142E51" };
 const formLabel: React.CSSProperties = { display: "block", fontSize: 12.5, fontWeight: 600, color: "#3d5260", marginBottom: 7, fontFamily: MONO, letterSpacing: ".04em" };
@@ -141,13 +129,6 @@ export default function Vendors() {
               style={{ width: "100%", background: "#fff", border: "1.5px solid rgba(20,46,81,.18)", borderRadius: 12, padding: "15px 18px 15px 46px", fontSize: 15.5, color: "var(--navy)" }}
             />
           </div>
-          <div style={{ display: "flex", gap: "10px 26px", flexWrap: "wrap", marginTop: 16 }}>
-            {STATS.map(([num, lab]) => (
-              <span key={lab} style={{ fontFamily: MONO, fontWeight: 600, fontSize: 12, letterSpacing: ".06em", color: "rgba(20,46,81,.6)" }}>
-                <span style={{ color: "var(--navy)", fontWeight: 800, fontSize: 14 }}>{num}</span> {lab}
-              </span>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -157,7 +138,6 @@ export default function Vendors() {
           <Eyebrow>On the water</Eyebrow>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 20, flexWrap: "wrap", marginTop: 14 }}>
             <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,4vw,52px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: 0, maxWidth: "18ch" }}>Our presenting dealers</h2>
-            <p style={{ fontSize: 15.5, color: "#4c6270", margin: 0, maxWidth: "44ch" }}>20 dealers across 24 locations, bringing their show lineups to the docks and into the virtual show.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,238px),1fr))", gap: 16, marginTop: 36 }}>
             {dealers.map((d) => dirCard(d, false))}
@@ -186,7 +166,6 @@ export default function Vendors() {
           <Eyebrow>In the aisles</Eyebrow>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 20, flexWrap: "wrap", marginTop: 14 }}>
             <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,4vw,52px)", lineHeight: 1.02, letterSpacing: "-.02em", margin: 0, color: "#fff", maxWidth: "18ch" }}>Our show exhibitors</h2>
-            <p style={{ fontSize: 15.5, color: "rgba(255,255,255,.7)", margin: 0, maxWidth: "44ch" }}>38 brands and services that keep boaters on the water all season, from engines and insurance to canvas and gear.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(100%,232px),1fr))", gap: 14, marginTop: 36 }}>
             {vendors.map((v) => dirCard(v, true))}
