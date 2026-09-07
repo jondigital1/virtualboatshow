@@ -50,6 +50,7 @@ export const DOCKS: Dock[] = [
       { name: "Seaport Inlet Marina", start: 14, end: 16, side: "even" },
       { name: "D & R Boat World", start: 18, end: 24, side: "even" },
       { name: "Sandy Hook Yacht Sales", start: 26, end: 32, side: "even" },
+      { name: "Total Marine", start: 34, end: 34, side: "even" },
       { name: "EZ Dock Mid Atlantic", start: 36, end: 36, side: "even" },
       { name: "MarineMax", start: 1, end: 25, side: "odd" },
       { name: "Formula Boats", start: 27, end: 33, side: "odd" },
@@ -77,10 +78,11 @@ export type LandSpot = { name: string; where: string; size?: string };
 
 export const LAND: LandSpot[] = [
   { name: "New Jersey Outboards", where: "Land Displays A, C & D" },
-  { name: "Clarks Landing Yacht Sales", where: "Block B", size: "50 x 55 ft" },
+  { name: "Clarks Landing Yacht Sales", where: "Land Display B", size: "50 x 55 ft" },
   { name: "Paradise Grills", where: "Land Display E" },
   { name: "EZ Dock Mid Atlantic", where: "Land Display 255-261" },
-  { name: "Total Marine", where: "Booths 237-242", size: "60 ft" },
+  { name: "Total Marine", where: "Land Display 237-242", size: "60 ft" },
+  { name: "Seaport Inlet Marina", where: "Land Displays 228-231 & 243-254" },
 ];
 
 /** Flat A-Z index behind the search box. */

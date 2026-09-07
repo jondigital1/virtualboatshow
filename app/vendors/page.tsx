@@ -12,7 +12,7 @@ import { SHORT_NAME, YEAR } from "@/lib/show";
 function deco(r: Row) {
   const loc = [r.c, r.s].filter((x) => x && x !== "N/A").join(", ");
   const hasPhone = !!(r.p && r.p !== "N/A");
-  return { name: r.n, loc, initials: initials(r.n), phone: r.p, hasPhone, tel: "tel:" + String(r.p || "").replace(/[^0-9]/g, ""), logo: DEALER_LOGOS[r.n] };
+  return { name: r.n, loc, booth: r.b, initials: initials(r.n), phone: r.p, hasPhone, tel: "tel:" + String(r.p || "").replace(/[^0-9]/g, ""), logo: DEALER_LOGOS[r.n] };
 }
 
 const DECK = [
@@ -86,6 +86,8 @@ export default function Vendors() {
         <div style={{ minWidth: 0 }}>
           <h3 style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: dark ? 15.5 : 16, margin: "0 0 3px", letterSpacing: "-.01em", lineHeight: 1.15, color: dark ? "#fff" : undefined }}>{d.name}</h3>
           <div style={{ fontFamily: MONO, fontSize: dark ? 10.5 : 11, letterSpacing: ".04em", color: "var(--accent)", textTransform: "uppercase" }}>{d.loc}</div>
+          {/* Booth or show location from the 2026 Directory (Marketplace rows only). */}
+          {d.booth && <div style={{ fontFamily: MONO, fontSize: dark ? 10.5 : 11, letterSpacing: ".04em", color: dark ? "rgba(255,255,255,.72)" : "rgba(20,46,81,.62)", textTransform: "uppercase", marginTop: 3 }}>{d.booth}</div>}
         </div>
       </div>
       {d.hasPhone && (
