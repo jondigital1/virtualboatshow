@@ -8,8 +8,15 @@
  *
  * Slips run even on one side of each dock and odd on the other, which is why
  * ranges that look like they overlap do not: Comstock F10-12 and MarineMax
- * F11-25 face each other across the walkway, as do Coastal E13-19 and
+ * F1-25 face each other across the walkway, as do Coastal E13-19 and
  * Sheltered Cove E14-20.
+ *
+ * Corrected 2026-09-06 against Giselle's final 2026 Directory: MarineMax
+ * F1-25 (was 11-25), EZ Dock Mid Atlantic at F36 (was 34) plus Land Display
+ * 255-261, Red Bank Marina removed (not at the show; 255-261 is EZ Dock),
+ * Paradise Grills to Land Display E, New Jersey Outboards to Land Displays
+ * A, C and D. This file feeds every boat page and the walkthrough form, not
+ * just the dock list, so it has to be right even if that list goes away.
  *
  * The "Linear" frontage figures in the source notes are deliberately NOT
  * modelled here; what they represent is still unconfirmed.
@@ -43,8 +50,8 @@ export const DOCKS: Dock[] = [
       { name: "Seaport Inlet Marina", start: 14, end: 16, side: "even" },
       { name: "D & R Boat World", start: 18, end: 24, side: "even" },
       { name: "Sandy Hook Yacht Sales", start: 26, end: 32, side: "even" },
-      { name: "EZ Dock", start: 34, end: 34, side: "even" },
-      { name: "MarineMax", start: 11, end: 25, side: "odd" },
+      { name: "EZ Dock Mid Atlantic", start: 36, end: 36, side: "even" },
+      { name: "MarineMax", start: 1, end: 25, side: "odd" },
       { name: "Formula Boats", start: 27, end: 33, side: "odd" },
       { name: "Irwin Marine", start: 35, end: 41, side: "odd" },
       { name: "Riptide Marine", start: 43, end: 45, side: "odd" },
@@ -69,10 +76,10 @@ export const DOCKS: Dock[] = [
 export type LandSpot = { name: string; where: string; size?: string };
 
 export const LAND: LandSpot[] = [
-  { name: "New Jersey Outboards", where: "Block A", size: "130 x 75 ft" },
+  { name: "New Jersey Outboards", where: "Land Displays A, C & D" },
   { name: "Clarks Landing Yacht Sales", where: "Block B", size: "50 x 55 ft" },
-  { name: "Paradise Grills", where: "Block G" },
-  { name: "Red Bank Marina", where: "Booths 255-261", size: "70 ft" },
+  { name: "Paradise Grills", where: "Land Display E" },
+  { name: "EZ Dock Mid Atlantic", where: "Land Display 255-261" },
   { name: "Total Marine", where: "Booths 237-242", size: "60 ft" },
 ];
 
