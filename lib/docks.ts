@@ -56,10 +56,10 @@ export const DOCKS: Dock[] = [
     span: [1, 46],
     berths: [
       { name: "Sheltered Cove Marina", start: 14, end: 20, side: "even" },
-      { name: "Stone Harbor Marina", start: 1, end: 11, side: "odd" },
+      { name: "Stone Harbor Yacht Sales & Marina", start: 1, end: 11, side: "odd" },
       { name: "Coastal Boat Sales", start: 13, end: 19, side: "odd" },
       { name: "Coty Marine", start: 21, end: 31, side: "odd" },
-      { name: "Valhalla Boat Sales", start: 33, end: 37, side: "odd" },
+      { name: "Valhalla Yacht Sales", start: 33, end: 37, side: "odd" },
       { name: "Schrader Yacht Sales", start: 39, end: 41, side: "odd" },
       { name: "G Winter's / Riverside Marina", start: 43, end: 45, side: "odd" },
     ],

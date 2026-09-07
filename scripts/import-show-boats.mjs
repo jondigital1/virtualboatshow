@@ -104,9 +104,9 @@ const DEALER_META = {
   // Mark Hattman, President, Aug 22, his own text line (was the main line, (609) 296-9400).
   "Sheltered Cove Marina": { name: "Sheltered Cove Marina", loc: "Tuckerton, NJ", phone: "(609) 204-1742" },
   "South Jersey Yacht Sales": { name: "South Jersey Yacht Sales", loc: "Cape May, NJ", phone: "(609) 884-1600" },
-  "Stone Harbor Marina": { name: "Stone Harbor Marina", loc: "Stone Harbor, NJ", phone: "(609) 368-1141" },
+  "Stone Harbor Yacht Sales & Marina": { name: "Stone Harbor Yacht Sales & Marina", loc: "Stone Harbor, NJ", phone: "(609) 368-1141" },
   "Total Marine": { name: "Total Marine", loc: "Little Egg Harbor, NJ", phone: "(609) 294-0480" },
-  "Valhalla Boat Sales": { name: "Valhalla Boat Sales", loc: "New Gretna, NJ", phone: "(609) 296-2388" },
+  "Valhalla Yacht Sales": { name: "Valhalla Yacht Sales", loc: "New Gretna, NJ", phone: "(609) 296-2388" },
 };
 
 const slugify = (s) =>

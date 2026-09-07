@@ -42,8 +42,8 @@ export const DEALERS: Row[] = [
   { n: "Seaport Inlet Marina", c: "Belmar", s: "NJ", p: "(732) 681-3303" },
   { n: "Sheltered Cove Marina", c: "Tuckerton", s: "NJ", p: "(609) 296-9400" },
   { n: "South Jersey Yacht Sales", c: "Cape May", s: "NJ", p: "(609) 884-1600" },
-  { n: "Stone Harbor Marina", c: "Stone Harbor", s: "NJ", p: "(609) 368-1141" },
-  { n: "Valhalla Boat Sales", c: "New Gretna", s: "NJ", p: "(609) 296-2388" },
+  { n: "Stone Harbor Yacht Sales & Marina", c: "Stone Harbor", s: "NJ", p: "(609) 368-1141" },
+  { n: "Valhalla Yacht Sales", c: "New Gretna", s: "NJ", p: "(609) 296-2388" },
 ];
 
 export const VENDORS: Row[] = [
@@ -105,9 +105,9 @@ export const DEALER_LOGOS: Record<string, string> = {
   "Schrader Yacht Sales": "/dealers/schrader.png",
   "Seaport Inlet Marina": "/dealers/seaport-inlet.png",
   "Sheltered Cove Marina": "/dealers/sheltered-cove.png",
-  "Stone Harbor Marina": "/dealers/stone-harbor.png",
+  "Stone Harbor Yacht Sales & Marina": "/dealers/stone-harbor.png",
   "South Jersey Yacht Sales": "/dealers/south-jersey.png",
-  "Valhalla Boat Sales": "/dealers/valhalla.png",
+  "Valhalla Yacht Sales": "/dealers/valhalla.png",
 };
 
 /** "Marks Marine Insurance" -> "MM" (monogram for logo-less tiles). */

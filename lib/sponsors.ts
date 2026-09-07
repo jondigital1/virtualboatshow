@@ -24,7 +24,7 @@ export const MEDIA_PARTNERS: Sponsor[] = [
 
 export const SHOW_PARTNERS: Sponsor[] = [
   { name: "Pursuit Boats", slug: "pursuit", url: "https://www.pursuitboats.com/" },
-  { name: "Stone Harbor Marina", slug: "stone-harbor-marina", url: "https://www.stoneharbormarina.com/" },
+  { name: "Stone Harbor Yacht Sales & Marina", slug: "stone-harbor-marina", url: "https://www.stoneharbormarina.com/" },
   { name: "Vista Convention Services", slug: "vista", url: "https://www.vistacs.com/" },
 ];
 

@@ -49,9 +49,9 @@ const TAB_TO_DEALER = {
   "Schrader": "Schrader Yacht Sales",
   "Sheltered Cove": "Sheltered Cove Marina",
   "SJ Yachts": "South Jersey Yacht Sales",
-  "Stone Harbor": "Stone Harbor Marina",
+  "Stone Harbor": "Stone Harbor Yacht Sales & Marina",
   "Total Marine": "Total Marine",
-  "Valhalla": "Valhalla Boat Sales",
+  "Valhalla": "Valhalla Yacht Sales",
 };
 
 /** Sentinels the Sheet uses in the link column. */
