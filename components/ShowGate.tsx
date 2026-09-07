@@ -37,7 +37,6 @@ import { useEffect, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow } from "@/components/ui";
-import { showBoats } from "@/lib/showboats";
 import { TicketFunnelButton } from "@/components/TicketFunnel";
 import { GATE_STORAGE_KEY, GATE_PASSWORD_HASH, SHOW_OPENS } from "@/lib/gate";
 
@@ -197,7 +196,7 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
             Feature boats
           </h1>
           <p style={{ fontSize: "clamp(15px,1.6vw,17px)", lineHeight: 1.6, color: "rgba(20,46,81,.72)", margin: "12px 0 0", maxWidth: 640 }}>
-            {showBoats.length} confirmed so far, and 250+ boats in the water at the show.
+            Hundreds of boats in the water at the show.
           </p>
 
           {/* The four approved teaser boats: real photos, identities blurred. */}
