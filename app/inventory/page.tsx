@@ -76,7 +76,7 @@ export default function Inventory() {
                 Explore the boats participating dealers are bringing to the Atlantic City In-Water Boat Show. These are the boats you can see in person during the show.
               </p>
               <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.4)", borderRadius: 999, padding: "9px 16px", marginTop: 18 }}>
-                <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: 12.5, color: "var(--navy)" }}>{showBoats.length} boats · {dealers.length} dealers · 250+ boats in the water at the show</span>
+                <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: 12.5, color: "var(--navy)" }}>250+ boats in the water at the show</span>
               </div>
             </div>
             <div style={{ minWidth: 0 }}>
