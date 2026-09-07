@@ -28,7 +28,16 @@ const ADVERTISE = [
 ];
 
 export default function ShowMap() {
-  const vendorTrack = [...VENDORS, ...VENDORS];
+  // Marquee geometry. One copy of the track is every card plus the gaps
+  // between them; the loop slides exactly one copy, then snaps back to a
+  // frame that looks identical. Enough copies are laid down that the window
+  // is never wider than what remains beyond the slide, even at 2560px, so
+  // the row can never run empty however many cards are in the rotation.
+  const CARD_W = 264, GAP = 18;
+  const copyWidth = VENDORS.length * (CARD_W + GAP);
+  const copies = Math.max(2, Math.ceil(2600 / copyWidth) + 1);
+  const vendorTrack = Array.from({ length: copies }, () => VENDORS).flat();
+  const marqueeSeconds = Math.max(12, Math.round(copyWidth / 60)); // ~60px/s
 
   return (
     <>
@@ -97,9 +106,9 @@ export default function ShowMap() {
           </div>
         </div>
         <div style={{ marginTop: 26, overflow: "hidden", WebkitMaskImage: "linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)", maskImage: "linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)" }}>
-          <div style={{ display: "flex", gap: 18, padding: "8px clamp(18px,3vw,44px)", width: "max-content", animation: "vmarquee 24s linear infinite" }}>
+          <div style={{ display: "flex", gap: GAP, padding: "8px clamp(18px,3vw,44px)", width: "max-content", animation: `vmarquee ${marqueeSeconds}s linear infinite`, "--marquee-shift": `-${copyWidth}px` } as React.CSSProperties}>
             {vendorTrack.map((v, i) => (
-              <div key={i} style={{ flex: "0 0 264px", width: 264, background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, padding: 22, boxShadow: "0 14px 34px -24px rgba(20,46,81,.5)" }}>
+              <div key={i} aria-hidden={i >= VENDORS.length || undefined} style={{ flex: `0 0 ${CARD_W}px`, width: CARD_W, background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, padding: 22, boxShadow: "0 14px 34px -24px rgba(20,46,81,.5)" }}>
                 <div style={{ height: 66, borderRadius: 11, background: v.tint, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: DISPLAY, fontWeight: 800, fontSize: 16, letterSpacing: ".01em", color: v.ink }}>{v.mark}</div>
                 <div style={{ fontFamily: MONO, fontWeight: 600, fontSize: 10.5, letterSpacing: ".1em", color: "var(--lightblue)", textTransform: "uppercase", marginTop: 16 }}>{v.category}</div>
                 <h3 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 18.5, margin: "6px 0", letterSpacing: "-.01em", color: "var(--navy)" }}>{v.name}</h3>

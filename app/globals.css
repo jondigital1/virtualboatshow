@@ -61,7 +61,11 @@ input, textarea, button, select { font-family: inherit; }
 /* ---- animations ---- */
 @keyframes buoyFloat { 0%,100%{ transform: translateY(0) rotate(-4deg);} 50%{ transform: translateY(-3px) rotate(4deg);} }
 @keyframes livePulse { 0%{ box-shadow: 0 0 0 0 rgba(52,199,120,.55);} 70%{ box-shadow: 0 0 0 9px rgba(52,199,120,0);} 100%{ box-shadow: 0 0 0 0 rgba(52,199,120,0);} }
-@keyframes vmarquee { from { transform: translateX(0); } to { transform: translateX(-2256px); } }
+/* Exhibitor Spotlight marquee: slides exactly one copy of the track. The
+   distance is set per element as --marquee-shift (app/map/page.tsx), since
+   it depends on how many cards are in the rotation; the fallback is the
+   old eight-card width. */
+@keyframes vmarquee { from { transform: translateX(0); } to { transform: translateX(var(--marquee-shift, -2256px)); } }
 
 /* ---- hover utilities (inline styles can't express :hover) ---- */
 .h-brighten { transition: filter .15s, transform .15s; }
