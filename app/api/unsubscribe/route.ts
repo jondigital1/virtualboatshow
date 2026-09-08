@@ -60,7 +60,8 @@ async function notifyShow(hash: string, isTest: boolean): Promise<void> {
       `This notice is automatic. Reply to this email with any questions.`,
     ].join("\n"),
   });
-  if (!r.ok) console.error("[unsubscribe] show notice failed:", r.error);
+  if (r.ok) console.log("[unsubscribe] show notice sent", isTest ? "(test, to copy inbox)" : "to show inbox");
+  else console.error("[unsubscribe] show notice failed:", r.error);
 }
 
 async function unsubscribe(req: Request): Promise<boolean> {
@@ -71,8 +72,12 @@ async function unsubscribe(req: Request): Promise<boolean> {
   const isTest = Boolean(url.searchParams.get("test"));
   const source = isTest ? "claude-test-cleanup" : "email-link";
   await recordMarker("unsubscribe", t, source);
-  // Never let the notice stand between the person and their confirmation.
-  await Promise.race([notifyShow(t, isTest), new Promise((r) => setTimeout(r, 4000))]);
+  // Awaited in full, not raced against a timer. A serverless function can be
+  // frozen the moment it responds, and the first version of this raced the
+  // notice against four seconds: the page rendered, the function froze, and
+  // the email to the show never left (2026-09-08). A second or two on the
+  // confirmation page is the price of the notice actually going out.
+  await notifyShow(t, isTest);
   return true;
 }
 
