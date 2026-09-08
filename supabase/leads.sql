@@ -87,3 +87,19 @@ select
   max(created_at)                                   as latest_lead
 from public.leads
 group by dealer_name, boat_slug, boat_make, boat_model, show_day, daypart, source;
+
+-- The view is for the SQL editor and any future server-side dashboard, never
+-- the public API. Two things make that true (Supabase linter finding
+-- security_definer_view, 2026-09-08):
+--
+--   1. security_invoker: a Postgres view runs as its OWNER by default. Owned by
+--      postgres, it would read public.leads with RLS bypassed, so anyone holding
+--      the anon key could pull per-dealer lead counts through /rest/v1/lead_stats.
+--      With security_invoker the view runs as the caller, and the caller hits
+--      the no-policy RLS above and gets nothing.
+--   2. revoke: Supabase's default privileges grant anon and authenticated SELECT
+--      on new objects in public. Taking that away turns the request into a
+--      clean permission error instead of an empty result, and stays correct
+--      even if a policy is ever added to the base table for another reason.
+alter view public.lead_stats set (security_invoker = true);
+revoke all on public.lead_stats from anon, authenticated;
