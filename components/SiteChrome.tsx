@@ -60,7 +60,7 @@ export function Nav({ active, bare = false }: { active?: string; bare?: boolean 
       source={source}
       className="h-brighten"
       onOpen={() => setOpen(false)}
-      style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7, background: "var(--navy)", color: "#fff", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "12px 20px", borderRadius: 8, fontFamily: "inherit", ...extra }}
+      style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7, background: "var(--gold)", color: "var(--navy)", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "12px 20px", borderRadius: 8, fontFamily: "inherit", ...extra }}
     />
   );
 
