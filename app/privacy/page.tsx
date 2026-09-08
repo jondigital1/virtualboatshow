@@ -91,10 +91,12 @@ export default function Privacy() {
           </p>
           <p style={p}>
             <strong style={{ color: "var(--navy)" }}>The Atlantic City In-Water Boat Show and Buoy.</strong> This
-            site is run for the show by Buoy, the boating app behind it, and the two share your name and email
-            address. Neither keeps your phone number, and neither will call or text you. Both may email you
-            about this show, about future shows, and about Buoy. Every email either of them sends includes a
-            one-click unsubscribe, and unsubscribing stops both.
+            site is run for the show by Buoy, the boating app behind it. Everything you enter here, except your
+            phone number, goes to both. Buoy operates the platform and holds the records; the Atlantic City
+            In-Water Boat Show receives its own complete copy and keeps it in its own records, for its own show
+            communications and marketing, this year and in future years. Buoy uses its copy to contact you about
+            the Buoy launch and product news. Neither keeps your phone number, and neither will call or text
+            you. Every email either of them sends includes a one-click unsubscribe, and unsubscribing stops both.
           </p>
           <p style={p}>
             We do not sell your personal information, and we do not pass your name, email address, or phone
@@ -107,8 +109,9 @@ export default function Privacy() {
             None of our forms has a consent checkbox. Each one says, next to its button, what continuing means:
             that the dealer may contact you about the boat you asked about (walkthrough form only), and that the
             Atlantic City In-Water Boat Show and Buoy may email you about this show, future shows, and Buoy. On
-            that basis we keep your name and email address, along with which boat, which dealer, which day, and
-            where you came from. Your mobile number is passed to the dealer and is not saved to our database.
+            that basis both the show and Buoy keep your name and email address, along with which boat, which
+            dealer, which day, and where you came from. Your mobile number is passed to the dealer and is not
+            saved to our database.
           </p>
           <p style={p}>
             Every email we send includes a one-click unsubscribe. Using it stops email from both the show and
