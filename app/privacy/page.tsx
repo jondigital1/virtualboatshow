@@ -18,7 +18,7 @@ const FONT = "var(--font-poppins), sans-serif";
  * statement people rely on.
  */
 
-const UPDATED = "September 7, 2026";
+const UPDATED = "September 8, 2026";
 
 const h2: React.CSSProperties = {
   fontFamily: DISPLAY,
@@ -66,9 +66,9 @@ export default function Privacy() {
             We ask for personal details in three places. The dockside walkthrough form on a boat page asks for
             your first and last name, mobile number, email address, the day you plan to attend, and whether you
             expect to come in the morning or the afternoon. On your way to the ticket window we ask for a first
-            name and email address, used to send the two updates you agree to there and to let the show
-            recognise its own referrals among ticket sales. And from 9 AM on opening day, the boat lineup asks
-            for your first name, last name and email address before it opens.
+            name and email address, which also lets the show recognise its own referrals among ticket sales.
+            And from 9 AM on opening day, the boat lineup asks for your first name, last name and email address
+            before it opens.
           </p>
           <p style={p}>
             We do not ask you to create an account, and we do not have one to create.
@@ -90,40 +90,32 @@ export default function Privacy() {
             practices, not ours.
           </p>
           <p style={p}>
+            <strong style={{ color: "var(--navy)" }}>The Atlantic City In-Water Boat Show and Buoy.</strong> This
+            site is run for the show by Buoy, the boating app behind it, and the two share what you give us here.
+            Both may email you about this show, about future shows, and about Buoy. Every email either of them
+            sends includes a one-click unsubscribe, and unsubscribing stops both.
+          </p>
+          <p style={p}>
             We do not sell your personal information, and we do not pass your name, email address, or phone
             number to dealers you did not choose. We do advertise the show, and the section on cookies below
             explains exactly what Meta learns when you arrive from one of those ads.
           </p>
 
-          <h2 style={h2}>What we keep, and what we do not</h2>
+          <h2 style={h2}>What we keep</h2>
           <p style={p}>
-            The walkthrough form has a checkbox asking whether we may send you show updates. That checkbox is
-            optional, and it decides what we store:
-          </p>
-          <p style={li}>
-            <strong style={{ color: "var(--navy)" }}>If you leave it unticked</strong>, we keep a record of the
-            enquiry itself, which boat, which dealer, which day, and where you came from, but your name, email
-            address, and phone number are not saved to our database at all. They are used to send the dealer
-            their notification and to send you a confirmation, and that is the end of it.
-          </p>
-          <p style={li}>
-            <strong style={{ color: "var(--navy)" }}>If you tick it</strong>, we also keep your name, email, and
-            phone so we can contact you about the show.
+            None of our forms has a consent checkbox. Each one says, next to its button, what continuing means:
+            that the dealer may contact you about the boat you asked about (walkthrough form only), and that the
+            Atlantic City In-Water Boat Show and Buoy may email you about this show, future shows, and Buoy. On
+            that basis we keep the details you enter: name, email address, and, from the walkthrough form, your
+            mobile number, along with which boat, which dealer, which day, and where you came from.
           </p>
           <p style={p}>
-            The ticket form works differently: its box is required to continue, and it says exactly what you
-            are agreeing to, an email when show access goes live and an email when Buoy launches. We keep your
-            first name and email address to send them, and every email we send includes a one-click
-            unsubscribe.
+            Every email we send includes a one-click unsubscribe. Using it stops email from both the show and
+            Buoy; it does not affect a dealer you have already asked to contact you.
           </p>
           <p style={p}>
-            The boat lineup form on show days has no box. It says beneath its button that continuing means the
-            show may email you about the show and about Buoy, and we keep your name and email address on that
-            basis. The same one-click unsubscribe applies.
-          </p>
-          <p style={p}>
-            In both cases we store a one-way fingerprint of your email address. It cannot be turned back into an
-            address, and we use it only to avoid counting one person as several.
+            We also store a one-way fingerprint of your email address. It cannot be turned back into an address,
+            and we use it only to avoid counting one person as several and to honour unsubscribes.
           </p>
 
           <h2 style={h2}>Services we rely on</h2>
@@ -178,9 +170,9 @@ export default function Privacy() {
 
           <h2 style={h2}>How long we keep it</h2>
           <p style={p}>
-            Contact details kept under the checkbox are held until you ask us to remove them, or twelve months
-            after the show, whichever comes first. Records of enquiries with no contact details attached are kept
-            indefinitely, because they no longer identify anyone.
+            Contact details are held until you unsubscribe or ask us to remove them. After that we keep only
+            the record of the enquiry itself and the one-way fingerprint, so that we can keep honouring the
+            unsubscribe; neither identifies you.
           </p>
 
           <h2 style={h2}>Your choices</h2>

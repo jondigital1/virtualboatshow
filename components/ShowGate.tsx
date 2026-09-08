@@ -188,8 +188,9 @@ function RegisterForm() {
       </button>
 
       <p style={{ fontFamily: FONT, fontSize: 11.5, lineHeight: 1.5, color: "#7c8b96", margin: "12px 0 0", textAlign: "center" }}>
-        By continuing you agree that the show may email you about the show and about Buoy, the boating app
-        behind this site. Unsubscribe any time with one click. See our{" "}
+        By continuing you agree that the Atlantic City In-Water Boat Show and Buoy, the boating app behind
+        this site, may email you about this show, future shows, and Buoy. Unsubscribe any time with one click.
+        See our{" "}
         <a href="/privacy" style={{ color: "var(--linkblue)", fontWeight: 600 }}>privacy policy</a>.
       </p>
     </form>

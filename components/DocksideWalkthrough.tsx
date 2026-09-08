@@ -93,7 +93,6 @@ export function DocksideWalkthrough({
     day: "",
     daypart: "Not sure yet",
   });
-  const [optIn, setOptIn] = useState(false);
 
   // Abandonment: opened, touched a field, then left without submitting.
   const submitted = useRef(false);
@@ -145,7 +144,8 @@ export function DocksideWalkthrough({
     const { ok } = await submitLead({
       type: "dockside-walkthrough",
       ...form,
-      marketingOptIn: optIn,
+      // Consent by continuing; the sentence above the button says so.
+      marketingOptIn: true,
       // Boat and dealer travel with the lead so appointments can be reported
       // per boat and per dealer later. Stock number, HIN, and dealer ID are
       // deliberately absent: show boats carry none of them.
@@ -292,18 +292,12 @@ export function DocksideWalkthrough({
                 </div>
               </div>
 
-              <label style={{ display: "flex", alignItems: "flex-start", gap: 9, fontSize: 13, color: "rgba(20,46,81,.72)", lineHeight: 1.45, cursor: "pointer" }}>
-                <input
-                  type="checkbox"
-                  checked={optIn}
-                  onChange={(e) => setOptIn(e.target.checked)}
-                  style={{ marginTop: 2, width: 16, height: 16, accentColor: "var(--navy)", flex: "0 0 auto" }}
-                />
-                <span>
-                  Send me show updates and boats like this. We never sell your details, and you can ask us to
-                  delete them any time. <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--linkblue)", fontWeight: 600 }} onClick={(e) => e.stopPropagation()}>Privacy</a>
-                </span>
-              </label>
+              <p style={{ fontSize: 12.5, color: "rgba(20,46,81,.72)", lineHeight: 1.5, margin: 0 }}>
+                By requesting a walkthrough you agree that the dealer may contact you about this boat, and that
+                the Atlantic City In-Water Boat Show and Buoy, the boating app behind this site, may email you
+                about this show, future shows, and Buoy. We never sell your details. Unsubscribe any time with
+                one click. <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--linkblue)", fontWeight: 600 }}>Privacy</a>
+              </p>
 
               {err && <div style={{ fontSize: 13, color: "#b3261e" }}>{err}</div>}
 

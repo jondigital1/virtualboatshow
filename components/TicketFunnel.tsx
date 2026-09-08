@@ -19,12 +19,14 @@
  * window goes through the capture. The abandon rate on this sheet is the
  * number to watch for whether that wall costs ticket sales.
  *
- * The checkbox is REQUIRED, per Jon (2026-08-27): it is an explicit
- * acknowledgment, not an optional opt-in, and it must be an actual click
- * (never pre-ticked). It promises exactly two emails, one when show access
- * goes live and one when Buoy launches, so every funnel lead stores name and
- * email (the consent constraint is satisfied because the box is always
- * ticked) and those two sends are now real commitments someone must make.
+ * There is no checkbox, per Jon (2026-09-08). Consent is given by continuing
+ * and stated in a sentence under the button that names both parties, the
+ * show and Buoy, and covers future shows. A required box added nothing for a
+ * U.S. audience (CAN-SPAM asks for identification and a working unsubscribe,
+ * not opt-in), and cost a tap. Every funnel lead stores name and email with
+ * marketingOptIn true, which is what the database constraint keys on. The
+ * earlier required box (2026-08-27) promised exactly two emails; the
+ * opening-day send still goes to everyone captured here.
  *
  * The form lives in TicketCaptureForm so the popup sheet (TicketFunnelButton)
  * and the /tickets ad landing page share one implementation: same fields,
@@ -53,7 +55,6 @@ export function TicketCaptureForm({ source, onSubmitted, autoFocus = false }: { 
   const { open: openTickets } = useIframeModal();
   const [first, setFirst] = useState("");
   const [email, setEmail] = useState("");
-  const [optIn, setOptIn] = useState(false);
   const [hp, setHp] = useState(""); // honeypot
   const [err, setErr] = useState<string | null>(null);
   const firstRef = useRef<HTMLInputElement>(null);
@@ -68,7 +69,6 @@ export function TicketCaptureForm({ source, onSubmitted, autoFocus = false }: { 
     e.preventDefault();
     if (!first.trim()) return setErr("Enter your first name.");
     if (!EMAIL_RE.test(email.trim())) return setErr("Enter a valid email address.");
-    if (!optIn) return setErr("Tick the box to continue to tickets.");
 
     // Fire and forget: the lead write must never stand between a buyer and
     // the ticket window. The modal does not wait for it.
@@ -76,7 +76,8 @@ export function TicketCaptureForm({ source, onSubmitted, autoFocus = false }: { 
       type: "ticket-intent",
       firstName: first.trim(),
       email: email.trim(),
-      marketingOptIn: optIn,
+      // Consent by continuing; the sentence under the button says so.
+      marketingOptIn: true,
       website: hp,
       source,
       pageUrl: typeof window !== "undefined" ? window.location.href : "",
@@ -85,7 +86,7 @@ export function TicketCaptureForm({ source, onSubmitted, autoFocus = false }: { 
       ...readAttribution(),
     });
 
-    track("ticket_funnel_submitted", { source, optIn: String(optIn) });
+    track("ticket_funnel_submitted", { source });
     // The deepest conversion the pixel can observe: checkout runs in a
     // cross-origin iframe it cannot see into, so ads optimise against this.
     pixel("Lead", { content_name: "ticket-capture", content_category: source });
@@ -104,13 +105,6 @@ export function TicketCaptureForm({ source, onSubmitted, autoFocus = false }: { 
       <label htmlFor="tf-email" style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#5f7180" }}>Email</label>
       <input id="tf-email" type="email" value={email} onChange={(e) => { setEmail(e.target.value); setErr(null); }} autoComplete="email" autoCapitalize="none" inputMode="email" style={{ width: "100%", margin: "6px 0 0", padding: "13px 15px", fontSize: 16, fontFamily: "inherit", color: "var(--navy)", background: "#fff", border: `2px solid ${err && !EMAIL_RE.test(email.trim()) && first.trim() ? "#c0392b" : "rgba(20,46,81,.18)"}`, borderRadius: 12, outline: "none" }} />
 
-      <label style={{ display: "flex", gap: 9, alignItems: "flex-start", margin: "14px 0 0", cursor: "pointer" }}>
-        <input type="checkbox" checked={optIn} aria-required="true" onChange={(e) => { setOptIn(e.target.checked); setErr(null); }} style={{ marginTop: 3, width: 16, height: 16, accentColor: "var(--navy)" }} />
-        <span style={{ fontFamily: FONT, fontSize: 12.5, lineHeight: 1.5, color: "rgba(20,46,81,.72)" }}>
-          Email me when show access goes live, and when Buoy, the boating app behind this site, launches.
-        </span>
-      </label>
-
       {err && (
         <div role="alert" style={{ fontFamily: FONT, color: "#c0392b", fontSize: 13.5, marginTop: 10, fontWeight: 600 }}>{err}</div>
       )}
@@ -120,7 +114,9 @@ export function TicketCaptureForm({ source, onSubmitted, autoFocus = false }: { 
       </button>
 
       <p style={{ fontFamily: FONT, fontSize: 11.5, lineHeight: 1.5, color: "#7c8b96", margin: "12px 0 0", textAlign: "center" }}>
-        Required to continue. Unsubscribe any time with one click. See our{" "}
+        By continuing you agree that the Atlantic City In-Water Boat Show and Buoy, the boating app behind
+        this site, may email you about this show, future shows, and Buoy. Unsubscribe any time with one click.
+        See our{" "}
         <a href="/privacy" style={{ color: "var(--linkblue)", fontWeight: 600 }}>privacy policy</a>.
       </p>
     </form>
