@@ -137,7 +137,10 @@ async function walkthrough(d: Record<string, unknown>) {
     first_name: optIn ? firstName : null,
     last_name: optIn ? lastName : null,
     email: optIn ? email : null,
-    phone: optIn ? phone || null : null,
+    // Never stored. The dealer gets it in the notification above and is the
+    // only party that keeps it; neither the show nor Buoy retains phone
+    // numbers or contacts anyone by phone (Jon, 2026-09-08).
+    phone: null,
   });
 
   const dayLabel = DAYS[day] ?? day;
@@ -251,7 +254,7 @@ async function vendorInquiry(d: Record<string, unknown>) {
     first_name: name,
     last_name: null,
     email,
-    phone: clean(d.phone, CAP.phone) || null,
+    phone: null, // never stored; see walkthrough()
   });
 
   if (!mailConfigured()) {

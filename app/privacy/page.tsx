@@ -86,14 +86,15 @@ export default function Privacy() {
           <p style={p}>
             <strong style={{ color: "var(--navy)" }}>The dealer showing the boat you chose.</strong> That is the
             entire point of the form: we tell them you plan to visit, and we pass on your name, email, and phone
-            so they can recognise you or reply. Their handling of your details is governed by their own
-            practices, not ours.
+            so they can recognise you or reply. The dealer is the only party that keeps your phone number. Their
+            handling of your details is governed by their own practices, not ours.
           </p>
           <p style={p}>
             <strong style={{ color: "var(--navy)" }}>The Atlantic City In-Water Boat Show and Buoy.</strong> This
-            site is run for the show by Buoy, the boating app behind it, and the two share what you give us here.
-            Both may email you about this show, about future shows, and about Buoy. Every email either of them
-            sends includes a one-click unsubscribe, and unsubscribing stops both.
+            site is run for the show by Buoy, the boating app behind it, and the two share your name and email
+            address. Neither keeps your phone number, and neither will call or text you. Both may email you
+            about this show, about future shows, and about Buoy. Every email either of them sends includes a
+            one-click unsubscribe, and unsubscribing stops both.
           </p>
           <p style={p}>
             We do not sell your personal information, and we do not pass your name, email address, or phone
@@ -106,8 +107,8 @@ export default function Privacy() {
             None of our forms has a consent checkbox. Each one says, next to its button, what continuing means:
             that the dealer may contact you about the boat you asked about (walkthrough form only), and that the
             Atlantic City In-Water Boat Show and Buoy may email you about this show, future shows, and Buoy. On
-            that basis we keep the details you enter: name, email address, and, from the walkthrough form, your
-            mobile number, along with which boat, which dealer, which day, and where you came from.
+            that basis we keep your name and email address, along with which boat, which dealer, which day, and
+            where you came from. Your mobile number is passed to the dealer and is not saved to our database.
           </p>
           <p style={p}>
             Every email we send includes a one-click unsubscribe. Using it stops email from both the show and

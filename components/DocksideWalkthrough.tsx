@@ -293,10 +293,10 @@ export function DocksideWalkthrough({
               </div>
 
               <p style={{ fontSize: 12.5, color: "rgba(20,46,81,.72)", lineHeight: 1.5, margin: 0 }}>
-                By requesting a walkthrough you agree that the dealer may contact you about this boat, and that
-                the Atlantic City In-Water Boat Show and Buoy, the boating app behind this site, may email you
-                about this show, future shows, and Buoy. We never sell your details. Unsubscribe any time with
-                one click. <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--linkblue)", fontWeight: 600 }}>Privacy</a>
+                By requesting a walkthrough you agree that this dealer may contact you about this boat, by phone
+                or email. The Atlantic City In-Water Boat Show and Buoy, the boating app behind this site, keep
+                only your name and email, never your phone number, and may email you about this show, future
+                shows, and Buoy. We never sell your details. Unsubscribe any time with one click. <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--linkblue)", fontWeight: 600 }}>Privacy</a>
               </p>
 
               {err && <div style={{ fontSize: 13, color: "#b3261e" }}>{err}</div>}
