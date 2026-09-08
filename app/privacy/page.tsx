@@ -18,7 +18,7 @@ const FONT = "var(--font-poppins), sans-serif";
  * statement people rely on.
  */
 
-const UPDATED = "September 2, 2026";
+const UPDATED = "September 7, 2026";
 
 const h2: React.CSSProperties = {
   fontFamily: DISPLAY,
@@ -63,11 +63,12 @@ export default function Privacy() {
 
           <h2 style={h2}>What you give us</h2>
           <p style={p}>
-            We ask for personal details in two places. The dockside walkthrough form on a boat page asks for
+            We ask for personal details in three places. The dockside walkthrough form on a boat page asks for
             your first and last name, mobile number, email address, the day you plan to attend, and whether you
-            expect to come in the morning or the afternoon. And on your way to the ticket window we ask for a
-            first name and email address, used to send the two updates you agree to there and to let the show
-            recognise its own referrals among ticket sales.
+            expect to come in the morning or the afternoon. On your way to the ticket window we ask for a first
+            name and email address, used to send the two updates you agree to there and to let the show
+            recognise its own referrals among ticket sales. And from 9 AM on opening day, the boat lineup asks
+            for your first name, last name and email address before it opens.
           </p>
           <p style={p}>
             We do not ask you to create an account, and we do not have one to create.
@@ -114,6 +115,11 @@ export default function Privacy() {
             are agreeing to, an email when show access goes live and an email when Buoy launches. We keep your
             first name and email address to send them, and every email we send includes a one-click
             unsubscribe.
+          </p>
+          <p style={p}>
+            The boat lineup form on show days has no box. It says beneath its button that continuing means the
+            show may email you about the show and about Buoy, and we keep your name and email address on that
+            basis. The same one-click unsubscribe applies.
           </p>
           <p style={p}>
             In both cases we store a one-way fingerprint of your email address. It cannot be turned back into an

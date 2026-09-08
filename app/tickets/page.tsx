@@ -30,7 +30,7 @@ const FONT = "var(--font-poppins), sans-serif";
 
 const POINTS: string[] = [
   "250+ boats in the water, four days on the docks",
-  "The full online boat lineup opens September 10 at 10 AM, and we email you the moment it does",
+  "The full online boat lineup opens September 10 at 9 AM, and we email you the moment it does",
   "Special show pricing is available directly from the dealer at the dock",
 ];
 

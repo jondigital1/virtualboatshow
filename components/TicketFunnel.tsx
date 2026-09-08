@@ -10,7 +10,7 @@
  * Matching these emails against the ticketing platform's purchaser export is
  * how the show proves which sales came through this site.
  *
- * Capture grants NO inventory access. The gate stays shut until 10 AM on
+ * Capture grants NO inventory access. The gate stays shut until 9 AM on
  * opening day for everyone but the internal code, per the owners; an
  * unlock-at-capture design shipped briefly on 2026-08-27 and was reversed by
  * Jon the same day.

@@ -16,7 +16,7 @@ const GATE_HASH = "ef48cbbb34d2e019141accae5972292b7de037898c7c282ede77614badee8
 /** Each route asserts the content that proves the page actually works. */
 const ROUTES = [
   { path: "/", must: ["Powered by Buoy", "Atlantic City"], label: "home" },
-  { path: "/inventory", must: ["Opens September 10 at 10 AM", "Feature boats"], sel: ".gate-teasers", label: "gate (locked)" },
+  { path: "/inventory", must: ["September 10 at 9 AM", "Feature boats"], sel: ".gate-teasers", label: "gate (locked)" },
   { path: "/inventory", must: ["results"], sel: 'select[aria-label="Filter by brand"]', unlock: true, minBoatLinks: 50, label: "inventory (unlocked)" },
   { path: "/boats/cobia-320-cc", must: ["Cobia 320", "dockside walkthrough", "Where to find it"], label: "boat page" },
   // Unknown slugs return a real 404 on purpose, so the 404 status is the pass

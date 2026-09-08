@@ -7,8 +7,9 @@ import { contactHash, listOpeningDayRecipients, listHashesByType, recordMarker }
  * The opening-day send: the email every ticket-funnel signup was promised by
  * the required checkbox, "email me when show access goes live."
  *
- * Fired by Vercel cron at 14:00 UTC on September 10, 2026, which is 10:00 AM
- * Eastern, the exact moment the inventory gate lifts (lib/gate.ts SHOW_OPENS).
+ * Fired by Vercel cron at 13:00 UTC on September 10, 2026, which is 9:00 AM
+ * Eastern, the exact moment the show-day gate takes over (lib/gate.ts
+ * SHOW_OPENS). Moved from 10 AM with the gate on 2026-09-07.
  * Vercel includes CRON_SECRET as a bearer token on cron invocations; the same
  * token triggers manual runs. With no CRON_SECRET configured the route
  * refuses everything, so it fails closed.

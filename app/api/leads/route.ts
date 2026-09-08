@@ -347,8 +347,9 @@ async function buoyWaitlist(d: Record<string, unknown>, cors?: Record<string, st
  * by matching these rows against the purchaser export the show can pull from
  * the ticketing platform.
  *
- * Capture grants NO inventory access: the gate stays shut until 10 AM on
- * opening day for everyone but the internal code, per the owners.
+ * Capture grants NO inventory access: the gate stays shut until 9 AM on
+ * opening day for everyone but the internal code, per the owners. From 9 AM
+ * the gate itself takes name and email (inventoryAccess below).
  *
  * No email is sent. Contact details are stored only with the marketing
  * opt-in, enforced by the same database constraint as every other lead;
@@ -377,6 +378,42 @@ async function ticketIntent(d: Record<string, unknown>) {
     email: optIn ? email : null,
   });
   console.log("[lead:ticket-intent]", JSON.stringify(safeSummary(d, { stored: Boolean(leadId) })));
+  return NextResponse.json({ ok: true });
+}
+
+/**
+ * Show-day gate registration. From 9 AM on opening day the inventory gate
+ * asks for first name, last name and email in place of the passcode, and
+ * drops the visitor onto the lineup. No email is sent. Consent is given by
+ * continuing: the form states under its button that the show will email
+ * them, so the client sends marketingOptIn true and the row keeps the name
+ * and address. Without it only the fingerprint would be kept, which would
+ * defeat the point of asking. The opening-day send excludes these rows by
+ * type; they registered after it went out and never asked for it.
+ */
+async function inventoryAccess(d: Record<string, unknown>) {
+  const email = clean(d.email, CAP.email);
+  if (!validEmail(email)) {
+    return NextResponse.json({ ok: false, error: "a valid email is required" }, { status: 400 });
+  }
+  const optIn = hasConsent(d);
+  const leadId = await insertLead({
+    type: "inventory-access",
+    source: clean(d.source, CAP.text) || "inventory-gate",
+    page_url: clean(d.pageUrl, 500) || null,
+    referrer: clean(d.referrer, 500) || null,
+    utm_source: clean(d.utmSource, CAP.text) || null,
+    utm_medium: clean(d.utmMedium, CAP.text) || null,
+    utm_campaign: clean(d.utmCampaign, CAP.text) || null,
+    utm_term: clean(d.utmTerm, CAP.text) || null,
+    utm_content: clean(d.utmContent, CAP.text) || null,
+    contact_hash: contactHash(email),
+    marketing_opt_in: optIn,
+    first_name: optIn ? clean(d.firstName, CAP.name) || null : null,
+    last_name: optIn ? clean(d.lastName, CAP.name) || null : null,
+    email: optIn ? email : null,
+  });
+  console.log("[lead:inventory-access]", JSON.stringify(safeSummary(d, { stored: Boolean(leadId) })));
   return NextResponse.json({ ok: true });
 }
 
@@ -415,6 +452,7 @@ export async function POST(req: Request) {
   if (data.type === "vendor-inquiry") return vendorInquiry(data);
   if (data.type === "buoy-waitlist") return buoyWaitlist(data, cors);
   if (data.type === "ticket-intent") return ticketIntent(data);
+  if (data.type === "inventory-access") return inventoryAccess(data);
 
   console.log("[lead]", JSON.stringify(safeSummary(data)));
   return NextResponse.json({ ok: true, delivered: false }, { headers: cors });
