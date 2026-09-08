@@ -115,7 +115,8 @@ export default function Privacy() {
           </p>
           <p style={p}>
             Every email we send includes a one-click unsubscribe. Using it stops email from both the show and
-            Buoy; it does not affect a dealer you have already asked to contact you.
+            Buoy: the site stops at once and notifies the show the same minute so its own records match. It does
+            not affect a dealer you have already asked to contact you.
           </p>
           <p style={p}>
             We also store a one-way fingerprint of your email address. It cannot be turned back into an address,

@@ -1,8 +1,17 @@
 import { NextResponse } from "next/server";
-import { recordMarker } from "@/lib/leads-store";
+import { recordMarker, emailsForHash } from "@/lib/leads-store";
+import { send, FROM, COPY_TO } from "@/lib/mail";
 
 /**
- * One-click unsubscribe, promised in the ticket funnel's required checkbox.
+ * One-click unsubscribe, promised beside the button on every form.
+ *
+ * Every unsubscribe is also reported to the show the same minute, by email
+ * to SHOW_UNSUBSCRIBE_NOTIFY_TO (Jon, 2026-09-08). The policy promises that
+ * one unsubscribe stops email from both the show and Buoy, and the show
+ * keeps its own complete copy of the list in its own system, which our
+ * exclusion list cannot reach. The notification is what keeps that promise
+ * true; the show's job is to remove the address on receipt. The response to
+ * the person never waits on it and never reveals whether it happened.
  *
  * The token is the recipient's contact fingerprint (64 hex chars), the same
  * HMAC stored with their lead. It is not personal data, it cannot be turned
@@ -20,13 +29,50 @@ import { recordMarker } from "@/lib/leads-store";
 
 const TOKEN_RE = /^[0-9a-f]{64}$/;
 
+/** Where the show receives unsubscribe notices. Giselle runs the show's own
+ *  sends, so her inbox is the default; override in Vercel without a deploy. */
+const SHOW_NOTIFY_TO = process.env.SHOW_UNSUBSCRIBE_NOTIFY_TO ?? "giselle.acboatshow@gmail.com";
+
+/**
+ * Report the unsubscribe to the show so it can remove the address from its
+ * own list. A test call goes to our own copy inbox instead, so the pipeline
+ * can be exercised end to end without emailing the show.
+ */
+async function notifyShow(hash: string, isTest: boolean): Promise<void> {
+  const emails = await emailsForHash(hash);
+  if (!emails.length) return; // fingerprint only: nothing the show could hold
+  const when = new Date().toLocaleString("en-US", { timeZone: "America/New_York", dateStyle: "medium", timeStyle: "short" });
+  const r = await send({
+    to: [isTest ? COPY_TO : SHOW_NOTIFY_TO],
+    bcc: isTest ? undefined : [COPY_TO],
+    replyTo: FROM,
+    subject: `${isTest ? "[Test] " : ""}Unsubscribe: remove ${emails[0]} from show email lists`,
+    text: [
+      `Someone unsubscribed from Atlantic City In-Water Boat Show email through acvirtualboatshow.com.`,
+      ``,
+      `Address${emails.length > 1 ? "es" : ""}: ${emails.join(", ")}`,
+      `When: ${when} Eastern`,
+      ``,
+      `Our privacy policy promises that one unsubscribe stops email from both the show and Buoy.`,
+      `It is already stopped on the site's side. Please remove this address from every show`,
+      `list and system it appears in, so the show's own sends honor it too.`,
+      ``,
+      `This notice is automatic. Reply to this email with any questions.`,
+    ].join("\n"),
+  });
+  if (!r.ok) console.error("[unsubscribe] show notice failed:", r.error);
+}
+
 async function unsubscribe(req: Request): Promise<boolean> {
   const url = new URL(req.url);
   const t = (url.searchParams.get("t") ?? "").toLowerCase();
   if (!TOKEN_RE.test(t)) return false;
   // Test calls tag themselves so cleanup stays the standing one-liner.
-  const source = url.searchParams.get("test") ? "claude-test-cleanup" : "email-link";
+  const isTest = Boolean(url.searchParams.get("test"));
+  const source = isTest ? "claude-test-cleanup" : "email-link";
   await recordMarker("unsubscribe", t, source);
+  // Never let the notice stand between the person and their confirmation.
+  await Promise.race([notifyShow(t, isTest), new Promise((r) => setTimeout(r, 4000))]);
   return true;
 }
 

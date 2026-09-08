@@ -117,6 +117,27 @@ export async function listOpeningDayRecipients(): Promise<Recipient[] | null> {
 }
 
 /**
+ * The email address(es) stored under a contact fingerprint. Used once, when
+ * someone unsubscribes, to tell the show which address to remove from its own
+ * list: the fingerprint alone means nothing to them. Empty when the person
+ * never consented to storage (fingerprint only) or the store is down.
+ */
+export async function emailsForHash(hash: string): Promise<string[]> {
+  if (!storeConfigured()) return [];
+  try {
+    const res = await fetch(
+      `${URL_BASE}/rest/v1/leads?contact_hash=eq.${encodeURIComponent(hash)}&email=not.is.null&select=email&limit=20`,
+      { headers: { apikey: KEY, Authorization: `Bearer ${KEY}` } }
+    );
+    if (!res.ok) return [];
+    const rows = (await res.json()) as { email: string }[];
+    return [...new Set(rows.map((r) => r.email.trim().toLowerCase()).filter(Boolean))];
+  } catch {
+    return [];
+  }
+}
+
+/**
  * All contact fingerprints recorded under a marker type ("unsubscribe",
  * "opening-day-sent"). Null on failure so callers fail safe: a send that
  * cannot load the unsubscribe list must not run.
