@@ -184,7 +184,7 @@ function RegisterForm() {
         className="h-lift"
         style={{ width: "100%", marginTop: 16, padding: "15px 20px", fontSize: 16, fontWeight: 700, fontFamily: FONT, color: "var(--navy)", background: "var(--gold)", border: "none", borderRadius: 999, cursor: busy ? "default" : "pointer", opacity: busy ? 0.75 : 1 }}
       >
-        {busy ? "Opening the lineup…" : "See the boats →"}
+        {busy ? "Opening the lineup…" : "Take me to the boats!"}
       </button>
 
       <p style={{ fontFamily: FONT, fontSize: 11.5, lineHeight: 1.5, color: "#7c8b96", margin: "12px 0 0", textAlign: "center" }}>
