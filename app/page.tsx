@@ -97,6 +97,22 @@ export default function Home() {
             <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(30px,3.4vw,44px)", letterSpacing: ".01em", margin: "30px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
               Let&rsquo;s <span style={{ color: "var(--gold)" }}>Boat!</span>
             </div>
+
+            {/* The one outbound link in the hero, per Jon (2026-09-08): back to
+                the show's own site for hours, parking and everything this site
+                does not cover. Outline, not gold, so it reads as "also here"
+                and never outranks tickets or boats. Tagged so the show sees the
+                referrals in its own analytics, the mirror of their /show link. */}
+            <a
+              href="https://acinwaterboatshow.com/?utm_source=acvirtualboatshow&utm_medium=referral&utm_campaign=acbs-2026&utm_content=hero"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline"
+              onClick={() => track("show_site_clicked", { placement: "hero" })}
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 22, background: "#fff", color: "var(--navy)", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "12px 20px", borderRadius: 8, border: "1.5px solid var(--lightblue)" }}
+            >
+              View Official Show Site <span aria-hidden>→</span>
+            </a>
           </div>
 
           <div style={{ minWidth: 0, position: "relative", borderRadius: 6, overflow: "hidden" }}>
