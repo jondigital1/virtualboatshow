@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-07T01:17:39.220Z",
-  "boatCount": 193,
+  "generatedAt": "2026-09-10T11:53:08.302Z",
+  "boatCount": 194,
   "boats": [
     {
       "slug": "albemarle-27-dual-console",
@@ -1983,6 +1983,41 @@
       ],
       "blurb": "The Formula 360 Crossover Bowrider does two jobs without compromise: open-bow day boating and genuine performance cruising, with overnight-capable cabin space below and Formula's signature build quality throughout.",
       "lengthFt": 36,
+      "photoCredit": null
+    },
+    {
+      "slug": "formula-500-ssc",
+      "brand": "Formula",
+      "model": "500 SSC",
+      "year": 2026,
+      "priority": 2,
+      "notes": "",
+      "shared": false,
+      "sourceUrl": "https://www.formulaboats.com/boats/500-super-sport-crossover/",
+      "brandUrl": "https://www.formulaboats.com/",
+      "dealers": [
+        {
+          "name": "Formula Boats",
+          "loc": "Decatur, IN",
+          "phone": "(260) 724-9111"
+        }
+      ],
+      "photos": [
+        "/boats/formula-500-ssc-1.jpg",
+        "/boats/formula-500-ssc-2.jpg",
+        "/boats/formula-500-ssc-3.jpg",
+        "/boats/formula-500-ssc-4.jpg",
+        "/boats/formula-500-ssc-5.jpg",
+        "/boats/formula-500-ssc-6.jpg",
+        "/boats/formula-500-ssc-7.jpg",
+        "/boats/formula-500-ssc-8.jpg",
+        "/boats/formula-500-ssc-9.jpg",
+        "/boats/formula-500-ssc-10.jpg",
+        "/boats/formula-500-ssc-11.jpg",
+        "/boats/formula-500-ssc-12.jpg"
+      ],
+      "blurb": "The Formula 500 Super Sport Crossover offers a luxurious cabin and a U-shaped kitchen, perfect for enjoying life on the water. Build your dream boat today!",
+      "lengthFt": 50,
       "photoCredit": null
     },
     {
