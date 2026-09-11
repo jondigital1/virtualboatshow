@@ -138,6 +138,30 @@ export async function emailsForHash(hash: string): Promise<string[]> {
 }
 
 /**
+ * Every lead row with its contact and campaign columns, newest first, for the
+ * authenticated export (app/api/leads-export). Phone is not selected: the API
+ * has not stored one since 2026-09-08 and the column is always null. Null on
+ * failure so the export fails closed rather than handing out a partial list.
+ */
+export async function listAllLeads(): Promise<(LeadRow & { created_at: string; delivered?: boolean })[] | null> {
+  if (!storeConfigured()) return null;
+  try {
+    const cols = [
+      "created_at", "type", "source", "first_name", "last_name", "email", "contact_hash", "marketing_opt_in",
+      "boat_year", "boat_make", "boat_model", "boat_slug", "dealer_name", "show_location", "show_day", "daypart",
+      "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "referrer", "page_url", "delivered",
+    ].join(",");
+    const res = await fetch(`${URL_BASE}/rest/v1/leads?select=${cols}&order=created_at.desc&limit=10000`, {
+      headers: { apikey: KEY, Authorization: `Bearer ${KEY}` },
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as (LeadRow & { created_at: string; delivered?: boolean })[];
+  } catch {
+    return null;
+  }
+}
+
+/**
  * All contact fingerprints recorded under a marker type ("unsubscribe",
  * "opening-day-sent"). Null on failure so callers fail safe: a send that
  * cannot load the unsubscribe list must not run.
