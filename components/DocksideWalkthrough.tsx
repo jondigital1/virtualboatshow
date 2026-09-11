@@ -65,6 +65,17 @@ const field: React.CSSProperties = {
   fontFamily: "inherit",
 };
 
+/**
+ * The show day that is happening today, or null outside the show. Compared as
+ * a local YYYY-MM-DD string so a visitor in Atlantic City sees their own date,
+ * not UTC's.
+ */
+function todayShowDay(): string | null {
+  const now = new Date();
+  const local = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  return SHOW_DAYS.some((d) => d.value === local) ? local : null;
+}
+
 export function DocksideWalkthrough({
   boat,
   dealer,
@@ -85,12 +96,17 @@ export function DocksideWalkthrough({
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstField = useRef<HTMLInputElement>(null);
 
+  // Today, if today is one of the show days. During the show almost everyone
+  // opening this is already on site or coming the same day, so the form opens
+  // on today rather than on "Choose a day".
+  const today = todayShowDay();
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
     phone: "",
     email: "",
-    day: "",
+    day: today ?? "",
     daypart: "Not sure yet",
   });
 
@@ -134,7 +150,6 @@ export function DocksideWalkthrough({
   async function send(e: React.FormEvent) {
     e.preventDefault();
     if (!form.firstName.trim()) return setErr("Enter your first name.");
-    if (!form.lastName.trim()) return setErr("Enter your last name.");
     if (form.phone.replace(/\D/g, "").length < 10) return setErr("Enter a mobile number we can reach you on.");
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email.trim())) return setErr("Enter a valid email address.");
     if (!form.day) return setErr("Pick the day you plan to attend.");
@@ -226,10 +241,12 @@ export function DocksideWalkthrough({
                   {dealer.name}
                 </div>
                 <h2 id="dw-title" style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 21, lineHeight: 1.15, color: "var(--navy)", margin: "6px 0 0" }}>
-                  Plan a dockside walkthrough
+                  {today ? "Meet them at the boat" : "Plan a dockside walkthrough"}
                 </h2>
                 <p style={{ fontSize: 13.5, color: "rgba(20,46,81,.72)", margin: "8px 0 0", lineHeight: 1.5 }}>
-                  Let {dealer.name} know you are coming to see the {[boat.year, boat.brand, boat.model].filter(Boolean).join(" ")}.
+                  {today
+                    ? `${dealer.name} gets your name and the boat, and will look for you at ${placementFor(dealer.name)?.dock ?? "their display"}. No appointment time needed.`
+                    : `Let ${dealer.name} know you are coming to see the ${[boat.year, boat.brand, boat.model].filter(Boolean).join(" ")}.`}
                 </p>
               </div>
               <button onClick={close} aria-label="Close" style={{ background: "none", border: "none", fontSize: 24, lineHeight: 1, color: "rgba(20,46,81,.5)", cursor: "pointer", padding: 0 }}>&times;</button>
@@ -242,13 +259,13 @@ export function DocksideWalkthrough({
                   <input id="dw-first" ref={firstField} style={field} value={form.firstName} onChange={set("firstName")} autoComplete="given-name" />
                 </div>
                 <div>
-                  <label style={label} htmlFor="dw-last">Last name</label>
+                  <label style={label} htmlFor="dw-last">Last name <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(optional)</span></label>
                   <input id="dw-last" style={field} value={form.lastName} onChange={set("lastName")} autoComplete="family-name" />
                 </div>
               </div>
 
               <div>
-                <label style={label} htmlFor="dw-phone">Mobile</label>
+                <label style={label} htmlFor="dw-phone">Mobile <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(so they can find you at the dock)</span></label>
                 <input id="dw-phone" type="tel" style={field} value={form.phone} onChange={set("phone")} autoComplete="tel" />
               </div>
 
@@ -258,9 +275,9 @@ export function DocksideWalkthrough({
               </div>
 
               <div>
-                <label style={label} htmlFor="dw-day">Day you plan to attend</label>
+                <label style={label} htmlFor="dw-day">{today ? "Which day" : "Day you plan to attend"}</label>
                 <select id="dw-day" style={{ ...field, appearance: "none", WebkitAppearance: "none" }} value={form.day} onChange={set("day")}>
-                  <option value="">Choose a day</option>
+                  {!today && <option value="">Choose a day</option>}
                   {SHOW_DAYS.map((d) => <option key={d.value} value={d.value}>{d.label}</option>)}
                 </select>
               </div>
