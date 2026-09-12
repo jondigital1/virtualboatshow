@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { IframeModalProvider } from "@/components/IframeModal";
 import { MetaPixel } from "@/components/MetaPixel";
 import { Attribution } from "@/components/Attribution";
@@ -67,6 +68,7 @@ export default function RootLayout({
       <body>
         <IframeModalProvider>{children}</IframeModalProvider>
         <Analytics />
+        <SpeedInsights />
         <MetaPixel />
         <Attribution />
       </body>
