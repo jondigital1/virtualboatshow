@@ -308,11 +308,10 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
             Hundreds of boats in the water at the show.
           </p>
 
-          {/* The four approved teaser boats: real photos, identities withheld. */}
-          <div className="gate-teasers" aria-hidden="true" style={{ marginTop: 26 }}>
-            {TEASERS.map((t) => <TeaserCard key={t.src} t={t} />)}
-          </div>
-
+          {/* The form comes before the teaser cards. With the cards first, a
+              phone's whole first screen was boat photos over grey placeholder
+              bars, and show-day visitors read that as a page that had failed
+              to load (Jon, 2026-09-13). Now the first screen says what to do. */}
           <div style={{ maxWidth: 560, margin: "30px auto 0", background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.5)", borderRadius: 16, padding: "clamp(20px,3vw,28px)" }}>
             {open ? (
               <>
@@ -405,6 +404,12 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
                 )}
               </>
             )}
+          </div>
+
+          {/* The four approved teaser boats: real photos, identities withheld,
+              now a preview under the form instead of a wall above it. */}
+          <div className="gate-teasers" aria-hidden="true" style={{ marginTop: 30 }}>
+            {TEASERS.map((t) => <TeaserCard key={t.src} t={t} />)}
           </div>
         </div>
       </section>
