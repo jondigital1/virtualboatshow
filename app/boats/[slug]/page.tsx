@@ -184,7 +184,7 @@ export default function ShowBoatVDP() {
                   </div>
                 )}
                 <div style={{ fontSize: 13.5, color: "#5a6c78", marginTop: 7 }}>September 10&ndash;13, 2026</div>
-                <Link href="/map" style={{ display: "inline-block", marginTop: 12, fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--linkblue)" }}>
+                <Link href="/map" onClick={() => track("map_link_clicked", { boat: boat.slug, dealer: boat.dealers[0]?.name ?? "" })} style={{ display: "inline-block", marginTop: 12, fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--linkblue)" }}>
                   Find it on the map <span aria-hidden>&rarr;</span>
                 </Link>
               </div>
