@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { track } from "@vercel/analytics";
-import { TicketFunnelButton } from "@/components/TicketFunnel";
+import { TicketFunnelButton, TicketFunnelSheet } from "@/components/TicketFunnel";
 import { WHEN_AND_WHERE, DATES_LONG, YEAR, NAME } from "@/lib/show";
 
 const FONT = "var(--font-poppins), sans-serif";
@@ -51,6 +51,13 @@ export function AnnouncementBar() {
  */
 export function Nav({ active, bare = false }: { active?: string; bare?: boolean }) {
   const [open, setOpen] = useState(false);
+  // The menu's own capture sheet. It lives out here, not inside the menu
+  // panel, because opening it closes the menu: a sheet rendered inside the
+  // panel is unmounted by that same click and never appears. See
+  // TicketFunnelSheet.
+  const [menuTickets, setMenuTickets] = useState(false);
+
+  const TICKET_BTN_STYLE: React.CSSProperties = { display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7, background: "var(--gold)", color: "var(--navy)", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "12px 20px", borderRadius: 8, fontFamily: "inherit" };
 
   // Every ticket path goes through the capture funnel, per Jon: no bare
   // openTickets() CTAs anywhere. Source labels tell nav and menu apart.
@@ -60,7 +67,7 @@ export function Nav({ active, bare = false }: { active?: string; bare?: boolean 
       source={source}
       className="h-brighten"
       onOpen={() => setOpen(false)}
-      style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7, background: "var(--gold)", color: "var(--navy)", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "12px 20px", borderRadius: 8, fontFamily: "inherit", ...extra }}
+      style={{ ...TICKET_BTN_STYLE, ...extra }}
     />
   );
 
@@ -121,9 +128,24 @@ export function Nav({ active, bare = false }: { active?: string; bare?: boolean 
               </Link>
             );
           })}
-          {ticketBtn({ marginTop: 16, fontSize: 14, padding: "15px 18px", width: "100%" }, "nav-menu")}
+          <button
+            type="button"
+            className="h-brighten"
+            onClick={() => { setMenuTickets(true); setOpen(false); track("ticket_funnel_opened", { source: "nav-menu" }); }}
+            style={{ ...TICKET_BTN_STYLE, marginTop: 16, fontSize: 14, padding: "15px 18px", width: "100%", border: "none", cursor: "pointer" }}
+          >
+            Get Tickets
+          </button>
         </div>
       )}
+
+      {/* Outside the panel above, which this sheet's own button closes. */}
+      <TicketFunnelSheet
+        open={menuTickets}
+        source="nav-menu"
+        onClose={() => { track("ticket_funnel_abandoned", { source: "nav-menu" }); setMenuTickets(false); }}
+        onSubmitted={() => setMenuTickets(false)}
+      />
     </nav>
   );
 }

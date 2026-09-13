@@ -168,29 +168,73 @@ export function TicketFunnelButton({
         {label}
       </button>
 
-      {/* Portaled to <body> so no transformed ancestor can ever cage it. */}
-      {open && typeof document !== "undefined" && createPortal(
-        <div
-          onMouseDown={(e) => { if (e.target === e.currentTarget) close(); }}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Get show tickets"
-          style={{ position: "fixed", inset: 0, zIndex: 220, background: "rgba(20,46,81,.55)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16, overflowY: "auto" }}
-        >
-          <div style={{ width: "100%", maxWidth: 440, background: "#fff", borderRadius: 18, padding: "clamp(22px,4vw,30px)", boxShadow: "0 30px 80px -25px rgba(20,46,81,.6)", position: "relative" }}>
-            <button onClick={close} aria-label="Close" style={{ position: "absolute", top: 12, right: 12, width: 32, height: 32, borderRadius: 8, border: "1px solid rgba(20,46,81,.15)", background: "#fff", color: "var(--navy)", fontSize: 15, cursor: "pointer" }}>✕</button>
-
-            <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 21, color: "var(--navy)", paddingRight: 34 }}>Grab your show tickets</div>
-            <p style={{ fontFamily: FONT, fontSize: 14, lineHeight: 1.55, color: "rgba(20,46,81,.72)", margin: "8px 0 16px" }}>
-              Tickets open in a moment. First, leave your name and email so the show knows you found
-              your boats here.
-            </p>
-
-            <TicketCaptureForm source={source} onSubmitted={() => setOpen(false)} autoFocus />
-          </div>
-        </div>,
-        document.body
-      )}
+      <TicketFunnelSheet open={open} source={source} onClose={close} onSubmitted={() => setOpen(false)} />
     </>
+  );
+}
+
+/**
+ * The capture sheet, with its open state owned by the caller.
+ *
+ * Split out of TicketFunnelButton because a caller that unmounts the button
+ * unmounts the sheet with it, portal and all, and the sheet then never paints.
+ * The mobile nav menu did exactly that: its Get Tickets button closed the menu
+ * it was rendered inside, so the button was gone before the sheet could show.
+ * The opened event had already fired and no abandon or submit could follow,
+ * which is why nav-menu recorded 22 opens and not one of either across the
+ * 2026 show. A caller that closes something on open has to own this state and
+ * render the sheet somewhere that outlives the button (see Nav in SiteChrome).
+ */
+export function TicketFunnelSheet({
+  open,
+  source,
+  onClose,
+  onSubmitted,
+}: {
+  open: boolean;
+  source: string;
+  onClose: () => void;
+  onSubmitted?: () => void;
+}) {
+  // Escape closes, and the page behind stops scrolling, matching the
+  // walkthrough dialog and the ticketing modal. This sheet was the only
+  // dialog on the site that did neither, so the one reflex a desktop visitor
+  // has for dismissing a modal left it sitting there.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open, onClose]);
+
+  if (!open || typeof document === "undefined") return null;
+
+  /* Portaled to <body> so no transformed ancestor can ever cage it. */
+  return createPortal(
+    <div
+      onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Get show tickets"
+      style={{ position: "fixed", inset: 0, zIndex: 220, background: "rgba(20,46,81,.55)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16, overflowY: "auto" }}
+    >
+      <div style={{ width: "100%", maxWidth: 440, background: "#fff", borderRadius: 18, padding: "clamp(22px,4vw,30px)", boxShadow: "0 30px 80px -25px rgba(20,46,81,.6)", position: "relative" }}>
+        <button onClick={onClose} aria-label="Close" style={{ position: "absolute", top: 12, right: 12, width: 32, height: 32, borderRadius: 8, border: "1px solid rgba(20,46,81,.15)", background: "#fff", color: "var(--navy)", fontSize: 15, cursor: "pointer" }}>✕</button>
+
+        <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 21, color: "var(--navy)", paddingRight: 34 }}>Grab your show tickets</div>
+        <p style={{ fontFamily: FONT, fontSize: 14, lineHeight: 1.55, color: "rgba(20,46,81,.72)", margin: "8px 0 16px" }}>
+          Tickets open in a moment. First, leave your name and email so the show knows you found
+          your boats here.
+        </p>
+
+        <TicketCaptureForm source={source} onSubmitted={onSubmitted} autoFocus />
+      </div>
+    </div>,
+    document.body
   );
 }
