@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, MONO, Eyebrow, PhonePill } from "@/components/ui";
+import { FaqSection } from "@/components/FaqSection";
 import { submitLead } from "@/lib/leads";
 import { DEALERS, VENDORS, DEALER_LOGOS, initials, type Row } from "@/lib/exhibitors";
+import { vendorsFaq } from "@/lib/faq";
 import { SHORT_NAME, YEAR } from "@/lib/show";
 
 function deco(r: Row) {
@@ -277,6 +279,8 @@ export default function Vendors() {
           </div>
         </div>
       </section>
+
+      <FaqSection items={vendorsFaq()} title="Marine Marketplace questions" tone="white" />
 
       <Footer />
     </>

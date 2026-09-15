@@ -6,7 +6,9 @@ import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { Eyebrow, PhonePill } from "@/components/ui";
 import { useIframeModal } from "@/components/IframeModal";
 import { TicketFunnelButton } from "@/components/TicketFunnel";
+import { FaqSection } from "@/components/FaqSection";
 import { START_DATE, END_DATE } from "@/lib/show";
+import { planFaq } from "@/lib/faq";
 
 const FONT = "var(--font-poppins), sans-serif";
 
@@ -233,6 +235,8 @@ export default function PlanYourVisit() {
           </div>
         </div>
       </section>
+
+      <FaqSection items={planFaq()} title="Questions about visiting" />
 
       <Footer />
     </>

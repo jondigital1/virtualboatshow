@@ -2,7 +2,8 @@
 //   node scripts/regression-check.mjs [base-url]
 // Defaults to production. Loads each page in headless Edge and fails on:
 // page JS errors, console errors, failed same-origin requests, broken images,
-// missing key content, or an em dash anywhere in visible text (house style).
+// missing key content, a page without its questions and answers (and exactly
+// one FAQPage block), or an em dash anywhere in visible text (house style).
 // Also checks robots, sitemap, and that the admin/removed API surfaces answer
 // the way they should. Exit code 0 = clean, 1 = regressions listed.
 //
@@ -13,22 +14,26 @@ const BASE = (process.argv[2] ?? "https://www.acvirtualboatshow.com").replace(/\
 const EDGE = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
 const GATE_HASH = "ef48cbbb34d2e019141accae5972292b7de037898c7c282ede77614badee82f3";
 
-/** Each route asserts the content that proves the page actually works. */
+/** Each route asserts the content that proves the page actually works. Every
+ *  page carries questions and answers unless faq is false (the noindexed ad
+ *  landing, the post-submit confirmation and the 404). The locked gate asserts
+ *  the show-day registration phase, live since 9 AM on September 10. */
 const ROUTES = [
   { path: "/", must: ["Powered by Buoy", "Atlantic City"], label: "home" },
-  { path: "/inventory", must: ["September 10 at 9 AM", "Feature boats"], sel: ".gate-teasers", label: "gate (locked)" },
+  { path: "/inventory", must: ["The lineup is open", "Feature boats"], sel: ".gate-teasers", label: "gate (locked)" },
   { path: "/inventory", must: ["results"], sel: 'select[aria-label="Filter by brand"]', unlock: true, minBoatLinks: 50, label: "inventory (unlocked)" },
   { path: "/boats/cobia-320-cc", must: ["Cobia 320", "dockside walkthrough", "Where to find it"], label: "boat page" },
   // Unknown slugs return a real 404 on purpose, so the 404 status is the pass
   // condition here, not a failure.
-  { path: "/boats/not-a-real-boat", must: ["find that boat"], label: "boat 404", expect404: true },
+  { path: "/boats/not-a-real-boat", must: ["find that boat"], label: "boat 404", expect404: true, faq: false },
   { path: "/vendors", must: ["Marine Marketplace"], label: "marketplace" },
   { path: "/map", must: ["Farley"], label: "map" },
   { path: "/plan", must: ["Hours & Tickets"], label: "plan" },
-  { path: "/sponsors", must: ["Golden Nugget"], label: "sponsors" },
-  { path: "/privacy", must: ["What you give us", "ticket window"], label: "privacy" },
-  { path: "/tickets", must: ["Grab your show tickets"], sel: "#tf-first", label: "tickets landing" },
-  { path: "/walkthrough/confirmed?boat=cobia-320-cc&day=2026-09-11&part=Morning", must: ["Cobia"], label: "walkthrough confirmed" },
+  // Sponsors and privacy carry no questions and answers yet (Jon to confirm).
+  { path: "/sponsors", must: ["Golden Nugget"], label: "sponsors", faq: false },
+  { path: "/privacy", must: ["What you give us", "ticket window"], label: "privacy", faq: false },
+  { path: "/tickets", must: ["Grab your show tickets"], sel: "#tf-first", label: "tickets landing", faq: false },
+  { path: "/walkthrough/confirmed?boat=cobia-320-cc&day=2026-09-11&part=Morning", must: ["Cobia"], label: "walkthrough confirmed", faq: false },
 ];
 
 const failures = [];
@@ -58,12 +63,18 @@ for (const r of ROUTES) {
       text: document.body.innerText,
       brokenImgs: [...document.querySelectorAll("img")].filter((i) => i.complete && i.naturalWidth === 0 && i.src.startsWith(location.origin)).map((i) => i.src.slice(location.origin.length)).slice(0, 5),
       boatLinks: document.querySelectorAll('a[href^="/boats/"]').length,
+      faqItems: document.querySelectorAll("details.faq-item").length,
+      faqLd: [...document.querySelectorAll('script[type="application/ld+json"]')].filter((s) => s.textContent.includes('"FAQPage"')).length,
     }));
 
     // Case-insensitive: CSS text-transform changes innerText casing.
     for (const m of r.must) if (!state.text.toLowerCase().includes(m.toLowerCase())) note(r.label, `missing content "${m}"`);
     if (r.sel && !(await page.$(r.sel))) note(r.label, `missing element ${r.sel}`);
     if (r.minBoatLinks && state.boatLinks < r.minBoatLinks) note(r.label, `only ${state.boatLinks} boat links`);
+    if (r.faq !== false) {
+      if (state.faqItems < 2) note(r.label, `only ${state.faqItems} questions and answers`);
+      if (state.faqLd !== 1) note(r.label, `${state.faqLd} FAQPage blocks, wanted exactly 1`);
+    }
     if (state.text.includes("\u2014")) note(r.label, "em dash found in visible text (house style)");
     for (const img of state.brokenImgs) note(r.label, `broken image ${img}`);
     for (const e of pageErrors) note(r.label, `page error: ${e}`);

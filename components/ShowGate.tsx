@@ -45,6 +45,8 @@ import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow } from "@/components/ui";
 import { TicketFunnelButton } from "@/components/TicketFunnel";
+import { FaqSection } from "@/components/FaqSection";
+import { lineupFaq, LINEUP_FAQ_COPY } from "@/lib/faq";
 import { submitLead } from "@/lib/leads";
 import { readAttribution } from "@/lib/attribution";
 import { GATE_STORAGE_KEY, GATE_PASSWORD_HASH, GATE_REGISTERED_MARK, SHOW_OPENS, SHOW_OPENS_LABEL } from "@/lib/gate";
@@ -413,6 +415,10 @@ export function ShowGate({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </section>
+
+      {/* The same questions and answers as the unlocked lineup, so the page a
+          crawler sees (always this locked view) carries them too. */}
+      <FaqSection items={lineupFaq()} {...LINEUP_FAQ_COPY} />
 
       <Footer />
 

@@ -163,6 +163,19 @@ input, textarea, button, select { font-family: inherit; }
   .show-map-mobile { display: block; }
 }
 
+/* Questions and answers (components/FaqSection.tsx), on every page. Native
+   <details>, so answers are in the HTML and open without JavaScript. */
+.faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+.faq-item { background: #fff; border: 1px solid rgba(20,46,81,.1); border-radius: 16px; overflow: hidden; }
+.faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px clamp(18px, 2vw, 26px); }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:focus-visible { outline: 2px solid var(--lightblue); outline-offset: -2px; }
+.faq-q { margin: 0; font-family: var(--font-poppins), sans-serif; font-weight: 700; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.35; letter-spacing: -.01em; color: #142E51; text-align: left; }
+.faq-mark { flex: 0 0 auto; width: 27px; height: 27px; border-radius: 50%; background: rgba(20,46,81,.06); color: #4c6270; display: flex; align-items: center; justify-content: center; font-size: 19px; line-height: 1; transition: transform .25s, background .2s; }
+.faq-item[open] .faq-mark { transform: rotate(45deg); background: var(--gold); color: #142E51; }
+.faq-a { margin: 0; padding: 0 clamp(18px, 2vw, 26px) 22px; font-size: 15.5px; line-height: 1.62; color: #4c6270; }
+@media (prefers-reduced-motion: reduce) { .faq-mark { transition: none; } }
+
 /* Featured rail: fixed column counts (3/2/1) so the 6 cards always fill
    complete rows at every width; an auto-fill grid packs 4-up on wide
    screens and strands 2 cards on a second row. */

@@ -7,7 +7,9 @@ import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow, PhonePill } from "@/components/ui";
 import { BoatShowPrice } from "@/components/BoatShowPrice";
+import { FaqSection } from "@/components/FaqSection";
 import { placementFor } from "@/lib/docks";
+import { boatFaq } from "@/lib/faq";
 import { logoFor, initials } from "@/lib/exhibitors";
 import { boatBySlug, boatTitle, showBoats } from "@/lib/showboats";
 
@@ -256,6 +258,8 @@ export default function ShowBoatVDP() {
           )}
         </div>
       </section>
+
+      <FaqSection items={boatFaq(boat)} title={`About the ${title}`} />
 
       {/* LIGHTBOX — fullscreen viewer: arrows, keyboard, swipe, click-to-zoom */}
       {lightbox >= 0 && count > 0 && (

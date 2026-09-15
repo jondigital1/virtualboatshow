@@ -9,6 +9,8 @@ import { TICKETS_URL } from "@/lib/gate";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { ShowMap } from "@/components/ShowMap";
 import { Eyebrow } from "@/components/ui";
+import { FaqSection } from "@/components/FaqSection";
+import { homeFaq } from "@/lib/faq";
 import { pickFeatured, boatTitle, type ShowBoat } from "@/lib/showboats";
 import { pickExhibitors, initials, type Row as Exhibitor } from "@/lib/exhibitors";
 
@@ -311,6 +313,8 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      <FaqSection items={homeFaq()} title="Questions about the show" tone="white" />
 
       <Footer />
     </>

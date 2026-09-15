@@ -7,20 +7,11 @@ import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow } from "@/components/ui";
 import { showBoats, waitingDealers, boatTitle, allBrands, allDealers, type ShowBoat } from "@/lib/showboats";
 import { DocksideWalkthrough } from "@/components/DocksideWalkthrough";
+import { FaqSection } from "@/components/FaqSection";
 import { placementFor } from "@/lib/docks";
+import { lineupFaq, LINEUP_FAQ_COPY } from "@/lib/faq";
 
 const FONT = "var(--font-poppins), sans-serif";
-
-const FAQ_DATA: [string, string][] = [
-  ["Should I buy a new or used boat?", "New boats bring full factory warranties and the latest tech; used boats stretch your budget and hold value when they’re well kept. At the show you can weigh both side by side and compare honestly before you ever board."],
-  ["What do engine hours actually tell me?", "Hours are the odometer of the water. Under about 100 a year is light use, but documented service history matters even more. Your dockside walkthrough is the time to ask the dealer for maintenance records."],
-  ["Can I take the boat out before I buy?", "Nothing replaces time on the water. Ask the dealer at the show. Many will arrange a sea trial where available, so you can feel how she handles before you commit to anything."],
-  ["What does a boat really cost to own beyond the sticker?", "Plan for insurance, storage or a slip, fuel, winterizing, registration, and routine maintenance. A good rule of thumb is roughly 10% of the purchase price each year. Ask each dealer to break the numbers down for your specific boat."],
-  ["How does boat financing work, and should I get pre-qualified?", "Marine loans commonly run 10 to 20 years with 10-20% down. Getting pre-qualified before the show tells you your true budget and speeds everything up. Several lenders exhibit on-site."],
-  ["Is the “Boat Show Price” really a better deal?", "Show pricing is negotiated for the event. Talking to the dealer at the dock is how you get it, and pricing details are confirmed with the dealer at the show."],
-  ["Can I trade in or sell my current boat?", "Absolutely. Talk to the dealer for the boat you're interested in. Starting the conversation before the show means your trade-in is ready to discuss when you arrive."],
-  ["What’s included: trailer, electronics, warranty?", "It varies boat to boat, so confirm what’s on the sticker: trailer, electronics package, and any remaining factory or extended warranty. Your walkthrough is the moment to get every inclusion in writing."],
-];
 
 const selectStyle: React.CSSProperties = { background: "#fff", border: "1px solid rgba(20,46,81,.16)", borderRadius: 10, padding: "12px 34px 12px 14px", fontSize: 14, color: "#142E51", cursor: "pointer", fontFamily: FONT };
 
@@ -29,7 +20,6 @@ export default function Inventory() {
   const [brand, setBrand] = useState("all");
   const [dealer, setDealer] = useState("all");
   const [sort, setSort] = useState("featured");
-  const [faqOpen, setFaqOpen] = useState(-1);
 
   const brands = useMemo(allBrands, []);
   const dealers = useMemo(allDealers, []);
@@ -152,30 +142,8 @@ export default function Inventory() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section style={{ background: "var(--bluetint)", padding: "clamp(56px,7vw,96px) clamp(18px,3vw,44px)", borderTop: "1px solid rgba(20,46,81,.08)" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <Eyebrow style={{ textAlign: "center" }}>Before you buy</Eyebrow>
-          <h2 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(26px,3.6vw,42px)", lineHeight: 1.04, letterSpacing: "-.01em", margin: "14px 0 0", textAlign: "center", color: "var(--navy)" }}>Boat-buying questions, answered.</h2>
-          <p style={{ textAlign: "center", fontSize: 16, color: "#4c6270", margin: "14px auto 40px", maxWidth: "58ch" }}>New to the docks or trading up? Here’s what smart buyers sort out before they step aboard.</p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {FAQ_DATA.map(([q2, a], i) => {
-              const open = faqOpen === i;
-              return (
-                <div key={q2} style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden" }}>
-                  <button onClick={() => { if (!open) track("faq_opened", { q: q2.slice(0, 60) }); setFaqOpen(open ? -1 : i); }} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, textAlign: "left", background: "none", border: "none", cursor: "pointer", padding: "20px clamp(18px,2vw,26px)" }}>
-                    <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(16px,1.5vw,19px)", color: "#142E51", letterSpacing: "-.01em" }}>{q2}</span>
-                    <span style={{ flex: "0 0 auto", width: 27, height: 27, borderRadius: "50%", background: open ? "var(--gold)" : "rgba(20,46,81,.06)", color: open ? "#142E51" : "#4c6270", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, lineHeight: 1, transform: open ? "rotate(45deg)" : "rotate(0deg)", transition: "transform .25s, background .2s" }}>+</span>
-                  </button>
-                  <div style={{ maxHeight: open ? 540 : 0, overflow: "hidden", transition: "max-height .32s ease" }}>
-                    <p style={{ margin: 0, padding: "0 clamp(18px,2vw,26px) 22px", fontSize: 15.5, lineHeight: 1.62, color: "#4c6270" }}>{a}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      {/* FAQ: the same set the locked gate shows (components/ShowGate.tsx) */}
+      <FaqSection items={lineupFaq()} {...LINEUP_FAQ_COPY} />
 
       <Footer />
     </>

@@ -5,6 +5,8 @@ import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { ShowMap as OfficialShowMap } from "@/components/ShowMap";
 import { DockList } from "@/components/DockList";
 import { DISPLAY, MONO, Eyebrow } from "@/components/ui";
+import { FaqSection } from "@/components/FaqSection";
+import { mapFaq } from "@/lib/faq";
 
 const FONT = "var(--font-poppins), sans-serif";
 
@@ -154,6 +156,8 @@ export default function ShowMap() {
           </div>
         </div>
       </section>
+
+      <FaqSection items={mapFaq()} title="Show map questions" />
 
       <Footer />
     </>
