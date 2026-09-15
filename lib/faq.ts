@@ -51,9 +51,22 @@ function spell(where: string, lowerFirst: boolean): string {
   return lowerFirst ? s.charAt(0).toLowerCase() + s.slice(1) : s;
 }
 
+/**
+ * The show always runs Thursday to Sunday after Labor Day weekend (Jon,
+ * 2026-09-15). Labor Day is the first Monday in September, so the show opens
+ * three days later. 2026: Labor Day September 7, show September 10 to 13.
+ */
+function showDays(year: number): { start: number; end: number } {
+  const sept1 = new Date(Date.UTC(year, 8, 1)).getUTCDay(); // 0 Sunday to 6 Saturday
+  const laborDay = 1 + ((8 - sept1) % 7);
+  return { start: laborDay + 3, end: laborDay + 6 };
+}
+
 /* ---------------------------------------------------------------- home */
 
 export function homeFaq(): Faq[] {
+  const next = YEAR + 1;
+  const nextDays = showDays(next);
   return [
     {
       q: "What is the Atlantic City In-Water Virtual Boat Show?",
@@ -73,7 +86,7 @@ export function homeFaq(): Faq[] {
     },
     {
       q: `When is the next ${NAME}?`,
-      a: `No dates for a ${YEAR + 1} ${NAME} are listed on acvirtualboatshow.com, which covers the ${YEAR} show held ${WHEN}. For future show dates, check the official show site, acinwaterboatshow.com, which the View Official Show Site button on the acvirtualboatshow.com homepage links to.`,
+      a: `The ${NAME} runs Thursday to Sunday after Labor Day weekend, so the ${next} show falls on Thursday, September ${nextDays.start} to Sunday, September ${nextDays.end}, ${next}. The ${YEAR} show ran ${WHEN}, at Farley State Marina in Atlantic City. For show details, check the official show site, acinwaterboatshow.com.`,
     },
     {
       q: `Can I see the boats from the ${NAME} online?`,
