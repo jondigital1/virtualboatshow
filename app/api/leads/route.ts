@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { send, mailConfigured, COPY_TO } from "@/lib/mail";
 import { insertLead, markDelivered, contactHash } from "@/lib/leads-store";
+import { boatBySlug, boatTitle } from "@/lib/showboats";
 
 /**
  * Lead intake.
@@ -420,6 +421,161 @@ async function inventoryAccess(d: Record<string, unknown>) {
   return NextResponse.json({ ok: true });
 }
 
+/**
+ * Check Availability (components/CheckAvailability.tsx), which replaced the
+ * dockside walkthrough after the show (Jon, 2026-09-15). Every field is
+ * optional, but a name or an email is required, matching the form.
+ *
+ * The boat, the dealer and the dealer's phone come from the boat data by slug,
+ * never from the request, so a crafted request cannot choose the recipient or
+ * put other boat or dealer text into the dealer's email. Routed like the
+ * walkthrough: to the dealer's addresses with a copy to the show inbox, or to
+ * the show inbox flagged when the dealer has no address on file. Reply-to is
+ * the shopper when they left an email. A phone number goes in the dealer's
+ * email and is never stored.
+ */
+async function availabilityRequest(d: Record<string, unknown>) {
+  const name = clean(d.name, CAP.name);
+  const email = clean(d.email, CAP.email);
+  const phone = clean(d.phone, CAP.phone);
+  const record = boatBySlug(clean(d.boatId, CAP.text));
+
+  if (!name && !email) {
+    return NextResponse.json({ ok: false, error: "a name or an email is required" }, { status: 400 });
+  }
+  if (email && !validEmail(email)) {
+    return NextResponse.json({ ok: false, error: "that email address is not valid" }, { status: 400 });
+  }
+  if (!record || !record.dealers[0]) {
+    return NextResponse.json({ ok: false, error: "unknown boat" }, { status: 400 });
+  }
+
+  const dealer = record.dealers[0];
+  const boat = boatTitle(record);
+  const pageUrl = clean(d.pageUrl, 500);
+  const optIn = hasConsent(d);
+  const [firstName = "", ...rest] = name.split(/\s+/).filter(Boolean);
+
+  // Stored first: if the email fails the request still exists.
+  const leadId = await insertLead({
+    type: "availability-request",
+    source: clean(d.source, CAP.text) || null,
+    boat_slug: record.slug,
+    boat_year: record.year,
+    boat_make: record.brand,
+    boat_model: record.model,
+    dealer_name: dealer.name,
+    page_url: pageUrl || null,
+    referrer: clean(d.referrer, 500) || null,
+    utm_source: clean(d.utmSource, CAP.text) || null,
+    utm_medium: clean(d.utmMedium, CAP.text) || null,
+    utm_campaign: clean(d.utmCampaign, CAP.text) || null,
+    utm_term: clean(d.utmTerm, CAP.text) || null,
+    utm_content: clean(d.utmContent, CAP.text) || null,
+    contact_hash: email ? contactHash(email) : null,
+    marketing_opt_in: optIn,
+    first_name: optIn ? firstName || null : null,
+    last_name: optIn ? rest.join(" ") || null : null,
+    email: optIn && email ? email : null,
+    phone: null, // never stored; see walkthrough()
+  });
+
+  const to = dealerEmails(dealer.name);
+  const noAddress = to.length === 0;
+  const lines = [
+    ...(noAddress ? [`NO DEALER ADDRESS ON FILE for ${dealer.name}. Please forward this.`, ``] : []),
+    `A shopper wants to know if this boat is still available.`,
+    ``,
+    `Boat:    ${boat}`,
+    `Dealer:  ${dealer.name}`,
+    ``,
+    `Name:    ${name || "not given"}`,
+    `Email:   ${email || "not given"}`,
+    `Phone:   ${phone || "not given"}`,
+    ``,
+    email
+      ? `Reply to this email to reach them directly.`
+      : phone
+        ? `They left no email address, so use the phone number above.`
+        : `They left a name only, with no email address or phone number.`,
+    ...(pageUrl ? [``, pageUrl] : []),
+  ];
+
+  // `toDealer` tells the form whether the request went straight to the dealer
+  // or to the show inbox to be passed on, so the shopper is told the truth.
+  if (!mailConfigured()) {
+    console.log("[lead:availability:unconfigured]", JSON.stringify(safeSummary(d, { stored: Boolean(leadId) })));
+    return NextResponse.json({ ok: true, delivered: false, toDealer: false });
+  }
+
+  const result = await send({
+    to: noAddress ? [COPY_TO] : to,
+    bcc: noAddress ? undefined : [COPY_TO],
+    replyTo: email || undefined,
+    subject: `${noAddress ? "[No dealer address] " : ""}Availability request: ${boat}`,
+    text: lines.join("\n"),
+  });
+
+  if (leadId) await markDelivered(leadId, result.ok, result.ok ? undefined : result.error);
+
+  if (!result.ok) {
+    console.log("[lead:availability:failed]", result.error, JSON.stringify(safeSummary(d)));
+    return NextResponse.json({ ok: true, delivered: false, toDealer: false });
+  }
+
+  // Best-effort confirmation to the shopper when they left an address.
+  if (email) {
+    await send({
+      to: [email],
+      subject: `Your availability request: ${boat}`,
+      text: [
+        `Thanks${firstName ? ` ${firstName}` : ""},`,
+        ``,
+        `Your question about the ${boat} is on its way to ${dealer.name}, with the details you left so they can reply.`,
+        ...(dealer.phone ? [`For a quicker answer, you can also call them at ${dealer.phone}.`] : []),
+        ``,
+        `Atlantic City In-Water Boat Show`,
+        `acvirtualboatshow.com`,
+      ].join("\n"),
+    });
+  }
+
+  console.log("[lead:availability:sent]", JSON.stringify(safeSummary(d, { toDealer: !noAddress, stored: Boolean(leadId) })));
+  return NextResponse.json({ ok: true, delivered: true, toDealer: !noAddress });
+}
+
+/**
+ * Next-show updates banner on the open lineup (components/NotifyBanner.tsx).
+ * No email is sent; the row is the list. Consent is given by continuing,
+ * stated under the button in the same words as every other form, so the
+ * client sends marketingOptIn true and the row keeps the name and address.
+ */
+async function nextShowAlert(d: Record<string, unknown>) {
+  const email = clean(d.email, CAP.email);
+  if (!validEmail(email)) {
+    return NextResponse.json({ ok: false, error: "a valid email is required" }, { status: 400 });
+  }
+  const optIn = hasConsent(d);
+  const leadId = await insertLead({
+    type: "next-show-alert",
+    source: clean(d.source, CAP.text) || "next-show-alert",
+    page_url: clean(d.pageUrl, 500) || null,
+    referrer: clean(d.referrer, 500) || null,
+    utm_source: clean(d.utmSource, CAP.text) || null,
+    utm_medium: clean(d.utmMedium, CAP.text) || null,
+    utm_campaign: clean(d.utmCampaign, CAP.text) || null,
+    utm_term: clean(d.utmTerm, CAP.text) || null,
+    utm_content: clean(d.utmContent, CAP.text) || null,
+    contact_hash: contactHash(email),
+    marketing_opt_in: optIn,
+    first_name: optIn ? clean(d.firstName, CAP.name) || null : null,
+    last_name: null,
+    email: optIn ? email : null,
+  });
+  console.log("[lead:next-show-alert]", JSON.stringify(safeSummary(d, { stored: Boolean(leadId) })));
+  return NextResponse.json({ ok: true });
+}
+
 /** Preflight for the cross-origin waitlist posts; a bare 204 for everyone else. */
 export async function OPTIONS(req: Request) {
   const cors = corsHeaders(req);
@@ -456,6 +612,8 @@ export async function POST(req: Request) {
   if (data.type === "buoy-waitlist") return buoyWaitlist(data, cors);
   if (data.type === "ticket-intent") return ticketIntent(data);
   if (data.type === "inventory-access") return inventoryAccess(data);
+  if (data.type === "availability-request") return availabilityRequest(data);
+  if (data.type === "next-show-alert") return nextShowAlert(data);
 
   console.log("[lead]", JSON.stringify(safeSummary(data)));
   return NextResponse.json({ ok: true, delivered: false }, { headers: cors });

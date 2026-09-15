@@ -1,12 +1,13 @@
 "use client";
 
 import { DISPLAY } from "@/components/ui";
-import { DocksideWalkthrough, type WalkthroughBoat } from "@/components/DocksideWalkthrough";
+import { CheckAvailability, type AvailabilityBoat } from "@/components/CheckAvailability";
+import { CallDealer } from "@/components/CallDealer";
 
 /**
  * "Boat Show Price": a deliberately blurred figure with no number behind it.
  *
- * The bars are empty spans, not blurred text — there is no price in the DOM,
+ * The bars are empty spans, not blurred text: there is no price in the DOM,
  * no title attribute, and nothing to reveal by inspecting, selecting, or
  * saving the page, because no number exists. We hold no price data for any
  * boat; the blur is the content, not a filter over content. Keep it that way:
@@ -16,6 +17,10 @@ import { DocksideWalkthrough, type WalkthroughBoat } from "@/components/Dockside
  * The "$" is real text so the block is legibly a price rather than a broken
  * image, and a visually-hidden line carries the same message to screen
  * readers, who would otherwise get a lone dollar sign and silence.
+ *
+ * After the show (Jon, 2026-09-15) the line says to contact the dealer for
+ * pricing, and the block carries Check Availability plus, on phones, Call About
+ * This Boat, in place of the dockside walkthrough.
  */
 const BARS = [
   { w: 17, h: 40 },
@@ -41,12 +46,13 @@ function BlurredFigure() {
           )}
         </div>
       </div>
-      <span className="sr-only">Price available at the show.</span>
+      <span className="sr-only">Contact the dealer for pricing.</span>
     </>
   );
 }
 
-export function BoatShowPrice({ boat, dealer }: { boat: WalkthroughBoat; dealer: string }) {
+export function BoatShowPrice({ boat, dealer, dealerPhone }: { boat: AvailabilityBoat; dealer: string; dealerPhone?: string }) {
+  const title = [boat.year, boat.brand, boat.model].filter(Boolean).join(" ");
   return (
     <div style={{ background: "#FFFCF3", border: "1px solid rgba(253,183,23,.55)", borderRadius: 14, padding: 18 }}>
       <BlurredFigure />
@@ -57,10 +63,13 @@ export function BoatShowPrice({ boat, dealer }: { boat: WalkthroughBoat; dealer:
       <span aria-hidden style={{ display: "block", width: 44, height: 3, borderRadius: 2, background: "var(--gold)", margin: "9px 0 10px" }} />
 
       <p style={{ fontSize: 13.5, color: "rgba(20,46,81,.72)", margin: "0 0 14px", lineHeight: 1.55 }}>
-        Special show pricing is available directly from the dealer at the dock.
+        Contact the dealer for pricing.
       </p>
 
-      <DocksideWalkthrough boat={boat} dealer={{ name: dealer }} source="vdp-price-block" />
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <CheckAvailability boat={boat} dealer={dealer} dealerPhone={dealerPhone} source="vdp-price-block" />
+        {dealerPhone && <CallDealer phone={dealerPhone} dealer={dealer} boatTitle={title} boatSlug={boat.slug} source="vdp-price-block" />}
+      </div>
     </div>
   );
 }

@@ -176,6 +176,12 @@ input, textarea, button, select { font-family: inherit; }
 .faq-a { margin: 0; padding: 0 clamp(18px, 2vw, 26px) 22px; font-size: 15.5px; line-height: 1.62; color: #4c6270; }
 @media (prefers-reduced-motion: reduce) { .faq-mark { transition: none; } }
 
+/* Call About This Boat (components/CallDealer.tsx): phones only. 640px is the
+   site's phone breakpoint; the second query catches phones held sideways
+   (short, touch) without catching tablets or narrow desktop windows. */
+.call-cta { display: none; }
+@media (max-width: 640px), (max-height: 500px) and (pointer: coarse) { .call-cta { display: inline-flex; } }
+
 /* Featured rail: fixed column counts (3/2/1) so the 6 cards always fill
    complete rows at every width; an auto-fill grid packs 4-up on wide
    screens and strands 2 cards on a second row. */

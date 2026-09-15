@@ -120,7 +120,7 @@ export default function ShowBoatVDP() {
                   <span style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10 }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/ac-mark.png" alt="" style={{ width: 110, opacity: 0.5 }} />
-                    <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: 12, letterSpacing: ".08em", color: "rgba(20,46,81,.45)", textTransform: "uppercase" }}>Photos coming soon</span>
+                    <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: 12, letterSpacing: ".08em", color: "rgba(20,46,81,.45)", textTransform: "uppercase" }}>No photos listed</span>
                   </span>
                 )}
                 {boat.notes && (
@@ -167,10 +167,10 @@ export default function ShowBoatVDP() {
 
             {/* SIDE PANEL */}
             <div className="vdp-rail">
-              <BoatShowPrice boat={boat} dealer={boat.dealers[0]?.name ?? "the dealer"} />
+              <BoatShowPrice boat={boat} dealer={boat.dealers[0]?.name ?? "the dealer"} dealerPhone={boat.dealers[0]?.phone} />
 
               <div style={{ background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.4)", borderRadius: 14, padding: "16px 18px" }}>
-                <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--navy)" }}>Where to find it</div>
+                <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--navy)" }}>Where it was</div>
                 {placement ? (
                   <>
                     <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 18, color: "var(--navy)", marginTop: 7 }}>
@@ -182,12 +182,12 @@ export default function ShowBoatVDP() {
                   </>
                 ) : (
                   <div style={{ fontSize: 14, color: "#33454f", marginTop: 8, lineHeight: 1.6 }}>
-                    Dock &amp; slip location announced before the show
+                    Dock location not listed
                   </div>
                 )}
                 <div style={{ fontSize: 13.5, color: "#5a6c78", marginTop: 7 }}>September 10&ndash;13, 2026</div>
                 <Link href="/map" onClick={() => track("map_link_clicked", { boat: boat.slug, dealer: boat.dealers[0]?.name ?? "" })} style={{ display: "inline-block", marginTop: 12, fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--linkblue)" }}>
-                  Find it on the map <span aria-hidden>&rarr;</span>
+                  See it on the show map <span aria-hidden>&rarr;</span>
                 </Link>
               </div>
 
@@ -232,8 +232,8 @@ export default function ShowBoatVDP() {
               )}
               <p style={{ fontSize: 12.5, color: "#8595a0", margin: "14px 0 0" }}>
                 Photos and details courtesy of {boat.dealers[0].name}{boat.shared ? " and " + boat.brand : ""}
-                {boat.photoCredit ? `, with additional photography from ${boat.photoCredit}` : ""}. Boats and
-                locations are subject to change. Confirm details with the dealer.
+                {boat.photoCredit ? `, with additional photography from ${boat.photoCredit}` : ""}. Boats may
+                have sold since the show. Confirm details with the dealer.
               </p>
             </div>
           </div>

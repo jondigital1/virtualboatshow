@@ -56,7 +56,7 @@ function spell(where: string, lowerFirst: boolean): string {
  * 2026-09-15). Labor Day is the first Monday in September, so the show opens
  * three days later. 2026: Labor Day September 7, show September 10 to 13.
  */
-function showDays(year: number): { start: number; end: number } {
+export function showDays(year: number): { start: number; end: number } {
   const sept1 = new Date(Date.UTC(year, 8, 1)).getUTCDay(); // 0 Sunday to 6 Saturday
   const laborDay = 1 + ((8 - sept1) % 7);
   return { start: laborDay + 3, end: laborDay + 6 };
@@ -90,7 +90,7 @@ export function homeFaq(): Faq[] {
     },
     {
       q: `Can I see the boats from the ${NAME} online?`,
-      a: `Yes. The Browse Boats page on acvirtualboatshow.com lists ${count(showBoats.length, "boat", "boats")} from ${count(allDealers().length, "dealer", "dealers")} at the ${SHOW}, and you enter your first name, last name and email to open the full lineup. Each boat has its own page naming the presenting dealer, with photos and the dealer's dock or land display location where available.`,
+      a: `Yes. The Browse Boats page on acvirtualboatshow.com lists ${count(showBoats.length, "boat", "boats")} from ${count(allDealers().length, "dealer", "dealers")} at the ${SHOW}, open to everyone with no sign-up. Each boat has its own page naming the presenting dealer, with photos and the dealer's dock or land display location where available.`,
     },
   ];
 }
@@ -114,11 +114,11 @@ export function lineupFaq(): Faq[] {
     },
     {
       q: `How do I see the full list of boats from the ${SHOW}?`,
-      a: `Enter your first name, last name and email on the Browse Boats page at www.acvirtualboatshow.com/inventory, then select "Take me to the boats!" to open the full ${YEAR} lineup. The sign-up is remembered on that device, so you are usually not asked again. By continuing, you agree that the ${NAME} and Buoy may email you, and you can unsubscribe any time with one click.`,
+      a: `The Browse Boats page at www.acvirtualboatshow.com/inventory lists every boat in the ${YEAR} lineup, open to everyone with no sign-up. Each boat card shows its photos, the presenting dealer and, where available, where that dealer was docked, and links to the boat's own page.`,
     },
     {
       q: `Can I search the ${SHOW} lineup by brand or dealer?`,
-      a: `Yes. After you open the ${SHOW} lineup, you can search by boat, brand, model or dealer name, or use the Brand and Dealer filters to narrow the list. Results can also be sorted by brand, newest year or longest length.`,
+      a: `Yes. On the Browse Boats page for the ${SHOW} lineup, you can search by boat, brand, model or dealer name, or use the Brand and Dealer filters to narrow the list. Results can also be sorted by brand, newest year or longest length.`,
     },
     {
       q: `Which boat dealers are in the ${SHOW} lineup?`,
@@ -130,7 +130,7 @@ export function lineupFaq(): Faq[] {
     },
     {
       q: `Are the boats from the ${SHOW} still for sale?`,
-      a: `Boats in the ${SHOW} lineup may have sold since the show, because the lineup shows the boats dealers selected for the show and does not track sales. Each boat page names the presenting dealer with its location and phone number, so call that dealer to confirm availability or ask about a similar boat.`,
+      a: `Boats in the ${SHOW} lineup may have sold since the show, because the lineup shows the boats dealers selected for the show and does not track sales. Each boat page names the presenting dealer with its location and phone number and has a Check Availability button that sends the dealer your question, so you can confirm availability or ask about a similar boat.`,
     },
     {
       q: "Should I buy a new or used boat?",
@@ -196,7 +196,7 @@ export function boatFaq(b: ShowBoat): Faq[] {
   if (/\d/.test(d.phone ?? "")) {
     out.push({
       q: `How do I contact the dealer about the ${title}?`,
-      a: `Call ${d.name}${loc} at ${d.phone} to ask about the ${title}. Details can change, so confirm them directly with ${d.name}.`,
+      a: `Call ${d.name}${loc} at ${d.phone} to ask about the ${title}, or use Check Availability on the boat's page at acvirtualboatshow.com to send ${d.name} your question. Details can change, so confirm them directly with the dealer.`,
     });
   }
   return out;

@@ -6,8 +6,11 @@ import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow } from "@/components/ui";
 import { showBoats, waitingDealers, boatTitle, allBrands, allDealers, type ShowBoat } from "@/lib/showboats";
-import { DocksideWalkthrough } from "@/components/DocksideWalkthrough";
+import { CheckAvailability } from "@/components/CheckAvailability";
+import { CallDealer } from "@/components/CallDealer";
+import { NotifyBanner } from "@/components/NotifyBanner";
 import { FaqSection } from "@/components/FaqSection";
+import { NAME_WITH_YEAR, VENUE, YEAR } from "@/lib/show";
 import { placementFor } from "@/lib/docks";
 import { lineupFaq, LINEUP_FAQ_COPY } from "@/lib/faq";
 
@@ -15,6 +18,12 @@ const FONT = "var(--font-poppins), sans-serif";
 
 const selectStyle: React.CSSProperties = { background: "#fff", border: "1px solid rgba(20,46,81,.16)", borderRadius: 10, padding: "12px 34px 12px 14px", fontSize: 14, color: "#142E51", cursor: "pointer", fontFamily: FONT };
 
+/**
+ * The 2026 lineup, open to everyone since 2026-09-15 (Jon). Every card is in
+ * the server HTML with three links to its boat page, which is how search
+ * engines find and understand the boat pages. Each card carries Check
+ * Availability and, on phones, Call About This Boat.
+ */
 export default function Inventory() {
   const [q, setQ] = useState("");
   const [brand, setBrand] = useState("all");
@@ -59,14 +68,14 @@ export default function Inventory() {
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,340px),1fr))", gap: "clamp(18px,3vw,36px)", alignItems: "center" }}>
             <div>
-              <Eyebrow>Explore the Show</Eyebrow>
-              <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,3.6vw,46px)", lineHeight: 1.06, letterSpacing: "-.015em", margin: "12px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>Browse Boats at the Show</h1>
+              <Eyebrow>The {YEAR} Show</Eyebrow>
+              <h1 style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(28px,3.6vw,46px)", lineHeight: 1.06, letterSpacing: "-.015em", margin: "12px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>Browse Boats from the Show</h1>
               <span className="gold-rule" style={{ margin: "16px 0 0" }} />
               <p style={{ fontSize: 15.5, color: "#4c6270", margin: "16px 0 0", maxWidth: "52ch", lineHeight: 1.6 }}>
-                Explore the boats participating dealers are bringing to the Atlantic City In-Water Boat Show. These are the boats you can see in person during the show.
+                The boats participating dealers featured at the {NAME_WITH_YEAR} at {VENUE}, with the dealer that showed each one. Boats may have sold since the show, so check availability with the dealer.
               </p>
               <div style={{ display: "inline-flex", alignItems: "center", gap: 9, background: "var(--bluetint)", border: "1px solid rgba(117,186,228,.4)", borderRadius: 999, padding: "9px 16px", marginTop: 18 }}>
-                <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: 12.5, color: "var(--navy)" }}>250+ boats in the water at the show</span>
+                <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: 12.5, color: "var(--navy)" }}>{showBoats.length} boats from {dealers.length} dealers</span>
               </div>
             </div>
             <div style={{ minWidth: 0 }}>
@@ -106,6 +115,8 @@ export default function Inventory() {
               </span>
             </div>
           </div>
+
+          <NotifyBanner source="inventory-banner" />
         </div>
       </section>
 
@@ -121,7 +132,7 @@ export default function Inventory() {
           {list.length === 0 && (
             <div style={{ textAlign: "center", padding: "60px 20px", border: "1px dashed rgba(20,46,81,.2)", borderRadius: 18 }}>
               <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 21, color: "var(--navy)" }}>No boats match those filters.</div>
-              <p style={{ color: "#5a6c78", margin: "10px 0 18px" }}>Try widening your search. New boats are added as dealers confirm their show lineups.</p>
+              <p style={{ color: "#5a6c78", margin: "10px 0 18px" }}>Try widening your search.</p>
               <button onClick={clearAll} className="btn-invert" style={{ background: "#142E51", color: "#fff", fontWeight: 700, fontSize: 14, padding: "12px 20px", borderRadius: 999, border: "none", cursor: "pointer" }}>Clear all filters</button>
             </div>
           )}
@@ -163,7 +174,7 @@ function ShowBoatCard({ b }: { b: ShowBoat }) {
     ? placement.dock === "Land"
       ? `${placement.where} · land display`
       : `${placement.dock} · ${placement.where}`
-    : "Dock & slip announced before the show";
+    : "Dock location not listed";
   const step = (d: number, via: string) => {
     track("boat_photo_swiped", { boat: b.slug, context: "card", via });
     setIdx((i) => (i + d + b.photos.length) % b.photos.length);
@@ -189,7 +200,7 @@ function ShowBoatCard({ b }: { b: ShowBoat }) {
             <span style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/ac-mark.png" alt="" style={{ width: 74, opacity: 0.5 }} />
-              <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: 11, letterSpacing: ".08em", color: "rgba(20,46,81,.45)", textTransform: "uppercase" }}>Photos coming soon</span>
+              <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: 11, letterSpacing: ".08em", color: "rgba(20,46,81,.45)", textTransform: "uppercase" }}>No photos listed</span>
             </span>
           )}
         </Link>
@@ -241,8 +252,9 @@ function ShowBoatCard({ b }: { b: ShowBoat }) {
             ways. marginTop auto pins it to the bottom so the button lands on
             the same line across a row however long the boat names run. */}
         {b.dealers[0] && (
-          <div style={{ marginTop: "auto", padding: "12px 0", borderTop: "1px solid rgba(20,46,81,.08)", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 62 }}>
-            <DocksideWalkthrough boat={b} dealer={{ name: b.dealers[0].name }} source="inventory-card" variant="compact" />
+          <div style={{ marginTop: "auto", padding: "12px 0", borderTop: "1px solid rgba(20,46,81,.08)", display: "flex", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: 8, minHeight: 62 }}>
+            <CheckAvailability boat={b} dealer={b.dealers[0].name} dealerPhone={b.dealers[0].phone} source="inventory-card" variant="compact" />
+            <CallDealer phone={b.dealers[0].phone} dealer={b.dealers[0].name} boatTitle={title} boatSlug={b.slug} source="inventory-card" compact />
           </div>
         )}
       </div>

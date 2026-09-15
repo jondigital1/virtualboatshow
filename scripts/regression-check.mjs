@@ -12,17 +12,15 @@ import puppeteer from "puppeteer-core";
 
 const BASE = (process.argv[2] ?? "https://www.acvirtualboatshow.com").replace(/\/$/, "");
 const EDGE = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
-const GATE_HASH = "ef48cbbb34d2e019141accae5972292b7de037898c7c282ede77614badee82f3";
+// The inventory gate came off on 2026-09-15: the lineup is open and server-rendered.
 
 /** Each route asserts the content that proves the page actually works. Every
  *  page carries questions and answers unless faq is false (the noindexed ad
- *  landing, the post-submit confirmation and the 404). The locked gate asserts
- *  the show-day registration phase, live since 9 AM on September 10. */
+ *  landing, the post-submit confirmation and the 404). */
 const ROUTES = [
   { path: "/", must: ["Powered by Buoy", "Atlantic City"], label: "home" },
-  { path: "/inventory", must: ["The lineup is open", "Feature boats"], sel: ".gate-teasers", label: "gate (locked)" },
-  { path: "/inventory", must: ["results"], sel: 'select[aria-label="Filter by brand"]', unlock: true, minBoatLinks: 50, label: "inventory (unlocked)" },
-  { path: "/boats/cobia-320-cc", must: ["Cobia 320", "dockside walkthrough", "Where to find it"], label: "boat page" },
+  { path: "/inventory", must: ["results", "Get updates about the 2027 show", "Check Availability"], sel: 'select[aria-label="Filter by brand"]', minBoatLinks: 50, label: "inventory (open)" },
+  { path: "/boats/cobia-320-cc", must: ["Cobia 320", "Check Availability", "Where it was", "Contact the dealer for pricing"], label: "boat page" },
   // Unknown slugs return a real 404 on purpose, so the 404 status is the pass
   // condition here, not a failure.
   { path: "/boats/not-a-real-boat", must: ["find that boat"], label: "boat 404", expect404: true, faq: false },
@@ -31,7 +29,7 @@ const ROUTES = [
   { path: "/plan", must: ["Hours & Tickets"], label: "plan" },
   { path: "/sponsors", must: ["Golden Nugget"], label: "sponsors" },
   // Privacy carries no questions and answers yet.
-  { path: "/privacy", must: ["What you give us", "ticket window"], label: "privacy", faq: false },
+  { path: "/privacy", must: ["What you give us", "Check Availability"], label: "privacy", faq: false },
   { path: "/tickets", must: ["Grab your show tickets"], sel: "#tf-first", label: "tickets landing", faq: false },
   { path: "/walkthrough/confirmed?boat=cobia-320-cc&day=2026-09-11&part=Morning", must: ["Cobia"], label: "walkthrough confirmed", faq: false },
 ];
@@ -52,10 +50,6 @@ for (const r of ROUTES) {
     if (res.status() >= 400 && res.url().startsWith(BASE)) badRequests.push(`${res.status()} ${res.url().slice(BASE.length, BASE.length + 80)}`);
   });
   try {
-    if (r.unlock) {
-      await page.goto(BASE + "/", { waitUntil: "domcontentloaded", timeout: 60000 });
-      await page.evaluate((h) => localStorage.setItem("ac-show-access-2026", h), GATE_HASH);
-    }
     await page.goto(BASE + r.path, { waitUntil: "networkidle2", timeout: 90000 });
     await new Promise((res2) => setTimeout(res2, 1200));
 
@@ -103,6 +97,33 @@ const expect = async (path, want, desc) => {
 };
 await expect("/robots.txt", [200], "robots.txt");
 await expect("/sitemap.xml", [200], "sitemap.xml");
+
+// The lineup has to be crawlable with no JavaScript and no stored sign-up:
+// every boat in the sitemap must have its link in the raw server HTML of
+// /inventory. Matched on the path, because the sitemap names the www host and
+// BASE may be a preview or localhost.
+try {
+  const sitemap = await (await fetch(BASE + "/sitemap.xml")).text();
+  const slugs = [...sitemap.matchAll(/\/boats\/([^<\s]+)<\/loc>/g)].map((m) => m[1]);
+  const html = await (await fetch(BASE + "/inventory")).text();
+  const links = new Set([...html.matchAll(/href="\/boats\/([^"#?]+)"/g)].map((m) => m[1]));
+  const missing = slugs.filter((s) => !links.has(s));
+  if (!slugs.length) note("inventory raw HTML", "sitemap lists no boats");
+  else if (missing.length) note("inventory raw HTML", `${missing.length} of ${slugs.length} boats missing without JavaScript, e.g. ${missing.slice(0, 5).join(", ")}`);
+  else console.log(`ok  inventory raw HTML (all ${slugs.length} boats linked)`);
+} catch (e) {
+  note("inventory raw HTML", String(e).slice(0, 120));
+}
+
+// The homepage's featured boats render on the server too.
+try {
+  const html = await (await fetch(BASE + "/")).text();
+  const links = new Set([...html.matchAll(/href="(\/boats\/[^"#?]+)"/g)].map((m) => m[1])).size;
+  if (links < 6) note("home raw HTML", `only ${links} boat links without JavaScript`);
+  else console.log(`ok  home raw HTML (${links} boat links)`);
+} catch (e) {
+  note("home raw HTML", String(e).slice(0, 120));
+}
 await expect("/api/opening-day-send", [401], "opening-day send stays locked");
 await expect("/api/gate", [404, 405], "removed email-key API stays gone");
 

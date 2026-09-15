@@ -10,15 +10,17 @@ const FONT = "var(--font-poppins), sans-serif";
  * Privacy policy.
  *
  * Written to describe what this site ACTUALLY does, not a generic template:
- * the walkthrough form, the consent gate, the fact that contact details go to
- * the dealer whose boat was chosen, and the specific processors involved.
+ * the Check Availability form, the updates banner, the ticket capture, the fact
+ * that contact details go to the dealer whose boat was chosen, and the specific
+ * processors involved. Revised 2026-09-15 when the lineup gate came off and
+ * Check Availability replaced the dockside walkthrough.
  *
  * If the data flow changes, change this page in the same commit. A policy that
  * describes last month's behaviour is worse than none, because it is a
  * statement people rely on.
  */
 
-const UPDATED = "September 8, 2026";
+const UPDATED = "September 15, 2026";
 
 const h2: React.CSSProperties = {
   fontFamily: DISPLAY,
@@ -63,12 +65,19 @@ export default function Privacy() {
 
           <h2 style={h2}>What you give us</h2>
           <p style={p}>
-            We ask for personal details in three places. The dockside walkthrough form on a boat page asks for
-            your first and last name, mobile number, email address, the day you plan to attend, and whether you
-            expect to come in the morning or the afternoon. On your way to the ticket window we ask for a first
-            name and email address, which also lets the show recognise its own referrals among ticket sales.
-            And from 9 AM on opening day, the boat lineup asks for your first name, last name and email address
-            before it opens.
+            We ask for personal details in four places. The Check Availability form on a boat page or boat card
+            asks for your name, email address and phone number, each one optional, so the dealer showing that boat
+            can answer your question; it needs at least your name or your email address. On your way to the ticket
+            window we ask for a first name and email address, which also lets the show recognise its own referrals
+            among ticket sales. The updates banner on the boat lineup asks for your email address, and your
+            first name if you like, so we can tell you about the next show. And the inquiry form on the Marine
+            Marketplace page asks for your company, name and email address, what you are interested in and an
+            optional message; the message is emailed to the show team and not stored.
+          </p>
+          <p style={p}>
+            During the 2026 show, the dockside walkthrough form on boat pages also asked for your mobile number and
+            the day you planned to attend, and the boat lineup asked for your name and email address before it
+            opened. Those forms are closed.
           </p>
           <p style={p}>
             We do not ask you to create an account, and we do not have one to create.
@@ -76,27 +85,28 @@ export default function Privacy() {
 
           <h2 style={h2}>What we record automatically</h2>
           <p style={p}>
-            When you submit either form we also record the page address, the page you arrived from, and any
-            campaign tags in the link you followed; the walkthrough form additionally records the boat and
-            dealer you were looking at and their dock or slip assignment. This is how we tell a dealer which
-            boat someone is coming to see, and how we understand which boats draw interest.
+            When you submit a form we also record the page address, the page you arrived from, and any campaign
+            tags in the link you followed; the Check Availability form additionally records the boat and dealer
+            you were looking at. This is how we tell a dealer which boat someone is asking about, and how we
+            understand which boats draw interest.
           </p>
 
           <h2 style={h2}>Who sees your details</h2>
           <p style={p}>
             <strong style={{ color: "var(--navy)" }}>The dealer showing the boat you chose.</strong> That is the
-            entire point of the form: we tell them you plan to visit, and we pass on your name, email, and phone
-            so they can recognise you or reply. The dealer is the only party that keeps your phone number. Their
+            entire point of the Check Availability form: we pass your question to them with whatever name, email,
+            and phone you gave, so they can reply. The show&rsquo;s inquiry inbox gets a copy of each request, phone number included, so it can pass the
+            request on when a dealer has no email address on file. No phone number is saved to our database. Their
             handling of your details is governed by their own practices, not ours.
           </p>
           <p style={p}>
             <strong style={{ color: "var(--navy)" }}>The Atlantic City In-Water Boat Show and Buoy.</strong> This
-            site is run for the show by Buoy, the boating app behind it. Everything you enter here, except your
-            phone number, goes to both. Buoy operates the platform and holds the records; the Atlantic City
+            site is run for the show by Buoy, the boating app behind it. Everything you enter here goes to both;
+            a phone number only travels in the email about your request. Buoy operates the platform and holds the records; the Atlantic City
             In-Water Boat Show receives its own complete copy and keeps it in its own records, for its own show
             communications and marketing, this year and in future years. Buoy uses its copy to contact you about
-            the Buoy launch and product news. Neither keeps your phone number, and neither will call or text
-            you. Every email either of them sends includes a one-click unsubscribe, and unsubscribing stops both.
+            the Buoy launch and product news. Neither saves your phone number to its records, and neither will
+            call or text you. Every email either of them sends includes a one-click unsubscribe, and unsubscribing stops both.
           </p>
           <p style={p}>
             We do not sell your personal information, and we do not pass your name, email address, or phone
@@ -107,11 +117,11 @@ export default function Privacy() {
           <h2 style={h2}>What we keep</h2>
           <p style={p}>
             None of our forms has a consent checkbox. Each one says, next to its button, what continuing means:
-            that the dealer may contact you about the boat you asked about (walkthrough form only), and that the
+            that the dealer may contact you about the boat you asked about (Check Availability only), and that the
             Atlantic City In-Water Boat Show and Buoy may email you about this show, future shows, and Buoy. On
             that basis both the show and Buoy keep your name and email address, along with which boat, which
-            dealer, which day, and where you came from. Your mobile number is passed to the dealer and is not
-            saved to our database.
+            dealer, and where you came from. A phone number is emailed to the dealer, with a copy to the show&rsquo;s
+            inquiry inbox, and is not saved to our database.
           </p>
           <p style={p}>
             Every email we send includes a one-click unsubscribe. Using it stops email from both the show and

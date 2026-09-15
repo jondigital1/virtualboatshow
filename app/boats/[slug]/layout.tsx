@@ -11,13 +11,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const boat = boatBySlug(slug);
   if (!boat) {
-    return { title: "Browse Boats at the Show" };
+    return { title: "Browse Boats from the Show" };
   }
   const title = boatTitle(boat);
   const dealerNames = boat.dealers.map((d) => d.name).join(" and ");
   const description = boat.blurb
     ? boat.blurb.slice(0, 200)
-    : `See the ${title} in the water at the Atlantic City In-Water Boat Show, Sept 10-13, 2026, presented by ${dealerNames}.`;
+    : `The ${title} from the 2026 Atlantic City In-Water Boat Show at Farley State Marina, presented by ${dealerNames}. Check availability with the dealer.`;
   const image = boat.photos[0];
   return {
     title,

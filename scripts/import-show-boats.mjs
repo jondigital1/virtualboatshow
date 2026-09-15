@@ -84,19 +84,19 @@ const BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 /**
  * Workbook section header -> site dealer identity (matches /vendors data).
  *
- * `phone` is what a shopper sees on the boat page, so where a dealer has named
- * a number for show enquiries that number wins over the switchboard. Those come
- * from the "TEXT NUMBER (Text the Dealer)" column of the inventory master,
- * which records who supplied each one and when. Dealers who have not named one
- * keep their main line.
+ * `phone` is what a shopper sees on the boat page and what Call About This Boat
+ * dials: the store's main line for every dealer (Jon, 2026-09-15). During the
+ * show, dealers who named a number for show inquiries (the "TEXT NUMBER (Text
+ * the Dealer)" column of the inventory master) had that number here instead;
+ * those are kept in the comments below.
  */
 const DEALER_META = {
-  // Supplied by Taylor Morelli, Marketing Manager, Aug 26 (was the main line, (732) 899-5559).
-  "Clarks Landing Marina": { name: "Clarks Landing Yacht Sales & Marina", loc: "Point Pleasant, NJ", phone: "(732) 966-4902" },
-  // Michael Bambara, Aug 25 (was the main line, (732) 458-3540).
-  "Coastal Boat Sales": { name: "Coastal Boat Sales", loc: "Brick, NJ", phone: "(609) 713-5651" },
-  // John Eskow, Aug 28 (was the switchboard, (732) 899-2500, which reaches him only on ext 202).
-  "Comstock Yacht Sales & Marina": { name: "Comstock Yacht Sales & Marina", loc: "Brick, NJ", phone: "(732) 597-2676" },
+  // Show number supplied by Taylor Morelli, Marketing Manager, Aug 26: (732) 966-4902.
+  "Clarks Landing Marina": { name: "Clarks Landing Yacht Sales & Marina", loc: "Point Pleasant, NJ", phone: "(732) 899-5559" },
+  // Show number from Michael Bambara, Aug 25: (609) 713-5651.
+  "Coastal Boat Sales": { name: "Coastal Boat Sales", loc: "Brick, NJ", phone: "(732) 458-3540" },
+  // Show number from John Eskow, Aug 28: (732) 597-2676 (the switchboard reaches him on ext 202).
+  "Comstock Yacht Sales & Marina": { name: "Comstock Yacht Sales & Marina", loc: "Brick, NJ", phone: "(732) 899-2500" },
   "Coty Marine": { name: "Coty Marine", loc: "Toms River, NJ", phone: "(732) 288-1000" },
   "D & R Boat World": { name: "D & R Boat World", loc: "Toms River, NJ", phone: "(732) 840-2020" },
   "Formula Boats": { name: "Formula Boats", loc: "Decatur, IN", phone: "(260) 724-9111" },
@@ -109,8 +109,8 @@ const DEALER_META = {
   "Sandy Hook": { name: "Sandy Hook Yacht Sales", loc: "Sea Bright, NJ", phone: "(732) 530-5500" },
   "Schrader Yacht Sales Inc.": { name: "Schrader Yacht Sales", loc: "Point Pleasant, NJ", phone: "(732) 899-8010" },
   "Seaport Inlet Marina": { name: "Seaport Inlet Marina", loc: "Belmar, NJ", phone: "(732) 681-3303" },
-  // Mark Hattman, President, Aug 22, his own text line (was the main line, (609) 296-9400).
-  "Sheltered Cove Marina": { name: "Sheltered Cove Marina", loc: "Tuckerton, NJ", phone: "(609) 204-1742" },
+  // Show number from Mark Hattman, President, Aug 22, his own text line: (609) 204-1742.
+  "Sheltered Cove Marina": { name: "Sheltered Cove Marina", loc: "Tuckerton, NJ", phone: "(609) 296-9400" },
   "South Jersey Yacht Sales": { name: "South Jersey Yacht Sales", loc: "Cape May, NJ", phone: "(609) 884-1600" },
   "Stone Harbor Yacht Sales & Marina": { name: "Stone Harbor Yacht Sales & Marina", loc: "Stone Harbor, NJ", phone: "(609) 368-1141" },
   "Total Marine": { name: "Total Marine", loc: "Little Egg Harbor, NJ", phone: "(609) 294-0480" },

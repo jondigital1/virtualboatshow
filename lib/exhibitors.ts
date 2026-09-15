@@ -31,19 +31,19 @@
 export type Row = { n: string; c: string; s: string; p: string; b?: string };
 
 /**
- * Where a dealer named a number for show inquiries, the directory shows that
- * number, the same one its boat pages show (DEALER_META in
- * scripts/import-show-boats.mjs, from the inventory master's TEXT NUMBER
- * column). Before 2026-09-15 these four rows still carried the main lines,
- * so a shopper saw one number on the boat and another in the directory.
+ * Every dealer shows its store's main line, here and on its boat pages
+ * (DEALER_META in scripts/import-show-boats.mjs), and the Call About This Boat
+ * button dials it (Jon, 2026-09-15). Four dealers named a separate number for
+ * show inquiries in August, some of them salespeople's own text lines; with the
+ * show over those are no longer shown anywhere, and are kept here in comments.
  */
 export const DEALERS: Row[] = [
-  // Taylor Morelli, Aug 26. Main line (732) 899-5559.
-  { n: "Clarks Landing Yacht Sales & Marina", c: "Point Pleasant", s: "NJ", p: "(732) 966-4902" },
-  // Michael Bambara, Aug 25. Main line (732) 458-3540.
-  { n: "Coastal Boat Sales", c: "Brick", s: "NJ", p: "(609) 713-5651" },
-  // John Eskow, Aug 28. Switchboard (732) 899-2500 reaches him only on ext 202.
-  { n: "Comstock Yacht Sales & Marina", c: "Brick", s: "NJ", p: "(732) 597-2676" },
+  // Show number named by Taylor Morelli, Aug 26: (732) 966-4902.
+  { n: "Clarks Landing Yacht Sales & Marina", c: "Point Pleasant", s: "NJ", p: "(732) 899-5559" },
+  // Show number named by Michael Bambara, Aug 25: (609) 713-5651.
+  { n: "Coastal Boat Sales", c: "Brick", s: "NJ", p: "(732) 458-3540" },
+  // Show number named by John Eskow, Aug 28: (732) 597-2676 (the switchboard reaches him on ext 202).
+  { n: "Comstock Yacht Sales & Marina", c: "Brick", s: "NJ", p: "(732) 899-2500" },
   { n: "Comstock Yacht Sales & Marina", c: "Sea Bright", s: "NJ", p: "(732) 704-3727" },
   { n: "Coty Marine", c: "Toms River", s: "NJ", p: "(732) 288-1000" },
   { n: "D & R Boat World", c: "Green Brook", s: "NJ", p: "(732) 968-2600" },
@@ -60,8 +60,8 @@ export const DEALERS: Row[] = [
   { n: "Sandy Hook Yacht Sales", c: "Sea Bright", s: "NJ", p: "(732) 530-5500" },
   { n: "Schrader Yacht Sales", c: "Point Pleasant", s: "NJ", p: "(732) 899-8010" },
   { n: "Seaport Inlet Marina", c: "Belmar", s: "NJ", p: "(732) 681-3303" },
-  // Mark Hattman, President, Aug 22, his own text line. Main line (609) 296-9400.
-  { n: "Sheltered Cove Marina", c: "Tuckerton", s: "NJ", p: "(609) 204-1742" },
+  // Show number named by Mark Hattman, President, Aug 22, his own text line: (609) 204-1742.
+  { n: "Sheltered Cove Marina", c: "Tuckerton", s: "NJ", p: "(609) 296-9400" },
   { n: "South Jersey Yacht Sales", c: "Cape May", s: "NJ", p: "(609) 884-1600" },
   { n: "Stone Harbor Yacht Sales & Marina", c: "Stone Harbor", s: "NJ", p: "(609) 368-1141" },
   { n: "Total Marine", c: "Little Egg Harbor", s: "NJ", p: "(609) 294-0480" },

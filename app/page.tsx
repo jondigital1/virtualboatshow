@@ -10,7 +10,7 @@ import { ShowMap } from "@/components/ShowMap";
 import { Eyebrow } from "@/components/ui";
 import { FaqSection } from "@/components/FaqSection";
 import { homeFaq } from "@/lib/faq";
-import { pickFeatured, boatTitle, type ShowBoat } from "@/lib/showboats";
+import { showBoats, pickFeatured, boatTitle, type ShowBoat } from "@/lib/showboats";
 import { pickExhibitors, initials, type Row as Exhibitor } from "@/lib/exhibitors";
 
 const FONT = "var(--font-poppins), sans-serif";
@@ -39,12 +39,38 @@ function OutlineBtn({ href, children }: { href: string; children: React.ReactNod
   );
 }
 
+/** FNV-1a over the slug: a stable order that favors no dealer. */
+function slugHash(s: string) {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+/**
+ * The first render's featured boats: one photographed boat per dealer in slug
+ * hash order. Server and client compute the same list, so the boats and their
+ * links are in the server HTML for search (Jon, 2026-09-15), with no hydration
+ * mismatch. The effect below then reshuffles for dealer fairness.
+ */
+const STABLE_FEATURED: ShowBoat[] = (() => {
+  const byDealer = new Map<string, ShowBoat>();
+  const ordered = showBoats.filter((b) => b.photos.length > 0).sort((a, b) => slugHash(a.slug) - slugHash(b.slug));
+  for (const b of ordered) {
+    const d = b.dealers[0]?.name;
+    if (d && !byDealer.has(d)) byDealer.set(d, b);
+  }
+  return [...byDealer.values()].slice(0, 10);
+})();
+
 export default function Home() {
-  // Curated show boats (data/show-boats.json). Random picks are client-only
-  // (useEffect) so the server render never mismatches, and every page load
-  // reshuffles — each dealer gets equal turns at the featured real estate.
-  const [featured, setFeatured] = useState<ShowBoat[]>([]);
-  const [thumbs, setThumbs] = useState<ShowBoat[]>([]);
+  // Curated show boats (data/show-boats.json). The stable picks render first
+  // (see STABLE_FEATURED); the random reshuffle is client-only (useEffect), so
+  // every page load still gives each dealer equal turns at the featured spots.
+  const [featured, setFeatured] = useState<ShowBoat[]>(() => STABLE_FEATURED.slice(0, 6));
+  const [thumbs, setThumbs] = useState<ShowBoat[]>(() => STABLE_FEATURED.slice(6, 10));
   const [exhibitors, setExhibitors] = useState<Exhibitor[]>([]);
 
   useEffect(() => {
