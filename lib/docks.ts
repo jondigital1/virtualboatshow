@@ -121,6 +121,10 @@ const ALIASES: Record<string, string> = {
   // silently fall back to "announced before the show".
   "Irwin Marine Center": "Irwin Marine",
   "Riverside Marina & Yacht Sales": "G Winter's / Riverside Marina",
+  // Same short-name case as Irwin: the berth list says "Riptide Marine" while
+  // their seven boats say "Riptide Marine Center", so those boats showed no
+  // dock line at all.
+  "Riptide Marine Center": "Riptide Marine",
 };
 
 export function placementFor(dealer: string): Placement | undefined {

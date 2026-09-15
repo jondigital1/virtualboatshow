@@ -29,8 +29,8 @@ const ROUTES = [
   { path: "/vendors", must: ["Marine Marketplace"], label: "marketplace" },
   { path: "/map", must: ["Farley"], label: "map" },
   { path: "/plan", must: ["Hours & Tickets"], label: "plan" },
-  // Sponsors and privacy carry no questions and answers yet (Jon to confirm).
-  { path: "/sponsors", must: ["Golden Nugget"], label: "sponsors", faq: false },
+  { path: "/sponsors", must: ["Golden Nugget"], label: "sponsors" },
+  // Privacy carries no questions and answers yet.
   { path: "/privacy", must: ["What you give us", "ticket window"], label: "privacy", faq: false },
   { path: "/tickets", must: ["Grab your show tickets"], sel: "#tf-first", label: "tickets landing", faq: false },
   { path: "/walkthrough/confirmed?boat=cobia-320-cc&day=2026-09-11&part=Morning", must: ["Cobia"], label: "walkthrough confirmed", faq: false },

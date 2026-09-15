@@ -3,7 +3,9 @@
 import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow } from "@/components/ui";
+import { FaqSection } from "@/components/FaqSection";
 import { HOST_VENUE, MEDIA_PARTNERS, SHOW_PARTNERS, type Sponsor } from "@/lib/sponsors";
+import { sponsorsFaq } from "@/lib/faq";
 import Link from "next/link";
 
 const FONT = "var(--font-poppins), sans-serif";
@@ -95,6 +97,8 @@ export default function Sponsors() {
           </Link>
         </div>
       </section>
+
+      <FaqSection items={sponsorsFaq()} title="Sponsor questions" />
 
       <Footer />
     </>
