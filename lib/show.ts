@@ -76,8 +76,12 @@ export const SHOW_DAYS: { value: string; label: string }[] = [
 /**
  * Schema.org Event, rendered as JSON-LD on the homepage. This is what lets a
  * search result carry the show's dates and venue instead of a plain blue link.
+ *
+ * No ticket offer since 2026-09-15: the show is over and ticket sales with it,
+ * so an InStock offer told search engines tickets were still for sale. The
+ * street is Huron Ave (it said Huron Blvd until the same date).
  */
-export function eventJsonLd(ticketsUrl: string, siteUrl: string) {
+export function eventJsonLd(siteUrl: string) {
   return {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -91,7 +95,7 @@ export function eventJsonLd(ticketsUrl: string, siteUrl: string) {
       name: VENUE,
       address: {
         "@type": "PostalAddress",
-        streetAddress: "600 Huron Blvd",
+        streetAddress: "600 Huron Ave",
         addressLocality: CITY,
         addressRegion: "NJ",
         postalCode: "08401",
@@ -102,11 +106,6 @@ export function eventJsonLd(ticketsUrl: string, siteUrl: string) {
     description:
       `The ${NAME_WITH_YEAR} brings hundreds of boats to the water at ${VENUE} in ${CITY}, ` +
       `${DATES_LONG}, ${YEAR}. Browse the boats, find the dealers, and plan your visit.`,
-    offers: {
-      "@type": "Offer",
-      url: ticketsUrl,
-      availability: "https://schema.org/InStock",
-    },
     organizer: {
       "@type": "Organization",
       name: NAME,

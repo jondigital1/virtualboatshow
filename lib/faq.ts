@@ -13,8 +13,8 @@
  *   - no statistic without a source; counts are computed from the data
  *   - true on every day until the archive replaces these pages, and nothing
  *     a visitor can see on the page contradicts it
- *   - the street is 600 Huron Ave (verified); the Event schema's "Huron Blvd"
- *     in lib/show.ts is wrong
+ *   - the street is 600 Huron Ave (verified), the same as the Event schema
+ *     in lib/show.ts
  *
  * Each set reads names from the file its own page renders, because the files
  * disagree in places: the lineup (lib/showboats.ts) has MarineMax as one

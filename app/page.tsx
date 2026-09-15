@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { track } from "@vercel/analytics";
 import { YEAR, CITY, VENUE, DATES_LONG, eventJsonLd } from "@/lib/show";
-import { TICKETS_URL } from "@/lib/gate";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { ShowMap } from "@/components/ShowMap";
 import { Eyebrow } from "@/components/ui";
@@ -68,7 +67,7 @@ export default function Home() {
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(eventJsonLd(TICKETS_URL, "https://www.acvirtualboatshow.com")),
+          __html: JSON.stringify(eventJsonLd("https://www.acvirtualboatshow.com")),
         }}
       />
 
