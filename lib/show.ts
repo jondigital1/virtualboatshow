@@ -104,8 +104,8 @@ export function eventJsonLd(siteUrl: string) {
     },
     image: [`${siteUrl}/og-show.jpg`],
     description:
-      `The ${NAME_WITH_YEAR} brings hundreds of boats to the water at ${VENUE} in ${CITY}, ` +
-      `${DATES_LONG}, ${YEAR}. Browse the boats, find the dealers, and plan your visit.`,
+      `The ${NAME_WITH_YEAR} brought hundreds of boats to the water at ${VENUE} in ${CITY}, ` +
+      `${DATES_LONG}, ${YEAR}. Browse the boats and find the dealers.`,
     organizer: {
       "@type": "Organization",
       name: NAME,
