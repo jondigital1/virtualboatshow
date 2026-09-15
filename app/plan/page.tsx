@@ -5,7 +5,6 @@ import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { Eyebrow, PhonePill } from "@/components/ui";
 import { useIframeModal } from "@/components/IframeModal";
-import { TicketFunnelButton } from "@/components/TicketFunnel";
 import { FaqSection } from "@/components/FaqSection";
 import { START_DATE, END_DATE } from "@/lib/show";
 import { planFaq } from "@/lib/faq";
@@ -19,7 +18,7 @@ type InfoCard = {
   body: string;
   cta: string;
   icon: React.ReactNode;
-  action: { kind: "tickets" } | { kind: "link"; href: string; external?: boolean };
+  action: { kind: "link"; href: string; external?: boolean };
 };
 
 const ICON_PROPS = { width: 22, height: 22, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round" } as const;
@@ -64,14 +63,8 @@ export default function PlanYourVisit() {
     openTickets(`https://visitatlanticcity.bookdirect.net/#/lodgings/ctab/540?checkin=${ci}&checkout=${co}`, "Hotels & Stays");
   };
 
+  // The Hours & Tickets card came out on 2026-09-15 with the show over (Jon).
   const cards: InfoCard[] = [
-    {
-      title: "Hours & Tickets",
-      body: "Show dates, daily hours, admission info and ticket options.",
-      cta: "Get Tickets",
-      action: { kind: "tickets" },
-      icon: <svg {...ICON_PROPS}><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M8 3v4M16 3v4M3 10h18" /></svg>,
-    },
     {
       title: "Stay & Play",
       body: "Where to stay and more to do in Atlantic City.",
@@ -97,10 +90,6 @@ export default function PlanYourVisit() {
 
   const cardAction = (c: InfoCard) => {
     const style: React.CSSProperties = { display: "inline-flex", alignItems: "center", gap: 7, color: "var(--gold)", fontFamily: FONT, fontWeight: 700, fontSize: 12.5, letterSpacing: ".07em", textTransform: "uppercase", background: "none", border: "none", cursor: "pointer", padding: 0 };
-    if (c.action.kind === "tickets") {
-      // Through the funnel like every other ticket path, never a bare open().
-      return <TicketFunnelButton label={`${c.cta} →`} source="plan-page" className="" style={style} />;
-    }
     return (
       <a href={c.action.href} target={c.action.external ? "_blank" : undefined} rel={c.action.external ? "noopener noreferrer" : undefined} onClick={() => track("plan_link_clicked", { title: c.title })} style={style}>
         {c.cta} <span aria-hidden>→</span>
@@ -126,7 +115,7 @@ export default function PlanYourVisit() {
             </div>
             <span className="gold-rule" style={{ margin: "20px 0 0", background: "var(--lightblue)" }} />
             <p style={{ fontSize: "clamp(15.5px,1.2vw,17.5px)", lineHeight: 1.65, color: "rgba(20,46,81,.8)", margin: "20px 0 0", maxWidth: "44ch" }}>
-              Everything you need to plan your Atlantic City In-Water Boat Show experience, from show hours and parking to waterfront dining and where to stay.
+              Everything you need to plan a visit to Farley State Marina and Atlantic City, from directions and parking to waterfront dining and where to stay.
             </p>
           </div>
           <div style={{ minWidth: 0, position: "relative", borderRadius: 6, overflow: "hidden" }}>

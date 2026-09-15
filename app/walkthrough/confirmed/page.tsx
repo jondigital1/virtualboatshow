@@ -6,7 +6,6 @@ import { useSearchParams } from "next/navigation";
 import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, MONO, Eyebrow } from "@/components/ui";
-import { TicketFunnelButton } from "@/components/TicketFunnel";
 import { boatBySlug, boatTitle } from "@/lib/showboats";
 import { placementFor } from "@/lib/docks";
 import { SHOW_DAYS } from "@/components/DocksideWalkthrough";
@@ -84,8 +83,7 @@ function Confirmed() {
           <Link href="/map" className="h-brighten" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "var(--navy)", color: "#fff", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "14px 20px", borderRadius: 8 }}>
             View show map <span aria-hidden>&rarr;</span>
           </Link>
-          {/* Through the funnel like every other ticket path. */}
-          <TicketFunnelButton label="Get tickets →" source="walkthrough-confirmed" className="" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "transparent", color: "var(--navy)", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "14px 20px", borderRadius: 8, border: "1.5px solid rgba(20,46,81,.25)", fontFamily: "inherit" }} />
+          {/* The Get tickets button came out on 2026-09-15 with the show over (Jon). */}
         </div>
 
         <div style={{ borderTop: "1px solid rgba(20,46,81,.12)", marginTop: 34, paddingTop: 22 }}>

@@ -65,11 +65,9 @@ export default function Privacy() {
 
           <h2 style={h2}>What you give us</h2>
           <p style={p}>
-            We ask for personal details in four places. The Check Availability form on a boat page or boat card
+            We ask for personal details in three places. The Check Availability form on a boat page or boat card
             asks for your name, email address and phone number, each one optional, so the dealer showing that boat
-            can answer your question; it needs at least your name or your email address. On your way to the ticket
-            window we ask for a first name and email address, which also lets the show recognise its own referrals
-            among ticket sales. The updates banner on the boat lineup asks for your email address, and your
+            can answer your question; it needs at least your name or your email address. The updates banner on the boat lineup asks for your email address, and your
             first name if you like, so we can tell you about the next show. And the inquiry form on the Marine
             Marketplace page asks for your company, name and email address, what you are interested in and an
             optional message; the message is emailed to the show team and not stored.
@@ -77,7 +75,8 @@ export default function Privacy() {
           <p style={p}>
             During the 2026 show, the dockside walkthrough form on boat pages also asked for your mobile number and
             the day you planned to attend, and the boat lineup asked for your name and email address before it
-            opened. Those forms are closed.
+            opened. On the way to the ticket window we asked for a first name and email address, which also let the
+            show recognise its own referrals among ticket sales. Those forms are closed.
           </p>
           <p style={p}>
             We do not ask you to create an account, and we do not have one to create.
@@ -151,9 +150,9 @@ export default function Privacy() {
             dealer, and retains sent messages for a limited period.
           </p>
           <p style={li}>
-            <strong style={{ color: "var(--navy)" }}>Interactive Ticketing</strong> sells show tickets. When you
-            open the ticket window you are dealing with them directly, under their privacy policy. We never see
-            your payment details.
+            <strong style={{ color: "var(--navy)" }}>Interactive Ticketing</strong> sold show tickets through the ticket
+            window during the 2026 show. Anyone who used it dealt with them directly, under their privacy policy,
+            and we never saw payment details.
           </p>
           <p style={li}>
             <strong style={{ color: "var(--navy)" }}>Visit Atlantic City</strong> provides the hotel listings on
@@ -167,14 +166,13 @@ export default function Privacy() {
           <h2 style={h2}>Cookies and advertising</h2>
           <p style={p}>
             We advertise the show on Facebook and Instagram, so this site carries the Meta pixel and we can see
-            which ads actually sold tickets. The pixel sets cookies in your browser and tells Meta which pages
-            you looked at here and whether you completed the ticket form. If you have a Facebook or Instagram
+            which ads bring people here. The pixel sets cookies in your browser and tells Meta which pages
+            you looked at here. If you have a Facebook or Instagram
             account, Meta can connect that activity to it. We do not send Meta your name, email address, or
             phone number.
           </p>
           <p style={p}>
-            The pixel cannot see inside the ticket window, so it does not know whether you bought a ticket or
-            what you paid. You can limit what Meta does with this in your Facebook ad preferences, and most
+            You can limit what Meta does with this in your Facebook ad preferences, and most
             browsers will block these cookies outright without breaking anything here.
           </p>
           <p style={p}>

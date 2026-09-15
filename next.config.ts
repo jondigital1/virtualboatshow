@@ -24,6 +24,14 @@ const nextConfig: NextConfig = {
         destination: "/?utm_source=acinwaterboatshow&utm_medium=referral&utm_campaign=acbs-2026&utm_content=show-link",
         permanent: false,
       },
+      // The /tickets ad landing page was retired on 2026-09-15 with the show
+      // over (Jon). Ads and links still pointing at it land on the homepage.
+      // Temporary on purpose: the next show may bring the page back.
+      {
+        source: "/tickets",
+        destination: "/",
+        permanent: false,
+      },
     ];
   },
   // Same-origin proxy to the live Buoy API. Handled here (Next server) so it

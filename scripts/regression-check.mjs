@@ -26,11 +26,10 @@ const ROUTES = [
   { path: "/boats/not-a-real-boat", must: ["find that boat"], label: "boat 404", expect404: true, faq: false },
   { path: "/vendors", must: ["Marine Marketplace"], label: "marketplace" },
   { path: "/map", must: ["Farley"], label: "map" },
-  { path: "/plan", must: ["Hours & Tickets"], label: "plan" },
+  { path: "/plan", must: ["Plan Your Visit", "Get Directions"], label: "plan" },
   { path: "/sponsors", must: ["Golden Nugget"], label: "sponsors" },
   // Privacy carries no questions and answers yet.
   { path: "/privacy", must: ["What you give us", "Check Availability"], label: "privacy", faq: false },
-  { path: "/tickets", must: ["Grab your show tickets"], sel: "#tf-first", label: "tickets landing", faq: false },
   { path: "/walkthrough/confirmed?boat=cobia-320-cc&day=2026-09-11&part=Morning", must: ["Cobia"], label: "walkthrough confirmed", faq: false },
 ];
 
@@ -126,6 +125,18 @@ try {
 }
 await expect("/api/opening-day-send", [401], "opening-day send stays locked");
 await expect("/api/gate", [404, 405], "removed email-key API stays gone");
+await expect("/tickets", [307, 308], "retired ticket landing redirects");
+
+// No page may still open the ticket window now the show is over.
+for (const path of ["/", "/inventory", "/plan", "/boats/cobia-320-cc", "/walkthrough/confirmed"]) {
+  try {
+    const html = await (await fetch(BASE + path)).text();
+    if (/Get Tickets|Get tickets|Hours &amp; Tickets/.test(html)) note(`ticket paths ${path}`, "a ticket button is still on the page");
+    else console.log(`ok  no ticket button on ${path}`);
+  } catch (e) {
+    note(`ticket paths ${path}`, String(e).slice(0, 120));
+  }
+}
 
 console.log("");
 if (failures.length) {
