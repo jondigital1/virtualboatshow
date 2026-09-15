@@ -112,14 +112,14 @@ export default function Home() {
               In-Water <span style={{ color: "var(--lightblue)" }}>Virtual</span> Boat Show
             </h1>
             <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(20px,2.2vw,29px)", lineHeight: 1.15, letterSpacing: "-.01em", margin: "14px 0 0", color: "var(--gold)", textTransform: "uppercase" }}>
-              Explore the boats before you hit the docks.
+              See the boats from the 2026 show.
             </div>
             <span className="gold-rule" style={{ margin: "22px 0 0", background: "var(--lightblue)" }} />
             <p style={{ fontFamily: FONT, fontWeight: 700, fontSize: "clamp(14.5px,1.15vw,16.5px)", letterSpacing: ".04em", color: "var(--navy)", margin: "20px 0 0", textTransform: "uppercase" }}>
               {DATES_LONG}, {YEAR} · {VENUE}
             </p>
             <p style={{ maxWidth: 480, fontSize: "clamp(15.5px,1.2vw,17.5px)", lineHeight: 1.65, color: "rgba(20,46,81,.8)", margin: "12px 0 0" }}>
-              Browse participating dealers and available inventory, see what&rsquo;s coming to the docks, and plan your Atlantic City waterfront weekend.
+              Browse the boats participating dealers featured at the show, check availability with the dealer and find the Marine Marketplace exhibitors.
             </p>
             <div style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(30px,3.4vw,44px)", letterSpacing: ".01em", margin: "30px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
               Let&rsquo;s <span style={{ color: "var(--gold)" }}>Boat!</span>
@@ -166,7 +166,7 @@ export default function Home() {
           <h2 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(28px,4vw,46px)", lineHeight: 1.05, letterSpacing: "-.01em", margin: "14px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>Explore the Show</h2>
           <span className="gold-rule" style={{ margin: "18px 0 0" }} />
           <p style={{ fontSize: "clamp(15.5px,1.2vw,17.5px)", lineHeight: 1.6, color: "rgba(20,46,81,.75)", margin: "18px 0 0", maxWidth: "58ch" }}>
-            Two ways to discover everything waiting for you at the Atlantic City In-Water Boat Show. Find the perfect boat. Find the right products and services. All in one place.
+            Two ways to explore the Atlantic City In-Water Boat Show. Find the perfect boat. Find the right products and services. All in one place.
           </p>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,340px),1fr))", gap: 20, marginTop: 36 }}>
@@ -174,8 +174,8 @@ export default function Home() {
             <div className="card-lift" style={{ background: "#fff", border: "1px solid rgba(20,46,81,.1)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column" }}>
               <div className="explore-split">
                 <div style={{ padding: "24px 22px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 12 }}>
-                  <h3 style={{ fontFamily: FONT, fontWeight: 800, fontSize: 19, letterSpacing: ".01em", margin: 0, color: "var(--navy)", textTransform: "uppercase" }}>Browse Boats at the Show</h3>
-                  <p style={{ fontSize: 14.5, lineHeight: 1.55, color: "rgba(20,46,81,.7)", margin: 0 }}>Explore boats scheduled to be on display from participating dealers and brands.</p>
+                  <h3 style={{ fontFamily: FONT, fontWeight: 800, fontSize: 19, letterSpacing: ".01em", margin: 0, color: "var(--navy)", textTransform: "uppercase" }}>Browse Boats from the Show</h3>
+                  <p style={{ fontSize: 14.5, lineHeight: 1.55, color: "rgba(20,46,81,.7)", margin: 0 }}>Explore the boats participating dealers and brands featured at the show.</p>
                   <div style={{ marginTop: "auto" }}>
                     <OutlineBtn href="/inventory">Browse Boats</OutlineBtn>
                   </div>
@@ -230,7 +230,7 @@ export default function Home() {
           <div style={{ maxWidth: 1240, margin: "0 auto" }}>
             <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 18, flexWrap: "wrap" }}>
               <div>
-                <Eyebrow>On the Water This Year</Eyebrow>
+                <Eyebrow>From the 2026 Show</Eyebrow>
                 <h2 style={{ fontFamily: FONT, fontWeight: 800, fontSize: "clamp(28px,4vw,46px)", lineHeight: 1.05, letterSpacing: "-.01em", margin: "14px 0 0", color: "var(--navy)", textTransform: "uppercase" }}>
                   Featured at <span style={{ color: "var(--gold)" }}>the show</span>
                 </h2>

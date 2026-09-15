@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { track } from "@vercel/analytics";
-import { TicketFunnelButton } from "@/components/TicketFunnel";
 import { WHEN_AND_WHERE, DATES_LONG, YEAR, NAME } from "@/lib/show";
 
 const FONT = "var(--font-poppins), sans-serif";
@@ -41,28 +40,17 @@ export function AnnouncementBar() {
   );
 }
 
-/** Sticky top nav: AC show logo first, "Powered by Buoy" credit second,
- *  visitor links, then the Get Tickets CTA. White per the brand system. */
+/** Sticky top nav: AC show logo first, "Powered by Buoy" credit second, then
+ *  the visitor links. White per the brand system. The gold Get Tickets button
+ *  came out on 2026-09-15 with the show over (Jon); the ticket funnel itself
+ *  (components/TicketFunnel.tsx) is kept for the next show. */
 /**
- * `bare` strips the nav links and the ticket button, leaving the logo lockup
- * alone. Used on the paid landing page, where every nav item is a way to leave
- * before buying. The logo stays because a page with no branding reads as a
- * phishing form.
+ * `bare` strips the nav links, leaving the logo lockup alone. Used on the paid
+ * landing page, where every nav item is a way to leave. The logo stays because
+ * a page with no branding reads as a phishing form.
  */
 export function Nav({ active, bare = false }: { active?: string; bare?: boolean }) {
   const [open, setOpen] = useState(false);
-
-  // Every ticket path goes through the capture funnel, per Jon: no bare
-  // openTickets() CTAs anywhere. Source labels tell nav and menu apart.
-  const ticketBtn = (extra?: React.CSSProperties, source = "nav") => (
-    <TicketFunnelButton
-      label="Get Tickets"
-      source={source}
-      className="h-brighten"
-      onOpen={() => setOpen(false)}
-      style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7, background: "var(--gold)", color: "var(--navy)", fontWeight: 700, fontSize: 12.5, letterSpacing: ".06em", textTransform: "uppercase", padding: "12px 20px", borderRadius: 8, fontFamily: "inherit", ...extra }}
-    />
-  );
 
   return (
     <nav style={{ position: "sticky", top: 0, zIndex: 60, background: "rgba(255,255,255,.96)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", borderBottom: "1px solid rgba(20,46,81,.1)" }}>
@@ -95,7 +83,6 @@ export function Nav({ active, bare = false }: { active?: string; bare?: boolean 
               );
             })}
           </div>
-          {ticketBtn()}
         </div>}
 
         {/* mobile hamburger */}
@@ -121,7 +108,6 @@ export function Nav({ active, bare = false }: { active?: string; bare?: boolean 
               </Link>
             );
           })}
-          {ticketBtn({ marginTop: 16, fontSize: 14, padding: "15px 18px", width: "100%" }, "nav-menu")}
         </div>
       )}
     </nav>

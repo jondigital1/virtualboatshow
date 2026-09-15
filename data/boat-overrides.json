@@ -1,5 +1,5 @@
 {
-  "_comment": "Per-boat source overrides: boats whose workbook link is a search page or brand homepage pull photos/description from the manufacturer's model page instead. official:true relabels the VDP outbound link as the brand model page. primaryPhoto:N promotes photo N to the front when the source page leads with a schematic, a trailer close-up or a dark render. photoFallback {url,token,credit} tops up a thin gallery from the manufacturer's model page; token must appear in the filename so another model's hero shot cannot land on this boat. exclude:true drops the boat from the site entirely (no detail page, no sitemap entry, no listing) for boats the dealer has confirmed are NOT coming to the show; excludeReason records why. Excluded boats keep their photo files on disk so the exclusion can be reversed by deleting the entry. Applied by scripts/import-show-boats.mjs after parsing; survives daily syncs.",
+  "_comment": "Per-boat source overrides: boats whose workbook link is a search page or brand homepage pull photos/description from the manufacturer's model page instead. official:true relabels the VDP outbound link as the brand model page. primaryPhoto:N promotes photo N to the front when the source page leads with a schematic, a trailer close-up or a dark render. photoFallback {url,token,credit} tops up a thin gallery from the manufacturer's model page; token must appear in the filename so another model's hero shot cannot land on this boat. exclude:true drops the boat from the site entirely (no detail page, no sitemap entry, no listing) for boats the dealer has confirmed are NOT coming to the show; excludeReason records why. Excluded boats keep their photo files on disk so the exclusion can be reversed by deleting the entry. blurb replaces the description scraped from the listing (added 2026-09-15 for four Sandy Hook listings whose feed text said the yacht was offered at $0; Jon had the sentence removed). Applied by scripts/import-show-boats.mjs after parsing; survives daily syncs.",
   "barletta-pontoons-aria-a22uc": {
     "primaryPhoto": 2
   },
@@ -131,7 +131,11 @@
     "primaryPhoto": 4
   },
   "de-antonio-yachts-de-antonio-d36": {
-    "primaryPhoto": 2
+    "primaryPhoto": 2,
+    "blurb": "Sandy Hook Yacht Sales is pleased to offer this 2026 De Antonio Yachts D36 located in Sea Bright, New Jersey. Whether buying or selling, the yacht sales professionals at Sandy Hook Yacht Sales can make your boating dreams a reality."
+  },
+  "de-antonio-yachts-de-antonio-d42": {
+    "blurb": "Sandy Hook Yacht Sales is pleased to offer this 2026 De Antonio Yachts D42 located in Sea Bright, New Jersey. Whether buying or selling, the yacht sales professionals at Sandy Hook Yacht Sales can make your boating dreams a reality."
   },
   "everglades-315-cc": {
     "official": true,
@@ -264,7 +268,11 @@
     "blurb": "The Key West 249FS is a family sportsman that splits its time honestly: a fishing-first hull and cockpit with the bow seating and comfort that keep the whole crew aboard for the rest of the day."
   },
   "marex-marex-360": {
-    "primaryPhoto": 2
+    "primaryPhoto": 2,
+    "blurb": "Sandy Hook Yacht Sales is pleased to offer this 2026 Marex 360 Cabriolet Cruiser located in Sea Bright, New Jersey. Whether buying or selling, the yacht sales professionals at Sandy Hook Yacht Sales can make your boating dreams a reality."
+  },
+  "marex-marex-440": {
+    "blurb": "Sandy Hook Yacht Sales is pleased to offer this 2026 Marex 440 located in Sea Bright, New Jersey. Whether buying or selling, the yacht sales professionals at Sandy Hook Yacht Sales can make your boating dreams a reality."
   },
   "monterey-34-elite": {
     "official": true,

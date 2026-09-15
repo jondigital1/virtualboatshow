@@ -69,7 +69,8 @@ export function CheckAvailability({
   dealerPhone?: string;
   /** Where the button was clicked from, for funnel reporting. */
   source: string;
-  variant?: "primary" | "compact";
+  /** "bar": half of the phone action bar on boat pages, label allowed to wrap. */
+  variant?: "primary" | "compact" | "bar";
 }) {
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -169,9 +170,11 @@ export function CheckAvailability({
   }
 
   const btnStyle: React.CSSProperties =
-    variant === "compact"
-      ? { fontSize: 11.5, padding: "10px 14px", flex: "1 1 auto", justifyContent: "center" }
-      : { fontSize: 12, padding: "13px 18px", width: "100%", justifyContent: "center" };
+    variant === "bar"
+      ? { fontSize: 11.5, padding: "10px 8px", flex: "1 1 0", minWidth: 0, minHeight: 48, justifyContent: "center", whiteSpace: "normal", textAlign: "center", lineHeight: 1.2, letterSpacing: ".04em" }
+      : variant === "compact"
+        ? { fontSize: 11.5, padding: "10px 14px", flex: "1 1 auto", justifyContent: "center" }
+        : { fontSize: 12, padding: "13px 18px", width: "100%", justifyContent: "center" };
 
   const phoneLink = dealerPhone ? (
     <a href={`tel:${dealerPhone.replace(/\D/g, "")}`} style={{ color: "var(--linkblue)", fontWeight: 700 }}>{dealerPhone}</a>

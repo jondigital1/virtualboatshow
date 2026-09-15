@@ -16,6 +16,7 @@ export function CallDealer({
   boatSlug,
   source,
   compact = false,
+  bar = false,
 }: {
   phone: string;
   dealer: string;
@@ -23,9 +24,16 @@ export function CallDealer({
   boatSlug: string;
   source: string;
   compact?: boolean;
+  /** Half of the phone action bar on boat pages, label allowed to wrap. */
+  bar?: boolean;
 }) {
   const digits = String(phone).replace(/\D/g, "");
   if (!digits) return null;
+  const size: React.CSSProperties = bar
+    ? { fontSize: 11.5, padding: "10px 8px", flex: "1 1 0", minWidth: 0, minHeight: 48, whiteSpace: "normal", textAlign: "center", lineHeight: 1.2, letterSpacing: ".04em" }
+    : compact
+      ? { fontSize: 11.5, padding: "10px 14px", flex: "1 1 auto" }
+      : { fontSize: 12, padding: "13px 18px", width: "100%" };
   return (
     <a
       href={`tel:${digits}`}
@@ -46,7 +54,7 @@ export function CallDealer({
         borderRadius: 8,
         fontFamily: "inherit",
         whiteSpace: "nowrap",
-        ...(compact ? { fontSize: 11.5, padding: "10px 14px", flex: "1 1 auto" } : { fontSize: 12, padding: "13px 18px", width: "100%" }),
+        ...size,
       }}
     >
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden>

@@ -7,6 +7,8 @@ import { track } from "@vercel/analytics";
 import { AnnouncementBar, Nav, Footer } from "@/components/SiteChrome";
 import { DISPLAY, Eyebrow, PhonePill } from "@/components/ui";
 import { BoatShowPrice } from "@/components/BoatShowPrice";
+import { CheckAvailability } from "@/components/CheckAvailability";
+import { CallDealer } from "@/components/CallDealer";
 import { FaqSection } from "@/components/FaqSection";
 import { placementFor } from "@/lib/docks";
 import { boatFaq } from "@/lib/faq";
@@ -302,6 +304,19 @@ export default function ShowBoatVDP() {
       )}
 
       <Footer />
+
+      {/* Phones: the two actions pinned to the bottom of the screen (Jon,
+          2026-09-15), because the side panel with them sits below the first
+          screen. Hidden above the phone breakpoint by .vdp-mobile-bar. */}
+      {boat.dealers[0] && (
+        <>
+          <div className="vdp-mobile-spacer" aria-hidden />
+          <div className="vdp-mobile-bar">
+            <CheckAvailability boat={boat} dealer={boat.dealers[0].name} dealerPhone={boat.dealers[0].phone} source="vdp-mobile-bar" variant="bar" />
+            <CallDealer phone={boat.dealers[0].phone} dealer={boat.dealers[0].name} boatTitle={title} boatSlug={boat.slug} source="vdp-mobile-bar" bar />
+          </div>
+        </>
+      )}
     </>
   );
 }
