@@ -130,7 +130,7 @@ export function lineupFaq(): Faq[] {
     },
     {
       q: `Are the boats from the ${SHOW} still for sale?`,
-      a: `Boats in the ${SHOW} lineup may have sold since the show, because the lineup shows the boats dealers selected for the show and does not track sales. Each boat page names the presenting dealer with its location and phone number and has a Check Availability button that sends the dealer your question, so you can confirm availability or ask about a similar boat.`,
+      a: `Some have sold, of course. Reach out to the dealer to confirm what is still available: every boat page has a Check Availability button and the dealer's phone number.`,
     },
     {
       q: "Should I buy a new or used boat?",
